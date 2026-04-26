@@ -1,0 +1,59 @@
+Task 9 verification bundle
+
+Command: php artisan route:list --name=product
+Output:
+GET|HEAD        admin/product ........................................ product.index › Admin\ProductController@index
+POST            admin/product ........................................ product.store › Admin\ProductController@store
+GET|HEAD        admin/product/create ............................... product.create › Admin\ProductController@create
+DELETE          admin/product/destroy-selected/{ids} product.destroySelected › Admin\ProductController@destroySelected
+PUT|PATCH       admin/product/{product} ............................ product.update › Admin\ProductController@update
+DELETE          admin/product/{product} .......................... product.destroy › Admin\ProductController@destroy
+GET|HEAD        admin/product/{product}/edit ........................... product.edit › Admin\ProductController@edit
+Showing [7] routes
+
+Command: php -l app/Http/Controllers/Admin/ProductController.php
+Output: No syntax errors detected in app/Http/Controllers/Admin/ProductController.php
+
+Command: php -l app/Http/Requests/StoreProductRequest.php
+Output: No syntax errors detected in app/Http/Requests/StoreProductRequest.php
+
+Command: php -l app/Http/Requests/UpdateProductRequest.php
+Output: No syntax errors detected in app/Http/Requests/UpdateProductRequest.php
+
+Command: npm run build
+Output:
+vite build completed successfully.
+Built assets emitted with no errors.
+
+Legacy schema check on Product pages:
+- resources/js/Pages/Product/Index.jsx
+- resources/js/Pages/Product/Create.jsx
+- resources/js/Pages/Product/Edit.jsx
+
+Grep checks run against those files for supplier/product_category/supplier_id/product_category_id/stock and image prop usage returned no matches.
+Read inspection confirmed the pages only use the simplified Product contract and the computed stock value in Index.
+
+Remediation pass: 2026-04-25 12:49:25 Asia/Jakarta
+
+Command: php artisan route:list --name=product
+Output:
+GET|HEAD        admin/product ........................................ product.index › Admin\ProductController@index
+POST            admin/product ........................................ product.store › Admin\ProductController@store
+GET|HEAD        admin/product/create ............................... product.create › Admin\ProductController@create
+DELETE          admin/product/destroy-selected/{ids} product.destroySelected › Admin\ProductController@destroySelected
+PUT|PATCH       admin/product/{product} ............................ product.update › Admin\ProductController@update
+DELETE          admin/product/{product} .......................... product.destroy › Admin\ProductController@destroy
+GET|HEAD        admin/product/{product}/edit ........................... product.edit › Admin\ProductController@edit
+Showing [7] routes
+
+Command: php -l app/Http/Controllers/Admin/ProductController.php
+Output: No syntax errors detected in app/Http/Controllers/Admin/ProductController.php
+
+Command: npm run build
+Output: vite build completed successfully.
+
+Grep check: `name="description"[^\n]*required=\{true\}` in `resources/js/Pages/Product/Edit.jsx`
+Output: No matches found
+
+Grep check: `\b(supplier|product_category|supplier_id|product_category_id|stock|image)\b` across `resources/js/Pages/Product/*.jsx`
+Output: one harmless false positive in `resources/js/Pages/Product/Index.jsx` importing `NoData.svg` from `assets/image/`; no legacy Product form-field matches remained.

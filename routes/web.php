@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Customer\DashboardController as CustomerDashboard;
@@ -14,8 +15,18 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->post('/logout', [LogoutController::class, 'destroy'])->name('logout');
 
-Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/dashboard', [AdminDashboard::class, 'index'])->name('dashboard');
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
+    Route::get('/dashboard', [AdminDashboard::class, 'index'])->name('admin.dashboard');
+
+    Route::controller(ProductController::class)->prefix('/product')->name('product.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{product}/edit', 'edit')->name('edit');
+        Route::match(['put', 'patch'], '/{product}', 'update')->name('update');
+        Route::delete('/{product}', 'destroy')->name('destroy');
+        Route::delete('/destroy-selected/{ids}', 'destroySelected')->name('destroySelected');
+    });
 });
 
 Route::middleware(['auth', 'role:admin,sales'])->prefix('sales')->name('sales.')->group(function () {

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model
@@ -13,6 +14,7 @@ class Product extends Model
     protected $fillable = [
         'name',
         'description',
+        'thumbnail',
         'price',
         'created_by',
     ];
@@ -22,6 +24,11 @@ class Product extends Model
         return [
             'price' => 'integer',
         ];
+    }
+
+    public function creator(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by');
     }
 
     public function orderItems(): HasMany

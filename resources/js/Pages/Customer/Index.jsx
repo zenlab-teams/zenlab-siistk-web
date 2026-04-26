@@ -1,335 +1,155 @@
-import { useDispatch, useSelector } from "react-redux";
-import { setCurrentRoute } from "../../Redux/slice";
-import Layout from "../../Layouts/Default";
 import { Head, Link } from "@inertiajs/react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { motion } from "framer-motion";
+import { TbEdit, TbTrash } from "react-icons/tb";
+import DataTable from "../../Components/DataTable";
+import Layout from "../../Layouts/Default";
 import Sidebar from "../../Layouts/Sidebar";
-import { TbEdit, TbPlus, TbSearch, TbTrash } from "react-icons/tb";
-import { Table, Header, HeaderRow, Body, Row, HeaderCell, Cell } from "@table-library/react-table-library/table";
-import { useRowSelect } from "@table-library/react-table-library/select";
-import { FaSort, FaSortDown, FaSortUp } from "react-icons/fa";
-import { AnimatePresence, motion } from "framer-motion";
-import ModalDelete from "../../Components/modal/ModalDelete";
-import { tableRowsSizeOptions, tableStyle } from "../../config/tableConfig";
-import { usePagination } from "@table-library/react-table-library/pagination";
-import { useSort, HeaderCellSort, SortToggleType } from "@table-library/react-table-library/sort";
-import CheckboxInput from "../../Components/input/CheckboxInput";
-import Select from "react-select";
-import PaginationButton from "../../Components/button/PaginationButton";
-import classNames from "classnames";
-import NoData from "./../../../assets/image/NoData.svg";
-import { router as Inertia } from "@inertiajs/react";
+import { setCurrentRoute } from "../../Redux/slice";
 
-const Customer = ({ flash, customers }) => {
+const Customer = ({ flash, customers, filters }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(setCurrentRoute({ route: "customer", subRoute: null }));
-    }, []);
-
-    const tableTheme = tableStyle("auto 1fr 1fr 1fr 1fr 0.5fr");
-
-    const [customerData, setCustomerData] = useState(customers);
-    const [search, setSearch] = useState("");
-    const [modalDelete, setModalDelete] = useState(null);
-    const [modalDeleteSelected, setModalDeleteSelected] = useState(null);
-    const [selectedItem, setSelectedItem] = useState([]);
-
-    const rowsSizeOptions = tableRowsSizeOptions();
-
-    const [rowsSize, setRowsSize] = useState(rowsSizeOptions[2].value);
-
-    const data = { nodes: customerData.filter((item) => item.name.toLowerCase().includes(search.toLowerCase())) };
-
-    const pagination = usePagination(data, {
-        state: {
-            page: 0,
-            size: rowsSize,
-        },
-    });
-
-    const handleRowsSizeChange = (selected) => {
-        setRowsSize(selected.value);
-    };
-
-    const handleSearch = (event) => {
-        setSearch(event.target.value);
-        pagination.fns.onSetPage(0);
-    };
-
-    const onSelectChange = (action, state) => {
-        setSelectedItem(state.ids);
-    };
-
-    const select = useRowSelect(data, {
-        onChange: onSelectChange,
-    });
-
-    const sort = useSort(
-        data,
-        {},
-        {
-            sortToggleType: SortToggleType.AlternateWithReset,
-            sortIcon: {
-                margin: "8px",
-                iconDefault: <FaSort fontSize="small" />,
-                iconUp: <FaSortUp fontSize="small" />,
-                iconDown: <FaSortDown fontSize="small" />,
-            },
-            sortFns: {
-                CATEGORYNAME: (array) => array.sort((a, b) => a.name.localeCompare(b.name)),
-            },
-        }
-    );
+    }, [dispatch]);
 
     return (
         <Layout flash={flash}>
             <Head>
-                <title>Customer | AgentApp</title>
+                <title>Customer | TelatenKarya</title>
             </Head>
             <Sidebar />
-            <AnimatePresence>
-                {modalDelete ? (
-                    <ModalDelete
-                        itemID={modalDelete}
-                        closeModal={(id = null) => setModalDelete(id)}
-                        type="customer"
-                        description="Are you sure to delete this customer?"
-                    />
-                ) : (
-                    modalDeleteSelected && (
-                        <ModalDelete
-                            itemID={modalDeleteSelected}
-                            closeModal={(id = null) => setModalDeleteSelected(id)}
-                            type="customer_selected"
-                            description={"Are you sure to delete " + selectedItem.length + " selected item customers?"}
-                        />
-                    )
-                )}
-            </AnimatePresence>
+
             <section className="sm:ml-80 p-8 relative">
                 <div className="mb-5">
                     <h1 className="text-3xl font-bold">Customer</h1>
                     <p className="text-slate-500 dark:text-slate-400 text-lg">List of All The Customer</p>
                 </div>
+
                 <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl">
-                    <div className="flex flex-wrap justify-between items-center gap-2">
-                        <p className="text-xl font-bold">
-                            Customers
-                            <span className="bg-slate-200 text-slate-500 dark:bg-slate-700 dark:text-slate-400 p-2 rounded-lg text-lg ml-1">
-                                {customerData.length}
-                            </span>
-                        </p>
-                        <div className="flex items-center gap-3">
-                            <AnimatePresence>
-                                {selectedItem.length > 0 && (
-                                    <motion.button
-                                        className="flex items-center gap-2 bg-red-400 dark:bg-red-500 text-white dark:text-slate-800 hover:bg-red-500 dark:hover:bg-red-600 px-3 py-2 rounded-lg font-bold whitespace-nowrap transition-all"
-                                        onClick={() => setModalDeleteSelected(selectedItem)}
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        exit={{ opacity: 0 }}
+                    <DataTable
+                        nodes={customers.data}
+                        meta={customers}
+                        filters={filters}
+                        routeName="customer.index"
+                        searchPlaceholder="Search by Customer Name"
+                        gridLayout="0.5fr 1fr 1fr 1fr 0.5fr 0.8fr 0.8fr"
+                        title="Customers"
+                        deleteType="customer"
+                        deleteDescription="Are you sure to delete this customer?"
+                        addHref={route("customer.create")}
+                        addLabel="Add Customer"
+                        columns={[
+                            {
+                                key: "actions",
+                                label: "Action",
+                                render: (item, { onDelete }) => (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.05 }}
+                                        className="flex gap-3 justify-center"
                                     >
-                                        <TbTrash className="font-bold text-xl" />
-                                        <span>{selectedItem.length}</span>Delete Selected
-                                    </motion.button>
-                                )}
-                            </AnimatePresence>
-                            <label
-                                htmlFor="search_category"
-                                className={`flex items-center border-2 dark:border-slate-700 rounded-lg px-2 ${
-                                    search && data.nodes.length == 0
-                                        ? "!border-red-200 dark:!border-red-500 dark:!border-opacity-20"
-                                        : search && "border-sky-300 dark:!border-sky-500 dark:!border-opacity-20"
-                                } transition-all`}
-                            >
-                                <TbSearch
-                                    className={`text-2xl mr-2 text-slate-400 ${
-                                        search && data.nodes.length == 0 ? "!text-red-500" : search && "!text-sky-500"
-                                    } transition-all`}
-                                />
-                                <input
-                                    name="search"
-                                    id="search_category"
-                                    className="w-full py-2 outline-none rounded-lg dark:bg-slate-800 transition-all"
-                                    placeholder="Search by Customer Name"
-                                    onChange={handleSearch}
-                                />
-                            </label>
-                            <Link
-                                href={route("customer.create")}
-                                className="flex items-center gap-2 bg-emerald-400 dark:bg-emerald-500 text-white dark:text-slate-800 hover:bg-emerald-500 dark:hover:bg-emerald-600 px-3 py-2 rounded-lg font-bold whitespace-nowrap transition-all"
-                            >
-                                <TbPlus className="font-bold text-xl" /> Add Customer
-                            </Link>
-                        </div>
-                    </div>
-                    <div className="overflow-x-auto">
-                    <div className="max-h-[38rem] min-w-[640px] relative">
-                        <Table
-                            data={data}
-                            className="text-lg mt-3 !table-fixed max-h-[38rem] !border-b-2 dark:border-slate-600"
-                            theme={tableTheme}
-                            sort={sort}
-                            layout={{ fixedHeader: true, custom: true }}
-                            pagination={pagination}
-                            select={select}
-                        >
-                            {(tableList) => (
-                                <>
-                                    <Header>
-                                        <HeaderRow
-                                            className="!bg-slate-100 dark:!bg-slate-700 text-slate-500 dark:text-slate-400"
-                                            layout={{ custom: true }}
-                                        >
-                                            <HeaderCell className="border-s-2 border-y-2 rounded-s-xl !py-2 !px-3 dark:border-slate-600">
-                                                <CheckboxInput
-                                                    name="tableSelect"
-                                                    checked={select.state.all}
-                                                    indeterminate={!select.state.all && !select.state.none}
-                                                    onChange={select.fns.onToggleAll}
-                                                />
-                                            </HeaderCell>
-                                            <HeaderCellSort
-                                                className="!py-2 !px-3 border-y-2 border-slate-200 dark:border-slate-600 hover:text-sky-500 transition-all"
-                                                sortKey="CATEGORYNAME"
-                                            >
-                                                Customer
-                                            </HeaderCellSort>
-                                            <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Address</HeaderCell>
-                                            <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Contact</HeaderCell>
-                                            <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Total Order</HeaderCell>
-                                            <HeaderCell className="!py-2 !px-3 rounded-r-xl border-y-2 border-r-2 border-slate-200 dark:border-slate-600">
-                                                Action
-                                            </HeaderCell>
-                                        </HeaderRow>
-                                    </Header>
-                                    <Body>
-                                        {tableList.length > 0 ? (
-                                            tableList.map((item) => (
-                                                <Row
-                                                    key={item.id}
-                                                    item={item}
-                                                    className="dark:!bg-slate-800 hover:bg-slate-100 dark:hover:!bg-slate-700 cursor-pointer transition-all"
-                                                >
-                                                    <Cell className="!p-3 rounded-s-xl">
-                                                        <CheckboxInput
-                                                            name={"tableItemSelect" + item.id}
-                                                            checked={select.state.ids.includes(item.id)}
-                                                            onChange={() => select.fns.onToggleById(item.id)}
-                                                        />
-                                                    </Cell>
-                                                    <Cell className="!p-3">
-                                                        <motion.div
-                                                            initial={{ opacity: 0, y: 10 }}
-                                                            whileInView={{ opacity: 1, y: 0 }}
-                                                            transition={{ delay: 0.05 }}
-                                                            className="w-fit rounded-lg"
-                                                        >
-                                                            {item.name}
-                                                        </motion.div>
-                                                    </Cell>
-                                                    <Cell className="!p-3">
-                                                        <motion.div
-                                                            className="whitespace-normal"
-                                                            initial={{ opacity: 0, y: 10 }}
-                                                            whileInView={{ opacity: 1, y: 0 }}
-                                                            transition={{ delay: 0.05 }}
-                                                        >
-                                                            {item.address}
-                                                        </motion.div>
-                                                    </Cell>
-                                                    <Cell className="!p-3">
-                                                        <motion.div
-                                                            initial={{ opacity: 0, y: 10 }}
-                                                            whileInView={{ opacity: 1, y: 0 }}
-                                                            transition={{ delay: 0.05 }}
-                                                            className="flex flex-col"
-                                                        >
-                                                            <span className="text-lg">{item.email}</span>
-                                                            <span className="text-sm text-slate-500 ">{item.number_phone}</span>
-                                                        </motion.div>
-                                                    </Cell>
-                                                    <Cell className="!p-3">
-                                                        <motion.div
-                                                            initial={{ opacity: 0, y: 10 }}
-                                                            whileInView={{ opacity: 1, y: 0 }}
-                                                            transition={{ delay: 0.05 }}
-                                                        >
-                                                            0
-                                                        </motion.div>
-                                                    </Cell>
-                                                    <Cell className="!p-3 rounded-r-xl">
-                                                        <motion.div
-                                                            initial={{ opacity: 0, y: 10 }}
-                                                            whileInView={{ opacity: 1, y: 0 }}
-                                                            transition={{ delay: 0.05 }}
-                                                            className="flex gap-3 justify-center"
-                                                        >
-                                                            <Link href={route("customer.edit", item.id)}>
-                                                                <TbEdit className="text-3xl text-slate-500 dark:text-slate-400 hover:text-sky-500 transition-all" />
-                                                            </Link>
-                                                            <TbTrash
-                                                                className="text-3xl text-slate-500 dark:text-slate-400 hover:text-red-500 transition-all"
-                                                                onClick={() => setModalDelete(item.id)}
-                                                            />
-                                                        </motion.div>
-                                                    </Cell>
-                                                </Row>
-                                            ))
-                                        ) : (
-                                            <Cell
-                                                gridColumnStart={1}
-                                                gridColumnEnd={100}
-                                                className="h-[25rem] *:!h-full *:flex *:items-center *:justify-center *:flex-col"
-                                            >
-                                                <img src={NoData} className="w-52" />
-                                                <p className="text-2xl py-2 px-5 bg-slate-200 text-slate-400 font-bold rounded-xl mt-8 dark:text-slate-500 dark:bg-slate-700">
-                                                    No Data Found
-                                                </p>
-                                                <p className="text-slate-400 dark:text-slate-500 mt-3">Couldn't find any data</p>
-                                            </Cell>
-                                        )}
-                                    </Body>
-                                </>
-                            )}
-                        </Table>
-                    </div>
-                    </div>
-                    <div className="w-full mt-5 flex flex-wrap justify-between items-center gap-3">
-                        <div className="flex items-center gap-3">
-                            <span className="text-slate-500 dark:text-slate-400">Rows per page</span>
-                            <Select
-                                menuPlacement="top"
-                                options={rowsSizeOptions}
-                                defaultValue={rowsSizeOptions.find((options) => options.value === rowsSize)}
-                                onChange={handleRowsSizeChange}
-                                isSearchable={false}
-                                classNames={{
-                                    control: ({ isFocused }) =>
-                                        classNames(
-                                            "!border-2 !outline-none !rounded-xl dark:!bg-slate-800",
-                                            isFocused
-                                                ? "!border-sky-200 dark:!border-sky-500 dark:!border-opacity-20"
-                                                : "!border-slate-200 dark:!border-slate-600"
-                                        ),
-                                    singleValue: () => classNames("!text-slate-500 dark:!text-slate-400"),
-                                    dropdownIndicator: () => classNames("dark:!text-slate-400"),
-                                    indicatorSeparator: () => classNames("hidden"),
-                                    menu: () => classNames("!rounded-xl dark:!bg-slate-800"),
-                                    option: ({ isSelected, isFocused }) => classNames(isSelected && "!bg-sky-400", isFocused && "dark:!bg-slate-600"),
-                                }}
-                                classNamePrefix="react-select"
-                            />
-                        </div>
-                        <PaginationButton pagination={pagination} data={data} />
-                        <div className="text-slate-500 dark:text-slate-400 flex items-center justify-end gap-1 w-52">
-                            Total page
-                            <span className="bg-slate-200 text-slate-500 dark:bg-slate-700 dark:text-slate-400 font-bold p-2 text-sm rounded-lg ml-1">
-                                {pagination.state.getTotalPages(data.nodes)}
-                            </span>
-                        </div>
-                    </div>
+                                        <Link href={route("customer.edit", item.id)}>
+                                            <TbEdit className="text-3xl text-slate-500 dark:text-slate-400 hover:text-sky-500 transition-all" />
+                                        </Link>
+                                        <TbTrash
+                                            className="text-3xl text-slate-500 dark:text-slate-400 hover:text-red-500 transition-all"
+                                            onClick={() => onDelete(item.id)}
+                                        />
+                                    </motion.div>
+                                ),
+                            },
+                            {
+                                key: "customer",
+                                label: "Customer",
+                                sortKey: "name",
+                                render: (item) => (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.05 }}
+                                    >
+                                        {item.name}
+                                    </motion.div>
+                                ),
+                            },
+                            {
+                                key: "address",
+                                label: "Address",
+                                render: (item) => (
+                                    <motion.div
+                                        className="whitespace-normal"
+                                        initial={{ opacity: 0, y: 10 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.05 }}
+                                    >
+                                        {item.address}
+                                    </motion.div>
+                                ),
+                            },
+                            {
+                                key: "contact",
+                                label: "Contact",
+                                render: (item) => (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.05 }}
+                                        className="flex flex-col"
+                                    >
+                                        <span className="text-lg">{item.email}</span>
+                                        <span className="text-sm text-slate-500">{item.number_phone}</span>
+                                    </motion.div>
+                                ),
+                            },
+                            {
+                                key: "total_order",
+                                label: "Total Order",
+                                render: () => (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.05 }}
+                                    >
+                                        0
+                                    </motion.div>
+                                ),
+                            },
+                            {
+                                key: "created_at",
+                                label: "Created At",
+                                sortKey: "created_at",
+                                render: (item) => (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.05 }}
+                                        className="text-slate-500 dark:text-slate-400 text-sm"
+                                    >
+                                        {new Date(item.created_at).toLocaleDateString("id-ID")}
+                                    </motion.div>
+                                ),
+                            },
+                            {
+                                key: "created_by",
+                                label: "Created By",
+                                render: (item) => (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.05 }}
+                                        className="text-slate-500 dark:text-slate-400 text-sm"
+                                    >
+                                        {item.creator?.name ?? "-"}
+                                    </motion.div>
+                                ),
+                            },
+                        ]}
+                    >
+                    </DataTable>
                 </div>
             </section>
         </Layout>

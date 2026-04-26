@@ -2,12 +2,13 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
     TbLayoutDashboard,
     TbLogout2,
+    TbPackage,
     TbSunMoon,
 } from "react-icons/tb";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import Logo from "../../assets/image/Logo.svg";
 import { useState } from "react";
-import { router, usePage } from "@inertiajs/react";
+import { Link, router, usePage } from "@inertiajs/react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, setSidebar } from "../Redux/slice";
 import DarkModeToggle from "../Components/button/DarkModeToggle";
@@ -55,7 +56,7 @@ const Sidebar = () => {
                 </div>
                 <div className="px-3 mb-5">
                     <p className="text-slate-400 dark:text-slate-500 font-bold text-md mb-2 ml-2 text-sm">OVERVIEW</p>
-                    <a href={getDashboardRoute()}>
+                    <Link href={getDashboardRoute()}>
                         <motion.div
                             className={`flex items-center p-2 m-1 rounded-lg cursor-pointer transition-all ${
                                 currentRoute.route === "dashboard"
@@ -65,11 +66,26 @@ const Sidebar = () => {
                             initial={{ opacity: 0, x: -5 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.1 }}
-                        >
+                            >
                             <TbLayoutDashboard className="text-2xl mr-3" />
                             <p className="font-bold text-lg">Dashboard</p>
                         </motion.div>
-                    </a>
+                    </Link>
+                    <Link href={route("product.index")}>
+                        <motion.div
+                            className={`flex items-center p-2 m-1 rounded-lg cursor-pointer transition-all ${
+                                currentRoute.route === "product"
+                                    ? "bg-sky-100 text-sky-500 dark:bg-sky-900"
+                                    : "text-slate-600 hover:bg-slate-200 dark:text-slate-400 dark:hover:bg-slate-700"
+                            }`}
+                            initial={{ opacity: 0, x: -5 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.2 }}
+                            >
+                            <TbPackage className="text-2xl mr-3" />
+                            <p className="font-bold text-lg">Products</p>
+                        </motion.div>
+                    </Link>
                 </div>
             </div>
             <div>
