@@ -22,6 +22,9 @@ const ProductCreate = ({ flash }) => {
         price: null,
         description: "",
         thumbnail: null,
+        initial_quantity: null,
+        initial_unit_cost: null,
+        initial_note: "",
     });
 
     const handleSubmit = (e) => {
@@ -35,6 +38,9 @@ const ProductCreate = ({ flash }) => {
             price: null,
             description: "",
             thumbnail: null,
+            initial_quantity: null,
+            initial_unit_cost: null,
+            initial_note: "",
         });
     };
 
@@ -99,6 +105,39 @@ const ProductCreate = ({ flash }) => {
                                         value={data.description}
                                         error={errors.description && errors.description}
                                     />
+                                    <div className="border-t-2 dark:border-slate-700 pt-4 mt-2">
+                                        <p className="font-bold text-lg mb-3">
+                                            Initial Stock{" "}
+                                            <span className="text-slate-400 text-sm font-normal">(optional)</span>
+                                        </p>
+                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                            <NumberInput
+                                                name="initial_quantity"
+                                                label="Quantity"
+                                                placeholder="Enter Initial Quantity"
+                                                value={data.initial_quantity}
+                                                onChange={setData}
+                                                error={errors.initial_quantity && errors.initial_quantity}
+                                            />
+                                            <NumberInput
+                                                name="initial_unit_cost"
+                                                type="currency"
+                                                label="Unit Cost"
+                                                placeholder="Enter Unit Cost (Rp)"
+                                                value={data.initial_unit_cost}
+                                                onChange={(_, value) => setData("initial_unit_cost", value)}
+                                                error={errors.initial_unit_cost && errors.initial_unit_cost}
+                                            />
+                                            <TextInput
+                                                name="initial_note"
+                                                label="Note"
+                                                placeholder="e.g. Initial stock"
+                                                onChange={setData}
+                                                value={data.initial_note}
+                                                error={errors.initial_note && errors.initial_note}
+                                            />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div className="flex items-center gap-3 justify-end mt-3">

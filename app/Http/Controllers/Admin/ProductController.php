@@ -53,16 +53,40 @@ class ProductController extends Controller
 
     public function store(StoreProductRequest $request): RedirectResponse
     {
-        $data = $request->safe()->except(['thumbnail']);
+        $validated = $request->validated();
+        $data = $request->safe()->except(['thumbnail', 'initial_quantity', 'initial_unit_cost', 'initial_note']);
         $data['created_by'] = auth()->id();
 
         if ($request->hasFile('thumbnail')) {
             $data['thumbnail'] = $request->file('thumbnail')->store('productImages', 'public');
         }
 
-        Product::query()->create($data);
+        $product = Product::query()->create($data);
+
+        $initialQty = $validated['initial_quantity'] ?? null;
+        if ($initialQty) {
+            $product->stocks()->create([
+                'quantity' => $initialQty,
+                'unit_cost' => $validated['initial_unit_cost'] ?? null,
+                'type' => 'in',
+                'note' => $validated['initial_note'] ?? 'Initial stock',
+                'created_by' => auth()->id(),
+            ]);
+        }
 
         return redirect()->route('product.index')->with('success', 'Product created successfully.');
+    }
+
+    public function show(Product $product): Response
+    {
+        return Inertia::render('Product/Show', [
+            'product' => $product,
+            'stocks' => $product->stocks()
+                ->select(['id', 'quantity', 'unit_cost', 'type', 'note', 'created_at'])
+                ->latest()
+                ->get(),
+            'currentStock' => $product->currentStock(),
+        ]);
     }
 
     public function edit(Product $product): Response
@@ -74,7 +98,8 @@ class ProductController extends Controller
 
     public function update(UpdateProductRequest $request, Product $product): RedirectResponse
     {
-        $data = $request->safe()->except(['thumbnail']);
+        $validated = $request->validated();
+        $data = $request->safe()->except(['thumbnail', 'stock_quantity', 'stock_type', 'stock_unit_cost', 'stock_note']);
 
         if ($request->hasFile('thumbnail')) {
             if ($product->thumbnail) {
@@ -85,6 +110,23 @@ class ProductController extends Controller
         }
 
         $product->update($data);
+
+        $stockQty = $validated['stock_quantity'] ?? null;
+        $stockType = $validated['stock_type'] ?? null;
+        if ($stockQty && $stockType) {
+            $quantity = abs($stockQty);
+            if ($stockType === 'out') {
+                $quantity = -$quantity;
+            }
+
+            $product->stocks()->create([
+                'quantity' => $quantity,
+                'unit_cost' => $validated['stock_unit_cost'] ?? null,
+                'type' => $stockType,
+                'note' => $validated['stock_note'] ?? null,
+                'created_by' => auth()->id(),
+            ]);
+        }
 
         return redirect()->route('product.index')->with('success', 'Product updated successfully.');
     }

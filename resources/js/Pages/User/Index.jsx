@@ -1,46 +1,52 @@
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { motion } from "framer-motion";
-import { TbEdit, TbEye, TbPhoto, TbTrash } from "react-icons/tb";
+import { TbEdit, TbTrash } from "react-icons/tb";
 import DataTable from "../../Components/DataTable";
 import Layout from "../../Layouts/Default";
 import Sidebar from "../../Layouts/Sidebar";
 import { setCurrentRoute } from "../../Redux/slice";
 
-const ProductIndex = ({ flash, products, filters }) => {
+const UserIndex = ({ flash, users, filters }) => {
     const dispatch = useDispatch();
+    const { auth } = usePage().props;
+    const loggedInUser = auth?.user;
 
     useEffect(() => {
-        dispatch(setCurrentRoute({ route: "product", subRoute: "master" }));
+        dispatch(setCurrentRoute({ route: "user", subRoute: null }));
     }, [dispatch]);
+
+    const roleClassMap = {
+        admin: "bg-sky-100 text-sky-600 dark:bg-sky-900/30 dark:text-sky-400",
+        sales: "bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400",
+        customer: "bg-violet-100 text-violet-600 dark:bg-violet-900/30 dark:text-violet-400",
+    };
 
     return (
         <Layout flash={flash}>
             <Head>
-                <title>Products | TelatenKarya</title>
+                <title>Users | TelatenKarya</title>
             </Head>
             <Sidebar />
-
             <section className="sm:ml-80 p-8 relative">
                 <div className="mb-5">
-                    <h1 className="text-3xl font-bold">Products</h1>
-                    <p className="text-slate-500 dark:text-slate-400 text-lg">List of all products</p>
+                    <h1 className="text-3xl font-bold">Users</h1>
+                    <p className="text-slate-500 dark:text-slate-400 text-lg">List of all users</p>
                 </div>
-
                 <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl">
                     <DataTable
-                        nodes={products.data}
-                        meta={products}
+                        nodes={users.data}
+                        meta={users}
                         filters={filters}
-                        routeName="product.index"
-                        searchPlaceholder="Search by Product Name"
-                        gridLayout="auto 0.5fr 1.5fr 1fr 1fr 2fr 1fr 1fr"
-                        title="Products"
-                        deleteType="product"
-                        deleteDescription="Are you sure to delete this product?"
-                        addHref={route("product.create")}
-                        addLabel="Add Product"
+                        routeName="user.index"
+                        searchPlaceholder="Search by Name or Email"
+                        gridLayout="0.5fr 1.5fr 1.5fr 1fr 1fr 0.8fr"
+                        title="Users"
+                        deleteType="user"
+                        deleteDescription="Are you sure to delete this user?"
+                        addHref={route("user.create")}
+                        addLabel="Add User"
                         columns={[
                             {
                                 key: "actions",
@@ -52,39 +58,17 @@ const ProductIndex = ({ flash, products, filters }) => {
                                         transition={{ delay: 0.05 }}
                                         className="flex gap-3 justify-center"
                                     >
-                                        <Link href={route("product.show", item.id)}>
-                                            <TbEye className="text-3xl text-slate-500 dark:text-slate-400 hover:text-sky-500 transition-all" />
-                                        </Link>
-                                        <Link href={route("product.edit", item.id)}>
+                                        <Link href={route("user.edit", item.id)}>
                                             <TbEdit className="text-3xl text-slate-500 dark:text-slate-400 hover:text-sky-500 transition-all" />
                                         </Link>
                                         <TbTrash
-                                            className="text-3xl text-slate-500 dark:text-slate-400 hover:text-red-500 transition-all"
-                                            onClick={() => onDelete(item.id)}
+                                            className={`text-3xl transition-all ${
+                                                item.id === loggedInUser?.id
+                                                    ? "text-slate-300 dark:text-slate-600 cursor-not-allowed"
+                                                    : "text-slate-500 dark:text-slate-400 hover:text-red-500"
+                                            }`}
+                                            onClick={() => item.id !== loggedInUser?.id && onDelete(item.id)}
                                         />
-                                    </motion.div>
-                                ),
-                            },
-                            {
-                                key: "thumbnail",
-                                label: "Thumbnail",
-                                render: (item) => (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 10 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 0.05 }}
-                                        className="flex justify-center"
-                                    >
-                                        {item.thumbnail ? (
-                                            <img
-                                                src={"/storage/" + item.thumbnail}
-                                                className="w-10 h-10 object-cover rounded-lg"
-                                            />
-                                        ) : (
-                                            <div className="w-10 h-10 bg-slate-200 dark:bg-slate-600 rounded-lg flex items-center justify-center">
-                                                <TbPhoto className="text-slate-400 dark:text-slate-300" />
-                                            </div>
-                                        )}
                                     </motion.div>
                                 ),
                             },
@@ -97,52 +81,37 @@ const ProductIndex = ({ flash, products, filters }) => {
                                         initial={{ opacity: 0, y: 10 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         transition={{ delay: 0.05 }}
-                                        className="whitespace-normal font-medium"
                                     >
                                         {item.name}
                                     </motion.div>
                                 ),
                             },
                             {
-                                key: "price",
-                                label: "Price",
-                                sortKey: "price",
+                                key: "email",
+                                label: "Email",
+                                sortKey: "email",
                                 render: (item) => (
                                     <motion.div
-                                        className="whitespace-normal"
                                         initial={{ opacity: 0, y: 10 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         transition={{ delay: 0.05 }}
                                     >
-                                        Rp{item.price.toLocaleString("id-ID")}
+                                        {item.email}
                                     </motion.div>
                                 ),
                             },
                             {
-                                key: "stock",
-                                label: "Stock",
-                                sortKey: "stocks_sum_quantity",
+                                key: "role",
+                                label: "Role",
                                 render: (item) => (
                                     <motion.div
                                         initial={{ opacity: 0, y: 10 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         transition={{ delay: 0.05 }}
                                     >
-                                        <span className="text-lg">{item.stocks_sum_quantity ?? 0}</span>
-                                    </motion.div>
-                                ),
-                            },
-                            {
-                                key: "description",
-                                label: "Description",
-                                render: (item) => (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 10 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 0.05 }}
-                                        className="whitespace-normal text-slate-500 dark:text-slate-400"
-                                    >
-                                        {item.description ?? "-"}
+                                        <span className={`px-2 py-1 rounded-lg text-sm font-bold capitalize ${roleClassMap[item.role]}`}>
+                                            {item.role}
+                                        </span>
                                     </motion.div>
                                 ),
                             },
@@ -176,12 +145,11 @@ const ProductIndex = ({ flash, products, filters }) => {
                                 ),
                             },
                         ]}
-                    >
-                    </DataTable>
+                    />
                 </div>
             </section>
         </Layout>
     );
 };
 
-export default ProductIndex;
+export default UserIndex;

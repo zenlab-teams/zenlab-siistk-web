@@ -9,6 +9,7 @@ import TextInput from "../../Components/input/TextInput";
 import TextAreaInput from "../../Components/input/TextAreaInput";
 import NumberInput from "../../Components/input/NumberInput";
 import ImageInput from "../../Components/input/ImageInput";
+import SelectInput from "../../Components/input/SelectInput";
 
 const ProductEdit = ({ flash, product }) => {
     const dispatch = useDispatch();
@@ -23,9 +24,18 @@ const ProductEdit = ({ flash, product }) => {
         description: product.description ?? "",
         thumbnail: "old",
         _method: "PUT",
+        stock_quantity: null,
+        stock_type: "in",
+        stock_unit_cost: null,
+        stock_note: "",
     };
 
     const { data, setData, post, errors } = useForm(initialProductForm);
+    const stockTypeOptions = [
+        { value: "in", label: "Stock In" },
+        { value: "out", label: "Stock Out" },
+        { value: "adjustment", label: "Adjustment" },
+    ];
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -98,6 +108,48 @@ const ProductEdit = ({ flash, product }) => {
                                         value={data.description}
                                         error={errors.description && errors.description}
                                     />
+                                    <div className="border-t-2 dark:border-slate-700 pt-4 mt-2">
+                                        <p className="font-bold text-lg mb-3">
+                                            Add Stock Entry{" "}
+                                            <span className="text-slate-400 text-sm font-normal">(optional)</span>
+                                        </p>
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                            <SelectInput
+                                                name="stock_type"
+                                                label="Type"
+                                                placeholder="Select Stock Type"
+                                                options={stockTypeOptions}
+                                                value={data.stock_type}
+                                                onChange={setData}
+                                                error={errors.stock_type && errors.stock_type}
+                                            />
+                                            <NumberInput
+                                                name="stock_quantity"
+                                                label="Quantity"
+                                                placeholder="Enter Quantity"
+                                                value={data.stock_quantity}
+                                                onChange={setData}
+                                                error={errors.stock_quantity && errors.stock_quantity}
+                                            />
+                                            <NumberInput
+                                                name="stock_unit_cost"
+                                                type="currency"
+                                                label="Unit Cost"
+                                                placeholder="Enter Unit Cost (Rp)"
+                                                value={data.stock_unit_cost}
+                                                onChange={(_, value) => setData("stock_unit_cost", value)}
+                                                error={errors.stock_unit_cost && errors.stock_unit_cost}
+                                            />
+                                            <TextInput
+                                                name="stock_note"
+                                                label="Note"
+                                                placeholder="Enter Note"
+                                                onChange={setData}
+                                                value={data.stock_note}
+                                                error={errors.stock_note && errors.stock_note}
+                                            />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div className="flex items-center gap-3 justify-end mt-3">

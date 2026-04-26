@@ -4,6 +4,7 @@ import {
     TbLogout2,
     TbPackage,
     TbSunMoon,
+    TbUsers,
 } from "react-icons/tb";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import Logo from "../../assets/image/Logo.svg";
@@ -86,6 +87,23 @@ const Sidebar = () => {
                             <p className="font-bold text-lg">Products</p>
                         </motion.div>
                     </Link>
+                    {user?.role === "admin" && (
+                        <Link href={route("user.index")}>
+                            <motion.div
+                                className={`flex items-center p-2 m-1 rounded-lg cursor-pointer transition-all ${
+                                    currentRoute.route === "user"
+                                        ? "bg-sky-100 text-sky-500 dark:bg-sky-900"
+                                        : "text-slate-600 hover:bg-slate-200 dark:text-slate-400 dark:hover:bg-slate-700"
+                                }`}
+                                initial={{ opacity: 0, x: -5 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.25 }}
+                            >
+                                <TbUsers className="text-2xl mr-3" />
+                                <p className="font-bold text-lg">Users</p>
+                            </motion.div>
+                        </Link>
+                    )}
                 </div>
             </div>
             <div>

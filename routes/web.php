@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\StockController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Customer\DashboardController as CustomerDashboard;
@@ -22,9 +24,24 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/create', 'create')->name('create');
         Route::post('/', 'store')->name('store');
+        Route::get('/{product}', 'show')->name('show');
+        Route::controller(StockController::class)->group(function () {
+            Route::get('/{product}/stock/create', 'create')->name('stock.create');
+            Route::post('/{product}/stock', 'store')->name('stock.store');
+        });
         Route::get('/{product}/edit', 'edit')->name('edit');
         Route::match(['put', 'patch'], '/{product}', 'update')->name('update');
         Route::delete('/{product}', 'destroy')->name('destroy');
+        Route::delete('/destroy-selected/{ids}', 'destroySelected')->name('destroySelected');
+    });
+
+    Route::controller(UserController::class)->prefix('/user')->name('user.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{user}/edit', 'edit')->name('edit');
+        Route::match(['put', 'patch'], '/{user}', 'update')->name('update');
+        Route::delete('/{user}', 'destroy')->name('destroy');
         Route::delete('/destroy-selected/{ids}', 'destroySelected')->name('destroySelected');
     });
 });

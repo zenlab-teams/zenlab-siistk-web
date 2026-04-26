@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreProductRequest extends FormRequest
+class StoreUserRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -21,12 +21,13 @@ class StoreProductRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'price' => ['required', 'integer', 'min:0'],
-            'description' => ['nullable', 'string'],
-            'thumbnail' => ['nullable', 'image', 'mimes:jpeg,jpg,png', 'max:2048'],
-            'initial_quantity' => ['nullable', 'integer', 'min:1'],
-            'initial_unit_cost' => ['nullable', 'integer', 'min:0'],
-            'initial_note' => ['nullable', 'string', 'max:255'],
+            'email' => ['required', 'email', 'unique:users,email'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'role' => ['required', 'in:admin,sales,customer'],
+            'phone' => ['nullable', 'string', 'max:20'],
+            'address' => ['nullable', 'string', 'max:255'],
+            'city' => ['nullable', 'string', 'max:100'],
+            'postal_code' => ['nullable', 'string', 'max:10'],
         ];
     }
 }

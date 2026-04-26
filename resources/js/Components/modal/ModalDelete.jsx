@@ -31,6 +31,11 @@ const ModalDelete = ({ itemID, closeModal, type, description }) => {
         } else if (type == "customer_selected") {
             routeName = "customer.destroySelected";
             params = itemID.join(",");
+        } else if (type == "user") {
+            routeName = "user.destroy";
+        } else if (type == "user_selected") {
+            routeName = "user.destroySelected";
+            params = itemID.join(",");
         }
 
         Inertia.delete(route(routeName, params), {

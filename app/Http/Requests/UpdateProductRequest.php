@@ -24,6 +24,10 @@ class UpdateProductRequest extends FormRequest
             'price' => ['required', 'integer', 'min:0'],
             'description' => ['nullable', 'string'],
             'thumbnail' => ['nullable', 'image', 'mimes:jpeg,jpg,png', 'max:2048'],
+            'stock_quantity' => ['nullable', 'integer', 'min:1'],
+            'stock_type' => ['nullable', 'required_with:stock_quantity', 'in:in,out,adjustment'],
+            'stock_unit_cost' => ['nullable', 'integer', 'min:0'],
+            'stock_note' => ['nullable', 'string', 'max:255'],
         ];
     }
 }
