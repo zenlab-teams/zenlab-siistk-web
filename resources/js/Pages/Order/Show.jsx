@@ -1,7 +1,10 @@
 import { Head, Link, router, useForm } from "@inertiajs/react";
-import { useEffect, useMemo } from "react";
+import { createPortal } from "react-dom";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { MdKeyboardArrowLeft } from "react-icons/md";
+import { TbPlus, TbX } from "react-icons/tb";
 import { Body, Cell, Header, HeaderCell, HeaderRow, Row, Table } from "@table-library/react-table-library/table";
 import ImageInput from "../../Components/input/ImageInput";
 import NumberInput from "../../Components/input/NumberInput";
@@ -14,10 +17,18 @@ import { tableStyle } from "../../config/tableConfig";
 
 const OrderShow = ({ flash, order }) => {
     const dispatch = useDispatch();
+    const [showPaymentModal, setShowPaymentModal] = useState(false);
+    const [domReady, setDomReady] = useState(false);
 
     useEffect(() => {
         dispatch(setCurrentRoute({ route: "order", subRoute: null }));
     }, [dispatch]);
+
+    useEffect(() => {
+        setDomReady(true);
+    }, []);
+
+    const modalRoot = domReady ? document.getElementById("modal-root") : null;
 
     const invoice = order.invoice;
     const items = order.items ?? [];
@@ -82,12 +93,109 @@ const OrderShow = ({ flash, order }) => {
             forceFormData: true,
             onSuccess: () => {
                 reset("amount", "type", "proof_image", "note");
+                setShowPaymentModal(false);
             },
         });
     };
 
+    const paymentModal = domReady && modalRoot
+        ? createPortal(
+              <AnimatePresence>
+                  {showPaymentModal && (
+                      <motion.div
+                          className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto py-8 px-4"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                      >
+                          <motion.div
+                              className="fixed inset-0 bg-black/30 dark:bg-black/50"
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              exit={{ opacity: 0 }}
+                              onClick={() => setShowPaymentModal(false)}
+                          />
+
+                          <motion.div
+                              className="relative z-10 w-full max-w-xl rounded-xl bg-white shadow-xl dark:bg-slate-800"
+                              initial={{ opacity: 0, y: -20 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -20 }}
+                          >
+                              <div className="flex items-center justify-between border-b border-slate-200 p-5 dark:border-slate-700">
+                                  <p className="text-xl font-bold">Add Payment</p>
+                                  <button
+                                      type="button"
+                                      onClick={() => setShowPaymentModal(false)}
+                                      className="rounded-lg p-2 text-slate-500 transition-all hover:bg-slate-100 dark:hover:bg-slate-700"
+                                  >
+                                      <TbX className="text-xl" />
+                                  </button>
+                              </div>
+
+                              <div className="p-5">
+                                  <form onSubmit={handleSubmitPayment} className="flex flex-col gap-4">
+                                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                          <NumberInput
+                                              name="amount"
+                                              label="Amount"
+                                              type="currency"
+                                              value={data.amount}
+                                              min={1}
+                                              onChange={setData}
+                                              error={errors.amount}
+                                              required={true}
+                                              disabled={data.type === "full"}
+                                          />
+                                          <SelectInput
+                                              name="type"
+                                              label="Type"
+                                              options={paymentTypeOptions}
+                                              value={data.type}
+                                              onChange={setData}
+                                              error={errors.type}
+                                              required={true}
+                                          />
+                                      </div>
+                                      <TextInput
+                                          name="note"
+                                          label="Note"
+                                          placeholder="Add note (optional)"
+                                          value={data.note}
+                                          onChange={setData}
+                                          error={errors.note}
+                                      />
+                                      <ImageInput
+                                          name="proof_image"
+                                          label="Proof Image"
+                                          placeholder="Upload payment proof"
+                                          value={data.proof_image}
+                                          onChange={setData}
+                                          error={errors.proof_image}
+                                      />
+                                      <div className="flex justify-end mt-2">
+                                          <button
+                                              type="submit"
+                                              disabled={processing}
+                                              className="bg-sky-500 hover:bg-sky-600 disabled:bg-slate-400 text-white dark:text-slate-800 px-5 py-2 rounded-lg font-bold transition-all"
+                                          >
+                                              {processing ? "Saving..." : "Save Payment"}
+                                          </button>
+                                      </div>
+                                  </form>
+                              </div>
+                          </motion.div>
+                      </motion.div>
+                  )}
+              </AnimatePresence>,
+              modalRoot
+          )
+        : null;
+
     return (
-        <Layout flash={flash}>
+        <>
+            {paymentModal}
+            <Layout flash={flash}>
             <Head>
                 <title>Order Detail | TelatenKarya</title>
             </Head>
@@ -250,17 +358,28 @@ const OrderShow = ({ flash, order }) => {
                 </div>
 
                 {invoice ? (
-                    <div className="grid grid-cols-1 xl:grid-cols-3 gap-5">
-                        <div className="xl:col-span-2 bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl">
+                    <div className="grid grid-cols-1 gap-5">
+                        <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl">
                             <div className="flex items-center justify-between mb-3">
-                                <p className="text-xl font-bold">Invoice & Payments</p>
-                                <span
-                                    className={`px-3 py-1 rounded-lg text-sm font-bold capitalize ${
-                                        invoiceStatusClassMap[invoice.status] ?? invoiceStatusClassMap.unpaid
-                                    }`}
-                                >
-                                    {invoice.status}
-                                </span>
+                                <div className="flex items-center gap-3">
+                                    <p className="text-xl font-bold">Invoice & Payments</p>
+                                    <span
+                                        className={`px-3 py-1 rounded-lg text-sm font-bold capitalize ${
+                                            invoiceStatusClassMap[invoice.status] ?? invoiceStatusClassMap.unpaid
+                                        }`}
+                                    >
+                                        {invoice.status}
+                                    </span>
+                                </div>
+                                {invoice.status !== "paid" && order.status !== "cancelled" && (
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowPaymentModal(true)}
+                                        className="flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white dark:text-slate-800 px-3 py-2 rounded-lg font-bold transition-all"
+                                    >
+                                        <TbPlus className="text-xl" /> Add Payment
+                                    </button>
+                                )}
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
@@ -366,55 +485,6 @@ const OrderShow = ({ flash, order }) => {
                                 </div>
                             </div>
                         </div>
-
-                        <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl h-fit">
-                            <p className="text-xl font-bold mb-3">Add Payment</p>
-                            <form onSubmit={handleSubmitPayment} className="flex flex-col gap-3">
-                                <NumberInput
-                                    name="amount"
-                                    label="Amount"
-                                    type="currency"
-                                    value={data.amount}
-                                    min={1}
-                                    onChange={setData}
-                                    error={errors.amount}
-                                    required={true}
-                                    disabled={data.type === "full"}
-                                />
-                                <SelectInput
-                                    name="type"
-                                    label="Type"
-                                    options={paymentTypeOptions}
-                                    value={data.type}
-                                    onChange={setData}
-                                    error={errors.type}
-                                    required={true}
-                                />
-                                <TextInput
-                                    name="note"
-                                    label="Note"
-                                    placeholder="Add note (optional)"
-                                    value={data.note}
-                                    onChange={setData}
-                                    error={errors.note}
-                                />
-                                <ImageInput
-                                    name="proof_image"
-                                    label="Proof Image"
-                                    placeholder="Upload payment proof"
-                                    value={data.proof_image}
-                                    onChange={setData}
-                                    error={errors.proof_image}
-                                />
-                                <button
-                                    type="submit"
-                                    disabled={processing}
-                                    className="bg-sky-500 hover:bg-sky-600 disabled:bg-slate-400 text-white dark:text-slate-800 px-5 py-2 rounded-lg font-bold transition-all"
-                                >
-                                    {processing ? "Saving..." : "Save Payment"}
-                                </button>
-                            </form>
-                        </div>
                     </div>
                 ) : (
                     <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl text-slate-500 dark:text-slate-400">
@@ -423,6 +493,7 @@ const OrderShow = ({ flash, order }) => {
                 )}
             </section>
         </Layout>
+        </>
     );
 };
 
