@@ -236,22 +236,22 @@ const OrderShow = ({ flash, order }) => {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 xl:grid-cols-3 gap-5 mb-5">
-                    <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl xl:col-span-2">
-                        <p className="text-xl font-bold mb-3">Order Information</p>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <p className="text-slate-500 dark:text-slate-400 text-sm">Customer</p>
-                                <p className="text-lg font-bold">
-                                    {order.customer?.name ?? <span className="italic text-slate-400">Walk-in</span>}
-                                </p>
-                            </div>
-                            <div>
-                                <p className="text-slate-500 dark:text-slate-400 text-sm">Created At</p>
-                                <p className="text-lg font-bold">{new Date(order.created_at).toLocaleString("id-ID")}</p>
-                            </div>
-                            <div>
-                                <p className="text-slate-500 dark:text-slate-400 text-sm">Status</p>
+                <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl mb-5">
+                    <p className="text-xl font-bold mb-3">Order Information</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                        <div>
+                            <p className="text-slate-500 dark:text-slate-400 text-sm">Customer</p>
+                            <p className="text-lg font-bold">
+                                {order.customer?.name ?? <span className="italic text-slate-400">Walk-in</span>}
+                            </p>
+                        </div>
+                        <div>
+                            <p className="text-slate-500 dark:text-slate-400 text-sm">Created At</p>
+                            <p className="text-lg font-bold">{new Date(order.created_at).toLocaleString("id-ID")}</p>
+                        </div>
+                        <div>
+                            <p className="text-slate-500 dark:text-slate-400 text-sm">Status</p>
+                            <div className="mt-1">
                                 <span
                                     className={`inline-flex px-3 py-1 rounded-lg text-sm font-bold capitalize ${
                                         orderStatusClassMap[order.status] ?? orderStatusClassMap.pending
@@ -260,16 +260,15 @@ const OrderShow = ({ flash, order }) => {
                                     {order.status}
                                 </span>
                             </div>
-                            <div>
-                                <p className="text-slate-500 dark:text-slate-400 text-sm">Total</p>
-                                <p className="text-lg font-bold">Rp{order.total_price.toLocaleString("id-ID")}</p>
-                            </div>
                         </div>
-                    </div>
-
-                    <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl">
-                        <p className="text-xl font-bold mb-3">Created By</p>
-                        <p className="text-lg">{order.creator?.name ?? "-"}</p>
+                        <div>
+                            <p className="text-slate-500 dark:text-slate-400 text-sm">Total</p>
+                            <p className="text-lg font-bold">Rp{order.total_price.toLocaleString("id-ID")}</p>
+                        </div>
+                        <div>
+                            <p className="text-slate-500 dark:text-slate-400 text-sm">Created By</p>
+                            <p className="text-lg font-bold">{order.creator?.name ?? "-"}</p>
+                        </div>
                     </div>
                 </div>
 
