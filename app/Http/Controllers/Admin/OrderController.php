@@ -45,7 +45,7 @@ class OrderController extends Controller
                 'customer:id,name',
                 'creator:id,name',
                 'invoice',
-                'invoice.payments:id,invoice_id,amount',
+                'invoice.payments:id,invoice_id,amount,status',
             ])
             ->when($search, function ($query) use ($search) {
                 $query->whereHas('customer', function ($customerQuery) use ($search) {
@@ -170,5 +170,22 @@ class OrderController extends Controller
         ]);
 
         return back()->with('success', 'Customer information updated.');
+    }
+
+    public function downloadInvoice(Order $order): \Illuminate\Http\Response
+    {
+        $order->load([
+            'customer',
+            'items.product',
+            'invoice.payments.creator:id,name',
+            'creator:id,name',
+            'offerRecord.sale.user:id,name',
+        ]);
+
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('pdf.invoice', [
+            'order' => $order,
+        ]);
+
+        return $pdf->download("invoice-{$order->id}.pdf");
     }
 }

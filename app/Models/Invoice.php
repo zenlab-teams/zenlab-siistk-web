@@ -80,8 +80,8 @@ class Invoice extends Model
         }
 
         $this->paidAmountValue = $this->relationLoaded('payments')
-            ? (int) $this->payments->sum('amount')
-            : (int) $this->payments()->sum('amount');
+            ? (int) $this->payments->where('status', 'approved')->sum('amount')
+            : (int) $this->payments()->where('status', 'approved')->sum('amount');
         $this->paidAmountResolved = true;
 
         return $this->paidAmountValue;

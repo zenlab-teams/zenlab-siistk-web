@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
             $table->foreignId('customer_id')->nullable()->constrained('customers')->restrictOnDelete()->restrictOnUpdate();
             $table->foreignId('offer_record_id')->nullable()->constrained('offers_records')->restrictOnDelete()->restrictOnUpdate();
             $table->integer('total_price');

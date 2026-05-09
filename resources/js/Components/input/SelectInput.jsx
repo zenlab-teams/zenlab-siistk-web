@@ -33,7 +33,7 @@ const SelectInput = ({
     };
 
     const handleChange = (selected) => {
-        onChange(name, selected.value);
+        onChange(name, selected ? selected.value : null);
     };
 
     const valueOptionsIndex = value && options.findIndex(itemOptions => itemOptions.value === value);

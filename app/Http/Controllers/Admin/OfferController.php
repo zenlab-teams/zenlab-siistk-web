@@ -106,9 +106,10 @@ class OfferController extends Controller
             'offerSales.sale.user:id,name',
             'creator:id,name',
             'records.customer:id,name',
+            'records.order.invoice.payments:id,invoice_id,amount,status',
             'records.sale.user:id,name',
             'records.items.product:id,name',
-            'records.items:id,offer_record_id,product_id,quantity',
+            'records.items:id,offer_record_id,product_id,quantity,sold_price,subtotal',
         ]);
 
         return Inertia::render('Offer/Show', [

@@ -16,6 +16,7 @@ class Payment extends Model
         'type',
         'proof_image',
         'note',
+        'status',
         'created_by',
     ];
 

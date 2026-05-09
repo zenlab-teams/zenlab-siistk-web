@@ -33,7 +33,7 @@ class UserController extends Controller
 
         $users = User::query()
             ->select(['id', 'name', 'email', 'role', 'created_at'])
-            ->with(['sale:id,user_id,phone', 'customer:id,user_id,city'])
+            ->with(['sale:id,user_id,phone', 'customer:id,user_id'])
             ->when($search, function ($query) use ($search) {
                 $query->where(function ($q) use ($search) {
                     $q->where('name', 'like', "%{$search}%")
@@ -72,7 +72,7 @@ class UserController extends Controller
     public function edit(User $user): Response
     {
         return Inertia::render('User/Edit', [
-            'user' => $user->load(['sale:id,user_id,phone', 'customer:id,user_id,address,city,postal_code']),
+            'user' => $user->load(['sale:id,user_id,phone', 'customer:id,user_id,address']),
         ]);
     }
 

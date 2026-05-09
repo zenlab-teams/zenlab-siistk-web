@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { MdKeyboardArrowLeft } from "react-icons/md";
-import { TbPlus, TbX } from "react-icons/tb";
+import { TbCheck, TbCopy, TbDownload, TbPlus, TbX } from "react-icons/tb";
 import { Body, Cell, Header, HeaderCell, HeaderRow, Row, Table } from "@table-library/react-table-library/table";
 import ImageInput from "../../Components/input/ImageInput";
 import NumberInput from "../../Components/input/NumberInput";
@@ -17,10 +17,13 @@ import { tableStyle } from "../../config/tableConfig";
 import ModalCreateCustomer from "../../Components/modal/ModalCreateCustomer";
 
 const OrderShow = ({ flash, order }) => {
+    const { auth } = usePage().props;
+    const isAdmin = auth.user.role === "admin";
     const dispatch = useDispatch();
     const [showPaymentModal, setShowPaymentModal] = useState(false);
     const [showCustomerModal, setShowCustomerModal] = useState(false);
     const [domReady, setDomReady] = useState(false);
+    const [copied, setCopied] = useState(false);
 
     useEffect(() => {
         dispatch(setCurrentRoute({ route: "order", subRoute: null }));
@@ -66,7 +69,7 @@ const OrderShow = ({ flash, order }) => {
     };
 
     const itemTableTheme = tableStyle("auto 1.5fr 0.5fr 1fr 1fr", "order-table");
-    const paymentTableTheme = tableStyle("1.2fr 0.9fr 1fr 0.8fr 1.5fr 1fr", "order-table");
+    const paymentTableTheme = tableStyle("1fr 0.7fr 1fr 0.5fr 1fr 0.8fr 1fr", "order-table");
 
     const itemData = useMemo(() => ({ nodes: items }), [items]);
     const paymentData = useMemo(() => ({ nodes: payments }), [payments]);
@@ -92,6 +95,13 @@ const OrderShow = ({ flash, order }) => {
 
     const handleCancelOrder = () => {
         router.patch(route("order.cancel", order.id));
+    };
+
+    const handleCopyLink = () => {
+        const url = route("order.public.show", order.uuid);
+        navigator.clipboard.writeText(url);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
     };
 
     const handleSubmitPayment = (event) => {
@@ -234,7 +244,7 @@ const OrderShow = ({ flash, order }) => {
                     </div>
 
                     <div className="flex items-center gap-3">
-                        {order.status === "pending" && (
+                        {isAdmin && order.status === "pending" && (
                             <button
                                 type="button"
                                 onClick={handleCancelOrder}
@@ -243,6 +253,32 @@ const OrderShow = ({ flash, order }) => {
                                 Cancel
                             </button>
                         )}
+                        <a
+                            href={route("order.invoice.download", order.id)}
+                            target="_blank"
+                            className="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white dark:text-slate-800 px-4 py-2 rounded-lg font-bold transition-all"
+                        >
+                            <TbDownload className="text-xl" /> Download Invoice
+                        </a>
+                        <button
+                            type="button"
+                            onClick={handleCopyLink}
+                            className={`flex items-center gap-2 px-4 py-2 rounded-lg font-bold transition-all ${
+                                copied 
+                                    ? "bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400" 
+                                    : "bg-sky-100 text-sky-600 hover:bg-sky-200 dark:bg-sky-900/30 dark:text-sky-400 dark:hover:bg-sky-900/50"
+                            }`}
+                        >
+                            {copied ? (
+                                <>
+                                    <TbCheck className="text-xl" /> Copied!
+                                </>
+                            ) : (
+                                <>
+                                    <TbCopy className="text-xl" /> Copy Link
+                                </>
+                            )}
+                        </button>
                         <Link
                             href={route("order.index")}
                             className="flex items-center gap-2 bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 text-slate-500 dark:text-slate-400 px-3 py-2 rounded-lg font-bold transition-all"
@@ -287,7 +323,7 @@ const OrderShow = ({ flash, order }) => {
                         <div>
                             <div className="flex items-center justify-between mb-3">
                                 <p className="text-xl font-bold">Customer Information</p>
-                                {!order.customer_id && (
+                                {isAdmin && !order.customer_id && (
                                     <button
                                         type="button"
                                         onClick={() => setShowCustomerModal(true)}
@@ -426,7 +462,7 @@ const OrderShow = ({ flash, order }) => {
                                         {invoice.status}
                                     </span>
                                 </div>
-                                {invoice.status !== "paid" && order.status !== "cancelled" && (
+                                {isAdmin && invoice.status !== "paid" && order.status !== "cancelled" && (
                                     <button
                                         type="button"
                                         onClick={() => setShowPaymentModal(true)}
@@ -480,8 +516,9 @@ const OrderShow = ({ flash, order }) => {
                                                         <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Amount</HeaderCell>
                                                         <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Proof</HeaderCell>
                                                         <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Note</HeaderCell>
+                                                        <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Status</HeaderCell>
                                                         <HeaderCell className="!py-2 !px-3 rounded-r-xl border-y-2 border-r-2 border-slate-200 dark:border-slate-600">
-                                                            Created By
+                                                            Action
                                                         </HeaderCell>
                                                     </HeaderRow>
                                                 </Header>
@@ -521,7 +558,38 @@ const OrderShow = ({ flash, order }) => {
                                                                     )}
                                                                 </Cell>
                                                                 <Cell className="!p-3">{payment.note ?? "-"}</Cell>
-                                                                <Cell className="!p-3">{payment.creator?.name ?? "-"}</Cell>
+                                                                <Cell className="!p-3">
+                                                                    <span className={`px-2 py-1 rounded-lg text-xs font-bold capitalize ${
+                                                                        payment.status === 'approved' ? 'bg-emerald-100 text-emerald-600' :
+                                                                        payment.status === 'rejected' ? 'bg-red-100 text-red-600' :
+                                                                        'bg-slate-100 text-slate-500 italic'
+                                                                    }`}>
+                                                                        {payment.status}
+                                                                    </span>
+                                                                </Cell>
+                                                                <Cell className="!p-3">
+                                                                    <div className="flex gap-2 justify-center">
+                                                                        {payment.status === 'pending' && isAdmin && (
+                                                                            <>
+                                                                                <TbCheck 
+                                                                                    className="text-2xl text-slate-400 hover:text-emerald-500 cursor-pointer transition-all"
+                                                                                    onClick={() => router.patch(route('invoice.payment.approve', payment.id))}
+                                                                                    title="Approve"
+                                                                                />
+                                                                                <TbX 
+                                                                                    className="text-2xl text-slate-400 hover:text-red-500 cursor-pointer transition-all"
+                                                                                    onClick={() => router.patch(route('invoice.payment.reject', payment.id))}
+                                                                                    title="Reject"
+                                                                                />
+                                                                            </>
+                                                                        )}
+                                                                        {payment.status !== 'pending' && (
+                                                                            <span className="text-xs text-slate-400">
+                                                                                {payment.creator?.name ?? "System"}
+                                                                            </span>
+                                                                        )}
+                                                                    </div>
+                                                                </Cell>
                                                             </Row>
                                                         ))
                                                     ) : (

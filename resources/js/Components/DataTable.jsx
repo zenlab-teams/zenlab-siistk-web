@@ -30,6 +30,8 @@ const DataTable = ({
     addLabel = "Add",
     toolbar = null,
     columns = [],
+    renderDetail = null,
+    onRowClick = null,
 }) => {
     const rowsSizeOptions = tableRowsSizeOptions();
     const tableTheme = tableStyle(`${selectable ? 'auto ' : ''}auto ${gridLayout}`);
@@ -40,6 +42,13 @@ const DataTable = ({
     const [selectedItem, setSelectedItem] = useState([]);
     const [modalDelete, setModalDelete] = useState(null);
     const [modalDeleteSelected, setModalDeleteSelected] = useState(null);
+    const [expandedIds, setExpandedIds] = useState([]);
+
+    const toggleExpand = (id) => {
+        setExpandedIds(prev => 
+            prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
+        );
+    };
 
     // Sync search input jika filters berubah dari luar (back button, dll.)
     useEffect(() => {
@@ -253,40 +262,66 @@ const DataTable = ({
 
                                 <Body>
                                     {tableList.length > 0 ? (
-                                        tableList.map((item, rowIndex) => (
-                                            <Row
-                                                key={item.id}
-                                                item={item}
-                                                className={resolveRowClassName(item)}
-                                            >
-                                                {selectable && (
-                                                    <Cell className="!p-3">
-                                                        <CheckboxInput
-                                                            name={`tableItemSelect${item.id}`}
-                                                            checked={select.state.ids.includes(item.id)}
-                                                            onChange={() => select.fns.onToggleById(item.id)}
-                                                        />
-                                                    </Cell>
-                                                )}
-                                                <Cell className="!p-3 text-center text-sm text-slate-400 dark:text-slate-500 font-medium">
-                                                    {paginated
-                                                        ? (Number(meta?.current_page ?? 1) - 1) * Number(meta?.per_page ?? tableList.length) + rowIndex + 1
-                                                        : rowIndex + 1}
-                                                </Cell>
-                                                {columns.map((col, index) => {
-                                                    const isLast = index === columns.length - 1;
-                                                    const baseClass = "!p-3";
-                                                    const lastClass = isLast ? "rounded-r-xl" : "";
-                                                    const className = col.cellClassName ?? `${baseClass} ${lastClass}`;
+                                        tableList.map((item, rowIndex) => {
+                                            const isExpanded = expandedIds.includes(item.id);
+                                            const totalColumns = columns.length + (selectable ? 2 : 1);
 
-                                                    return (
-                                                        <Cell key={col.key} className={className}>
-                                                            {col.render(item, { onDelete: setModalDelete })}
+                                            return (
+                                                <div key={item.id} className="flex flex-col contents">
+                                                    <Row
+                                                        item={item}
+                                                        className={resolveRowClassName(item)}
+                                                        onClick={() => {
+                                                            if (renderDetail) toggleExpand(item.id);
+                                                            if (onRowClick) onRowClick(item);
+                                                        }}
+                                                    >
+                                                        {selectable && (
+                                                            <Cell className="!p-3">
+                                                                <CheckboxInput
+                                                                    name={`tableItemSelect${item.id}`}
+                                                                    checked={select.state.ids.includes(item.id)}
+                                                                    onChange={() => select.fns.onToggleById(item.id)}
+                                                                />
+                                                            </Cell>
+                                                        )}
+                                                        <Cell className="!p-3 text-center text-sm text-slate-400 dark:text-slate-500 font-medium">
+                                                            {paginated
+                                                                ? (Number(meta?.current_page ?? 1) - 1) * Number(meta?.per_page ?? tableList.length) + rowIndex + 1
+                                                                : rowIndex + 1}
                                                         </Cell>
-                                                    );
-                                                })}
-                                            </Row>
-                                        ))
+                                                        {columns.map((col, index) => {
+                                                            const isLast = index === columns.length - 1;
+                                                            const baseClass = "!p-3";
+                                                            const lastClass = isLast ? "rounded-r-xl" : "";
+                                                            const className = col.cellClassName ?? `${baseClass} ${lastClass}`;
+
+                                                            return (
+                                                                <Cell key={col.key} className={className}>
+                                                                    {col.render(item, { onDelete: setModalDelete, isExpanded })}
+                                                                </Cell>
+                                                            );
+                                                        })}
+                                                    </Row>
+                                                    <AnimatePresence>
+                                                        {isExpanded && renderDetail && (
+                                                            <Row item={item} className="!bg-slate-50 dark:!bg-slate-900/30">
+                                                                <Cell gridColumnStart={1} gridColumnEnd={100} className="!p-0 border-x-2 border-b-2 dark:border-slate-700 rounded-b-xl overflow-hidden">
+                                                                    <motion.div
+                                                                        initial={{ height: 0, opacity: 0 }}
+                                                                        animate={{ height: "auto", opacity: 1 }}
+                                                                        exit={{ height: 0, opacity: 0 }}
+                                                                        transition={{ duration: 0.3 }}
+                                                                    >
+                                                                        {renderDetail(item)}
+                                                                    </motion.div>
+                                                                </Cell>
+                                                            </Row>
+                                                        )}
+                                                    </AnimatePresence>
+                                                </div>
+                                            );
+                                        })
                                     ) : (
                                         <Cell
                                             gridColumnStart={1}

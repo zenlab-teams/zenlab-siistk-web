@@ -18,6 +18,7 @@ return new class extends Migration
             $table->enum('type', ['dp', 'installment', 'full']);
             $table->string('proof_image')->nullable();
             $table->string('note')->nullable();
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('approved');
             $table->integer('created_by')->nullable();
             $table->timestamps();
         });

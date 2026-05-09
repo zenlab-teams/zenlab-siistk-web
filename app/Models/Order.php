@@ -12,7 +12,18 @@ class Order extends Model
 {
     use HasFactory;
 
+    protected static function boot(): void
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            if (empty($model->uuid)) {
+                $model->uuid = (string) \Illuminate\Support\Str::uuid();
+            }
+        });
+    }
+
     protected $fillable = [
+        'uuid',
         'customer_id',
         'offer_record_id',
         'total_price',
@@ -40,12 +51,15 @@ class Order extends Model
             return 'cancelled';
         }
 
-        if ($this->checked_out_at) {
-            return 'completed';
-        }
-
         if ($this->expired_at) {
             return 'expired';
+        }
+
+        if ($this->checked_out_at) {
+            // Ensure invoice exists and is fully paid (approved payments only)
+            if ($this->invoice && $this->invoice->remaining_amount <= 0) {
+                return 'completed';
+            }
         }
 
         return 'pending';
@@ -69,5 +83,10 @@ class Order extends Model
     public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function offerRecord(): BelongsTo
+    {
+        return $this->belongsTo(OfferRecord::class, 'offer_record_id');
     }
 }

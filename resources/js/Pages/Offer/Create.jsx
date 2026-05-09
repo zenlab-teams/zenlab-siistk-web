@@ -343,6 +343,7 @@ const OfferCreate = ({ flash, sales, products }) => {
                                                         value={item.offered_price}
                                                         min={0}
                                                         onChange={handleItemPriceChange}
+                                                        type="currency"
                                                     />
                                                     {itemError(index, "offered_price") && (
                                                         <p className="text-red-400 font-bold mt-1">{itemError(index, "offered_price")}</p>

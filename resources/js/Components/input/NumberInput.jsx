@@ -28,27 +28,34 @@ const NumberInput = ({
     };
 
     const convertPriceToInt = (price) => {
+        if (!price) return 0;
         const priceWithoutRp = price.replace("Rp", "").replace(/\./g, "");
         const priceInt = parseInt(priceWithoutRp, 10);
-        return priceInt;
-    };
-
-    const handleChange = (e) => {
-        if (type === "phone") {
-            onChange(name, e);
-        } else if (type === "currency") {
-            const priceInt = convertPriceToInt(e.target.value);
-            onChange(e.target.name, priceInt);
-        } else {
-            onChange(e.target.name, e.target.value);
-        }
-        setIsInvalid(false);
+        return isNaN(priceInt) ? 0 : priceInt;
     };
 
     const hasQtyContext = qty !== null && qty !== undefined;
 
-    const handleChangeQTY = (e) => {
-        onChange(qty, e.target.value);
+    const handleChange = (e) => {
+        if (type === "phone") {
+            onChange(name, e);
+            setIsInvalid(false);
+            return;
+        }
+
+        let valueToReturn = e.target.value;
+
+        if (type === "currency") {
+            valueToReturn = convertPriceToInt(e.target.value);
+        }
+
+        if (hasQtyContext) {
+            onChange(qty, valueToReturn);
+        } else {
+            onChange(e.target.name, valueToReturn);
+        }
+
+        setIsInvalid(false);
     };
 
     const defaultMaskOptions = {
@@ -86,7 +93,7 @@ const NumberInput = ({
                     disabled={disabled}
                     max={max ? max : false}
                     min={min ? min : false}
-                    onChange={hasQtyContext ? handleChangeQTY : handleChange}
+                    onChange={handleChange}
                     onInvalid={() => setIsInvalid(true)}
                 />
                 {error && (
@@ -158,10 +165,10 @@ const NumberInput = ({
                     className={`w-full px-3 py-2 border-2 rounded-lg outline-none focus:border-sky-300 dark:bg-slate-800 dark:border-slate-600 dark:focus:border-sky-600 transition-all ${
                         IsInvalid || error ? "!border-red-300 focus:!border-red-300 dark:!border-red-800" : null
                     } ${disabled ? "bg-slate-100 dark:bg-slate-700 cursor-not-allowed opacity-75" : ""}`}
-                    placeholder={placeholder}
+                    placeholder={placeholder ?? "Rp"}
                     required={required}
                     disabled={disabled}
-                    value={!value ? null : value}
+                    value={value ?? 0}
                     onInvalid={() => setIsInvalid(true)}
                     onChange={handleChange}
                 />

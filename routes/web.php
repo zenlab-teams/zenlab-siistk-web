@@ -20,6 +20,9 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [LoginController::class, 'store']);
 });
 
+Route::get('/order/v/{uuid}', [\App\Http\Controllers\PublicOrderController::class, 'show'])->name('order.public.show');
+Route::post('/order/v/{uuid}/payment', [\App\Http\Controllers\PublicOrderController::class, 'storePayment'])->name('order.public.payment.store');
+
 Route::middleware('auth')->post('/logout', [LogoutController::class, 'destroy'])->name('logout');
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
@@ -54,13 +57,14 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/create', 'create')->name('create');
         Route::post('/', 'store')->name('store');
-        Route::get('/{order}', 'show')->name('show');
         Route::patch('/{order}/cancel', 'cancel')->name('cancel');
         Route::patch('/{order}/customer', 'updateCustomer')->name('updateCustomer');
     });
 
     Route::controller(InvoiceController::class)->prefix('/invoice')->name('invoice.')->group(function () {
         Route::post('/{invoice}/payment', 'storePayment')->name('payment.store');
+        Route::patch('/payment/{payment}/approve', 'approvePayment')->name('payment.approve');
+        Route::patch('/payment/{payment}/reject', 'rejectPayment')->name('payment.reject');
     });
 
     Route::controller(OfferController::class)->prefix('/offer')->name('offer.')->group(function () {
@@ -78,11 +82,19 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/create', 'create')->name('create');
         Route::post('/', 'store')->name('store');
-        Route::post('/quick', 'storeQuick')->name('storeQuick');
         Route::get('/{customer}/edit', 'edit')->name('edit');
         Route::match(['put', 'patch'], '/{customer}', 'update')->name('update');
         Route::delete('/{customer}', 'destroy')->name('destroy');
         Route::delete('/destroy-selected/{ids}', 'destroySelected')->name('destroySelected');
+    });
+});
+
+Route::middleware(['auth', 'role:admin,sales'])->group(function () {
+    Route::post('/customer/quick', [CustomerController::class, 'storeQuick'])->name('customer.storeQuick');
+
+    Route::controller(OrderController::class)->prefix('admin/order')->name('order.')->group(function () {
+        Route::get('/{order}', 'show')->name('show');
+        Route::get('/{order}/invoice/download', 'downloadInvoice')->name('invoice.download');
     });
 });
 

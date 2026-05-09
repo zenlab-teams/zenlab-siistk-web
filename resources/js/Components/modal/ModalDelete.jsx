@@ -39,7 +39,7 @@ const ModalDelete = ({ itemID, closeModal, type, description }) => {
         }
 
         Inertia.delete(route(routeName, params), {
-            onSuccess: () => console.log("Item deleted successfully"),
+            onSuccess: () => closeModal(),
             onError: () => closeModal(),
         });
     };
