@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import Layout from "../Layouts/Default";
 import Sidebar from "../Layouts/Sidebar";
 import { setCurrentRoute } from "../Redux/slice";
+import AnalyticsCard from "../Components/dashboard/AnalyticsCard";
 
 const statusClassMap = {
     completed: "bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400",
@@ -115,6 +116,8 @@ const Dashboard = ({ flash, stats = {}, recentOrders = [], lowStockProducts = []
                         color="red"
                     />
                 </div>
+
+                <AnalyticsCard />
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
                     <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl">

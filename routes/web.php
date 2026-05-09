@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Customer\DashboardController as CustomerDashboard;
+use App\Http\Controllers\PublicOrderController;
 use App\Http\Controllers\Sales\DashboardController as SalesDashboard;
 use App\Http\Controllers\Sales\OfferController as SalesOfferController;
 use Illuminate\Support\Facades\Route;
@@ -20,13 +21,14 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [LoginController::class, 'store']);
 });
 
-Route::get('/order/v/{uuid}', [\App\Http\Controllers\PublicOrderController::class, 'show'])->name('order.public.show');
-Route::post('/order/v/{uuid}/payment', [\App\Http\Controllers\PublicOrderController::class, 'storePayment'])->name('order.public.payment.store');
+Route::get('/order/v/{uuid}', [PublicOrderController::class, 'show'])->name('order.public.show');
+Route::post('/order/v/{uuid}/payment', [PublicOrderController::class, 'storePayment'])->name('order.public.payment.store');
 
 Route::middleware('auth')->post('/logout', [LogoutController::class, 'destroy'])->name('logout');
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminDashboard::class, 'index'])->name('admin.dashboard');
+    Route::get('/dashboard/analytics', [AdminDashboard::class, 'analytics'])->name('admin.dashboard.analytics');
 
     Route::controller(ProductController::class)->prefix('/product')->name('product.')->group(function () {
         Route::get('/', 'index')->name('index');
