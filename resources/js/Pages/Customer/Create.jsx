@@ -72,8 +72,7 @@ const CustomerCreate = ({ flash }) => {
                                     type="email"
                                     name="email"
                                     label="Email"
-                                    placeholder="Enter Customer Email"
-                                    required={true}
+                                    placeholder="Enter Customer Email (optional)"
                                     onChange={setData}
                                     value={data.email}
                                     error={errors.email && errors.email}

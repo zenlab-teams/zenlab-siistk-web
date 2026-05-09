@@ -1,11 +1,28 @@
 import Select from "react-select";
+import CreatableSelect from "react-select/creatable";
 import makeAnimated from "react-select/animated";
 import { motion } from "framer-motion";
 import { TbAlertCircle } from "react-icons/tb";
 import classNames from "classnames";
 import { useState } from "react";
 
-const SelectInput = ({ options, label, type , required = false, name, error, placeholder, formatOptionLabel, value, onChange, isOptionDisabled }) => {
+const SelectInput = ({ 
+    options, 
+    label, 
+    type, 
+    required = false, 
+    name, 
+    error, 
+    placeholder, 
+    formatOptionLabel, 
+    value, 
+    onChange, 
+    isOptionDisabled,
+    creatable = false,
+    onCreateOption = null
+}) => {
+    const SelectComponent = creatable ? CreatableSelect : Select;
+
     const animatedComponents = makeAnimated();
     
     const customStyles = {
@@ -27,8 +44,9 @@ const SelectInput = ({ options, label, type , required = false, name, error, pla
                 {label}
                 {required && <span className="text-sm text-red-500 font-bold"> *</span>}
             </label>
-            <Select
+            <SelectComponent
                 options={options}
+                onCreateOption={onCreateOption}
                 components={animatedComponents}
                 classNames={{
                     control: ({ isFocused }) =>

@@ -7,6 +7,7 @@ import {
     TbShoppingCart,
     TbSunMoon,
     TbUsers,
+    TbUserCircle,
 } from "react-icons/tb";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import Logo from "../../assets/image/Logo.svg";
@@ -105,6 +106,23 @@ const Sidebar = () => {
                             >
                                 <TbShoppingCart className="text-2xl mr-3" />
                                 <p className="font-bold text-lg">Orders</p>
+                            </motion.div>
+                        </Link>
+                    )}
+                    {user?.role === "admin" && (
+                        <Link href={route("customer.index")}>
+                            <motion.div
+                                className={`flex items-center p-2 m-1 rounded-lg cursor-pointer transition-all ${
+                                    currentRoute.route === "customer"
+                                        ? "bg-sky-100 text-sky-500 dark:bg-sky-900"
+                                        : "text-slate-600 hover:bg-slate-200 dark:text-slate-400 dark:hover:bg-slate-700"
+                                }`}
+                                initial={{ opacity: 0, x: -5 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.26 }}
+                            >
+                                <TbUserCircle className="text-2xl mr-3" />
+                                <p className="font-bold text-lg">Customers</p>
                             </motion.div>
                         </Link>
                     )}

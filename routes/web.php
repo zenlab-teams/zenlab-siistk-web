@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Admin\InvoiceController;
 use App\Http\Controllers\Admin\OfferController;
@@ -71,6 +72,16 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
         Route::post('/{offer}/record', 'storeRecord')->name('record.store');
         Route::post('/{offer}/record/{record}/approve', 'approveRecord')->name('record.approve');
         Route::patch('/{offer}/record/{record}/reject', 'rejectRecord')->name('record.reject');
+    });
+    Route::controller(CustomerController::class)->prefix('/customer')->name('customer.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::post('/quick', 'storeQuick')->name('storeQuick');
+        Route::get('/{customer}/edit', 'edit')->name('edit');
+        Route::match(['put', 'patch'], '/{customer}', 'update')->name('update');
+        Route::delete('/{customer}', 'destroy')->name('destroy');
+        Route::delete('/destroy-selected/{ids}', 'destroySelected')->name('destroySelected');
     });
 });
 

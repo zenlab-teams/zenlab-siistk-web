@@ -1,8 +1,10 @@
 import { Head, Link, useForm } from "@inertiajs/react";
-import { useEffect, useMemo } from "react";
+import { createPortal } from "react-dom";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useMemo, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { MdKeyboardArrowLeft } from "react-icons/md";
-import { TbPlus, TbTrash } from "react-icons/tb";
+import { TbPlus, TbTrash, TbX } from "react-icons/tb";
 import Layout from "../../Layouts/Default";
 import Sidebar from "../../Layouts/Sidebar";
 import { setCurrentRoute } from "../../Redux/slice";
@@ -11,6 +13,7 @@ import NumberInput from "../../Components/input/NumberInput";
 import SelectInput from "../../Components/input/SelectInput";
 import TextAreaInput from "../../Components/input/TextAreaInput";
 import TextInput from "../../Components/input/TextInput";
+import ModalCreateCustomer from "../../Components/modal/ModalCreateCustomer";
 
 const createEmptyItem = () => ({
     product_id: null,
@@ -19,10 +22,21 @@ const createEmptyItem = () => ({
 
 const OrderCreate = ({ flash, customers, products }) => {
     const dispatch = useDispatch();
+    const [showCustomerModal, setShowCustomerModal] = useState(false);
+    const [initialCustomerName, setInitialCustomerName] = useState("");
+    const prevCustomersLength = useRef(customers.length);
 
     useEffect(() => {
         dispatch(setCurrentRoute({ route: "order", subRoute: null }));
     }, [dispatch]);
+
+    useEffect(() => {
+        if (customers.length > prevCustomersLength.current) {
+            const newCustomer = customers[customers.length - 1];
+            setData("customer_id", newCustomer.id);
+        }
+        prevCustomersLength.current = customers.length;
+    }, [customers]);
 
     const { data, setData, post, processing, errors } = useForm({
         customer_id: null,
@@ -34,14 +48,17 @@ const OrderCreate = ({ flash, customers, products }) => {
         payment_amount: 0,
     });
 
+    const handleCreateCustomer = (inputValue) => {
+        setInitialCustomerName(inputValue);
+        setShowCustomerModal(true);
+    };
+
     const customerOptions = useMemo(
-        () => [
-            { value: null, label: "Walk-in" },
-            ...customers.map((customer) => ({
+        () =>
+            customers.map((customer) => ({
                 value: customer.id,
                 label: customer.name,
             })),
-        ],
         [customers]
     );
 
@@ -144,8 +161,16 @@ const OrderCreate = ({ flash, customers, products }) => {
 
     const itemError = (index, field) => errors[`items.${index}.${field}`];
 
+
+
     return (
-        <Layout flash={flash}>
+        <>
+            <ModalCreateCustomer 
+                isOpen={showCustomerModal} 
+                onClose={() => setShowCustomerModal(false)}
+                initialName={initialCustomerName}
+            />
+            <Layout flash={flash}>
             <Head>
                 <title>Create Order | TelatenKarya</title>
             </Head>
@@ -170,15 +195,18 @@ const OrderCreate = ({ flash, customers, products }) => {
 
                     <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <SelectInput
-                                name="customer_id"
-                                label="Customer"
-                                placeholder="Select Customer (optional)"
-                                options={customerOptions}
-                                value={data.customer_id}
-                                onChange={setData}
-                                error={errors.customer_id}
-                            />
+                             <SelectInput
+                                 name="customer_id"
+                                 label="Customer"
+                                 placeholder="Select Customer"
+                                 options={customerOptions}
+                                 value={data.customer_id}
+                                 onChange={setData}
+                                 error={errors.customer_id}
+                                 creatable={true}
+                                 onCreateOption={handleCreateCustomer}
+                                 required={true}
+                             />
                             <TextInput
                                 name="due_date"
                                 type="date"
@@ -364,6 +392,7 @@ const OrderCreate = ({ flash, customers, products }) => {
                 </div>
             </section>
         </Layout>
+        </>
     );
 };
 

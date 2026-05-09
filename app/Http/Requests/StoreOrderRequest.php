@@ -21,7 +21,7 @@ class StoreOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'customer_id' => ['nullable', 'exists:customers,id'],
+            'customer_id' => ['required', 'exists:customers,id'],
             'items' => ['required', 'array', 'min:1'],
             'items.*.product_id' => ['required', 'exists:products,id'],
             'items.*.quantity' => [

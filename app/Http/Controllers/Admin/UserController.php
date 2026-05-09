@@ -176,21 +176,6 @@ class UserController extends Controller
             return;
         }
 
-        if ($validated['role'] === 'customer') {
-            $user->sale()->delete();
-            $user->customer()->updateOrCreate(
-                ['user_id' => $user->id],
-                [
-                    'address' => $validated['address'] ?? '',
-                    'city' => $validated['city'] ?? '',
-                    'postal_code' => $validated['postal_code'] ?? '',
-                    'created_by' => $isCreate ? auth()->id() : ($user->customer?->created_by ?? auth()->id()),
-                ]
-            );
-
-            return;
-        }
-
         $user->sale()->delete();
         $user->customer()->delete();
     }

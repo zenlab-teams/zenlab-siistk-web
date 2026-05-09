@@ -21,7 +21,7 @@ const UserCreate = ({ flash }) => {
         email: "",
         password: "",
         password_confirmation: "",
-        role: "customer",
+        role: "sales",
         phone: "",
         address: "",
         city: "",
@@ -33,7 +33,6 @@ const UserCreate = ({ flash }) => {
     const roleOptions = [
         { value: "admin", label: "Admin" },
         { value: "sales", label: "Sales" },
-        { value: "customer", label: "Customer" },
     ];
 
     const handleSubmit = (e) => {
@@ -138,42 +137,7 @@ const UserCreate = ({ flash }) => {
                                 </div>
                             )}
 
-                            {data.role === "customer" && (
-                                <div className="border-t-2 dark:border-slate-700 pt-4 mt-2">
-                                    <p className="font-bold text-lg mb-3">
-                                        Customer Data <span className="text-slate-400 text-sm font-normal">(optional)</span>
-                                    </p>
-                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                                        <TextInput
-                                            type="text"
-                                            name="address"
-                                            label="Address"
-                                            placeholder="Enter Address"
-                                            onChange={setData}
-                                            value={data.address}
-                                            error={errors.address && errors.address}
-                                        />
-                                        <TextInput
-                                            type="text"
-                                            name="city"
-                                            label="City"
-                                            placeholder="Enter City"
-                                            onChange={setData}
-                                            value={data.city}
-                                            error={errors.city && errors.city}
-                                        />
-                                        <TextInput
-                                            type="text"
-                                            name="postal_code"
-                                            label="Postal Code"
-                                            placeholder="Enter Postal Code"
-                                            onChange={setData}
-                                            value={data.postal_code}
-                                            error={errors.postal_code && errors.postal_code}
-                                        />
-                                    </div>
-                                </div>
-                            )}
+
 
                             <div className="flex items-center gap-3 justify-end mt-3">
                                 <button

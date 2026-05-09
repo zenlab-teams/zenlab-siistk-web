@@ -4,9 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class UpdateUserRequest extends FormRequest
+class StoreCustomerRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -22,13 +21,20 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($this->route('user'))],
-            'password' => ['nullable', 'string', 'min:8', 'confirmed'],
-            'role' => ['required', 'in:admin,sales'],
+            'email' => ['nullable', 'email', 'max:255'],
+            'number_phone' => ['nullable', 'string', 'max:20'],
+            'address' => ['required', 'string', 'max:500'],
             'phone' => ['nullable', 'string', 'max:20'],
-            'address' => ['nullable', 'string', 'max:255'],
-            'city' => ['nullable', 'string', 'max:100'],
-            'postal_code' => ['nullable', 'string', 'max:10'],
         ];
+    }
+
+    /**
+     * Map number_phone → phone to match the DB column.
+     */
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'phone' => $this->input('number_phone'),
+        ]);
     }
 }
