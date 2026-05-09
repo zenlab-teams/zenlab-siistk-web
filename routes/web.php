@@ -56,6 +56,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
         Route::post('/', 'store')->name('store');
         Route::get('/{order}', 'show')->name('show');
         Route::patch('/{order}/cancel', 'cancel')->name('cancel');
+        Route::patch('/{order}/customer', 'updateCustomer')->name('updateCustomer');
     });
 
     Route::controller(InvoiceController::class)->prefix('/invoice')->name('invoice.')->group(function () {

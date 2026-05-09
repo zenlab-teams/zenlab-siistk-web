@@ -7,7 +7,7 @@ import TextInput from "../input/TextInput";
 import NumberInput from "../input/NumberInput";
 import TextAreaInput from "../input/TextAreaInput";
 
-const ModalCreateCustomer = ({ isOpen, onClose, initialName = "" }) => {
+const ModalCreateCustomer = ({ isOpen, onClose, onSuccess, initialName = "" }) => {
     const [domReady, setDomReady] = useState(false);
 
     useEffect(() => {
@@ -30,9 +30,10 @@ const ModalCreateCustomer = ({ isOpen, onClose, initialName = "" }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         post(route("customer.storeQuick"), {
-            onSuccess: () => {
+            onSuccess: (page) => {
                 onClose();
                 reset();
+                if (onSuccess) onSuccess(page);
             },
         });
     };

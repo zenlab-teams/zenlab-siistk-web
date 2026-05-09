@@ -1,4 +1,4 @@
-import { Head, Link, router, useForm } from "@inertiajs/react";
+import { Head, Link, router, useForm, usePage } from "@inertiajs/react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
@@ -14,10 +14,12 @@ import Layout from "../../Layouts/Default";
 import Sidebar from "../../Layouts/Sidebar";
 import { setCurrentRoute } from "../../Redux/slice";
 import { tableStyle } from "../../config/tableConfig";
+import ModalCreateCustomer from "../../Components/modal/ModalCreateCustomer";
 
 const OrderShow = ({ flash, order }) => {
     const dispatch = useDispatch();
     const [showPaymentModal, setShowPaymentModal] = useState(false);
+    const [showCustomerModal, setShowCustomerModal] = useState(false);
     const [domReady, setDomReady] = useState(false);
 
     useEffect(() => {
@@ -27,6 +29,16 @@ const OrderShow = ({ flash, order }) => {
     useEffect(() => {
         setDomReady(true);
     }, []);
+
+    const { flash: pageFlash } = usePage().props;
+
+    useEffect(() => {
+        if (pageFlash?.new_customer_id && !order.customer_id) {
+            router.patch(route("order.updateCustomer", order.id), {
+                customer_id: pageFlash.new_customer_id,
+            });
+        }
+    }, [pageFlash?.new_customer_id, order.customer_id]);
 
     const modalRoot = domReady ? document.getElementById("modal-root") : null;
 
@@ -195,6 +207,10 @@ const OrderShow = ({ flash, order }) => {
     return (
         <>
             {paymentModal}
+            <ModalCreateCustomer 
+                isOpen={showCustomerModal}
+                onClose={() => setShowCustomerModal(false)}
+            />
             <Layout flash={flash}>
             <Head>
                 <title>Order Detail | TelatenKarya</title>
@@ -236,38 +252,78 @@ const OrderShow = ({ flash, order }) => {
                     </div>
                 </div>
 
-                <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl mb-5">
-                    <p className="text-xl font-bold mb-3">Order Information</p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-                        <div>
-                            <p className="text-slate-500 dark:text-slate-400 text-sm">Customer</p>
-                            <p className="text-lg font-bold">
-                                {order.customer?.name ?? <span className="italic text-slate-400">Walk-in</span>}
-                            </p>
-                        </div>
-                        <div>
-                            <p className="text-slate-500 dark:text-slate-400 text-sm">Created At</p>
-                            <p className="text-lg font-bold">{new Date(order.created_at).toLocaleString("id-ID")}</p>
-                        </div>
-                        <div>
-                            <p className="text-slate-500 dark:text-slate-400 text-sm">Status</p>
-                            <div className="mt-1">
-                                <span
-                                    className={`inline-flex px-3 py-1 rounded-lg text-sm font-bold capitalize ${
-                                        orderStatusClassMap[order.status] ?? orderStatusClassMap.pending
-                                    }`}
-                                >
-                                    {order.status}
-                                </span>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-5">
+                    <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl lg:col-span-2">
+                        <p className="text-xl font-bold mb-3">Order Information</p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <div>
+                                <p className="text-slate-500 dark:text-slate-400 text-sm">Created At</p>
+                                <p className="text-lg">{new Date(order.created_at).toLocaleString("id-ID")}</p>
+                            </div>
+                            <div>
+                                <p className="text-slate-500 dark:text-slate-400 text-sm">Status</p>
+                                <div className="mt-1">
+                                    <span
+                                        className={`inline-flex px-3 py-1 rounded-lg text-sm font-bold capitalize ${
+                                            orderStatusClassMap[order.status] ?? orderStatusClassMap.pending
+                                        }`}
+                                    >
+                                        {order.status}
+                                    </span>
+                                </div>
+                            </div>
+                            <div>
+                                <p className="text-slate-500 dark:text-slate-400 text-sm">Total</p>
+                                <p className="text-lg">Rp{order.total_price.toLocaleString("id-ID")}</p>
+                            </div>
+                            <div>
+                                <p className="text-slate-500 dark:text-slate-400 text-sm">Created By</p>
+                                <p className="text-lg">{order.creator?.name ?? "-"}</p>
                             </div>
                         </div>
+                    </div>
+
+                    <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl flex flex-col justify-between">
                         <div>
-                            <p className="text-slate-500 dark:text-slate-400 text-sm">Total</p>
-                            <p className="text-lg font-bold">Rp{order.total_price.toLocaleString("id-ID")}</p>
-                        </div>
-                        <div>
-                            <p className="text-slate-500 dark:text-slate-400 text-sm">Created By</p>
-                            <p className="text-lg font-bold">{order.creator?.name ?? "-"}</p>
+                            <div className="flex items-center justify-between mb-3">
+                                <p className="text-xl font-bold">Customer Information</p>
+                                {!order.customer_id && (
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowCustomerModal(true)}
+                                        className="text-sky-500 hover:text-sky-600 font-bold text-sm"
+                                    >
+                                        Complete Information
+                                    </button>
+                                )}
+                            </div>
+                            {order.customer ? (
+                                <div className="flex flex-col gap-2">
+                                    <div>
+                                        <p className="text-slate-500 dark:text-slate-400 text-sm">Name</p>
+                                        <p className="text-lg">{order.customer.name}</p>
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-2">
+                                        <div>
+                                            <p className="text-slate-500 dark:text-slate-400 text-sm">Phone</p>
+                                            <p>{order.customer.phone ?? "-"}</p>
+                                        </div>
+                                        <div>
+                                            <p className="text-slate-500 dark:text-slate-400 text-sm">Email</p>
+                                            <p>{order.customer.email ?? "-"}</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p className="text-slate-500 dark:text-slate-400 text-sm">Address</p>
+                                        <p>{order.customer.address}</p>
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="flex flex-col items-center justify-center py-5 border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-xl">
+                                    <p className="italic text-slate-400">Walk-in Customer</p>
+                                    <p className="text-xs text-slate-400 text-center px-5 mt-1">No detailed customer information linked to this order yet.</p>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>

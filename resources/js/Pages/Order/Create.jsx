@@ -54,11 +54,13 @@ const OrderCreate = ({ flash, customers, products }) => {
     };
 
     const customerOptions = useMemo(
-        () =>
-            customers.map((customer) => ({
+        () => [
+            { value: null, label: "Walk-in" },
+            ...customers.map((customer) => ({
                 value: customer.id,
                 label: customer.name,
             })),
+        ],
         [customers]
     );
 
@@ -198,14 +200,13 @@ const OrderCreate = ({ flash, customers, products }) => {
                              <SelectInput
                                  name="customer_id"
                                  label="Customer"
-                                 placeholder="Select Customer"
+                                 placeholder="Select Customer (optional)"
                                  options={customerOptions}
                                  value={data.customer_id}
                                  onChange={setData}
                                  error={errors.customer_id}
                                  creatable={true}
                                  onCreateOption={handleCreateCustomer}
-                                 required={true}
                              />
                             <TextInput
                                 name="due_date"

@@ -73,7 +73,7 @@ class CustomerController extends Controller
     {
         $validated = $request->validated();
 
-        Customer::query()->create([
+        $customer = Customer::query()->create([
             'name' => $validated['name'],
             'email' => $validated['email'] ?? null,
             'phone' => $validated['phone'] ?? null,
@@ -81,7 +81,10 @@ class CustomerController extends Controller
             'created_by' => auth()->id(),
         ]);
 
-        return redirect()->back()->with('success', 'Customer created successfully.');
+        return redirect()->back()->with([
+            'success' => 'Customer created successfully.',
+            'new_customer_id' => $customer->id,
+        ]);
     }
 
     public function edit(Customer $customer): Response

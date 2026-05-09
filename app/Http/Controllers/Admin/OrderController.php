@@ -136,6 +136,10 @@ class OrderController extends Controller
 
         return Inertia::render('Order/Show', [
             'order' => $order,
+            'customers' => Customer::query()
+                ->select(['id', 'name'])
+                ->orderBy('name')
+                ->get(),
         ]);
     }
 
@@ -150,5 +154,21 @@ class OrderController extends Controller
         ]);
 
         return back()->with('success', 'Order cancelled.');
+    }
+
+    /**
+     * Update customer for an order (completing walk-in info).
+     */
+    public function updateCustomer(Request $request, Order $order): RedirectResponse
+    {
+        $validated = $request->validate([
+            'customer_id' => ['required', 'exists:customers,id'],
+        ]);
+
+        $order->update([
+            'customer_id' => $validated['customer_id'],
+        ]);
+
+        return back()->with('success', 'Customer information updated.');
     }
 }
