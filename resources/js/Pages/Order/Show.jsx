@@ -61,6 +61,12 @@ const OrderShow = ({ flash, order }) => {
         note: "",
     });
 
+    useEffect(() => {
+        if (data.type === "full" && invoice) {
+            setData("amount", invoice.remaining_amount);
+        }
+    }, [data.type, invoice?.remaining_amount]);
+
     const handleCancelOrder = () => {
         router.patch(route("order.cancel", order.id));
     };
@@ -367,11 +373,13 @@ const OrderShow = ({ flash, order }) => {
                                 <NumberInput
                                     name="amount"
                                     label="Amount"
+                                    type="currency"
                                     value={data.amount}
                                     min={1}
                                     onChange={setData}
                                     error={errors.amount}
                                     required={true}
+                                    disabled={data.type === "full"}
                                 />
                                 <SelectInput
                                     name="type"
