@@ -39,7 +39,7 @@ class StoreOrderRequest extends FormRequest
                     }
                 },
             ],
-            'due_date' => ['nullable', 'date', 'after:today'],
+            'due_date' => ['nullable', 'date', 'after_or_equal:today'],
             'notes' => ['nullable', 'string', 'max:255'],
             'pay_now' => ['boolean'],
             'payment_type' => ['nullable', 'required_if:pay_now,true', 'in:dp,installment,full'],

@@ -21,7 +21,7 @@ class ConvertOfferRequest extends FormRequest
     {
         return [
             'customer_id' => ['nullable', 'exists:customers,id'],
-            'due_date' => ['nullable', 'date', 'after:today'],
+            'due_date' => ['nullable', 'date', 'after_or_equal:today'],
             'notes' => ['nullable', 'string', 'max:255'],
         ];
     }

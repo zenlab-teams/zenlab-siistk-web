@@ -124,6 +124,12 @@ const OrderCreate = ({ flash, customers, products }) => {
         post(route("order.store"));
     };
 
+    useEffect(() => {
+        if (data.pay_now && data.payment_type === "full") {
+            setData("payment_amount", totalAmount);
+        }
+    }, [data.pay_now, data.payment_type, totalAmount]);
+
     const handleReset = () => {
         setData({
             customer_id: null,
@@ -177,6 +183,7 @@ const OrderCreate = ({ flash, customers, products }) => {
                                 name="due_date"
                                 type="date"
                                 label="Due Date"
+                                placeholder="Optional"
                                 value={data.due_date}
                                 onChange={setData}
                                 error={errors.due_date}
@@ -325,11 +332,13 @@ const OrderCreate = ({ flash, customers, products }) => {
                                     <NumberInput
                                         name="payment_amount"
                                         label="Payment Amount"
+                                        type="currency"
                                         value={data.payment_amount}
                                         min={1}
                                         onChange={setData}
                                         error={errors.payment_amount}
                                         required={true}
+                                        disabled={data.payment_type === "full"}
                                     />
                                 </div>
                             )}

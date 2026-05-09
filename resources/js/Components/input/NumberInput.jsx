@@ -19,6 +19,7 @@ const NumberInput = ({
     onChange,
     type = "number",
     qty = null,
+    disabled = false,
 }) => {
     const [IsInvalid, setIsInvalid] = useState(false);
 
@@ -80,8 +81,9 @@ const NumberInput = ({
                     placeholder={placeholder}
                     className={`w-full px-3 py-2 border-2 rounded-lg outline-none focus:border-sky-300 transition-all dark:bg-slate-800 dark:border-slate-600 dark:focus:border-sky-600 [&::-webkit-inner-spin-button]:!bg-red-500 ${
                         !arrow && "[&::-webkit-inner-spin-button]:appearance-none"
-                    } ${IsInvalid || error ? "!border-red-300 focus:!border-red-300 dark:!border-red-800" : null}`}
+                    } ${IsInvalid || error ? "!border-red-300 focus:!border-red-300 dark:!border-red-800" : null} ${disabled ? "bg-slate-100 dark:bg-slate-700 cursor-not-allowed opacity-75" : ""}`}
                     required={required}
+                    disabled={disabled}
                     max={max ? max : false}
                     min={min ? min : false}
                     onChange={hasQtyContext ? handleChangeQTY : handleChange}
@@ -111,7 +113,7 @@ const NumberInput = ({
                     className="!h-full"
                     inputClassName={`!w-full !h-full !border-2 !rounded-e-lg !text-base focus:!border-sky-300 dark:!bg-slate-800 dark:!text-slate-200 dark:focus:!border-sky-600 ${
                         IsInvalid || error ? "!border-red-300 focus:!border-red-300 dark:!border-red-800" : "!border-slate-200 dark:!border-slate-600"
-                    }`}
+                    } ${disabled ? "bg-slate-100 dark:bg-slate-700 cursor-not-allowed opacity-75" : ""}`}
                     countrySelectorStyleProps={{
                         buttonClassName:
                             "!h-full !px-3 !border-2 !border-slate-200 !rounded-s-lg focus-visible:!bg-red-500 dark:!border-slate-600 dark:!bg-slate-800 dark:!text-slate-200 dark:focus:!border-sky-600",
@@ -121,9 +123,10 @@ const NumberInput = ({
                             listItemDialCodeClassName: "!text-slate-500 dark:!text-slate-400",
                         },
                     }}
-                    inputProps={{ name: name, placeholder: placeholder, required: required, onInvalid: () => setIsInvalid(true) }}
+                    inputProps={{ name: name, placeholder: placeholder, required: required, disabled: disabled, onInvalid: () => setIsInvalid(true) }}
                     value={value ? value : ""}
                     onChange={handleChange}
+                    disabled={disabled}
                 />
                 {error && (
                     <motion.div
@@ -148,15 +151,16 @@ const NumberInput = ({
                 </label>
                 <MaskedInput
                     mask={currencyMask}
-                    name="price"
+                    name={name}
                     type="text"
                     id={name}
                     inputMode="numeric"
                     className={`w-full px-3 py-2 border-2 rounded-lg outline-none focus:border-sky-300 dark:bg-slate-800 dark:border-slate-600 dark:focus:border-sky-600 transition-all ${
                         IsInvalid || error ? "!border-red-300 focus:!border-red-300 dark:!border-red-800" : null
-                    }`}
+                    } ${disabled ? "bg-slate-100 dark:bg-slate-700 cursor-not-allowed opacity-75" : ""}`}
                     placeholder={placeholder}
                     required={required}
+                    disabled={disabled}
                     value={!value ? null : value}
                     onInvalid={() => setIsInvalid(true)}
                     onChange={handleChange}
