@@ -65,9 +65,25 @@ const OfferShow = ({ flash, offer, customers }) => {
         label: customer.name,
     }));
 
+    const soldQuantities = records.reduce((acc, record) => {
+        if (record.status === "rejected") return acc;
+        (record.items ?? []).forEach((item) => {
+            acc[item.product_id] = (acc[item.product_id] ?? 0) + Number(item.quantity ?? 0);
+        });
+        return acc;
+    }, {});
+
+    const remainingStockMap = Object.fromEntries(
+        items.map((item) => [
+            item.product_id,
+            item.quantity - (soldQuantities[item.product_id] ?? 0),
+        ])
+    );
+
     const productOptions = items.map((item) => ({
         value: item.product_id,
         label: item.product?.name ?? "-",
+        stock: remainingStockMap[item.product_id] ?? 0,
     }));
 
     const offeredPriceMap = Object.fromEntries(
@@ -101,12 +117,16 @@ const OfferShow = ({ flash, offer, customers }) => {
     const handleRecordProductChange = (index, productId) => {
         updateRecordItem(index, {
             product_id: productId ? Number(productId) : null,
+            quantity: 1, // Reset quantity when product changes
         });
     };
 
     const handleRecordQtyChange = (index, value) => {
+        const item = data.items[index];
+        const stock = remainingStockMap[item.product_id] ?? 0;
+
         updateRecordItem(index, {
-            quantity: Math.max(1, Number(value) || 1),
+            quantity: Math.max(1, Math.min(stock > 0 ? stock : 1, Number(value) || 1)),
         });
     };
 
@@ -269,6 +289,15 @@ const OfferShow = ({ flash, offer, customers }) => {
                                                                       onChange={(_, value) => handleRecordProductChange(index, value)}
                                                                       error={recordError(index, "product_id")}
                                                                       required={true}
+                                                                      isOptionDisabled={(option) => option.stock <= 0}
+                                                                      formatOptionLabel={({ label, stock }) => (
+                                                                          <div className="flex items-center justify-between">
+                                                                              <span className={stock <= 0 ? "text-slate-400" : ""}>{label}</span>
+                                                                              <span className={`text-sm ${stock <= 0 ? "text-red-400 font-bold" : "text-slate-400"}`}>
+                                                                                  {stock <= 0 ? "Habis" : `Stock: ${stock}`}
+                                                                              </span>
+                                                                          </div>
+                                                                      )}
                                                                   />
                                                               </div>
                                                               <div className="lg:col-span-2">
@@ -280,6 +309,7 @@ const OfferShow = ({ flash, offer, customers }) => {
                                                                       qty={index}
                                                                       value={item.quantity}
                                                                       min={1}
+                                                                      max={remainingStockMap[item.product_id] ?? null}
                                                                       onChange={handleRecordQtyChange}
                                                                   />
                                                                   {recordError(index, "quantity") && (
@@ -413,7 +443,7 @@ const OfferShow = ({ flash, offer, customers }) => {
                         nodes={items}
                         paginated={false}
                         selectable={false}
-                        gridLayout="auto 1.5fr 0.5fr 1fr"
+                        gridLayout="auto 1.5fr 0.5fr 0.5fr 1fr"
                         title="Items Dibawa"
                         columns={[
                             {
@@ -440,6 +470,18 @@ const OfferShow = ({ flash, offer, customers }) => {
                                 key: "quantity",
                                 label: "Qty Dibawa",
                                 render: (item) => item.quantity,
+                            },
+                            {
+                                key: "remaining",
+                                label: "Sisa Stock",
+                                render: (item) => {
+                                    const remaining = remainingStockMap[item.product_id] ?? 0;
+                                    return (
+                                        <span className={remaining <= 0 ? "text-red-500 font-bold" : ""}>
+                                            {remaining}
+                                        </span>
+                                    );
+                                },
                             },
                             {
                                 key: "offered_price",

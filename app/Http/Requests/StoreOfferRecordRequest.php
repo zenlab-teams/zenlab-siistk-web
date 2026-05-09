@@ -40,10 +40,31 @@ class StoreOfferRecordRequest extends FormRequest
 
         $allowedIds = $offer->items()->pluck('product_id')->map(fn ($id) => (int) $id)->all();
 
-        $validator->after(function (Validator $v) use ($allowedIds): void {
+        $soldQuantities = $offer->records()
+            ->where('status', '!=', 'rejected')
+            ->with('items')
+            ->get()
+            ->pluck('items')
+            ->flatten()
+            ->groupBy('product_id')
+            ->map(fn ($items) => $items->sum('quantity'));
+
+        $offeredQuantities = $offer->items()->pluck('quantity', 'product_id');
+
+        $validator->after(function (Validator $v) use ($allowedIds, $soldQuantities, $offeredQuantities): void {
             foreach ($this->input('items', []) as $index => $item) {
-                if (isset($item['product_id']) && ! in_array((int) $item['product_id'], $allowedIds, true)) {
-                    $v->errors()->add("items.{$index}.product_id", 'Produk tidak termasuk dalam offer ini.');
+                if (isset($item['product_id'])) {
+                    $productId = (int) $item['product_id'];
+                    if (! in_array($productId, $allowedIds, true)) {
+                        $v->errors()->add("items.{$index}.product_id", 'Produk tidak termasuk dalam offer ini.');
+
+                        continue;
+                    }
+
+                    $remaining = ($offeredQuantities[$productId] ?? 0) - ($soldQuantities[$productId] ?? 0);
+                    if (($item['quantity'] ?? 0) > $remaining) {
+                        $v->errors()->add("items.{$index}.quantity", "Sisa stock tidak mencukupi (Sisa: {$remaining}).");
+                    }
                 }
             }
         });
