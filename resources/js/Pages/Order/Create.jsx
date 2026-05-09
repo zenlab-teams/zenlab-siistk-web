@@ -105,12 +105,17 @@ const OrderCreate = ({ flash, customers, products }) => {
         const normalizedProductId = productId ? Number(productId) : null;
         updateItem(index, {
             product_id: normalizedProductId,
+            quantity: 1, // Reset quantity when product changes
         });
     };
 
     const handleItemQuantityChange = (index, value) => {
+        const item = data.items[index];
+        const product = products.find((p) => p.id === item.product_id);
+        const stock = product?.stocks_sum_quantity ?? 0;
+        
         updateItem(index, {
-            quantity: Math.max(1, Number(value) || 1),
+            quantity: Math.max(1, Math.min(stock > 0 ? stock : 1, Number(value) || 1)),
         });
     };
 
@@ -230,10 +235,13 @@ const OrderCreate = ({ flash, customers, products }) => {
                                                         onChange={(_, value) => handleItemProductChange(index, value)}
                                                         error={itemError(index, "product_id")}
                                                         required={true}
+                                                        isOptionDisabled={(option) => option.stock <= 0}
                                                         formatOptionLabel={({ label, stock }) => (
                                                             <div className="flex items-center justify-between">
-                                                                <span>{label}</span>
-                                                                <span className="text-sm text-slate-400">Stock: {stock}</span>
+                                                                <span className={stock <= 0 ? "text-slate-400" : ""}>{label}</span>
+                                                                <span className={`text-sm ${stock <= 0 ? "text-red-400 font-bold" : "text-slate-400"}`}>
+                                                                    {stock <= 0 ? "Out of Stock" : `Stock: ${stock}`}
+                                                                </span>
                                                             </div>
                                                         )}
                                                     />
@@ -247,6 +255,7 @@ const OrderCreate = ({ flash, customers, products }) => {
                                                         qty={index}
                                                         value={item.quantity}
                                                         min={1}
+                                                        max={products.find(p => p.id === item.product_id)?.stocks_sum_quantity ?? null}
                                                         onChange={handleItemQuantityChange}
                                                     />
                                                     {itemError(index, "quantity") && (

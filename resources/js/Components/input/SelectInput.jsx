@@ -5,7 +5,7 @@ import { TbAlertCircle } from "react-icons/tb";
 import classNames from "classnames";
 import { useState } from "react";
 
-const SelectInput = ({ options, label, type , required = false, name, error, placeholder, formatOptionLabel, value, onChange }) => {
+const SelectInput = ({ options, label, type , required = false, name, error, placeholder, formatOptionLabel, value, onChange, isOptionDisabled }) => {
     const animatedComponents = makeAnimated();
     
     const customStyles = {
@@ -48,6 +48,7 @@ const SelectInput = ({ options, label, type , required = false, name, error, pla
                 formatOptionLabel={formatOptionLabel}
                 value={value && options[valueOptionsIndex]}
                 required={required}
+                isOptionDisabled={isOptionDisabled}
                 onChange={ type == "filter" ? onChange : handleChange}
             />
             {error && (

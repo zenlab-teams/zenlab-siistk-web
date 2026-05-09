@@ -40,7 +40,9 @@ const OfferCreate = ({ flash, sales, products }) => {
         () =>
             products.map((product) => ({
                 value: product.id,
-                label: `${product.name} (Normal: Rp${Number(product.price ?? 0).toLocaleString("id-ID")})`,
+                label: product.name,
+                price: product.price,
+                stock: product.stocks_sum_quantity ?? 0,
             })),
         [products]
     );
@@ -95,12 +97,17 @@ const OfferCreate = ({ flash, sales, products }) => {
     const handleItemProductChange = (index, productId) => {
         updateItem(index, {
             product_id: productId ? Number(productId) : null,
+            quantity: 1, // Reset quantity when product changes
         });
     };
 
     const handleItemQuantityChange = (index, value) => {
+        const item = data.items[index];
+        const product = products.find((p) => p.id === item.product_id);
+        const stock = product?.stocks_sum_quantity ?? 0;
+
         updateItem(index, {
-            quantity: Math.max(1, Number(value) || 1),
+            quantity: Math.max(1, Math.min(stock > 0 ? stock : 1, Number(value) || 1)),
         });
     };
 
@@ -296,6 +303,18 @@ const OfferCreate = ({ flash, sales, products }) => {
                                                         onChange={(_, value) => handleItemProductChange(index, value)}
                                                         error={itemError(index, "product_id")}
                                                         required={true}
+                                                        isOptionDisabled={(option) => option.stock <= 0}
+                                                        formatOptionLabel={({ label, stock, price }) => (
+                                                            <div className="flex items-center justify-between">
+                                                                <div className="flex flex-col">
+                                                                    <span className={stock <= 0 ? "text-slate-400" : ""}>{label}</span>
+                                                                    <span className="text-xs text-slate-400">Normal: Rp{Number(price ?? 0).toLocaleString("id-ID")}</span>
+                                                                </div>
+                                                                <span className={`text-sm ${stock <= 0 ? "text-red-400 font-bold" : "text-slate-400"}`}>
+                                                                    {stock <= 0 ? "Out of Stock" : `Stock: ${stock}`}
+                                                                </span>
+                                                            </div>
+                                                        )}
                                                     />
                                                 </div>
                                                 <div className="lg:col-span-2">
@@ -307,6 +326,7 @@ const OfferCreate = ({ flash, sales, products }) => {
                                                         qty={index}
                                                         value={item.quantity}
                                                         min={1}
+                                                        max={products.find(p => p.id === item.product_id)?.stocks_sum_quantity ?? null}
                                                         onChange={handleItemQuantityChange}
                                                     />
                                                     {itemError(index, "quantity") && (

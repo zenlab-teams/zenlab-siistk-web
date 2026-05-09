@@ -20,7 +20,19 @@ class StoreStockRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'quantity' => ['required', 'integer', 'min:1'],
+            'quantity' => [
+                'required',
+                'integer',
+                'min:1',
+                function ($attribute, $value, $fail) {
+                    if ($this->input('type') === 'out') {
+                        $product = $this->route('product');
+                        if ($product && $product->currentStock() < $value) {
+                            $fail("The product has insufficient stock (Current: {$product->currentStock()}).");
+                        }
+                    }
+                },
+            ],
             'type' => ['required', 'in:in,out,adjustment'],
             'unit_cost' => ['nullable', 'integer', 'min:0'],
             'note' => ['nullable', 'string', 'max:255'],

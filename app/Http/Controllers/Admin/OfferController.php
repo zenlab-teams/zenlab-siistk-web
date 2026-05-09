@@ -60,6 +60,7 @@ class OfferController extends Controller
                 ->get(),
             'products' => Product::query()
                 ->select(['id', 'name', 'price'])
+                ->withSum('stocks', 'quantity')
                 ->orderBy('name')
                 ->get(),
         ]);
@@ -226,32 +227,32 @@ class OfferController extends Controller
             $record->load('items');
             $totalPrice = $record->items->sum('subtotal');
 
-            $orderData = array(
+            $orderData = [
                 'customer_id' => $record->customer_id,
                 'offer_record_id' => $record->id,
                 'total_price' => $totalPrice,
                 'checked_out_at' => now(),
                 'created_by' => auth()->id(),
-            );
+            ];
 
             $order = Order::query()->create($orderData);
 
             foreach ($record->items as $item) {
-                $order->items()->create(array(
+                $order->items()->create([
                     'product_id' => $item->product_id,
                     'quantity' => $item->quantity,
                     'price' => $item->sold_price,
                     'subtotal' => $item->subtotal,
                     'created_by' => auth()->id(),
-                ));
+                ]);
             }
 
-            $order->invoice()->create(array(
+            $order->invoice()->create([
                 'total_amount' => $totalPrice,
                 'created_by' => auth()->id(),
-            ));
+            ]);
 
-            $record->update(array('status' => 'approved'));
+            $record->update(['status' => 'approved']);
 
             return $order;
         });

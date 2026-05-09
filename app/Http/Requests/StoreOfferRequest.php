@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Product;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -27,7 +28,21 @@ class StoreOfferRequest extends FormRequest
             'sale_ids.*' => ['required', 'exists:sales,id'],
             'items' => ['required', 'array', 'min:1'],
             'items.*.product_id' => ['required', 'exists:products,id'],
-            'items.*.quantity' => ['required', 'integer', 'min:1'],
+            'items.*.quantity' => [
+                'required',
+                'integer',
+                'min:1',
+                function ($attribute, $value, $fail) {
+                    $index = explode('.', $attribute)[1];
+                    $productId = $this->input("items.{$index}.product_id");
+                    if ($productId) {
+                        $product = Product::find($productId);
+                        if ($product && $product->currentStock() < $value) {
+                            $fail("The product {$product->name} has insufficient stock (Current: {$product->currentStock()}).");
+                        }
+                    }
+                },
+            ],
             'items.*.offered_price' => ['required', 'integer', 'min:0'],
         ];
     }
