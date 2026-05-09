@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('offers_records', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('offer_id')->constrained('offers')->restrictOnDelete()->restrictOnUpdate();
+            $table->foreignId('sale_id')->constrained('sales')->restrictOnDelete()->restrictOnUpdate();
             $table->foreignId('customer_id')->nullable()->constrained('customers')->restrictOnDelete()->restrictOnUpdate();
-            $table->foreignId('offer_record_id')->nullable()->constrained('offers_records')->restrictOnDelete()->restrictOnUpdate();
-            $table->integer('total_price');
-            $table->timestamp('checked_out_at')->nullable();
-            $table->timestamp('cancelled_at')->nullable();
-            $table->timestamp('expired_at')->nullable();
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->string('notes')->nullable();
             $table->integer('created_by')->nullable();
             $table->timestamps();
         });
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('offers_records');
     }
 };

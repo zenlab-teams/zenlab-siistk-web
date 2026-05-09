@@ -48,9 +48,7 @@ Implementation is driven by numbered plan files in `.claude/plans/`:
 
 | Plan | Feature | Status |
 |---|---|---|
-| `00-datatable-component.md` | Reusable DataTable component (prerequisite) | ✅ completed |
-| `00b-datatable-columns-api.md` | DataTable columns prop API | ✅ completed |
-| `00c-serverside-datatable.md` | Server-side DataTable | ✅ completed |
+| `00-datatable-component.md` | Reusable DataTable component (server-side, columns API) | ✅ completed |
 | `01-thumbnail-produk.md` | Product thumbnail upload | pending |
 | `02-mengelola-stock.md` | Stock management & history | pending |
 | `03-mengelola-user.md` | User CRUD (admin) | pending |
@@ -58,7 +56,7 @@ Implementation is driven by numbered plan files in `.claude/plans/`:
 | `05-rekap-harian.md` | Admin dashboard with daily stats | pending |
 | `06-penawaran-ngampas.md` | Weekly offer workflow (sales → admin → order) | pending |
 
-**Execute plans in order.** Plans 00/00b/00c are prerequisites for all Index pages.
+**Execute plans in order.** Plan 00 is prerequisite for all Index pages.
 
 ## Architecture
 

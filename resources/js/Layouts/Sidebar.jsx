@@ -1,8 +1,10 @@
 import { AnimatePresence, motion } from "framer-motion";
 import {
     TbLayoutDashboard,
+    TbFileText,
     TbLogout2,
     TbPackage,
+    TbShoppingCart,
     TbSunMoon,
     TbUsers,
 } from "react-icons/tb";
@@ -72,21 +74,74 @@ const Sidebar = () => {
                             <p className="font-bold text-lg">Dashboard</p>
                         </motion.div>
                     </Link>
-                    <Link href={route("product.index")}>
-                        <motion.div
-                            className={`flex items-center p-2 m-1 rounded-lg cursor-pointer transition-all ${
-                                currentRoute.route === "product"
-                                    ? "bg-sky-100 text-sky-500 dark:bg-sky-900"
-                                    : "text-slate-600 hover:bg-slate-200 dark:text-slate-400 dark:hover:bg-slate-700"
-                            }`}
-                            initial={{ opacity: 0, x: -5 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.2 }}
+                    {user?.role === "admin" && (
+                        <Link href={route("product.index")}>
+                            <motion.div
+                                className={`flex items-center p-2 m-1 rounded-lg cursor-pointer transition-all ${
+                                    currentRoute.route === "product"
+                                        ? "bg-sky-100 text-sky-500 dark:bg-sky-900"
+                                        : "text-slate-600 hover:bg-slate-200 dark:text-slate-400 dark:hover:bg-slate-700"
+                                }`}
+                                initial={{ opacity: 0, x: -5 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.2 }}
                             >
-                            <TbPackage className="text-2xl mr-3" />
-                            <p className="font-bold text-lg">Products</p>
-                        </motion.div>
-                    </Link>
+                                <TbPackage className="text-2xl mr-3" />
+                                <p className="font-bold text-lg">Products</p>
+                            </motion.div>
+                        </Link>
+                    )}
+                    {user?.role === "admin" && (
+                        <Link href={route("order.index")}>
+                            <motion.div
+                                className={`flex items-center p-2 m-1 rounded-lg cursor-pointer transition-all ${
+                                    currentRoute.route === "order"
+                                        ? "bg-sky-100 text-sky-500 dark:bg-sky-900"
+                                        : "text-slate-600 hover:bg-slate-200 dark:text-slate-400 dark:hover:bg-slate-700"
+                                }`}
+                                initial={{ opacity: 0, x: -5 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.25 }}
+                            >
+                                <TbShoppingCart className="text-2xl mr-3" />
+                                <p className="font-bold text-lg">Orders</p>
+                            </motion.div>
+                        </Link>
+                    )}
+                    {user?.role === "admin" && (
+                        <Link href={route("offer.index")}>
+                            <motion.div
+                                className={`flex items-center p-2 m-1 rounded-lg cursor-pointer transition-all ${
+                                    currentRoute.route === "offer"
+                                        ? "bg-sky-100 text-sky-500 dark:bg-sky-900"
+                                        : "text-slate-600 hover:bg-slate-200 dark:text-slate-400 dark:hover:bg-slate-700"
+                                }`}
+                                initial={{ opacity: 0, x: -5 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.25 }}
+                            >
+                                <TbFileText className="text-2xl mr-3" />
+                                <p className="font-bold text-lg">Offers</p>
+                            </motion.div>
+                        </Link>
+                    )}
+                    {user?.role === "sales" && (
+                        <Link href={route("sales.offer.index")}>
+                            <motion.div
+                                className={`flex items-center p-2 m-1 rounded-lg cursor-pointer transition-all ${
+                                    currentRoute.route === "offer"
+                                        ? "bg-sky-100 text-sky-500 dark:bg-sky-900"
+                                        : "text-slate-600 hover:bg-slate-200 dark:text-slate-400 dark:hover:bg-slate-700"
+                                }`}
+                                initial={{ opacity: 0, x: -5 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.25 }}
+                            >
+                                <TbFileText className="text-2xl mr-3" />
+                                <p className="font-bold text-lg">Offers</p>
+                            </motion.div>
+                        </Link>
+                    )}
                     {user?.role === "admin" && (
                         <Link href={route("user.index")}>
                             <motion.div

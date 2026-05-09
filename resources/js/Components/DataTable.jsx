@@ -15,12 +15,14 @@ import { tableRowsSizeOptions, tableStyle } from "../config/tableConfig";
 
 const DataTable = ({
     nodes,
-    meta,
+    meta = null,
     filters = {},
-    routeName,
+    routeName = null,
     searchPlaceholder = "Search...",
     gridLayout,
     selectable = true,
+    paginated = true,
+    rowClassName = null,
     deleteType = null,
     deleteDescription = "",
     title = "",
@@ -32,6 +34,7 @@ const DataTable = ({
     const rowsSizeOptions = tableRowsSizeOptions();
     const tableTheme = tableStyle(`${selectable ? 'auto ' : ''}auto ${gridLayout}`);
     const searchTimeout = useRef(null);
+    const totalCount = paginated ? Number(meta?.total ?? 0) : Number(nodes?.length ?? 0);
 
     const [search, setSearch] = useState(filters.search ?? "");
     const [selectedItem, setSelectedItem] = useState([]);
@@ -95,6 +98,14 @@ const DataTable = ({
             : <FaSortDown fontSize="small" />;
     };
 
+    const resolveRowClassName = (item) => {
+        if (typeof rowClassName === "function") {
+            return rowClassName(item);
+        }
+
+        return rowClassName ?? "dark:!bg-slate-800 hover:bg-slate-100 dark:hover:!bg-slate-700 cursor-pointer transition-all";
+    };
+
     return (
         <>
             <AnimatePresence>
@@ -121,7 +132,7 @@ const DataTable = ({
                 <p className="text-xl font-bold">
                     {title}
                     <span className="bg-slate-200 text-slate-500 dark:bg-slate-700 dark:text-slate-400 p-2 rounded-lg text-lg ml-1">
-                        {meta.total}
+                        {totalCount}
                     </span>
                 </p>
 
@@ -143,28 +154,30 @@ const DataTable = ({
                         )}
                     </AnimatePresence>
 
-                    <label
-                        htmlFor={`search_${routeName}`}
-                        className={`flex items-center border-2 dark:border-slate-700 rounded-lg px-2 ${
-                            search && data.nodes.length === 0
-                                ? "!border-red-200 dark:!border-red-500 dark:!border-opacity-20"
-                                : search && "border-sky-300 dark:!border-sky-500 dark:!border-opacity-20"
-                        } transition-all`}
-                    >
-                        <TbSearch
-                            className={`text-2xl mr-2 text-slate-400 ${
-                                search && data.nodes.length === 0 ? "!text-red-500" : search && "!text-sky-500"
+                    {paginated && routeName && (
+                        <label
+                            htmlFor={`search_${routeName}`}
+                            className={`flex items-center border-2 dark:border-slate-700 rounded-lg px-2 ${
+                                search && data.nodes.length === 0
+                                    ? "!border-red-200 dark:!border-red-500 dark:!border-opacity-20"
+                                    : search && "border-sky-300 dark:!border-sky-500 dark:!border-opacity-20"
                             } transition-all`}
-                        />
-                        <input
-                            name="search"
-                            id={`search_${routeName}`}
-                            className="w-full py-2 outline-none rounded-lg dark:bg-slate-800 transition-all"
-                            placeholder={searchPlaceholder}
-                            onChange={handleSearch}
-                            value={search}
-                        />
-                    </label>
+                        >
+                            <TbSearch
+                                className={`text-2xl mr-2 text-slate-400 ${
+                                    search && data.nodes.length === 0 ? "!text-red-500" : search && "!text-sky-500"
+                                } transition-all`}
+                            />
+                            <input
+                                name="search"
+                                id={`search_${routeName}`}
+                                className="w-full py-2 outline-none rounded-lg dark:bg-slate-800 transition-all"
+                                placeholder={searchPlaceholder}
+                                onChange={handleSearch}
+                                value={search}
+                            />
+                        </label>
+                    )}
 
                     {toolbar}
 
@@ -244,7 +257,7 @@ const DataTable = ({
                                             <Row
                                                 key={item.id}
                                                 item={item}
-                                                className="dark:!bg-slate-800 hover:bg-slate-100 dark:hover:!bg-slate-700 cursor-pointer transition-all"
+                                                className={resolveRowClassName(item)}
                                             >
                                                 {selectable && (
                                                     <Cell className="!p-3">
@@ -256,7 +269,9 @@ const DataTable = ({
                                                     </Cell>
                                                 )}
                                                 <Cell className="!p-3 text-center text-sm text-slate-400 dark:text-slate-500 font-medium">
-                                                    {(meta.current_page - 1) * Number(meta.per_page) + rowIndex + 1}
+                                                    {paginated
+                                                        ? (Number(meta?.current_page ?? 1) - 1) * Number(meta?.per_page ?? tableList.length) + rowIndex + 1
+                                                        : rowIndex + 1}
                                                 </Cell>
                                                 {columns.map((col, index) => {
                                                     const isLast = index === columns.length - 1;
@@ -292,47 +307,49 @@ const DataTable = ({
                 </div>
             </div>
 
-            <div className="w-full mt-5 flex flex-wrap justify-between items-center gap-3">
-                <div className="flex items-center gap-3">
-                    <span className="text-slate-500 dark:text-slate-400">Rows per page</span>
-                    <Select
-                        menuPlacement="top"
-                        options={rowsSizeOptions}
-                        defaultValue={rowsSizeOptions.find((o) => o.value === Number(filters.per_page ?? 10))}
-                        onChange={handlePerPageChange}
-                        isSearchable={false}
-                        classNames={{
-                            control: ({ isFocused }) =>
-                                classNames(
-                                    "!border-2 !outline-none !rounded-xl dark:!bg-slate-800",
-                                    isFocused
-                                        ? "!border-sky-200 dark:!border-sky-500 dark:!border-opacity-20"
-                                        : "!border-slate-200 dark:!border-slate-600"
-                                ),
-                            singleValue: () => classNames("!text-slate-500 dark:!text-slate-400"),
-                            dropdownIndicator: () => classNames("dark:!text-slate-400"),
-                            indicatorSeparator: () => classNames("hidden"),
-                            menu: () => classNames("!rounded-xl dark:!bg-slate-800"),
-                            option: ({ isSelected, isFocused }) =>
-                                classNames(isSelected && "!bg-sky-400", isFocused && "dark:!bg-slate-600"),
-                        }}
-                        classNamePrefix="react-select"
+            {paginated && (
+                <div className="w-full mt-5 flex flex-wrap justify-between items-center gap-3">
+                    <div className="flex items-center gap-3">
+                        <span className="text-slate-500 dark:text-slate-400">Rows per page</span>
+                        <Select
+                            menuPlacement="top"
+                            options={rowsSizeOptions}
+                            defaultValue={rowsSizeOptions.find((o) => o.value === Number(filters.per_page ?? 10))}
+                            onChange={handlePerPageChange}
+                            isSearchable={false}
+                            classNames={{
+                                control: ({ isFocused }) =>
+                                    classNames(
+                                        "!border-2 !outline-none !rounded-xl dark:!bg-slate-800",
+                                        isFocused
+                                            ? "!border-sky-200 dark:!border-sky-500 dark:!border-opacity-20"
+                                            : "!border-slate-200 dark:!border-slate-600"
+                                    ),
+                                singleValue: () => classNames("!text-slate-500 dark:!text-slate-400"),
+                                dropdownIndicator: () => classNames("dark:!text-slate-400"),
+                                indicatorSeparator: () => classNames("hidden"),
+                                menu: () => classNames("!rounded-xl dark:!bg-slate-800"),
+                                option: ({ isSelected, isFocused }) =>
+                                    classNames(isSelected && "!bg-sky-400", isFocused && "dark:!bg-slate-600"),
+                            }}
+                            classNamePrefix="react-select"
+                        />
+                    </div>
+
+                    <PaginationButton
+                        currentPage={meta.current_page}
+                        totalPages={meta.last_page}
+                        onPageChange={handlePageChange}
                     />
-                </div>
 
-                <PaginationButton
-                    currentPage={meta.current_page}
-                    totalPages={meta.last_page}
-                    onPageChange={handlePageChange}
-                />
-
-                <div className="text-slate-500 dark:text-slate-400 flex items-center justify-end gap-1 w-52">
-                    Total page
-                    <span className="bg-slate-200 text-slate-500 dark:bg-slate-700 dark:text-slate-400 font-bold p-2 text-sm rounded-lg ml-1">
-                        {meta.last_page}
-                    </span>
+                    <div className="text-slate-500 dark:text-slate-400 flex items-center justify-end gap-1 w-52">
+                        Total page
+                        <span className="bg-slate-200 text-slate-500 dark:bg-slate-700 dark:text-slate-400 font-bold p-2 text-sm rounded-lg ml-1">
+                            {meta.last_page}
+                        </span>
+                    </div>
                 </div>
-            </div>
+            )}
         </>
     );
 };

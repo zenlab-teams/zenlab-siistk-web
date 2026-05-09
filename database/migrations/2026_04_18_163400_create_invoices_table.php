@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('invoice_id')->constrained('invoices')->restrictOnDelete()->restrictOnUpdate();
-            $table->integer('amount');
-            $table->enum('type', ['dp', 'installment', 'full']);
-            $table->string('proof_image')->nullable();
-            $table->string('note')->nullable();
+            $table->foreignId('order_id')->constrained('orders')->restrictOnDelete()->restrictOnUpdate();
+            $table->integer('total_amount');
+            $table->date('due_date')->nullable();
+            $table->string('notes')->nullable();
             $table->integer('created_by')->nullable();
             $table->timestamps();
         });
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('invoices');
     }
 };

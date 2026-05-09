@@ -184,13 +184,6 @@ di-derive dari column definition.
 
 ---
 
-## AGENTS.md Update
-
-Setelah implementasi, update contoh penggunaan DataTable di `AGENTS.md` agar model lain
-langsung pakai API `columns` yang baru.
-
----
-
 ## Verification
 
 1. Product/Index tampil identik dengan sebelumnya (semua kolom, sort, pagination, delete)

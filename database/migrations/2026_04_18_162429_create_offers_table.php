@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->date('date');
+            $table->timestamp('rejected_at')->nullable();
+            $table->timestamp('completed_at')->nullable();
             $table->integer('created_by')->nullable();
             $table->timestamps();
         });

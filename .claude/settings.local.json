@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mv .claude/plans/04-mengelola-pesanan.md .claude/plans/04/)",
+      "Bash(mv .claude/plans/04a-review-pesanan.md .claude/plans/04/)",
+      "Bash(mv .claude/plans/05-rekap-harian.md .claude/plans/05/)",
+      "Bash(mv .claude/plans/05a-review-rekap-harian.md .claude/plans/05/)",
+      "Bash(cp \"D:/Workspaces/ZENLAB/zenlab-siistk-web/.claude/plans/00b/00b-datatable-columns-api.md\" \"D:/Workspaces/ZENLAB/zenlab-siistk-web/.claude/plans/00/\")",
+      "Bash(cp \"D:/Workspaces/ZENLAB/zenlab-siistk-web/.claude/plans/00c/00c-serverside-datatable.md\" \"D:/Workspaces/ZENLAB/zenlab-siistk-web/.claude/plans/00/\")",
+      "Bash(npm run *)",
+      "Bash(vendor/bin/pint *)"
+    ]
+  }
+}

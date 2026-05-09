@@ -11,9 +11,11 @@ class Payment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'order_id',
+        'invoice_id',
         'amount',
+        'type',
         'proof_image',
+        'note',
         'created_by',
     ];
 
@@ -24,8 +26,13 @@ class Payment extends Model
         ];
     }
 
-    public function order(): BelongsTo
+    public function invoice(): BelongsTo
     {
-        return $this->belongsTo(Order::class);
+        return $this->belongsTo(Invoice::class);
+    }
+
+    public function creator(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by');
     }
 }

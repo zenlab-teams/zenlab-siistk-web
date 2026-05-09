@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
+use App\Http\Controllers\Admin\InvoiceController;
+use App\Http\Controllers\Admin\OfferController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\StockController;
 use App\Http\Controllers\Admin\UserController;
@@ -8,6 +11,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Customer\DashboardController as CustomerDashboard;
 use App\Http\Controllers\Sales\DashboardController as SalesDashboard;
+use App\Http\Controllers\Sales\OfferController as SalesOfferController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -44,10 +48,40 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
         Route::delete('/{user}', 'destroy')->name('destroy');
         Route::delete('/destroy-selected/{ids}', 'destroySelected')->name('destroySelected');
     });
+
+    Route::controller(OrderController::class)->prefix('/order')->name('order.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{order}', 'show')->name('show');
+        Route::patch('/{order}/cancel', 'cancel')->name('cancel');
+    });
+
+    Route::controller(InvoiceController::class)->prefix('/invoice')->name('invoice.')->group(function () {
+        Route::post('/{invoice}/payment', 'storePayment')->name('payment.store');
+    });
+
+    Route::controller(OfferController::class)->prefix('/offer')->name('offer.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{offer}', 'show')->name('show');
+        Route::patch('/{offer}/complete', 'complete')->name('complete');
+        Route::patch('/{offer}/reject', 'reject')->name('reject');
+        Route::post('/{offer}/record', 'storeRecord')->name('record.store');
+        Route::post('/{offer}/record/{record}/approve', 'approveRecord')->name('record.approve');
+        Route::patch('/{offer}/record/{record}/reject', 'rejectRecord')->name('record.reject');
+    });
 });
 
 Route::middleware(['auth', 'role:admin,sales'])->prefix('sales')->name('sales.')->group(function () {
     Route::get('/dashboard', [SalesDashboard::class, 'index'])->name('dashboard');
+
+    Route::controller(SalesOfferController::class)->prefix('/offer')->name('offer.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/{offer}', 'show')->name('show');
+        Route::post('/{offer}/record', 'storeRecord')->name('record.store');
+    });
 });
 
 Route::middleware(['auth', 'role:admin,sales,customer'])->prefix('customer')->name('customer.')->group(function () {

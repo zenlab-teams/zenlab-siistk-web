@@ -44,9 +44,11 @@ const NumberInput = ({
         setIsInvalid(false);
     };
 
+    const hasQtyContext = qty !== null && qty !== undefined;
+
     const handleChangeQTY = (e) => {
-        onChange(qty, e.target.value)
-    }
+        onChange(qty, e.target.value);
+    };
 
     const defaultMaskOptions = {
         prefix: "Rp",
@@ -64,7 +66,7 @@ const NumberInput = ({
     if (type == "number") {
         return (
             <div className="flex flex-col w-full">
-                {qty ? null : (
+                {hasQtyContext ? null : (
                     <label htmlFor={name} className="mb-1">
                         {label}
                         {required ? <span className="text-sm text-red-500 font-bold"> *</span> : null}
@@ -82,7 +84,7 @@ const NumberInput = ({
                     required={required}
                     max={max ? max : false}
                     min={min ? min : false}
-                    onChange={qty ? handleChangeQTY : handleChange}
+                    onChange={hasQtyContext ? handleChangeQTY : handleChange}
                     onInvalid={() => setIsInvalid(true)}
                 />
                 {error && (
