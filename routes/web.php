@@ -33,7 +33,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::controller(ProductController::class)->prefix('/product')->name('product.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/create', 'create')->name('create');
+        Route::get('/bulk-create', 'bulkCreate')->name('bulkCreate');
         Route::post('/', 'store')->name('store');
+        Route::post('/bulk', 'bulkStore')->name('bulkStore');
         Route::get('/{product}', 'show')->name('show');
         Route::controller(StockController::class)->group(function () {
             Route::get('/{product}/stock/create', 'create')->name('stock.create');
