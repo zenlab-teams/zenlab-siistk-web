@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BulkStoreProductRequest;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
@@ -49,6 +50,48 @@ class ProductController extends Controller
     public function create(): Response
     {
         return Inertia::render('Product/Create');
+    }
+
+    public function bulkCreate(): Response
+    {
+        return Inertia::render('Product/BulkCreate');
+    }
+
+    public function bulkStore(BulkStoreProductRequest $request): RedirectResponse
+    {
+        $validated = $request->validated();
+
+        DB::transaction(function () use ($validated, $request): void {
+            foreach ($validated['products'] as $index => $productData) {
+                $data = [
+                    'name' => $productData['name'],
+                    'price' => $productData['price'],
+                    'description' => $productData['description'] ?? null,
+                    'created_by' => auth()->id(),
+                ];
+
+                if ($request->hasFile("products.{$index}.thumbnail")) {
+                    $data['thumbnail'] = $request->file("products.{$index}.thumbnail")->store('productImages', 'public');
+                }
+
+                $product = Product::query()->create($data);
+
+                $initialQty = $productData['initial_quantity'] ?? null;
+                if ($initialQty) {
+                    $product->stocks()->create([
+                        'quantity' => $initialQty,
+                        'unit_cost' => $productData['initial_unit_cost'] ?? null,
+                        'type' => 'in',
+                        'note' => 'Initial stock',
+                        'created_by' => auth()->id(),
+                    ]);
+                }
+            }
+        });
+
+        $count = count($validated['products']);
+
+        return redirect()->route('product.index')->with('success', "{$count} products created successfully.");
     }
 
     public function store(StoreProductRequest $request): RedirectResponse

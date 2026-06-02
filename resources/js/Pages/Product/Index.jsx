@@ -2,7 +2,7 @@ import { Head, Link } from "@inertiajs/react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { motion } from "framer-motion";
-import { TbEdit, TbEye, TbPhoto, TbTrash } from "react-icons/tb";
+import { TbEdit, TbEye, TbPhoto, TbTrash, TbCopyPlus } from "react-icons/tb";
 import DataTable from "../../Components/DataTable";
 import Layout from "../../Layouts/Default";
 import Sidebar from "../../Layouts/Sidebar";
@@ -41,6 +41,14 @@ const ProductIndex = ({ flash, products, filters }) => {
                         deleteDescription="Are you sure to delete this product?"
                         addHref={route("product.create")}
                         addLabel="Add Product"
+                        toolbar={
+                            <Link
+                                href={route("product.bulkCreate")}
+                                className="flex items-center gap-2 bg-sky-400 dark:bg-sky-500 text-white dark:text-slate-800 hover:bg-sky-500 dark:hover:bg-sky-600 px-3 py-2 rounded-lg font-bold whitespace-nowrap transition-all"
+                            >
+                                <TbCopyPlus className="font-bold text-xl" /> Bulk Add
+                            </Link>
+                        }
                         columns={[
                             {
                                 key: "actions",
