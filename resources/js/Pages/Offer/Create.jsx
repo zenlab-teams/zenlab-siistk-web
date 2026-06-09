@@ -6,6 +6,7 @@ import { TbPlus, TbTrash } from "react-icons/tb";
 import NumberInput from "../../Components/input/NumberInput";
 import SelectInput from "../../Components/input/SelectInput";
 import TextAreaInput from "../../Components/input/TextAreaInput";
+import LocationPicker from "../../Components/input/LocationPicker";
 import TextInput from "../../Components/input/TextInput";
 import Layout from "../../Layouts/Default";
 import Sidebar from "../../Layouts/Sidebar";
@@ -32,9 +33,21 @@ const OfferCreate = ({ flash, sales, products }) => {
         name: "",
         description: "",
         date: "",
+        location: "",
+        latitude: null,
+        longitude: null,
         sales: [],
         items: [],
     });
+
+    const handleLocationChange = (location, lat, lng) => {
+        setData((prev) => ({
+            ...prev,
+            location,
+            latitude: lat,
+            longitude: lng,
+        }));
+    };
 
     const productOptions = useMemo(
         () =>
@@ -137,6 +150,9 @@ const OfferCreate = ({ flash, sales, products }) => {
             name: "",
             description: "",
             date: "",
+            location: "",
+            latitude: null,
+            longitude: null,
             sales: [],
             items: [],
         });
@@ -197,6 +213,15 @@ const OfferCreate = ({ flash, sales, products }) => {
                             value={data.description}
                             onChange={setData}
                             error={errors.description}
+                        />
+
+                        <LocationPicker
+                            location={data.location}
+                            latitude={data.latitude}
+                            longitude={data.longitude}
+                            onChange={handleLocationChange}
+                            error={errors.location}
+                            required={true}
                         />
 
                         <div className="border-2 border-slate-200 dark:border-slate-700 rounded-xl p-4">

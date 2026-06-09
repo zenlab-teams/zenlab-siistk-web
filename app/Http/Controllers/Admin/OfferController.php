@@ -37,7 +37,7 @@ class OfferController extends Controller
         }
 
         $offers = Offer::query()
-            ->select(['id', 'name', 'date', 'rejected_at', 'completed_at', 'created_at', 'created_by'])
+            ->select(['id', 'name', 'date', 'location', 'rejected_at', 'completed_at', 'created_at', 'created_by'])
             ->with(['offerSales.sale.user:id,name', 'creator:id,name'])
             ->withCount('items')
             ->when($search, fn ($query) => $query->where('name', 'like', "%{$search}%"))
@@ -75,6 +75,9 @@ class OfferController extends Controller
                 'name' => $validated['name'],
                 'description' => $validated['description'] ?? null,
                 'date' => $validated['date'],
+                'location' => $validated['location'],
+                'latitude' => $validated['latitude'] ?? null,
+                'longitude' => $validated['longitude'] ?? null,
                 'created_by' => auth()->id(),
             ]);
 

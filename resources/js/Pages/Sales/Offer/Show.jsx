@@ -13,6 +13,7 @@ import Layout from "../../../Layouts/Default";
 import Sidebar from "../../../Layouts/Sidebar";
 import { setCurrentRoute } from "../../../Redux/slice";
 import ModalCreateSaleRecord from "../../../Components/modal/ModalCreateSaleRecord";
+import LocationDisplay from "../../../Components/LocationDisplay";
 
 const statusOfferClassMap = {
     active: "bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400",
@@ -163,6 +164,16 @@ const SalesOfferShow = ({ flash, offer, customers, currentSaleId }) => {
                             <p className="text-base">{salesNames.length > 0 ? salesNames.join(", ") : "-"}</p>
                         </div>
                     </div>
+
+                    {offer.location && (
+                        <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
+                            <LocationDisplay
+                                location={offer.location}
+                                latitude={offer.latitude}
+                                longitude={offer.longitude}
+                            />
+                        </div>
+                    )}
                 </div>
 
                 <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl mb-5">

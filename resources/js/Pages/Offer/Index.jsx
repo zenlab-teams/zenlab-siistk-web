@@ -40,7 +40,7 @@ const OfferIndex = ({ flash, offers, filters }) => {
                         filters={filters}
                         routeName="offer.index"
                         searchPlaceholder="Search by Offer Name"
-                        gridLayout="0.5fr 1.5fr 0.8fr 1fr 0.8fr 1fr 1fr 0.8fr"
+                        gridLayout="0.5fr 1.5fr 0.8fr 1fr 1fr 0.8fr 1fr 1fr 0.8fr"
                         selectable={false}
                         title="Offers"
                         addHref={route("offer.create")}
@@ -84,6 +84,15 @@ const OfferIndex = ({ flash, offers, filters }) => {
                                 key: "sales_rep",
                                 label: "Sales",
                                 render: (item) => item.offer_sales?.[0]?.sale?.user?.name ?? "-",
+                            },
+                            {
+                                key: "location",
+                                label: "Lokasi",
+                                render: (item) => (
+                                    <span className="flex items-center gap-1">
+                                        {item.location ?? "-"}
+                                    </span>
+                                ),
                             },
                             {
                                 key: "items_count",
