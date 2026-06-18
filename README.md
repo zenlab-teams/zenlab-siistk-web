@@ -37,10 +37,10 @@ ZENLAB SIISTK adalah aplikasi manajemen operasional untuk TelatenKarya yang diba
 
 | Nama / Identitas | Peran |
 | --- | --- |
-| `zexceed12300` | Kontributor utama |
-| `aserqwerty` | Kontributor |
-| `Ihsan Nul Amri` | Kontributor |
-| `TakiyaKanan` | Kontributor |
+| Ihsan Nul Amri | Project Manager dan Lead Programmer |
+| Dwi Melza Utari | Quality Assurance |
+| Achmad Ghozali | AI Specialist |
+| Faizul Ananda | System Analyst |
 
 ## Dokumentasi
 
