@@ -20,6 +20,7 @@ const ProductCreate = ({ flash }) => {
     const { data, setData, post, errors } = useForm({
         name: "",
         price: null,
+        minimum: null,
         description: "",
         thumbnail: null,
         initial_quantity: null,
@@ -36,6 +37,7 @@ const ProductCreate = ({ flash }) => {
         setData({
             name: "",
             price: null,
+            minimum: null,
             description: "",
             thumbnail: null,
             initial_quantity: null,
@@ -96,6 +98,15 @@ const ProductCreate = ({ flash }) => {
                                         onChange={setData}
                                         required={true}
                                         error={errors.price && errors.price}
+                                    />
+                                    <NumberInput
+                                        name="minimum"
+                                        label="Minimum Stock"
+                                        placeholder="Enter Minimum Stock"
+                                        value={data.minimum}
+                                        onChange={setData}
+                                        min={0}
+                                        error={errors.minimum && errors.minimum}
                                     />
                                     <TextAreaInput
                                         name="description"

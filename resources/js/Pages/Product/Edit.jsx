@@ -21,6 +21,7 @@ const ProductEdit = ({ flash, product }) => {
     const initialProductForm = {
         name: product.name,
         price: product.price,
+        minimum: product.minimum ?? null,
         description: product.description ?? "",
         thumbnail: "old",
         _method: "PUT",
@@ -99,6 +100,15 @@ const ProductEdit = ({ flash, product }) => {
                                         onChange={setData}
                                         required={true}
                                         error={errors.price && errors.price}
+                                    />
+                                    <NumberInput
+                                        name="minimum"
+                                        label="Minimum Stock"
+                                        placeholder="Enter Minimum Stock"
+                                        value={data.minimum}
+                                        onChange={setData}
+                                        min={0}
+                                        error={errors.minimum && errors.minimum}
                                     />
                                     <TextAreaInput
                                         name="description"
