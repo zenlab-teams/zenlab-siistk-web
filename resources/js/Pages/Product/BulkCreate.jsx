@@ -14,6 +14,7 @@ const emptyRow = () => ({
     key: Date.now() + Math.random(),
     name: "",
     price: null,
+    minimum: null,
     description: "",
     thumbnail: null,
     thumbnailPreview: null,
@@ -88,13 +89,16 @@ const BulkCreate = ({ flash, errors }) => {
         e.preventDefault();
         setProcessing(true);
 
-        const products = rows.map(({ name, price, description, thumbnail, initial_quantity, initial_unit_cost }) => ({
+        const normalizeOptionalNumber = (value) => (value === "" || value === null ? null : value);
+
+        const products = rows.map(({ name, price, minimum, description, thumbnail, initial_quantity, initial_unit_cost }) => ({
             name,
             price,
+            minimum: normalizeOptionalNumber(minimum),
             description: description || null,
             thumbnail: thumbnail || null,
-            initial_quantity: initial_quantity || null,
-            initial_unit_cost: initial_unit_cost || null,
+            initial_quantity: normalizeOptionalNumber(initial_quantity),
+            initial_unit_cost: normalizeOptionalNumber(initial_unit_cost),
         }));
 
         router.post(route("product.bulkStore"), { products }, {
@@ -262,6 +266,18 @@ const BulkCreate = ({ flash, errors }) => {
                                                         value={row.description}
                                                         onChange={(_, val) => updateRow(index, "description", val)}
                                                         error={getError(index, "description")}
+                                                    />
+                                                </div>
+
+                                                <div className="mt-3">
+                                                    <NumberInput
+                                                        name={`minimum-${index}`}
+                                                        label="Minimum Stock (optional)"
+                                                        placeholder="Enter Minimum Stock"
+                                                        value={row.minimum}
+                                                        onChange={(_, val) => updateRow(index, "minimum", val)}
+                                                        min={0}
+                                                        error={getError(index, "minimum")}
                                                     />
                                                 </div>
 

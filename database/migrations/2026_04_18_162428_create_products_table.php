@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('thumbnail')->nullable();
             $table->integer('price');
+            $table->integer('minimum')->nullable();
             $table->integer('created_by')->nullable();
             $table->timestamps();
         });

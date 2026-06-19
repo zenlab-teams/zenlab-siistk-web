@@ -18,9 +18,10 @@ class DashboardController extends Controller
     {
         $today = today();
         $lowStockProductsQuery = Product::query()
-            ->select(['id', 'name', 'thumbnail'])
+            ->select(['id', 'name', 'thumbnail', 'minimum'])
+            ->whereNotNull('minimum')
             ->withSum('stocks', 'quantity')
-            ->havingRaw('COALESCE(stocks_sum_quantity, 0) <= 5');
+            ->whereRaw('(SELECT COALESCE(SUM(quantity), 0) FROM stocks WHERE stocks.product_id = products.id) < minimum');
 
         $stats = [
             'revenue_today' => Payment::query()

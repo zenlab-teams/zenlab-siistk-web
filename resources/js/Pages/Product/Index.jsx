@@ -130,15 +130,39 @@ const ProductIndex = ({ flash, products, filters }) => {
                                 key: "stock",
                                 label: "Stock",
                                 sortKey: "stocks_sum_quantity",
-                                render: (item) => (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 10 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 0.05 }}
-                                    >
-                                        <span className="text-lg">{item.stocks_sum_quantity ?? 0}</span>
-                                    </motion.div>
-                                ),
+                                render: (item) => {
+                                    const currentStock = Number(item.stocks_sum_quantity ?? 0);
+                                    const minimum = item.minimum === null || item.minimum === undefined ? null : Number(item.minimum);
+                                    const isCritical = minimum !== null && currentStock < minimum;
+
+                                    return (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 10 }}
+                                            whileInView={{ opacity: 1, y: 0 }}
+                                            transition={{ delay: 0.05 }}
+                                            className="flex flex-col items-center gap-1"
+                                        >
+                                            <span
+                                                className={`text-lg font-bold ${
+                                                    isCritical ? "text-red-500" : "text-slate-700 dark:text-slate-200"
+                                                }`}
+                                            >
+                                                {currentStock}
+                                            </span>
+                                            {minimum !== null ? (
+                                                <span
+                                                    className={`px-2 py-0.5 rounded-full text-xs font-bold whitespace-nowrap ${
+                                                        isCritical
+                                                            ? "bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400"
+                                                            : "bg-slate-100 text-slate-500 dark:bg-slate-700 dark:text-slate-400"
+                                                    }`}
+                                                >
+                                                    {isCritical ? `Stok Kritis < ${minimum}` : `Min ${minimum}`}
+                                                </span>
+                                            ) : null}
+                                        </motion.div>
+                                    );
+                                },
                             },
                             {
                                 key: "description",

@@ -16,6 +16,7 @@ class Product extends Model
         'description',
         'thumbnail',
         'price',
+        'minimum',
         'created_by',
     ];
 
@@ -23,6 +24,7 @@ class Product extends Model
     {
         return [
             'price' => 'integer',
+            'minimum' => 'integer',
         ];
     }
 

@@ -33,7 +33,7 @@ class ProductController extends Controller
         }
 
         $products = Product::query()
-            ->select(['id', 'name', 'description', 'thumbnail', 'price', 'created_at', 'created_by'])
+            ->select(['id', 'name', 'description', 'thumbnail', 'price', 'minimum', 'created_at', 'created_by'])
             ->withSum('stocks', 'quantity')
             ->with(['creator:id,name'])
             ->when($search, fn ($q) => $q->where('name', 'like', "%{$search}%"))
@@ -66,6 +66,7 @@ class ProductController extends Controller
                 $data = [
                     'name' => $productData['name'],
                     'price' => $productData['price'],
+                    'minimum' => $productData['minimum'] ?? null,
                     'description' => $productData['description'] ?? null,
                     'created_by' => auth()->id(),
                 ];
