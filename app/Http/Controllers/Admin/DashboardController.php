@@ -20,7 +20,7 @@ class DashboardController extends Controller
         $lowStockProductsQuery = Product::query()
             ->select(['id', 'name', 'thumbnail'])
             ->withSum('stocks', 'quantity')
-            ->havingRaw('COALESCE(stocks_sum_quantity, 0) <= 5');
+            ->whereRaw('COALESCE((SELECT SUM(quantity) FROM stocks WHERE stocks.product_id = products.id), 0) <= 5');
 
         $stats = [
             'revenue_today' => Payment::query()
