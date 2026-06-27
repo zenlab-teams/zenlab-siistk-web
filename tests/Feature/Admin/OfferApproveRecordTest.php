@@ -58,6 +58,7 @@ test('admin can approve a sale record and create an order with invoice', functio
         'name' => 'Weekly Offer',
         'description' => 'Offer for testing approval',
         'date' => now()->toDateString(),
+        'location' => 'Test Location',
         'created_by' => $admin->id,
     ]);
 
