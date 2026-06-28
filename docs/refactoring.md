@@ -1,48 +1,128 @@
 # Dokumentasi Refactoring
 
-Dokumen ini menjelaskan pola refactoring yang sudah terlihat pada repo ZENLAB SIISTK.
+Dokumen ini menjelaskan pola refactor yang sudah terlihat pada repo ZENLAB SIISTK.
 
-## Pola Refactoring Utama
+## DataTable reusable
 
-### 1. DataTable reusable
+### Sebelum
+Masalah:
+- Halaman index berpotensi memakai tabel mentah berulang.
+- Search, sort, pagination, selected row, dan action tombol bisa duplikatif di banyak halaman.
 
-Halaman index tidak dibangun sebagai tabel mentah berulang, tetapi memakai komponen `resources/js/Components/DataTable.jsx`. Pola ini mengurangi duplikasi untuk search, sort, pagination, selected row, dan action tombol.
+### Perubahan
+Apa yang diubah:
+- Halaman index memakai komponen `resources/js/Components/DataTable.jsx`.
 
-### 2. Form Request untuk validasi
+### Alasan
+Kenapa refactor diperlukan:
+- Mengurangi duplikasi kode tabel.
+- Menjaga perilaku list page tetap konsisten.
 
-Validasi dipindahkan ke kelas request seperti `StoreProductRequest`, `UpdateProductRequest`, `StoreOrderRequest`, dan request lain di `app/Http/Requests`. Hasilnya controller lebih bersih dan aturan validasi lebih mudah dirawat.
+### Dampak
+Hasil setelah refactor:
+- Search, sort, pagination, selected row, dan action tombol dikelola dari satu komponen reusable.
 
-### 3. `casts()` pada model
+## Form Request untuk validasi
 
-Model mengikuti pola `casts(): array` agar casting atribut didefinisikan secara konsisten di kelas model, bukan lewat properti lama.
+### Sebelum
+Masalah:
+- Validasi berisiko tersebar di controller.
+- Controller bisa terlalu banyak menangani detail request.
 
-### 4. Controller dipisahkan per role
+### Perubahan
+Apa yang diubah:
+- Validasi dipindahkan ke kelas request di `app/Http/Requests`.
 
-Controller dibedakan menurut area akses:
+### Alasan
+Kenapa refactor diperlukan:
+- Memisahkan validasi dari controller.
+- Membuat aturan validasi lebih mudah diuji dan dirawat.
 
-- `app/Http/Controllers/Admin`
-- `app/Http/Controllers/Sales`
-- `app/Http/Controllers/Customer`
-- `app/Http/Controllers/Auth`
+### Dampak
+Hasil setelah refactor:
+- Controller lebih fokus pada alur bisnis.
+- Validasi lebih konsisten antar fitur.
 
-Pembagian ini memudahkan pembacaan alur bisnis dan batas tanggung jawab tiap role.
+## `casts()` pada model
 
-### 5. Komponen input dan modal yang reusable
+### Sebelum
+Masalah:
+- Casting atribut model bisa tidak konsisten jika memakai pola lama.
 
-Frontend memakai komponen bersama seperti input teks, angka, gambar, select, checkbox, dan modal. Pola ini menjaga konsistensi UI dan mempercepat pembuatan halaman baru.
+### Perubahan
+Apa yang diubah:
+- Model memakai method `casts(): array`.
 
-### 6. Routing yang terstruktur
+### Alasan
+Kenapa refactor diperlukan:
+- Menyesuaikan pola Laravel modern.
+- Menjaga definisi casting tetap eksplisit.
 
-Route dikelompokkan berdasarkan prefix dan middleware. Struktur ini membuat akses admin, sales, customer, dan public order lebih jelas, sekaligus memudahkan pemeliharaan endpoint.
+### Dampak
+Hasil setelah refactor:
+- Casting atribut lebih konsisten dan mudah dibaca.
 
-## Manfaat
+## Controller dipisahkan per role
 
-- Mengurangi duplikasi kode
-- Memudahkan maintenance
-- Menjaga konsistensi UI dan validasi
-- Memisahkan tanggung jawab antar layer aplikasi
+### Sebelum
+Masalah:
+- Controller berpotensi bercampur antar area akses admin, sales, customer, dan auth.
 
-## Catatan
+### Perubahan
+Apa yang diubah:
+- Controller dipisahkan ke folder role:
+  - `app/Http/Controllers/Admin`
+  - `app/Http/Controllers/Sales`
+  - `app/Http/Controllers/Customer`
+  - `app/Http/Controllers/Auth`
 
-- Dokumen ini merangkum pola yang sudah berjalan di repo, bukan daftar refactor yang masih direncanakan.
-- Jika pola baru ditambahkan, bagian ini perlu diperbarui.
+### Alasan
+Kenapa refactor diperlukan:
+- Memperjelas batas tanggung jawab tiap role.
+- Memudahkan pembacaan alur bisnis.
+
+### Dampak
+Hasil setelah refactor:
+- Struktur controller lebih rapi.
+- Batas akses dan konteks fitur lebih mudah dipahami.
+
+## Komponen input dan modal reusable
+
+### Sebelum
+Masalah:
+- Input dan modal berpotensi dibuat ulang di banyak halaman.
+- Tampilan dan perilaku UI bisa tidak konsisten.
+
+### Perubahan
+Apa yang diubah:
+- Frontend memakai komponen bersama untuk input teks, angka, gambar, select, checkbox, dan modal.
+
+### Alasan
+Kenapa refactor diperlukan:
+- Menjaga konsistensi UI.
+- Mempercepat pembuatan halaman baru.
+
+### Dampak
+Hasil setelah refactor:
+- Komponen form dan modal lebih seragam.
+- Duplikasi UI berkurang.
+
+## Routing terstruktur
+
+### Sebelum
+Masalah:
+- Route berpotensi sulit dibaca jika tidak dikelompokkan.
+
+### Perubahan
+Apa yang diubah:
+- Route dikelompokkan berdasarkan prefix dan middleware.
+
+### Alasan
+Kenapa refactor diperlukan:
+- Memperjelas akses admin, sales, customer, dan public order.
+- Memudahkan pemeliharaan endpoint.
+
+### Dampak
+Hasil setelah refactor:
+- Struktur route lebih jelas.
+- Endpoint lebih mudah dilacak berdasarkan role dan area fitur.
