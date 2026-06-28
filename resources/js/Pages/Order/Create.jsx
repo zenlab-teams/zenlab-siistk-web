@@ -101,8 +101,8 @@ const OrderCreate = ({ flash, customers, products }) => {
 
     const paymentTypeOptions = [
         { value: "dp", label: "DP" },
-        { value: "installment", label: "Installment" },
-        { value: "full", label: "Full" },
+        { value: "installment", label: "Cicilan" },
+        { value: "full", label: "Lunas" },
     ];
 
     const updateItem = (index, patch) => {
@@ -174,24 +174,24 @@ const OrderCreate = ({ flash, customers, products }) => {
             />
             <Layout flash={flash}>
             <Head>
-                <title>Create Order | TelatenKarya</title>
+                <title>Buat Pesanan | TelatenKarya</title>
             </Head>
             <Sidebar />
 
             <section className="sm:ml-80 p-8 relative">
                 <div className="mb-5">
-                    <h1 className="text-3xl font-bold">Orders</h1>
-                    <p className="text-slate-500 dark:text-slate-400 text-lg">Create new cashier order</p>
+                    <h1 className="text-3xl font-bold">Pesanan</h1>
+                    <p className="text-slate-500 dark:text-slate-400 text-lg">Buat pesanan kasir baru</p>
                 </div>
 
                 <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl">
                     <div className="flex justify-between items-center mb-4">
-                        <p className="text-xl font-bold">Create Order</p>
+                        <p className="text-xl font-bold">Buat Pesanan</p>
                         <Link
                             href={route("order.index")}
                             className="flex items-center gap-2 bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 text-slate-500 dark:text-slate-400 px-3 py-2 rounded-lg font-bold transition-all"
                         >
-                            <MdKeyboardArrowLeft className="font-bold text-xl" /> Back
+                            <MdKeyboardArrowLeft className="font-bold text-xl" /> Kembali
                         </Link>
                     </div>
 
@@ -199,8 +199,8 @@ const OrderCreate = ({ flash, customers, products }) => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                              <SelectInput
                                  name="customer_id"
-                                 label="Customer"
-                                 placeholder="Select Customer (optional)"
+                                 label="Pelanggan"
+                                 placeholder="Pilih Pelanggan (opsional)"
                                  options={customerOptions}
                                  value={data.customer_id}
                                  onChange={setData}
@@ -211,8 +211,8 @@ const OrderCreate = ({ flash, customers, products }) => {
                             <TextInput
                                 name="due_date"
                                 type="date"
-                                label="Due Date"
-                                placeholder="Optional"
+                                label="Jatuh Tempo"
+                                placeholder="Opsional"
                                 value={data.due_date}
                                 onChange={setData}
                                 error={errors.due_date}
@@ -221,8 +221,8 @@ const OrderCreate = ({ flash, customers, products }) => {
 
                         <TextAreaInput
                             name="notes"
-                            label="Notes"
-                            placeholder="Add notes (optional)"
+                            label="Catatan"
+                            placeholder="Tambahkan catatan (opsional)"
                             value={data.notes}
                             onChange={setData}
                             error={errors.notes}
@@ -230,13 +230,13 @@ const OrderCreate = ({ flash, customers, products }) => {
 
                         <div className="border-2 border-slate-200 dark:border-slate-700 rounded-xl p-4">
                             <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-                                <p className="text-lg font-bold">Order Items</p>
+                                <p className="text-lg font-bold">Item Pesanan</p>
                                 <button
                                     type="button"
                                     className="flex items-center gap-2 bg-emerald-400 dark:bg-emerald-500 text-white dark:text-slate-800 hover:bg-emerald-500 dark:hover:bg-emerald-600 px-3 py-2 rounded-lg font-bold transition-all"
                                     onClick={addItem}
                                 >
-                                    <TbPlus className="text-xl" /> Add Item
+                                    <TbPlus className="text-xl" /> Tambah Item
                                 </button>
                             </div>
 
@@ -247,7 +247,7 @@ const OrderCreate = ({ flash, customers, products }) => {
                             <div className="flex flex-col gap-3">
                                 {data.items.length === 0 && (
                                     <div className="border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-xl p-6 text-center text-slate-500 dark:text-slate-400">
-                                        No item added yet. Click <span className="font-bold">Add Item</span> to start.
+                                        Belum ada item. Klik <span className="font-bold">Tambah Item</span> untuk mulai.
                                     </div>
                                 )}
 
@@ -264,8 +264,8 @@ const OrderCreate = ({ flash, customers, products }) => {
                                                 <div className="lg:col-span-5">
                                                     <SelectInput
                                                         name={`product_${index}`}
-                                                        label="Product"
-                                                        placeholder="Select product"
+                                                        label="Produk"
+                                                        placeholder="Pilih produk"
                                                         options={getProductOptionsByRow(index)}
                                                         value={item.product_id}
                                                         onChange={(_, value) => handleItemProductChange(index, value)}
@@ -276,7 +276,7 @@ const OrderCreate = ({ flash, customers, products }) => {
                                                             <div className="flex items-center justify-between">
                                                                 <span className={stock <= 0 ? "text-slate-400" : ""}>{label}</span>
                                                                 <span className={`text-sm ${stock <= 0 ? "text-red-400 font-bold" : "text-slate-400"}`}>
-                                                                    {stock <= 0 ? "Out of Stock" : `Stock: ${stock}`}
+                                                                    {stock <= 0 ? "Stok Habis" : `Stok: ${stock}`}
                                                                 </span>
                                                             </div>
                                                         )}
@@ -299,7 +299,7 @@ const OrderCreate = ({ flash, customers, products }) => {
                                                     )}
                                                 </div>
                                                 <div className="lg:col-span-2">
-                                                    <label className="mb-1 block">Unit Price</label>
+                                                    <label className="mb-1 block">Harga Satuan</label>
                                                     <div className="px-3 py-2 border-2 border-slate-200 dark:border-slate-600 rounded-lg bg-slate-50 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
                                                         Rp{unitPrice.toLocaleString("id-ID")}
                                                     </div>
@@ -343,7 +343,7 @@ const OrderCreate = ({ flash, customers, products }) => {
                                     onChange={(event) => setData("pay_now", event.target.checked)}
                                 />
                                 <label htmlFor="pay_now" className="font-bold cursor-pointer">
-                                    Record payment now
+                                    Catat pembayaran sekarang
                                 </label>
                             </div>
 
@@ -351,7 +351,7 @@ const OrderCreate = ({ flash, customers, products }) => {
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <SelectInput
                                         name="payment_type"
-                                        label="Payment Type"
+                                        label="Tipe Pembayaran"
                                         options={paymentTypeOptions}
                                         value={data.payment_type}
                                         onChange={setData}
@@ -360,7 +360,7 @@ const OrderCreate = ({ flash, customers, products }) => {
                                     />
                                     <NumberInput
                                         name="payment_amount"
-                                        label="Payment Amount"
+                                        label="Jumlah Pembayaran"
                                         type="currency"
                                         value={data.payment_amount}
                                         min={1}
@@ -386,7 +386,7 @@ const OrderCreate = ({ flash, customers, products }) => {
                                 disabled={processing}
                                 className="bg-sky-500 hover:bg-sky-600 disabled:bg-slate-400 text-white dark:text-slate-800 px-5 py-2 rounded-lg font-bold transition-all"
                             >
-                                {processing ? "Saving..." : "Create Order"}
+                                {processing ? "Menyimpan..." : "Buat Pesanan"}
                             </button>
                         </div>
                     </form>

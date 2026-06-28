@@ -240,15 +240,15 @@ const Login = ({ flash }) => {
                             </motion.p>
                         </div>
                         <div className="mb-5">
-                            <h1 className="text-2xl sm:text-3xl font-bold mb-1">Welcome!</h1>
-                            <h1 className="text-md text-slate-400">Please login to access your account.</h1>
+                            <h1 className="text-2xl sm:text-3xl font-bold mb-1">Selamat Datang!</h1>
+                            <h1 className="text-md text-slate-400">Silakan masuk untuk mengakses akun Anda.</h1>
                         </div>
                         <form className="w-full flex flex-col gap-5" onSubmit={handleLogin}>
                             <TextInput
                                 type="email"
                                 name="email"
                                 label="Email"
-                                placeholder="Enter your email"
+                                placeholder="Masukkan email Anda"
                                 required={true}
                                 onChange={setData}
                                 login={true}
@@ -257,17 +257,17 @@ const Login = ({ flash }) => {
                             />
                             <PasswordInput
                                 name="password"
-                                label="Password"
-                                placeholder="Enter your password"
+                                label="Kata Sandi"
+                                placeholder="Masukkan kata sandi Anda"
                                 onChange={setData}
                                 error={errors.password && errors.password}
                                 value={data.password}
                             />
                             <div className="flex items-center gap-3">
                                 <CheckboxInput name="remember" onChange={handleRemember} />
-                                <span>Remember Me</span>
+                                <span>Ingat Saya</span>
                             </div>
-                            <Button type="submit" name="login" label="Login" />
+                            <Button type="submit" name="login" label="Masuk" />
                         </form>
                     </div>
                 </div>

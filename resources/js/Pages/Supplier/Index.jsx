@@ -88,7 +88,7 @@ const Agent = ({ flash, suppliers }) => {
     return (
         <Layout flash={flash}>
             <Head>
-                <title>Agent | AgentApp</title>
+                <title>Pemasok | TelatenKarya</title>
             </Head>
             <Sidebar />
             <AnimatePresence>
@@ -97,7 +97,7 @@ const Agent = ({ flash, suppliers }) => {
                         itemID={modalDelete}
                         closeModal={(id = null) => setModalDelete(id)}
                         type="supplier"
-                        description="Are you sure to delete this supplier?"
+                        description="Apakah Anda yakin ingin menghapus pemasok ini?"
                     />
                 ) : (
                     modalDeleteSelected && (
@@ -105,20 +105,20 @@ const Agent = ({ flash, suppliers }) => {
                             itemID={modalDeleteSelected}
                             closeModal={(id = null) => setModalDeleteSelected(id)}
                             type="supplier_selected"
-                            description={"Are you sure to delete " + selectedItem.length + " selected item suppliers?"}
+                            description={"Apakah Anda yakin ingin menghapus " + selectedItem.length + " pemasok terpilih?"}
                         />
                     )
                 )}
             </AnimatePresence>
             <section className="sm:ml-80 p-8 relative">
                 <div className="mb-5">
-                    <h1 className="text-3xl font-bold">Agent</h1>
-                    <p className="text-slate-500 dark:text-slate-400 text-lg">List of All The Agent</p>
+                    <h1 className="text-3xl font-bold">Pemasok</h1>
+                    <p className="text-slate-500 dark:text-slate-400 text-lg">Daftar Semua Pemasok</p>
                 </div>
                 <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl">
                     <div className="flex justify-between items-center">
                         <p className="text-xl font-bold">
-                            Suppliers
+                            Pemasok
                             <span className="bg-slate-200 text-slate-500 dark:bg-slate-700 dark:text-slate-400 p-2 rounded-lg text-lg ml-1">
                                 {supplierData.length}
                             </span>
@@ -134,7 +134,7 @@ const Agent = ({ flash, suppliers }) => {
                                         exit={{ opacity: 0 }}
                                     >
                                         <TbTrash className="font-bold text-xl" />
-                                        <span>{selectedItem.length}</span>Delete Selected
+                                        <span>{selectedItem.length}</span>Hapus Terpilih
                                     </motion.button>
                                 )}
                             </AnimatePresence>
@@ -155,7 +155,7 @@ const Agent = ({ flash, suppliers }) => {
                                     name="search"
                                     id="search_category"
                                     className="w-full py-2 outline-none rounded-lg dark:bg-slate-800 transition-all"
-                                    placeholder="Search by Agent Name"
+                                    placeholder="Cari Nama Pemasok"
                                     onChange={handleSearch}
                                 />
                             </label>
@@ -163,7 +163,7 @@ const Agent = ({ flash, suppliers }) => {
                                 href={route("supplier.create")}
                                 className="flex items-center gap-2 bg-emerald-400 dark:bg-emerald-500 text-white dark:text-slate-800 hover:bg-emerald-500 dark:hover:bg-emerald-600 px-3 py-2 rounded-lg font-bold whitespace-nowrap transition-all"
                             >
-                                <TbPlus className="font-bold text-xl" /> Add Agent
+                                <TbPlus className="font-bold text-xl" /> Tambah Pemasok
                             </Link>
                         </div>
                     </div>
@@ -196,13 +196,13 @@ const Agent = ({ flash, suppliers }) => {
                                                 className="!py-2 !px-3 border-y-2 border-slate-200 dark:border-slate-600 hover:text-sky-500 transition-all"
                                                 sortKey="CATEGORYNAME"
                                             >
-                                                Agent
+                                                Pemasok
                                             </HeaderCellSort>
-                                            <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Address</HeaderCell>
-                                            <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Contact</HeaderCell>
-                                            <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Total Sales</HeaderCell>
+                                            <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Alamat</HeaderCell>
+                                            <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Kontak</HeaderCell>
+                                            <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Total Produk</HeaderCell>
                                             <HeaderCell className="!py-2 !px-3 rounded-r-xl border-y-2 border-r-2 border-slate-200 dark:border-slate-600">
-                                                Action
+                                                Aksi
                                             </HeaderCell>
                                         </HeaderRow>
                                     </Header>
@@ -287,9 +287,9 @@ const Agent = ({ flash, suppliers }) => {
                                             >
                                                 <img src={NoData} className="w-52" />
                                                 <p className="text-2xl py-2 px-5 bg-slate-200 text-slate-400 font-bold rounded-xl mt-8 dark:text-slate-500 dark:bg-slate-700">
-                                                    No Data Found
+                                                    Data Tidak Ditemukan
                                                 </p>
-                                                <p className="text-slate-400 dark:text-slate-500 mt-3">Couldn't find any data</p>
+                                                <p className="text-slate-400 dark:text-slate-500 mt-3">Tidak dapat menemukan data apapun</p>
                                             </Cell>
                                         )}
                                     </Body>
@@ -299,7 +299,7 @@ const Agent = ({ flash, suppliers }) => {
                     </div>
                     <div className="w-full mt-5 flex justify-between items-center">
                         <div className="flex items-center gap-3">
-                            <span className="text-slate-500 dark:text-slate-400">Rows per page</span>
+                            <span className="text-slate-500 dark:text-slate-400">Baris per halaman</span>
                             <Select
                                 menuPlacement="top"
                                 options={rowsSizeOptions}
@@ -325,7 +325,7 @@ const Agent = ({ flash, suppliers }) => {
                         </div>
                         <PaginationButton pagination={pagination} data={data} />
                         <div className="text-slate-500 dark:text-slate-400 flex items-center justify-end gap-1 w-52">
-                            Total page
+                            Total halaman
                             <span className="bg-slate-200 text-slate-500 dark:bg-slate-700 dark:text-slate-400 font-bold p-2 text-sm rounded-lg ml-1">
                                 {pagination.state.getTotalPages(data.nodes)}
                             </span>

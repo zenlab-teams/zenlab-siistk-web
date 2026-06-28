@@ -45,7 +45,7 @@ const ModalConfirm = ({ closeModal, title, description, action }) => {
                             onClick={action}
                             className="bg-sky-400 dark:bg-sky-500 dark:hover:bg-sky-600 text-white font-bold py-2 w-full rounded-xl mt-3 hover:bg-sky-500 transition-all"
                         >
-                            Confirm
+                            Konfirmasi
                         </button>
                     </div>
                 </motion.div>

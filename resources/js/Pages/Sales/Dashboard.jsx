@@ -16,19 +16,19 @@ const SalesDashboard = ({ flash, stats = {} }) => {
     }, []);
 
     const statCards = [
-        { label: "Offers", value: stats.offers ?? 0, icon: <TbFileInvoice className="text-6xl" /> },
-        { label: "Orders", value: stats.orders ?? 0, icon: <TbShoppingCart className="text-6xl" /> },
+        { label: "Penawaran", value: stats.offers ?? 0, icon: <TbFileInvoice className="text-6xl" /> },
+        { label: "Pesanan", value: stats.orders ?? 0, icon: <TbShoppingCart className="text-6xl" /> },
     ];
 
     return (
         <Layout flash={flash}>
             <Head>
-                <title>Sales Dashboard | ZenlabSIISTK</title>
+                <title>Dashboard Sales | TelatenKarya</title>
             </Head>
             <Sidebar />
             <section className="sm:ml-80 p-8 relative">
                 <div className="mb-5">
-                    <h1 className="text-3xl font-bold">Sales Dashboard</h1>
+                    <h1 className="text-3xl font-bold">Dashboard Sales</h1>
                     <p className="text-slate-500 dark:text-slate-400 text-lg">Statistik Sales</p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-8 gap-5">
@@ -54,7 +54,7 @@ const SalesDashboard = ({ flash, stats = {} }) => {
                         initial={{ opacity: 0, y: -10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                     >
-                        <p className="text-xl font-bold mb-2">Welcome, Sales!</p>
+                        <p className="text-xl font-bold mb-2">Selamat Datang, Sales!</p>
                         <p className="text-slate-500 dark:text-slate-400">
                             Gunakan panel ini untuk mengelola penawaran (offers) dan memantau pesanan.
                         </p>

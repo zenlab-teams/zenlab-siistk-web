@@ -18,14 +18,14 @@ const ProductIndex = ({ flash, products, filters }) => {
     return (
         <Layout flash={flash}>
             <Head>
-                <title>Products | TelatenKarya</title>
+                <title>Produk | TelatenKarya</title>
             </Head>
             <Sidebar />
 
             <section className="sm:ml-80 p-8 relative">
                 <div className="mb-5">
-                    <h1 className="text-3xl font-bold">Products</h1>
-                    <p className="text-slate-500 dark:text-slate-400 text-lg">List of all products</p>
+                    <h1 className="text-3xl font-bold">Produk</h1>
+                    <p className="text-slate-500 dark:text-slate-400 text-lg">Daftar semua produk</p>
                 </div>
 
                 <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl">
@@ -34,25 +34,25 @@ const ProductIndex = ({ flash, products, filters }) => {
                         meta={products}
                         filters={filters}
                         routeName="product.index"
-                        searchPlaceholder="Search by Product Name"
+                        searchPlaceholder="Cari Nama Produk"
                         gridLayout="auto 0.5fr 1.5fr 1fr 1fr 2fr 1fr 1fr"
-                        title="Products"
+                        title="Produk"
                         deleteType="product"
-                        deleteDescription="Are you sure to delete this product?"
+                        deleteDescription="Apakah Anda yakin ingin menghapus produk ini?"
                         addHref={route("product.create")}
-                        addLabel="Add Product"
+                        addLabel="Tambah Produk"
                         toolbar={
                             <Link
                                 href={route("product.bulkCreate")}
                                 className="flex items-center gap-2 bg-sky-400 dark:bg-sky-500 text-white dark:text-slate-800 hover:bg-sky-500 dark:hover:bg-sky-600 px-3 py-2 rounded-lg font-bold whitespace-nowrap transition-all"
                             >
-                                <TbCopyPlus className="font-bold text-xl" /> Bulk Add
+                                <TbCopyPlus className="font-bold text-xl" /> Tambah Massal
                             </Link>
                         }
                         columns={[
                             {
                                 key: "actions",
-                                label: "Action",
+                                label: "Aksi",
                                 render: (item, { onDelete }) => (
                                     <motion.div
                                         initial={{ opacity: 0, y: 10 }}
@@ -75,7 +75,7 @@ const ProductIndex = ({ flash, products, filters }) => {
                             },
                             {
                                 key: "thumbnail",
-                                label: "Thumbnail",
+                                label: "Gambar",
                                 render: (item) => (
                                     <motion.div
                                         initial={{ opacity: 0, y: 10 }}
@@ -98,7 +98,7 @@ const ProductIndex = ({ flash, products, filters }) => {
                             },
                             {
                                 key: "name",
-                                label: "Name",
+                                label: "Nama",
                                 sortKey: "name",
                                 render: (item) => (
                                     <motion.div
@@ -113,7 +113,7 @@ const ProductIndex = ({ flash, products, filters }) => {
                             },
                             {
                                 key: "price",
-                                label: "Price",
+                                label: "Harga",
                                 sortKey: "price",
                                 render: (item) => (
                                     <motion.div
@@ -128,7 +128,7 @@ const ProductIndex = ({ flash, products, filters }) => {
                             },
                             {
                                 key: "stock",
-                                label: "Stock",
+                                label: "Stok",
                                 sortKey: "stocks_sum_quantity",
                                 render: (item) => {
                                     const currentStock = Number(item.stocks_sum_quantity ?? 0);
@@ -166,7 +166,7 @@ const ProductIndex = ({ flash, products, filters }) => {
                             },
                             {
                                 key: "description",
-                                label: "Description",
+                                label: "Deskripsi",
                                 render: (item) => (
                                     <motion.div
                                         initial={{ opacity: 0, y: 10 }}
@@ -180,7 +180,7 @@ const ProductIndex = ({ flash, products, filters }) => {
                             },
                             {
                                 key: "created_at",
-                                label: "Created At",
+                                label: "Dibuat Pada",
                                 sortKey: "created_at",
                                 render: (item) => (
                                     <motion.div
@@ -195,7 +195,7 @@ const ProductIndex = ({ flash, products, filters }) => {
                             },
                             {
                                 key: "created_by",
-                                label: "Created By",
+                                label: "Dibuat Oleh",
                                 render: (item) => (
                                     <motion.div
                                         initial={{ opacity: 0, y: 10 }}

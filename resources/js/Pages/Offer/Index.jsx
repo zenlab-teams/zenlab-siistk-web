@@ -23,14 +23,14 @@ const OfferIndex = ({ flash, offers, filters }) => {
     return (
         <Layout flash={flash}>
             <Head>
-                <title>Offers | TelatenKarya</title>
+                <title>Penawaran | TelatenKarya</title>
             </Head>
             <Sidebar />
 
             <section className="sm:ml-80 p-8 relative">
                 <div className="mb-5">
-                    <h1 className="text-3xl font-bold">Offers</h1>
-                    <p className="text-slate-500 dark:text-slate-400 text-lg">List of all weekly offers</p>
+                    <h1 className="text-3xl font-bold">Penawaran</h1>
+                    <p className="text-slate-500 dark:text-slate-400 text-lg">Daftar semua penawaran mingguan</p>
                 </div>
 
                 <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl">
@@ -39,16 +39,16 @@ const OfferIndex = ({ flash, offers, filters }) => {
                         meta={offers}
                         filters={filters}
                         routeName="offer.index"
-                        searchPlaceholder="Search by Offer Name"
+                        searchPlaceholder="Cari Nama Penawaran"
                         gridLayout="0.5fr 1.5fr 0.8fr 1fr 1fr 0.8fr 1fr 1fr 0.8fr"
                         selectable={false}
-                        title="Offers"
+                        title="Penawaran"
                         addHref={route("offer.create")}
-                        addLabel="Buat Offer"
+                        addLabel="Buat Penawaran"
                         columns={[
                             {
                                 key: "actions",
-                                label: "Action",
+                                label: "Aksi",
                                 render: (item) => (
                                     <div className="flex justify-center">
                                         <Link href={route("offer.show", item.id)}>
@@ -107,7 +107,7 @@ const OfferIndex = ({ flash, offers, filters }) => {
                             },
                             {
                                 key: "created_at",
-                                label: "Created At",
+                                label: "Dibuat Pada",
                                 sortKey: "created_at",
                                 render: (item) => (
                                     <span className="text-slate-500 dark:text-slate-400 text-sm">
@@ -117,7 +117,7 @@ const OfferIndex = ({ flash, offers, filters }) => {
                             },
                             {
                                 key: "created_by",
-                                label: "Created By",
+                                label: "Dibuat Oleh",
                                 render: (item) => (
                                     <span className="text-slate-500 dark:text-slate-400 text-sm">
                                         {item.creator?.name ?? "-"}

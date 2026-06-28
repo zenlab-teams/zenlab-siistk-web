@@ -49,22 +49,22 @@ const ProductCreate = ({ flash }) => {
     return (
         <Layout flash={flash}>
             <Head>
-                <title>Create Product | AgentApp</title>
+                <title>Tambah Produk | TelatenKarya</title>
             </Head>
             <Sidebar />
             <section className="sm:ml-80 p-8 relative">
                 <div className="mb-5">
-                    <h1 className="text-3xl font-bold">Products</h1>
-                    <p className="text-slate-500 dark:text-slate-400 text-lg">Add New Product</p>
+                    <h1 className="text-3xl font-bold">Produk</h1>
+                    <p className="text-slate-500 dark:text-slate-400 text-lg">Tambah Produk Baru</p>
                 </div>
                 <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl">
                     <div className="flex justify-between items-center mb-3">
-                        <p className="text-xl font-bold">Create Product</p>
+                        <p className="text-xl font-bold">Tambah Produk</p>
                         <Link
                             href={route("product.index")}
                             className="flex items-center gap-2 bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 text-slate-500 dark:text-slate-400 px-3 py-2 rounded-lg font-bold transition-all"
                         >
-                            <MdKeyboardArrowLeft className="font-bold text-xl" /> Back
+                            <MdKeyboardArrowLeft className="font-bold text-xl" /> Kembali
                         </Link>
                     </div>
                     <div className="flex justify-center w-full">
@@ -72,8 +72,8 @@ const ProductCreate = ({ flash }) => {
                             <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-5">
                                 <ImageInput
                                     name="thumbnail"
-                                    label="Thumbnail"
-                                    placeholder="Upload Product Thumbnail"
+                                    label="Gambar"
+                                    placeholder="Unggah Gambar Produk"
                                     value={data.thumbnail}
                                     onChange={setData}
                                     error={errors.thumbnail && errors.thumbnail}
@@ -82,8 +82,8 @@ const ProductCreate = ({ flash }) => {
                                     <TextInput
                                         type="text"
                                         name="name"
-                                        label="Product Name"
-                                        placeholder="Enter Product Name"
+                                        label="Nama Produk"
+                                        placeholder="Masukkan Nama Produk"
                                         required={true}
                                         onChange={setData}
                                         value={data.name}
@@ -92,8 +92,8 @@ const ProductCreate = ({ flash }) => {
                                     <NumberInput
                                         type="currency"
                                         name="price"
-                                        label="Price"
-                                        placeholder="Enter Product Price (Rp)"
+                                        label="Harga"
+                                        placeholder="Masukkan Harga Produk (Rp)"
                                         value={data.price}
                                         onChange={setData}
                                         required={true}
@@ -101,8 +101,8 @@ const ProductCreate = ({ flash }) => {
                                     />
                                     <NumberInput
                                         name="minimum"
-                                        label="Minimum Stock"
-                                        placeholder="Enter Minimum Stock"
+                                        label="Stok Minimum"
+                                        placeholder="Masukkan Stok Minimum"
                                         value={data.minimum}
                                         onChange={setData}
                                         min={0}
@@ -110,22 +110,22 @@ const ProductCreate = ({ flash }) => {
                                     />
                                     <TextAreaInput
                                         name="description"
-                                        label="Description"
-                                        placeholder="Enter Product Description"
+                                        label="Deskripsi"
+                                        placeholder="Masukkan Deskripsi Produk"
                                         onChange={setData}
                                         value={data.description}
                                         error={errors.description && errors.description}
                                     />
                                     <div className="border-t-2 dark:border-slate-700 pt-4 mt-2">
                                         <p className="font-bold text-lg mb-3">
-                                            Initial Stock{" "}
-                                            <span className="text-slate-400 text-sm font-normal">(optional)</span>
+                                            Stok Awal{" "}
+                                            <span className="text-slate-400 text-sm font-normal">(opsional)</span>
                                         </p>
                                         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                                             <NumberInput
                                                 name="initial_quantity"
-                                                label="Quantity"
-                                                placeholder="Enter Initial Quantity"
+                                                label="Jumlah"
+                                                placeholder="Masukkan Jumlah Awal"
                                                 value={data.initial_quantity}
                                                 onChange={setData}
                                                 error={errors.initial_quantity && errors.initial_quantity}
@@ -133,16 +133,16 @@ const ProductCreate = ({ flash }) => {
                                             <NumberInput
                                                 name="initial_unit_cost"
                                                 type="currency"
-                                                label="Unit Cost"
-                                                placeholder="Enter Unit Cost (Rp)"
+                                                label="Harga Satuan"
+                                                placeholder="Masukkan Harga Satuan (Rp)"
                                                 value={data.initial_unit_cost}
                                                 onChange={(_, value) => setData("initial_unit_cost", value)}
                                                 error={errors.initial_unit_cost && errors.initial_unit_cost}
                                             />
                                             <TextInput
                                                 name="initial_note"
-                                                label="Note"
-                                                placeholder="e.g. Initial stock"
+                                                label="Catatan"
+                                                placeholder="cth. Stok awal"
                                                 onChange={setData}
                                                 value={data.initial_note}
                                                 error={errors.initial_note && errors.initial_note}
@@ -163,7 +163,7 @@ const ProductCreate = ({ flash }) => {
                                     type="submit"
                                     className="bg-sky-500 hover:bg-sky-600 text-white dark:text-slate-800 px-5 py-2 rounded-lg font-bold transition-all"
                                 >
-                                    Add Product
+                                    Tambah Produk
                                 </button>
                             </div>
                         </form>

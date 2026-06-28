@@ -141,7 +141,7 @@ const ModalCart = ({ flash, products, filterSuppliers, filterCategories, closeMo
 
     const handleAddToCart = (itemId, itemPrice, itemName) => {
         if (cartData.find((item) => item.id == itemId)) {
-            toast.error('The selected item is already in the cart!');
+            toast.error('Item terpilih sudah ada di dalam keranjang!');
         } else {
             handleAddCart(itemId, itemPrice, itemName);
             closeModal();
@@ -177,7 +177,7 @@ const ModalCart = ({ flash, products, filterSuppliers, filterCategories, closeMo
                     className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl max-w-[80%]"
                 >
                     <div className="w-full mb-3 flex justify-between items-center border-b-2 pb-2">
-                        <p className="text-xl">Select Product</p>
+                        <p className="text-xl">Pilih Produk</p>
                         <TbX
                             className="text-3xl p-1 text-slate-500 hover:bg-slate-200 rounded-lg transition-all cursor-pointer"
                             onClick={closeModal}
@@ -185,7 +185,7 @@ const ModalCart = ({ flash, products, filterSuppliers, filterCategories, closeMo
                     </div>
                     <div className="flex justify-between items-center">
                         <p className="text-xl font-bold">
-                            Sales
+                            Produk
                             <span className="bg-slate-200 text-slate-500 dark:bg-slate-700 dark:text-slate-400 p-2 rounded-lg text-lg ml-1">
                                 {productData.length}
                             </span>
@@ -197,7 +197,7 @@ const ModalCart = ({ flash, products, filterSuppliers, filterCategories, closeMo
                                         onClick={handleSelectedAddToCart}
                                         className="flex items-center gap-2 bg-emerald-400 dark:bg-emerald-500 text-white dark:text-slate-800 hover:bg-emerald-500 dark:hover:bg-emerald-600 px-3 py-2 rounded-lg font-bold whitespace-nowrap transition-all"
                                     >
-                                        <TbPlus className="font-bold text-xl" /> Add {selectedItem.length} Product To Cart
+                                        <TbPlus className="font-bold text-xl" /> Tambah {selectedItem.length} Produk Ke Keranjang
                                     </button>
                                 )}
                             </AnimatePresence>
@@ -219,7 +219,7 @@ const ModalCart = ({ flash, products, filterSuppliers, filterCategories, closeMo
                                     name="search"
                                     id="search_category"
                                     className="w-full py-2 outline-none rounded-lg dark:bg-slate-800 transition-all"
-                                    placeholder="Search by Product Name"
+                                    placeholder="Cari Nama Produk"
                                     onChange={handleSearch}
                                 />
                             </label>
@@ -245,14 +245,14 @@ const ModalCart = ({ flash, products, filterSuppliers, filterCategories, closeMo
                                                     className="px-2 py-1 rounded-lg bg-slate-200 text-slate-500 text-sm font-bold hover:bg-slate-300 dark:bg-slate-700 dark:text-slate-400 hover:dark:bg-slate-600 transition-all"
                                                     onClick={handleResetFilter}
                                                 >
-                                                    Clear
+                                                    Hapus
                                                 </button>
                                             </div>
                                             <div className="flex flex-col gap-2 mb-3">
                                                 <SelectInput
                                                     name="supplier_id"
-                                                    label="Agent"
-                                                    placeholder="Select Agent"
+                                                    label="Pemasok"
+                                                    placeholder="Pilih Pemasok"
                                                     options={supplierFilterOptions}
                                                     value={supplierFilter.value}
                                                     type="filter"
@@ -260,8 +260,8 @@ const ModalCart = ({ flash, products, filterSuppliers, filterCategories, closeMo
                                                 />
                                                 <SelectInput
                                                     name="product_category_id"
-                                                    label="Category"
-                                                    placeholder="Select Agent"
+                                                    label="Kategori"
+                                                    placeholder="Pilih Kategori"
                                                     options={categoriesFilterOptions}
                                                     formatOptionLabel={categoriesFormatSelect}
                                                     value={categoryFilter.value}
@@ -304,18 +304,18 @@ const ModalCart = ({ flash, products, filterSuppliers, filterCategories, closeMo
                                                 className="!py-2 !px-3 border-y-2 border-slate-200 dark:border-slate-600 hover:text-sky-500 transition-all"
                                                 sortKey="NAME"
                                             >
-                                                Product
+                                                Produk
                                             </HeaderCellSort>
                                             <HeaderCellSort className="!py-2 !px-3 border-y-2 dark:border-slate-600" sortKey="PRICE">
-                                                Price
+                                                Harga
                                             </HeaderCellSort>
                                             <HeaderCellSort className="!py-2 !px-3 border-y-2 dark:border-slate-600" sortKey="STOCK">
-                                                Stock
+                                                Stok
                                             </HeaderCellSort>
-                                            <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Category</HeaderCell>
-                                            <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Agent</HeaderCell>
+                                            <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Kategori</HeaderCell>
+                                            <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Pemasok</HeaderCell>
                                             <HeaderCell className="!py-2 !px-3 rounded-r-xl border-y-2 border-r-2 border-slate-200 dark:border-slate-600">
-                                                Action
+                                                Aksi
                                             </HeaderCell>
                                         </HeaderRow>
                                     </Header>
@@ -398,7 +398,7 @@ const ModalCart = ({ flash, products, filterSuppliers, filterCategories, closeMo
                                                                 transition={{ delay: 0.05 }}
                                                                 className="w-fit px-3 font-bold rounded-lg bg-slate-200 text-slate-500 dark:bg-opacity-20 dark:bg-slate-400 dark:text-slate-400"
                                                             >
-                                                                <span className="text-lg">None</span>
+                                                                <span className="text-lg">Tidak Ada</span>
                                                             </motion.div>
                                                         )}
                                                     </Cell>
@@ -434,9 +434,9 @@ const ModalCart = ({ flash, products, filterSuppliers, filterCategories, closeMo
                                             >
                                                 <img src={NoData} className="w-52" />
                                                 <p className="text-2xl py-2 px-5 bg-slate-200 text-slate-400 font-bold rounded-xl mt-8 dark:text-slate-500 dark:bg-slate-700">
-                                                    No Data Found
+                                                    Data Tidak Ditemukan
                                                 </p>
-                                                <p className="text-slate-400 dark:text-slate-500 mt-3">Couldn't find any data</p>
+                                                <p className="text-slate-400 dark:text-slate-500 mt-3">Tidak dapat menemukan data apapun</p>
                                             </Cell>
                                         )}
                                     </Body>
@@ -447,7 +447,7 @@ const ModalCart = ({ flash, products, filterSuppliers, filterCategories, closeMo
                     <div className="w-full mt-5 flex justify-between items-center">
                         <PaginationButton pagination={pagination} data={data} />
                         <div className="text-slate-500 dark:text-slate-400 flex items-center justify-end gap-1 w-52">
-                            Total page
+                            Total halaman
                             <span className="bg-slate-200 text-slate-500 dark:bg-slate-700 dark:text-slate-400 font-bold p-2 text-sm rounded-lg ml-1">
                                 {pagination.state.getTotalPages(data.nodes)}
                             </span>

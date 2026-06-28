@@ -47,22 +47,22 @@ const UserCreate = ({ flash }) => {
     return (
         <Layout flash={flash}>
             <Head>
-                <title>Create User | TelatenKarya</title>
+                <title>Tambah Pengguna | TelatenKarya</title>
             </Head>
             <Sidebar />
             <section className="sm:ml-80 p-8 relative">
                 <div className="mb-5">
-                    <h1 className="text-3xl font-bold">Users</h1>
-                    <p className="text-slate-500 dark:text-slate-400 text-lg">Add new user account</p>
+                    <h1 className="text-3xl font-bold">Pengguna</h1>
+                    <p className="text-slate-500 dark:text-slate-400 text-lg">Tambah akun pengguna baru</p>
                 </div>
                 <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl">
                     <div className="flex justify-between items-center mb-3">
-                        <p className="text-xl font-bold">Create User</p>
+                        <p className="text-xl font-bold">Tambah Pengguna</p>
                         <Link
                             href={route("user.index")}
                             className="flex items-center gap-2 bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 text-slate-500 dark:text-slate-400 px-3 py-2 rounded-lg font-bold transition-all"
                         >
-                            <MdKeyboardArrowLeft className="font-bold text-xl" /> Back
+                            <MdKeyboardArrowLeft className="font-bold text-xl" /> Kembali
                         </Link>
                     </div>
                     <div className="flex justify-center w-full">
@@ -71,8 +71,8 @@ const UserCreate = ({ flash }) => {
                                 <TextInput
                                     type="text"
                                     name="name"
-                                    label="Name"
-                                    placeholder="Enter Name"
+                                    label="Nama"
+                                    placeholder="Masukkan Nama"
                                     required={true}
                                     onChange={setData}
                                     value={data.name}
@@ -82,7 +82,7 @@ const UserCreate = ({ flash }) => {
                                     type="email"
                                     name="email"
                                     label="Email"
-                                    placeholder="Enter Email"
+                                    placeholder="Masukkan Email"
                                     required={true}
                                     onChange={setData}
                                     value={data.email}
@@ -90,8 +90,8 @@ const UserCreate = ({ flash }) => {
                                 />
                                 <PasswordInput
                                     name="password"
-                                    label="Password"
-                                    placeholder="Enter Password"
+                                    label="Kata Sandi"
+                                    placeholder="Masukkan Kata Sandi"
                                     required={true}
                                     onChange={setData}
                                     value={data.password}
@@ -99,8 +99,8 @@ const UserCreate = ({ flash }) => {
                                 />
                                 <PasswordInput
                                     name="password_confirmation"
-                                    label="Confirm Password"
-                                    placeholder="Confirm Password"
+                                    label="Konfirmasi Kata Sandi"
+                                    placeholder="Konfirmasi Kata Sandi"
                                     required={true}
                                     onChange={setData}
                                     value={data.password_confirmation}
@@ -109,8 +109,8 @@ const UserCreate = ({ flash }) => {
                                 <div className="md:col-span-2">
                                     <SelectInput
                                         name="role"
-                                        label="Role"
-                                        placeholder="Select User Role"
+                                        label="Peran"
+                                        placeholder="Pilih Peran Pengguna"
                                         options={roleOptions}
                                         value={data.role}
                                         required={true}
@@ -123,13 +123,13 @@ const UserCreate = ({ flash }) => {
                             {data.role === "sales" && (
                                 <div className="border-t-2 dark:border-slate-700 pt-4 mt-2">
                                     <p className="font-bold text-lg mb-3">
-                                        Sales Data <span className="text-slate-400 text-sm font-normal">(optional)</span>
+                                        Data Sales <span className="text-slate-400 text-sm font-normal">(opsional)</span>
                                     </p>
                                     <TextInput
                                         type="text"
                                         name="phone"
-                                        label="Phone"
-                                        placeholder="Enter Sales Phone"
+                                        label="Telepon"
+                                        placeholder="Masukkan Telepon Sales"
                                         onChange={setData}
                                         value={data.phone}
                                         error={errors.phone && errors.phone}
@@ -151,7 +151,7 @@ const UserCreate = ({ flash }) => {
                                     type="submit"
                                     className="bg-sky-500 hover:bg-sky-600 text-white dark:text-slate-800 px-5 py-2 rounded-lg font-bold transition-all"
                                 >
-                                    Add User
+                                    Tambah Pengguna
                                 </button>
                             </div>
                         </form>

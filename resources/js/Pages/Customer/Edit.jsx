@@ -36,22 +36,22 @@ const CustomerEdit = ({ flash, customer }) => {
     return (
         <Layout flash={flash}>
             <Head>
-                <title>Create customer | AgentApp</title>
+                <title>Edit Pelanggan | TelatenKarya</title>
             </Head>
             <Sidebar />
             <section className="sm:ml-80 p-8 relative">
                 <div className="mb-5">
-                    <h1 className="text-3xl font-bold">Customer</h1>
-                    <p className="text-slate-500 dark:text-slate-400 text-lg">Edit Current Customer</p>
+                    <h1 className="text-3xl font-bold">Pelanggan</h1>
+                    <p className="text-slate-500 dark:text-slate-400 text-lg">Edit Pelanggan Saat Ini</p>
                 </div>
                 <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl">
                     <div className="flex justify-between items-center mb-3">
-                        <p className="text-xl font-bold">Edit Customer</p>
+                        <p className="text-xl font-bold">Edit Pelanggan</p>
                         <Link
                             href={route("customer.index")}
                             className="flex items-center gap-2 bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 text-slate-500 dark:text-slate-400 px-3 py-2 rounded-lg font-bold transition-all"
                         >
-                            <MdKeyboardArrowLeft className="font-bold text-xl" /> Back
+                            <MdKeyboardArrowLeft className="font-bold text-xl" /> Kembali
                         </Link>
                     </div>
                     <div className="flex justify-center w-full">
@@ -59,8 +59,8 @@ const CustomerEdit = ({ flash, customer }) => {
                             <TextInput
                                 type="text"
                                 name="name"
-                                label="Name"
-                                placeholder="Enter Customer Name"
+                                label="Nama"
+                                placeholder="Masukkan Nama Pelanggan"
                                 required={true}
                                 onChange={setData}
                                 value={data.name}
@@ -71,16 +71,16 @@ const CustomerEdit = ({ flash, customer }) => {
                                     type="email"
                                     name="email"
                                     label="Email"
-                                    placeholder="Enter Customer Email (optional)"
+                                    placeholder="Masukkan Email Pelanggan (opsional)"
                                     onChange={setData}
                                     value={data.email}
                                     error={errors.email && errors.email}
                                 />
                                 <NumberInput
                                     name="number_phone"
-                                    label="Number Phone"
+                                    label="Nomor Telepon"
                                     type="phone"
-                                    placeholder="Enter Number Phone"
+                                    placeholder="Masukkan Nomor Telepon"
                                     required={true}
                                     onChange={setData}
                                     value={data.number_phone}
@@ -89,8 +89,8 @@ const CustomerEdit = ({ flash, customer }) => {
                             </div>
                             <TextAreaInput
                                 name="address"
-                                label="Address"
-                                placeholder="Enter Customer Address"
+                                label="Alamat"
+                                placeholder="Masukkan Alamat Pelanggan"
                                 required={true}
                                 onChange={setData}
                                 value={data.address}
@@ -108,7 +108,7 @@ const CustomerEdit = ({ flash, customer }) => {
                                     type="submit"
                                     className="bg-sky-500 hover:bg-sky-600 text-white dark:text-slate-800 px-5 py-2 rounded-lg font-bold transition-all"
                                 >
-                                    Edit Customer
+                                    Edit Pelanggan
                                 </button>
                             </div>
                         </form>

@@ -76,8 +76,8 @@ const OrderShow = ({ flash, order }) => {
 
     const paymentTypeOptions = [
         { value: "dp", label: "DP" },
-        { value: "installment", label: "Installment" },
-        { value: "full", label: "Full" },
+        { value: "installment", label: "Cicilan" },
+        { value: "full", label: "Lunas" },
     ];
 
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -145,7 +145,7 @@ const OrderShow = ({ flash, order }) => {
                               exit={{ opacity: 0, y: -20 }}
                           >
                               <div className="flex items-center justify-between border-b border-slate-200 p-5 dark:border-slate-700">
-                                  <p className="text-xl font-bold">Add Payment</p>
+                                  <p className="text-xl font-bold">Tambah Pembayaran</p>
                                   <button
                                       type="button"
                                       onClick={() => setShowPaymentModal(false)}
@@ -160,7 +160,7 @@ const OrderShow = ({ flash, order }) => {
                                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                           <NumberInput
                                               name="amount"
-                                              label="Amount"
+                                              label="Jumlah"
                                               type="currency"
                                               value={data.amount}
                                               min={1}
@@ -171,7 +171,7 @@ const OrderShow = ({ flash, order }) => {
                                           />
                                           <SelectInput
                                               name="type"
-                                              label="Type"
+                                              label="Tipe"
                                               options={paymentTypeOptions}
                                               value={data.type}
                                               onChange={setData}
@@ -181,16 +181,16 @@ const OrderShow = ({ flash, order }) => {
                                       </div>
                                       <TextInput
                                           name="note"
-                                          label="Note"
-                                          placeholder="Add note (optional)"
+                                          label="Catatan"
+                                          placeholder="Tambahkan catatan (opsional)"
                                           value={data.note}
                                           onChange={setData}
                                           error={errors.note}
                                       />
                                       <ImageInput
                                           name="proof_image"
-                                          label="Proof Image"
-                                          placeholder="Upload payment proof"
+                                          label="Bukti Pembayaran"
+                                          placeholder="Unggah bukti pembayaran"
                                           value={data.proof_image}
                                           onChange={setData}
                                           error={errors.proof_image}
@@ -201,7 +201,7 @@ const OrderShow = ({ flash, order }) => {
                                               disabled={processing}
                                               className="bg-sky-500 hover:bg-sky-600 disabled:bg-slate-400 text-white dark:text-slate-800 px-5 py-2 rounded-lg font-bold transition-all"
                                           >
-                                              {processing ? "Saving..." : "Save Payment"}
+                                              {processing ? "Menyimpan..." : "Simpan Pembayaran"}
                                           </button>
                                       </div>
                                   </form>
@@ -223,7 +223,7 @@ const OrderShow = ({ flash, order }) => {
             />
             <Layout flash={flash}>
             <Head>
-                <title>Order Detail | TelatenKarya</title>
+                <title>Detail Pesanan | TelatenKarya</title>
             </Head>
             <Sidebar />
 
@@ -240,7 +240,7 @@ const OrderShow = ({ flash, order }) => {
                                 {order.status}
                             </span>
                         </div>
-                        <p className="text-slate-500 dark:text-slate-400 text-lg">Order details, invoice, and payment history</p>
+                        <p className="text-slate-500 dark:text-slate-400 text-lg">Detail pesanan, invoice, dan riwayat pembayaran</p>
                     </div>
 
                     <div className="flex items-center gap-3">
@@ -250,7 +250,7 @@ const OrderShow = ({ flash, order }) => {
                                 onClick={handleCancelOrder}
                                 className="bg-red-500 hover:bg-red-600 text-white dark:text-slate-800 px-4 py-2 rounded-lg font-bold transition-all"
                             >
-                                Cancel
+                                Batalkan
                             </button>
                         )}
                         <a
@@ -258,7 +258,7 @@ const OrderShow = ({ flash, order }) => {
                             target="_blank"
                             className="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white dark:text-slate-800 px-4 py-2 rounded-lg font-bold transition-all"
                         >
-                            <TbDownload className="text-xl" /> Download Invoice
+                            <TbDownload className="text-xl" /> Unduh Invoice
                         </a>
                         <button
                             type="button"
@@ -271,11 +271,11 @@ const OrderShow = ({ flash, order }) => {
                         >
                             {copied ? (
                                 <>
-                                    <TbCheck className="text-xl" /> Copied!
+                                    <TbCheck className="text-xl" /> Tersalin!
                                 </>
                             ) : (
                                 <>
-                                    <TbCopy className="text-xl" /> Copy Link
+                                    <TbCopy className="text-xl" /> Salin Tautan
                                 </>
                             )}
                         </button>
@@ -283,17 +283,17 @@ const OrderShow = ({ flash, order }) => {
                             href={route("order.index")}
                             className="flex items-center gap-2 bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 text-slate-500 dark:text-slate-400 px-3 py-2 rounded-lg font-bold transition-all"
                         >
-                            <MdKeyboardArrowLeft className="font-bold text-xl" /> Back
+                            <MdKeyboardArrowLeft className="font-bold text-xl" /> Kembali
                         </Link>
                     </div>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-5">
                     <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl lg:col-span-2">
-                        <p className="text-xl font-bold mb-3">Order Information</p>
+                        <p className="text-xl font-bold mb-3">Informasi Pesanan</p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                             <div>
-                                <p className="text-slate-500 dark:text-slate-400 text-sm">Created At</p>
+                                <p className="text-slate-500 dark:text-slate-400 text-sm">Dibuat Pada</p>
                                 <p className="text-lg">{new Date(order.created_at).toLocaleString("id-ID")}</p>
                             </div>
                             <div>
@@ -313,7 +313,7 @@ const OrderShow = ({ flash, order }) => {
                                 <p className="text-lg">Rp{order.total_price.toLocaleString("id-ID")}</p>
                             </div>
                             <div>
-                                <p className="text-slate-500 dark:text-slate-400 text-sm">Created By</p>
+                                <p className="text-slate-500 dark:text-slate-400 text-sm">Dibuat Oleh</p>
                                 <p className="text-lg">{order.creator?.name ?? "-"}</p>
                             </div>
                         </div>
@@ -322,26 +322,26 @@ const OrderShow = ({ flash, order }) => {
                     <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl flex flex-col justify-between">
                         <div>
                             <div className="flex items-center justify-between mb-3">
-                                <p className="text-xl font-bold">Customer Information</p>
+                                <p className="text-xl font-bold">Informasi Pelanggan</p>
                                 {isAdmin && !order.customer_id && (
                                     <button
                                         type="button"
                                         onClick={() => setShowCustomerModal(true)}
                                         className="text-sky-500 hover:text-sky-600 font-bold text-sm"
                                     >
-                                        Complete Information
+                                        Lengkapi Informasi
                                     </button>
                                 )}
                             </div>
                             {order.customer ? (
                                 <div className="flex flex-col gap-2">
                                     <div>
-                                        <p className="text-slate-500 dark:text-slate-400 text-sm">Name</p>
+                                        <p className="text-slate-500 dark:text-slate-400 text-sm">Nama</p>
                                         <p className="text-lg">{order.customer.name}</p>
                                     </div>
                                     <div className="grid grid-cols-2 gap-2">
                                         <div>
-                                            <p className="text-slate-500 dark:text-slate-400 text-sm">Phone</p>
+                                            <p className="text-slate-500 dark:text-slate-400 text-sm">Telepon</p>
                                             <p>{order.customer.phone ?? "-"}</p>
                                         </div>
                                         <div>
@@ -350,14 +350,14 @@ const OrderShow = ({ flash, order }) => {
                                         </div>
                                     </div>
                                     <div>
-                                        <p className="text-slate-500 dark:text-slate-400 text-sm">Address</p>
+                                        <p className="text-slate-500 dark:text-slate-400 text-sm">Alamat</p>
                                         <p>{order.customer.address}</p>
                                     </div>
                                 </div>
                             ) : (
                                 <div className="flex flex-col items-center justify-center py-5 border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-xl">
-                                    <p className="italic text-slate-400">Walk-in Customer</p>
-                                    <p className="text-xs text-slate-400 text-center px-5 mt-1">No detailed customer information linked to this order yet.</p>
+                                    <p className="italic text-slate-400">Pelanggan Walk-in</p>
+                                    <p className="text-xs text-slate-400 text-center px-5 mt-1">Belum ada detail informasi pelanggan yang ditautkan ke pesanan ini.</p>
                                 </div>
                             )}
                         </div>
@@ -368,7 +368,7 @@ const OrderShow = ({ flash, order }) => {
                     <div className="flex items-center justify-between mb-3">
                         <p className="text-xl font-bold">Items</p>
                         <span className="bg-slate-200 text-slate-500 dark:bg-slate-700 dark:text-slate-400 px-3 py-1 rounded-lg text-sm">
-                            {items.length} items
+                            {items.length} item
                         </span>
                     </div>
 
@@ -388,11 +388,11 @@ const OrderShow = ({ flash, order }) => {
                                                 layout={{ custom: true }}
                                             >
                                                 <HeaderCell className="border-s-2 border-y-2 rounded-s-xl !py-2 !px-3 dark:border-slate-600">
-                                                    Thumbnail
+                                                    Gambar
                                                 </HeaderCell>
-                                                <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Product</HeaderCell>
-                                                <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Qty</HeaderCell>
-                                                <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Unit Price</HeaderCell>
+                                                <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Produk</HeaderCell>
+                                                <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Jumlah</HeaderCell>
+                                                <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Harga Satuan</HeaderCell>
                                                 <HeaderCell className="!py-2 !px-3 rounded-r-xl border-y-2 border-r-2 border-slate-200 dark:border-slate-600">
                                                     Subtotal
                                                 </HeaderCell>
@@ -428,7 +428,7 @@ const OrderShow = ({ flash, order }) => {
                                                     gridColumnEnd={100}
                                                     className="text-center py-16 text-slate-400 dark:text-slate-500"
                                                 >
-                                                    No order items found.
+                                                    Item pesanan tidak ditemukan.
                                                 </Cell>
                                             )}
                                         </Body>
@@ -453,7 +453,7 @@ const OrderShow = ({ flash, order }) => {
                         <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl">
                             <div className="flex items-center justify-between mb-3">
                                 <div className="flex items-center gap-3">
-                                    <p className="text-xl font-bold">Invoice & Payments</p>
+                                    <p className="text-xl font-bold">Invoice & Pembayaran</p>
                                     <span
                                         className={`px-3 py-1 rounded-lg text-sm font-bold capitalize ${
                                             invoiceStatusClassMap[invoice.status] ?? invoiceStatusClassMap.unpaid
@@ -468,7 +468,7 @@ const OrderShow = ({ flash, order }) => {
                                         onClick={() => setShowPaymentModal(true)}
                                         className="flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white dark:text-slate-800 px-3 py-2 rounded-lg font-bold transition-all"
                                     >
-                                        <TbPlus className="text-xl" /> Add Payment
+                                        <TbPlus className="text-xl" /> Tambah Pembayaran
                                     </button>
                                 )}
                             </div>
@@ -510,15 +510,15 @@ const OrderShow = ({ flash, order }) => {
                                                         layout={{ custom: true }}
                                                     >
                                                         <HeaderCell className="border-s-2 border-y-2 rounded-s-xl !py-2 !px-3 dark:border-slate-600">
-                                                            Date
+                                                            Tanggal
                                                         </HeaderCell>
-                                                        <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Type</HeaderCell>
-                                                        <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Amount</HeaderCell>
-                                                        <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Proof</HeaderCell>
-                                                        <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Note</HeaderCell>
+                                                        <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Tipe</HeaderCell>
+                                                        <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Jumlah</HeaderCell>
+                                                        <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Bukti</HeaderCell>
+                                                        <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Catatan</HeaderCell>
                                                         <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Status</HeaderCell>
                                                         <HeaderCell className="!py-2 !px-3 rounded-r-xl border-y-2 border-r-2 border-slate-200 dark:border-slate-600">
-                                                            Action
+                                                            Aksi
                                                         </HeaderCell>
                                                     </HeaderRow>
                                                 </Header>
@@ -551,7 +551,7 @@ const OrderShow = ({ flash, order }) => {
                                                                             rel="noreferrer"
                                                                             className="text-sky-500 hover:text-sky-600 font-bold"
                                                                         >
-                                                                            View
+                                                                            Lihat
                                                                         </a>
                                                                     ) : (
                                                                         "-"
@@ -598,7 +598,7 @@ const OrderShow = ({ flash, order }) => {
                                                             gridColumnEnd={100}
                                                             className="text-center py-10 text-slate-400 dark:text-slate-500"
                                                         >
-                                                            No payment records yet.
+                                                            Belum ada catatan pembayaran.
                                                         </Cell>
                                                     )}
                                                 </Body>
@@ -611,7 +611,7 @@ const OrderShow = ({ flash, order }) => {
                     </div>
                 ) : (
                     <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl text-slate-500 dark:text-slate-400">
-                        Invoice not found for this order.
+                        Invoice tidak ditemukan untuk pesanan ini.
                     </div>
                 )}
             </section>
