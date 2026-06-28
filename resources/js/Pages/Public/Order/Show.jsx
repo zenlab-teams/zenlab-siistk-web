@@ -73,7 +73,7 @@ const PublicOrderShow = ({ order, flash }) => {
     return (
         <div className="min-h-screen bg-slate-50 p-4 md:p-8 relative">
             <Head>
-                <title>Order Details | TelatenKarya</title>
+                <title>Detail Pesanan | TelatenKarya</title>
             </Head>
 
             <AnimatePresence>
@@ -100,8 +100,8 @@ const PublicOrderShow = ({ order, flash }) => {
                         >
                             <div className="flex items-center justify-between border-b border-slate-100 p-6 bg-slate-50/50">
                                 <div>
-                                    <p className="text-xl font-bold text-slate-800">Confirm Payment</p>
-                                    <p className="text-sm text-slate-500">Upload your payment proof for verification</p>
+                                    <p className="text-xl font-bold text-slate-800">Konfirmasi Pembayaran</p>
+                                    <p className="text-sm text-slate-500">Unggah bukti pembayaran Anda untuk verifikasi</p>
                                 </div>
                                 <button
                                     type="button"
@@ -117,7 +117,7 @@ const PublicOrderShow = ({ order, flash }) => {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                         <NumberInput
                                             name="amount"
-                                            label="Amount Paid"
+                                            label="Jumlah yang Dibayar"
                                             type="currency"
                                             value={data.amount}
                                             min={1}
@@ -128,11 +128,11 @@ const PublicOrderShow = ({ order, flash }) => {
                                         />
                                         <SelectInput
                                             name="type"
-                                            label="Payment Type"
+                                            label="Tipe Pembayaran"
                                             options={[
-                                                { value: "dp", label: "DP / Down Payment" },
-                                                { value: "installment", label: "Installment" },
-                                                { value: "full", label: "Full Payment" },
+                                                { value: "dp", label: "DP / Uang Muka" },
+                                                { value: "installment", label: "Cicilan" },
+                                                { value: "full", label: "Bayar Lunas" },
                                             ]}
                                             value={data.type}
                                             onChange={setData}
@@ -142,16 +142,16 @@ const PublicOrderShow = ({ order, flash }) => {
                                     </div>
                                     <TextInput
                                         name="note"
-                                        label="Note (Optional)"
-                                        placeholder="e.g. Payment via BCA Transfer"
+                                        label="Catatan (Opsional)"
+                                        placeholder="Contoh: Pembayaran transfer BCA"
                                         value={data.note}
                                         onChange={setData}
                                         error={errors.note}
                                     />
                                     <ImageInput
                                         name="proof_image"
-                                        label="Payment Proof (Image)"
-                                        placeholder="Click to upload receipt"
+                                        label="Bukti Pembayaran (Gambar)"
+                                        placeholder="Klik untuk mengunggah bukti"
                                         value={data.proof_image}
                                         onChange={setData}
                                         error={errors.proof_image}
@@ -163,7 +163,7 @@ const PublicOrderShow = ({ order, flash }) => {
                                             disabled={processing}
                                             className="w-full md:w-auto bg-sky-500 hover:bg-sky-600 disabled:bg-slate-300 text-white px-8 py-3 rounded-xl font-bold transition-all shadow-lg shadow-sky-500/25"
                                         >
-                                            {processing ? "Submitting..." : "Submit Payment Proof"}
+                                            {processing ? "Mengirim..." : "Kirim Bukti Pembayaran"}
                                         </button>
                                     </div>
                                 </form>
@@ -195,7 +195,7 @@ const PublicOrderShow = ({ order, flash }) => {
                                 {order.status}
                             </span>
                         </div>
-                        <p className="text-slate-500">Official order summary and payment status</p>
+                        <p className="text-slate-500">Ringkasan resmi pesanan dan status pembayaran</p>
                     </div>
                     <div className="flex items-center gap-3">
                          <a
@@ -203,42 +203,42 @@ const PublicOrderShow = ({ order, flash }) => {
                             target="_blank"
                             className="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-lg font-bold transition-all shadow-lg shadow-emerald-500/20"
                         >
-                            <TbDownload className="text-xl" /> Download Invoice
+                            <TbDownload className="text-xl" /> Unduh Invoice
                         </a>
                     </div>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
                     <div className="bg-white shadow-sm border border-slate-200 p-6 rounded-2xl lg:col-span-2">
-                        <p className="text-lg font-bold mb-4 text-slate-800">Order Information</p>
+                        <p className="text-lg font-bold mb-4 text-slate-800">Informasi Pesanan</p>
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
                             <div>
-                                <p className="text-slate-400 text-xs uppercase font-bold tracking-wider mb-1">Date Issued</p>
+                                <p className="text-slate-400 text-xs uppercase font-bold tracking-wider mb-1">Tanggal Diterbitkan</p>
                                 <p className="font-semibold">{new Date(order.created_at).toLocaleDateString("id-ID")}</p>
                             </div>
                             <div>
-                                <p className="text-slate-400 text-xs uppercase font-bold tracking-wider mb-1">Total Amount</p>
+                                <p className="text-slate-400 text-xs uppercase font-bold tracking-wider mb-1">Total Tagihan</p>
                                 <p className="font-bold text-sky-600">Rp{order.total_price.toLocaleString("id-ID")}</p>
                             </div>
                             <div>
-                                <p className="text-slate-400 text-xs uppercase font-bold tracking-wider mb-1">Sales Person</p>
+                                <p className="text-slate-400 text-xs uppercase font-bold tracking-wider mb-1">Sales</p>
                                 <p className="font-semibold">{order.offerRecord?.sale?.user?.name ?? order.creator?.name ?? "-"}</p>
                             </div>
                         </div>
                     </div>
 
                     <div className="bg-white shadow-sm border border-slate-200 p-6 rounded-2xl">
-                        <p className="text-lg font-bold mb-4 text-slate-800">Customer</p>
+                        <p className="text-lg font-bold mb-4 text-slate-800">Pelanggan</p>
                         {order.customer ? (
                             <div className="space-y-4">
                                 <div>
-                                    <p className="text-slate-400 text-xs uppercase font-bold tracking-wider mb-1">Name</p>
+                                    <p className="text-slate-400 text-xs uppercase font-bold tracking-wider mb-1">Nama</p>
                                     <p className="font-semibold text-slate-700">{order.customer.name}</p>
                                 </div>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     {order.customer.phone && (
                                         <div>
-                                            <p className="text-slate-400 text-xs uppercase font-bold tracking-wider mb-1">Phone</p>
+                                            <p className="text-slate-400 text-xs uppercase font-bold tracking-wider mb-1">Telepon</p>
                                             <p className="font-semibold text-slate-700">{order.customer.phone}</p>
                                         </div>
                                     )}
@@ -251,29 +251,29 @@ const PublicOrderShow = ({ order, flash }) => {
                                 </div>
                                 {order.customer.address && (
                                     <div>
-                                        <p className="text-slate-400 text-xs uppercase font-bold tracking-wider mb-1">Address</p>
+                                        <p className="text-slate-400 text-xs uppercase font-bold tracking-wider mb-1">Alamat</p>
                                         <p className="font-semibold text-slate-700 leading-relaxed">{order.customer.address}</p>
                                     </div>
                                 )}
                             </div>
                         ) : (
-                            <p className="italic text-slate-400">Walk-in Customer</p>
+                            <p className="italic text-slate-400">Pelanggan Walk-in</p>
                         )}
                     </div>
                 </div>
 
                 <div className="bg-white shadow-sm border border-slate-200 p-6 rounded-2xl mb-8">
-                    <p className="text-lg font-bold mb-4 text-slate-800">Purchased Items</p>
+                    <p className="text-lg font-bold mb-4 text-slate-800">Item yang Dibeli</p>
                     <div className="overflow-x-auto">
                         <Table data={itemData} theme={itemTableTheme} layout={{ custom: true }}>
                             {(tableList) => (
                                 <>
                                     <Header>
                                         <HeaderRow className="!bg-slate-50 text-slate-500">
-                                            <HeaderCell className="!py-3 !px-4 font-bold uppercase text-xs">Image</HeaderCell>
-                                            <HeaderCell className="!py-3 !px-4 font-bold uppercase text-xs">Product</HeaderCell>
-                                            <HeaderCell className="!py-3 !px-4 font-bold uppercase text-xs">Qty</HeaderCell>
-                                            <HeaderCell className="!py-3 !px-4 font-bold uppercase text-xs">Unit Price</HeaderCell>
+                                            <HeaderCell className="!py-3 !px-4 font-bold uppercase text-xs">Gambar</HeaderCell>
+                                            <HeaderCell className="!py-3 !px-4 font-bold uppercase text-xs">Produk</HeaderCell>
+                                            <HeaderCell className="!py-3 !px-4 font-bold uppercase text-xs">Jumlah</HeaderCell>
+                                            <HeaderCell className="!py-3 !px-4 font-bold uppercase text-xs">Harga Satuan</HeaderCell>
                                             <HeaderCell className="!py-3 !px-4 font-bold uppercase text-xs">Subtotal</HeaderCell>
                                         </HeaderRow>
                                     </Header>
@@ -306,7 +306,7 @@ const PublicOrderShow = ({ order, flash }) => {
                     <div className="bg-white shadow-sm border border-slate-200 p-6 rounded-2xl mb-8">
                         <div className="flex items-center justify-between mb-6">
                             <div className="flex items-center gap-3">
-                                <p className="text-lg font-bold text-slate-800">Invoice Status</p>
+                                <p className="text-lg font-bold text-slate-800">Status Invoice</p>
                                 <span className={`px-3 py-1 rounded-lg text-sm font-bold capitalize ${invoiceStatusClassMap[invoice.status] ?? invoiceStatusClassMap.unpaid}`}>
                                     {invoice.status}
                                 </span>
@@ -317,39 +317,39 @@ const PublicOrderShow = ({ order, flash }) => {
                                     onClick={() => setShowPaymentModal(true)}
                                     className="flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white px-4 py-2 rounded-xl font-bold transition-all shadow-lg shadow-sky-500/20"
                                 >
-                                    <TbPlus className="text-xl" /> Add Payment
+                                    <TbPlus className="text-xl" /> Tambah Pembayaran
                                 </button>
                             )}
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                             <div className="bg-slate-50 rounded-2xl p-5 border border-slate-100">
-                                <p className="text-slate-400 text-xs uppercase font-bold tracking-wider mb-1">Total Bill</p>
+                                <p className="text-slate-400 text-xs uppercase font-bold tracking-wider mb-1">Total Tagihan</p>
                                 <p className="font-bold text-2xl text-slate-800">Rp{invoice.total_amount.toLocaleString("id-ID")}</p>
                             </div>
                             <div className="bg-emerald-50 rounded-2xl p-5 border border-emerald-100">
-                                <p className="text-emerald-600/60 text-xs uppercase font-bold tracking-wider mb-1">Amount Paid</p>
+                                <p className="text-emerald-600/60 text-xs uppercase font-bold tracking-wider mb-1">Jumlah Terbayar</p>
                                 <p className="font-bold text-2xl text-emerald-600">Rp{invoice.paid_amount.toLocaleString("id-ID")}</p>
                             </div>
                             <div className="bg-orange-50 rounded-2xl p-5 border border-orange-100">
-                                <p className="text-orange-600/60 text-xs uppercase font-bold tracking-wider mb-1">Remaining</p>
+                                <p className="text-orange-600/60 text-xs uppercase font-bold tracking-wider mb-1">Sisa Tagihan</p>
                                 <p className="font-bold text-2xl text-orange-600">Rp{invoice.remaining_amount.toLocaleString("id-ID")}</p>
                             </div>
                         </div>
 
                         {payments.length > 0 && (
                             <div className="mt-8">
-                                <p className="text-lg font-bold mb-4 text-slate-800">Payment History</p>
+                                <p className="text-lg font-bold mb-4 text-slate-800">Riwayat Pembayaran</p>
                                 <div className="overflow-x-auto">
                                     <Table data={paymentData} theme={paymentTableTheme} layout={{ custom: true }}>
                                         {(tableList) => (
                                             <>
                                                 <Header>
                                                     <HeaderRow className="!bg-slate-50 text-slate-500">
-                                                        <HeaderCell className="!py-3 !px-4 font-bold uppercase text-xs">Date</HeaderCell>
-                                                        <HeaderCell className="!py-3 !px-4 font-bold uppercase text-xs">Type</HeaderCell>
-                                                        <HeaderCell className="!py-3 !px-4 font-bold uppercase text-xs">Amount</HeaderCell>
-                                                        <HeaderCell className="!py-3 !px-4 font-bold uppercase text-xs">Proof</HeaderCell>
+                                                        <HeaderCell className="!py-3 !px-4 font-bold uppercase text-xs">Tanggal</HeaderCell>
+                                                        <HeaderCell className="!py-3 !px-4 font-bold uppercase text-xs">Tipe</HeaderCell>
+                                                        <HeaderCell className="!py-3 !px-4 font-bold uppercase text-xs">Jumlah</HeaderCell>
+                                                        <HeaderCell className="!py-3 !px-4 font-bold uppercase text-xs">Bukti</HeaderCell>
                                                         <HeaderCell className="!py-3 !px-4 font-bold uppercase text-xs">Status</HeaderCell>
                                                     </HeaderRow>
                                                 </Header>
@@ -367,7 +367,7 @@ const PublicOrderShow = ({ order, flash }) => {
                                                             <Cell className="!p-4 font-bold text-slate-700">Rp{payment.amount.toLocaleString("id-ID")}</Cell>
                                                             <Cell className="!p-4">
                                                                 {payment.proof_image ? (
-                                                                    <a href={`/storage/${payment.proof_image}`} target="_blank" className="text-sky-500 font-bold hover:underline">View</a>
+                                                                    <a href={`/storage/${payment.proof_image}`} target="_blank" className="text-sky-500 font-bold hover:underline">Lihat</a>
                                                                 ) : "-"}
                                                             </Cell>
                                                             <Cell className="!p-4">
@@ -388,7 +388,7 @@ const PublicOrderShow = ({ order, flash }) => {
                 )}
 
                 <div className="text-center py-8">
-                    <p className="text-slate-400 text-sm italic">Thank you for choosing TelatenKarya SIISTK</p>
+                    <p className="text-slate-400 text-sm italic">Terima kasih telah memilih TelatenKarya SIISTK</p>
                 </div>
             </div>
         </div>

@@ -18,14 +18,14 @@ const Customer = ({ flash, customers, filters }) => {
     return (
         <Layout flash={flash}>
             <Head>
-                <title>Customer | TelatenKarya</title>
+                <title>Pelanggan | TelatenKarya</title>
             </Head>
             <Sidebar />
 
             <section className="sm:ml-80 p-8 relative">
                 <div className="mb-5">
-                    <h1 className="text-3xl font-bold">Customer</h1>
-                    <p className="text-slate-500 dark:text-slate-400 text-lg">List of All The Customer</p>
+                    <h1 className="text-3xl font-bold">Pelanggan</h1>
+                    <p className="text-slate-500 dark:text-slate-400 text-lg">Daftar Semua Pelanggan</p>
                 </div>
 
                 <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl">
@@ -34,17 +34,17 @@ const Customer = ({ flash, customers, filters }) => {
                         meta={customers}
                         filters={filters}
                         routeName="customer.index"
-                        searchPlaceholder="Search by Customer Name"
+                        searchPlaceholder="Cari Nama Pelanggan"
                         gridLayout="0.5fr 1fr 1fr 1fr 0.5fr 0.8fr 0.8fr"
-                        title="Customers"
+                        title="Pelanggan"
                         deleteType="customer"
-                        deleteDescription="Are you sure to delete this customer?"
+                        deleteDescription="Apakah Anda yakin ingin menghapus pelanggan ini?"
                         addHref={route("customer.create")}
-                        addLabel="Add Customer"
+                        addLabel="Tambah Pelanggan"
                         columns={[
                             {
                                 key: "actions",
-                                label: "Action",
+                                label: "Aksi",
                                 render: (item, { onDelete }) => (
                                     <motion.div
                                         initial={{ opacity: 0, y: 10 }}
@@ -64,7 +64,7 @@ const Customer = ({ flash, customers, filters }) => {
                             },
                             {
                                 key: "customer",
-                                label: "Customer",
+                                label: "Pelanggan",
                                 sortKey: "name",
                                 render: (item) => (
                                     <motion.div
@@ -78,7 +78,7 @@ const Customer = ({ flash, customers, filters }) => {
                             },
                             {
                                 key: "address",
-                                label: "Address",
+                                label: "Alamat",
                                 render: (item) => (
                                     <motion.div
                                         className="whitespace-normal"
@@ -92,7 +92,7 @@ const Customer = ({ flash, customers, filters }) => {
                             },
                             {
                                 key: "contact",
-                                label: "Contact",
+                                label: "Kontak",
                                 render: (item) => (
                                     <motion.div
                                         initial={{ opacity: 0, y: 10 }}
@@ -107,7 +107,7 @@ const Customer = ({ flash, customers, filters }) => {
                             },
                             {
                                 key: "total_order",
-                                label: "Total Order",
+                                label: "Total Pesanan",
                                 render: () => (
                                     <motion.div
                                         initial={{ opacity: 0, y: 10 }}
@@ -120,7 +120,7 @@ const Customer = ({ flash, customers, filters }) => {
                             },
                             {
                                 key: "created_at",
-                                label: "Created At",
+                                label: "Dibuat Pada",
                                 sortKey: "created_at",
                                 render: (item) => (
                                     <motion.div
@@ -135,7 +135,7 @@ const Customer = ({ flash, customers, filters }) => {
                             },
                             {
                                 key: "created_by",
-                                label: "Created By",
+                                label: "Dibuat Oleh",
                                 render: (item) => (
                                     <motion.div
                                         initial={{ opacity: 0, y: 10 }}

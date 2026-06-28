@@ -132,10 +132,10 @@ const Dashboard = ({ flash, stats = {}, recentOrders = [], lowStockProducts = []
                             <table className="w-full text-sm">
                                 <thead>
                                     <tr className="text-left text-slate-500 dark:text-slate-400 border-b dark:border-slate-700">
-                                        <th className="py-2 pr-3">Customer</th>
+                                        <th className="py-2 pr-3">Pelanggan</th>
                                         <th className="py-2 pr-3">Total</th>
-                                        <th className="py-2 pr-3">Status Order</th>
-                                        <th className="py-2 pr-3">Payment</th>
+                                        <th className="py-2 pr-3">Status Pesanan</th>
+                                        <th className="py-2 pr-3">Pembayaran</th>
                                         <th className="py-2">Tanggal</th>
                                     </tr>
                                 </thead>
@@ -212,7 +212,7 @@ const Dashboard = ({ flash, stats = {}, recentOrders = [], lowStockProducts = []
                             <table className="w-full text-sm">
                                 <thead>
                                     <tr className="text-left text-slate-500 dark:text-slate-400 border-b dark:border-slate-700">
-                                        <th className="py-2 pr-3">Thumbnail</th>
+                                        <th className="py-2 pr-3">Gambar</th>
                                         <th className="py-2 pr-3">Nama Produk</th>
                                         <th className="py-2">Stok</th>
                                     </tr>

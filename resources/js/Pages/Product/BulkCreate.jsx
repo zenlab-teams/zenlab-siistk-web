@@ -121,27 +121,27 @@ const BulkCreate = ({ flash, errors }) => {
     return (
         <Layout flash={flash}>
             <Head>
-                <title>Bulk Add Products | TelatenKarya</title>
+                <title>Tambah Massal Produk | TelatenKarya</title>
             </Head>
             <Sidebar />
             <section className="sm:ml-80 p-8 relative">
                 <div className="mb-5">
-                    <h1 className="text-3xl font-bold">Products</h1>
-                    <p className="text-slate-500 dark:text-slate-400 text-lg">Bulk Add Products</p>
+                    <h1 className="text-3xl font-bold">Produk</h1>
+                    <p className="text-slate-500 dark:text-slate-400 text-lg">Tambah Massal Produk</p>
                 </div>
                 <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl">
                     <div className="flex justify-between items-center mb-5">
                         <div>
-                            <p className="text-xl font-bold">Bulk Create Products</p>
+                            <p className="text-xl font-bold">Tambah Massal Produk</p>
                             <p className="text-sm text-slate-400 dark:text-slate-500 mt-1">
-                                Add up to 50 products at once with optional thumbnails.
+                                Tambah hingga 50 produk sekaligus dengan gambar opsional.
                             </p>
                         </div>
                         <Link
                             href={route("product.index")}
                             className="flex items-center gap-2 bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 text-slate-500 dark:text-slate-400 px-3 py-2 rounded-lg font-bold transition-all"
                         >
-                            <MdKeyboardArrowLeft className="font-bold text-xl" /> Back
+                            <MdKeyboardArrowLeft className="font-bold text-xl" /> Kembali
                         </Link>
                     </div>
 
@@ -151,7 +151,7 @@ const BulkCreate = ({ flash, errors }) => {
                             animate={{ opacity: 1, y: 0 }}
                             className="mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-600 dark:text-red-400 text-sm"
                         >
-                            Please fix the errors below before submitting.
+                            Silakan perbaiki error di bawah sebelum mengirim.
                         </motion.div>
                     )}
 
@@ -177,7 +177,7 @@ const BulkCreate = ({ flash, errors }) => {
                                                     type="button"
                                                     onClick={() => duplicateRow(index)}
                                                     className="p-1.5 text-slate-400 hover:text-sky-500 hover:bg-sky-50 dark:hover:bg-sky-900/30 rounded-lg transition-all"
-                                                    title="Duplicate row"
+                                                    title="Duplikat baris"
                                                 >
                                                     <TbCopy className="text-lg" />
                                                 </button>
@@ -186,7 +186,7 @@ const BulkCreate = ({ flash, errors }) => {
                                                         type="button"
                                                         onClick={() => removeRow(index)}
                                                         className="p-1.5 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition-all"
-                                                        title="Remove row"
+                                                        title="Hapus baris"
                                                     >
                                                         <TbTrash className="text-lg" />
                                                     </button>
@@ -197,7 +197,7 @@ const BulkCreate = ({ flash, errors }) => {
                                         <div className="flex gap-4">
                                             {/* Thumbnail */}
                                             <div className="flex-shrink-0">
-                                                <label className="text-sm mb-1 block">Thumbnail</label>
+                                                <label className="text-sm mb-1 block">Gambar</label>
                                                 <label className="cursor-pointer block">
                                                     <input
                                                         type="file"
@@ -228,7 +228,7 @@ const BulkCreate = ({ flash, errors }) => {
                                                                 : "border-slate-300 dark:border-slate-600"
                                                         }`}>
                                                             <TbPhotoPlus className="text-2xl text-slate-400" />
-                                                            <span className="text-xs text-slate-400">Upload</span>
+                                                            <span className="text-xs text-slate-400">Unggah</span>
                                                         </div>
                                                     )}
                                                 </label>
@@ -242,8 +242,8 @@ const BulkCreate = ({ flash, errors }) => {
                                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                                                     <TextInput
                                                         name={`name-${index}`}
-                                                        label="Product Name"
-                                                        placeholder="Enter Product Name"
+                                                        label="Nama Produk"
+                                                        placeholder="Masukkan Nama Produk"
                                                         required={true}
                                                         value={row.name}
                                                         onChange={(_, val) => updateRow(index, "name", val)}
@@ -252,8 +252,8 @@ const BulkCreate = ({ flash, errors }) => {
                                                     <NumberInput
                                                         type="currency"
                                                         name={`price-${index}`}
-                                                        label="Price"
-                                                        placeholder="Enter Price (Rp)"
+                                                        label="Harga"
+                                                        placeholder="Masukkan Harga (Rp)"
                                                         required={true}
                                                         value={row.price}
                                                         onChange={(_, val) => updateRow(index, "price", val)}
@@ -261,8 +261,8 @@ const BulkCreate = ({ flash, errors }) => {
                                                     />
                                                     <TextInput
                                                         name={`description-${index}`}
-                                                        label="Description"
-                                                        placeholder="Enter Description (optional)"
+                                                        label="Deskripsi"
+                                                        placeholder="Masukkan Deskripsi (opsional)"
                                                         value={row.description}
                                                         onChange={(_, val) => updateRow(index, "description", val)}
                                                         error={getError(index, "description")}
@@ -272,8 +272,8 @@ const BulkCreate = ({ flash, errors }) => {
                                                 <div className="mt-3">
                                                     <NumberInput
                                                         name={`minimum-${index}`}
-                                                        label="Minimum Stock (optional)"
-                                                        placeholder="Enter Minimum Stock"
+                                                        label="Stok Minimum (opsional)"
+                                                        placeholder="Masukkan Stok Minimum"
                                                         value={row.minimum}
                                                         onChange={(_, val) => updateRow(index, "minimum", val)}
                                                         min={0}
@@ -285,8 +285,8 @@ const BulkCreate = ({ flash, errors }) => {
                                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                                     <NumberInput
                                                         name={`initial_quantity-${index}`}
-                                                        label="Initial Stock (optional)"
-                                                        placeholder="Qty"
+                                                        label="Stok Awal (opsional)"
+                                                        placeholder="Jumlah"
                                                         value={row.initial_quantity}
                                                         onChange={(_, val) => updateRow(index, "initial_quantity", val)}
                                                         error={getError(index, "initial_quantity")}
@@ -294,8 +294,8 @@ const BulkCreate = ({ flash, errors }) => {
                                                     <NumberInput
                                                         type="currency"
                                                         name={`initial_unit_cost-${index}`}
-                                                        label="Unit Cost (optional)"
-                                                        placeholder="Enter Unit Cost (Rp)"
+                                                        label="Harga Satuan (opsional)"
+                                                        placeholder="Masukkan Harga Satuan (Rp)"
                                                         value={row.initial_unit_cost}
                                                         onChange={(_, val) => updateRow(index, "initial_unit_cost", val)}
                                                         error={getError(index, "initial_unit_cost")}
@@ -316,13 +316,13 @@ const BulkCreate = ({ flash, errors }) => {
                             className="mt-4 w-full py-3 border-2 border-dashed border-slate-300 dark:border-slate-600 hover:border-sky-400 dark:hover:border-sky-600 rounded-xl flex items-center justify-center gap-2 text-slate-400 hover:text-sky-500 font-medium transition-all disabled:opacity-40 disabled:cursor-not-allowed"
                         >
                             <TbPlus className="text-xl" />
-                            Add Row ({rows.length}/50)
+                            Tambah Baris ({rows.length}/50)
                         </button>
 
                         {/* Actions */}
                         <div className="flex items-center justify-between mt-5 pt-4 border-t-2 dark:border-slate-700">
                             <p className="text-sm text-slate-400 dark:text-slate-500">
-                                {rows.length} product{rows.length > 1 ? "s" : ""} will be created
+                                {rows.length} produk akan dibuat
                             </p>
                             <div className="flex items-center gap-3">
                                 <button
@@ -337,7 +337,7 @@ const BulkCreate = ({ flash, errors }) => {
                                     disabled={processing}
                                     className="bg-sky-500 hover:bg-sky-600 text-white dark:text-slate-800 px-5 py-2 rounded-lg font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
-                                    {processing ? "Saving..." : `Add ${rows.length} Product${rows.length > 1 ? "s" : ""}`}
+                                    {processing ? "Menyimpan..." : `Tambah ${rows.length} Produk`}
                                 </button>
                             </div>
                         </div>

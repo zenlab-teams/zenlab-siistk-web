@@ -18,7 +18,7 @@ const DataTable = ({
     meta = null,
     filters = {},
     routeName = null,
-    searchPlaceholder = "Search...",
+    searchPlaceholder = "Cari...",
     gridLayout,
     selectable = true,
     paginated = true,
@@ -131,7 +131,7 @@ const DataTable = ({
                             itemID={modalDeleteSelected}
                             closeModal={(id = null) => setModalDeleteSelected(id)}
                             type={`${deleteType}_selected`}
-                            description={`Are you sure to delete ${selectedItem.length} selected items?`}
+                            description={`Apakah Anda yakin ingin menghapus ${selectedItem.length} item yang dipilih?`}
                         />
                     )
                 )}
@@ -158,7 +158,7 @@ const DataTable = ({
                             >
                                 <TbTrash className="font-bold text-xl" />
                                 <span>{selectedItem.length}</span>
-                                Delete Selected
+                                Hapus Terpilih
                             </motion.button>
                         )}
                     </AnimatePresence>
@@ -330,9 +330,9 @@ const DataTable = ({
                                         >
                                             <img src={NoData} className="w-52" />
                                             <p className="text-2xl py-2 px-5 bg-slate-200 text-slate-400 font-bold rounded-xl mt-8 dark:text-slate-500 dark:bg-slate-700">
-                                                No Data Found
+                                                Data Tidak Ditemukan
                                             </p>
-                                            <p className="text-slate-400 dark:text-slate-500 mt-3">Couldn&apos;t find any data</p>
+                                            <p className="text-slate-400 dark:text-slate-500 mt-3">Tidak dapat menemukan data</p>
                                         </Cell>
                                     )}
                                 </Body>
@@ -345,7 +345,7 @@ const DataTable = ({
             {paginated && (
                 <div className="w-full mt-5 flex flex-wrap justify-between items-center gap-3">
                     <div className="flex items-center gap-3">
-                        <span className="text-slate-500 dark:text-slate-400">Rows per page</span>
+                        <span className="text-slate-500 dark:text-slate-400">Baris per halaman</span>
                         <Select
                             menuPlacement="top"
                             options={rowsSizeOptions}
@@ -378,7 +378,7 @@ const DataTable = ({
                     />
 
                     <div className="text-slate-500 dark:text-slate-400 flex items-center justify-end gap-1 w-52">
-                        Total page
+                        Total halaman
                         <span className="bg-slate-200 text-slate-500 dark:bg-slate-700 dark:text-slate-400 font-bold p-2 text-sm rounded-lg ml-1">
                             {meta.last_page}
                         </span>

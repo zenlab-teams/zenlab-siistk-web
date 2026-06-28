@@ -83,12 +83,12 @@ const ProductCategoryEdit = ({ flash, products, category, selectedProducts }) =>
     };
 
     const categoryColorOptions = [
-        { value: "Red", label: "Red" },
-        { value: "Green", label: "Green" },
-        { value: "Blue", label: "Blue" },
-        { value: "Yellow", label: "Yellow" },
-        { value: "Purple", label: "Purple" },
-        { value: "Cyan", label: "Cyan" },
+        { value: "Red", label: "Merah" },
+        { value: "Green", label: "Hijau" },
+        { value: "Blue", label: "Biru" },
+        { value: "Yellow", label: "Kuning" },
+        { value: "Purple", label: "Ungu" },
+        { value: "Cyan", label: "Sian" },
     ];
 
     const categoryColorFormatSelect = ({ label, value }) => (
@@ -133,22 +133,22 @@ const ProductCategoryEdit = ({ flash, products, category, selectedProducts }) =>
     return (
         <Layout flash={flash}>
             <Head>
-                <title>Edit Customer | AgentApp</title>
+                <title>Edit Kategori Produk | TelatenKarya</title>
             </Head>
             <Sidebar />
             <section className="sm:ml-80 p-8 relative">
                 <div className="mb-5">
-                    <h1 className="text-3xl font-bold">Sales Customer</h1>
-                    <p className="text-slate-500 text-lg">Edit Current Customer</p>
+                    <h1 className="text-3xl font-bold">Kategori Produk</h1>
+                    <p className="text-slate-500 text-lg">Edit Kategori Produk Saat Ini</p>
                 </div>
                 <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl">
                     <div className="flex justify-between items-center mb-3">
-                        <p className="text-xl font-bold">Edit Sales Customer</p>
+                        <p className="text-xl font-bold">Edit Kategori Produk</p>
                         <Link
                             href={route("category.index")}
                             className="flex items-center gap-2 bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 text-slate-500 dark:text-slate-400 px-3 py-2 rounded-lg font-bold"
                         >
-                            <MdKeyboardArrowLeft className="font-bold text-xl" /> Back
+                            <MdKeyboardArrowLeft className="font-bold text-xl" /> Kembali
                         </Link>
                     </div>
                     <div className="flex justify-center w-full">
@@ -159,8 +159,8 @@ const ProductCategoryEdit = ({ flash, products, category, selectedProducts }) =>
                                         <TextInput
                                             type="text"
                                             name="name"
-                                            label="Name"
-                                            placeholder="Enter Customer Name"
+                                            label="Nama"
+                                            placeholder="Masukkan Nama Kategori"
                                             required={true}
                                             onChange={setData}
                                             value={data.name}
@@ -168,8 +168,8 @@ const ProductCategoryEdit = ({ flash, products, category, selectedProducts }) =>
                                         />
                                         <SelectInput
                                             name="color"
-                                            label="Color"
-                                            placeholder="Select Customer Color"
+                                            label="Warna"
+                                            placeholder="Pilih Warna Kategori"
                                             options={categoryColorOptions}
                                             formatOptionLabel={categoryColorFormatSelect}
                                             value={data.color}
@@ -180,8 +180,8 @@ const ProductCategoryEdit = ({ flash, products, category, selectedProducts }) =>
                                     </div>
                                     <TextAreaInput
                                         name="description"
-                                        label="Description"
-                                        placeholder="Enter Customer Description"
+                                        label="Deskripsi"
+                                        placeholder="Masukkan Deskripsi Kategori"
                                         required={true}
                                         onChange={setData}
                                         value={data.description}
@@ -189,7 +189,7 @@ const ProductCategoryEdit = ({ flash, products, category, selectedProducts }) =>
                                     />
                                 </div>
                                 <div className="w-full">
-                                    <p>Sales</p>
+                                    <p>Produk</p>
                                     <div className="max-h-96 relative">
                                         <Table
                                             data={tableData}
@@ -218,11 +218,11 @@ const ProductCategoryEdit = ({ flash, products, category, selectedProducts }) =>
                                                                 className="!py-2 !px-3 border-y-2 border-slate-200 dark:border-slate-600 hover:text-sky-500 transition-all"
                                                                 sortKey="NAME"
                                                             >
-                                                                Sales
+                                                                Nama Produk
                                                             </HeaderCellSort>
-                                                            <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Customer</HeaderCell>
+                                                            <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Kategori</HeaderCell>
                                                             <HeaderCell className="!py-2 !px-3 rounded-r-xl border-y-2 border-r-2 border-slate-200 dark:border-slate-600">
-                                                                Agent
+                                                                Pemasok
                                                             </HeaderCell>
                                                         </HeaderRow>
                                                     </Header>
@@ -286,7 +286,7 @@ const ProductCategoryEdit = ({ flash, products, category, selectedProducts }) =>
                                                                                 transition={{ delay: 0.05 }}
                                                                                 className="w-fit px-3 font-bold rounded-lg bg-slate-200 text-slate-500 dark:bg-opacity-20 dark:bg-slate-400 dark:text-slate-400"
                                                                             >
-                                                                                <span className="text-lg">None</span>
+                                                                                <span className="text-lg">Tidak Ada</span>
                                                                             </motion.div>
                                                                         )}
                                                                     </Cell>
@@ -309,9 +309,9 @@ const ProductCategoryEdit = ({ flash, products, category, selectedProducts }) =>
                                                             >
                                                                 <img src={NoData} className="w-52" />
                                                                 <p className="text-2xl py-2 px-5 bg-slate-200 text-slate-400 font-bold rounded-xl mt-8 dark:text-slate-500 dark:bg-slate-700">
-                                                                    No Data Found
+                                                                    Data Tidak Ditemukan
                                                                 </p>
-                                                                <p className="text-slate-400 dark:text-slate-500 mt-3">Couldn't find any data</p>
+                                                                <p className="text-slate-400 dark:text-slate-500 mt-3">Tidak dapat menemukan data apapun</p>
                                                             </Cell>
                                                         )}
                                                     </Body>
@@ -333,7 +333,7 @@ const ProductCategoryEdit = ({ flash, products, category, selectedProducts }) =>
                                     type="submit"
                                     className="bg-sky-500 hover:bg-sky-600 text-white dark:text-slate-800 px-5 py-2 rounded-lg font-bold"
                                 >
-                                    Edit Customer
+                                    Edit Kategori
                                 </button>
                             </div>
                         </form>

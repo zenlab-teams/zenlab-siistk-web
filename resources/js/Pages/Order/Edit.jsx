@@ -87,22 +87,22 @@ const ProductEdit = ({ flash, product, suppliers, categories,  }) => {
     return (
         <Layout flash={flash}>
             <Head>
-                <title>Edit Sales | AgentApp</title>
+                <title>Edit Penjualan | TelatenKarya</title>
             </Head>
             <Sidebar />
             <section className="sm:ml-80 p-8 relative">
                 <div className="mb-5">
-                    <h1 className="text-3xl font-bold">Sales</h1>
-                    <p className="text-slate-500 dark:text-slate-400 text-lg">Edit Current Sales</p>
+                    <h1 className="text-3xl font-bold">Penjualan</h1>
+                    <p className="text-slate-500 dark:text-slate-400 text-lg">Edit Penjualan Saat Ini</p>
                 </div>
                 <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl">
                     <div className="flex justify-between items-center mb-3">
-                        <p className="text-xl font-bold">Edit Sales</p>
+                        <p className="text-xl font-bold">Edit Penjualan</p>
                         <Link
                             href={route("product.index")}
                             className="flex items-center gap-2 bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 text-slate-500 dark:text-slate-400 px-3 py-2 rounded-lg font-bold transition-all"
                         >
-                            <MdKeyboardArrowLeft className="font-bold text-xl" /> Back
+                            <MdKeyboardArrowLeft className="font-bold text-xl" /> Kembali
                         </Link>
                     </div>
                     <div className="flex justify-center w-full">
@@ -112,8 +112,8 @@ const ProductEdit = ({ flash, product, suppliers, categories,  }) => {
                                     <TextInput
                                         type="text"
                                         name="name"
-                                        label="Sales Name"
-                                        placeholder="Enter Sales Name"
+                                        label="Nama Penjualan"
+                                        placeholder="Masukkan Nama Penjualan"
                                         required={true}
                                         onChange={setData}
                                         value={data.name}
@@ -123,8 +123,8 @@ const ProductEdit = ({ flash, product, suppliers, categories,  }) => {
                                         <NumberInput
                                             type="currency"
                                             name="price"
-                                            label="Price"
-                                            placeholder="Enter Price of Sales (Rp)"
+                                            label="Harga"
+                                            placeholder="Masukkan Harga Penjualan (Rp)"
                                             value={data.price}
                                             onChange={setData}
                                             required={true}
@@ -133,8 +133,8 @@ const ProductEdit = ({ flash, product, suppliers, categories,  }) => {
                                         <NumberInput
                                             type="number"
                                             name="stock"
-                                            placeholder="Enter Number of Sales Stock"
-                                            label="Stock"
+                                            placeholder="Masukkan Jumlah Stok"
+                                            label="Stok"
                                             arrow={false}
                                             value={data.stock}
                                             onChange={setData}
@@ -145,8 +145,8 @@ const ProductEdit = ({ flash, product, suppliers, categories,  }) => {
                                     <div className="flex flex-col sm:flex-row w-full gap-3">
                                         <SelectInput
                                             name="supplier_id"
-                                            label="Agent"
-                                            placeholder="Select Agent"
+                                            label="Agen"
+                                            placeholder="Pilih Agen"
                                             options={supplierOptions}
                                             value={data.supplier_id}
                                             onChange={setData}
@@ -155,8 +155,8 @@ const ProductEdit = ({ flash, product, suppliers, categories,  }) => {
                                         />
                                         <SelectInput
                                             name="product_category_id"
-                                            label="Customer"
-                                            placeholder="Select Customer"
+                                            label="Pelanggan"
+                                            placeholder="Pilih Pelanggan"
                                             options={categoriesOptions}
                                             formatOptionLabel={categoriesFormatSelect}
                                             value={data.product_category_id}
@@ -166,8 +166,8 @@ const ProductEdit = ({ flash, product, suppliers, categories,  }) => {
                                     </div>
                                     <TextAreaInput
                                         name="description"
-                                        label="Description"
-                                        placeholder="Enter Customer Description"
+                                        label="Deskripsi"
+                                        placeholder="Masukkan Deskripsi Pelanggan"
                                         onChange={setData}
                                         required={true}
                                         value={data.description}
@@ -177,8 +177,8 @@ const ProductEdit = ({ flash, product, suppliers, categories,  }) => {
                                 <div className="w-full">
                                     <ImageInput
                                         name="image"
-                                        label="Photo"
-                                        placeholder="Add photo of product"
+                                        label="Foto"
+                                        placeholder="Tambahkan foto produk"
                                         required={true}
                                         edit={"/storage/productImages/" + product.image}
                                         onChange={setData}
@@ -199,7 +199,7 @@ const ProductEdit = ({ flash, product, suppliers, categories,  }) => {
                                     type="submit"
                                     className="bg-sky-500 hover:bg-sky-600 text-white dark:text-slate-800 px-5 py-2 rounded-lg font-bold transition-all"
                                 >
-                                    Edit Sales
+                                    Edit Penjualan
                                 </button>
                             </div>
                         </form>
