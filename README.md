@@ -1,56 +1,42 @@
-# ZENLAB SIISTK - TelatenKarya Admin Dashboard
+<p align="center">
+  <img src="resources/assets/image/Logo.svg" alt="SIISTK Logo" width="160" />
+</p>
 
-ZENLAB SIISTK adalah aplikasi manajemen operasional untuk TelatenKarya yang dibangun dengan Laravel 12, React 19, dan Inertia.js v2. Proyek ini mendukung pengelolaan produk, stok, pesanan, penawaran, pelanggan, dan dashboard per role dalam satu aplikasi web.
+<h1 align="center">SIISTK</h1>
 
-## Ringkasan
+<p align="center">
+  <a href="https://github.com/zenlab-teams/zenlab-siistk-web/actions/workflows/ci.yml">
+    <img src="https://github.com/zenlab-teams/zenlab-siistk-web/actions/workflows/ci.yml/badge.svg" alt="Laravel CI" />
+  </a>
+</p>
 
-- Role utama: `admin`, `sales`, dan `customer`
-- Arsitektur: Laravel + Inertia + React
-- Fokus utama: operasional, transaksi, dan monitoring bisnis
+## Deskripsi Proyek
+
+SIISTK adalah Sales Information & Inventory System Toolkit untuk TelatenKarya. Aplikasi ini dipakai untuk kelola produk, stok, pesanan, penawaran, customer, dan dashboard operasional dalam satu web app.
+
+## Features
+
+- Auth login/logout dengan role admin, sales, dan customer.
+- Dashboard per role.
+- Manajemen produk dan stok.
+- Manajemen pesanan dan invoice.
+- Alur offer untuk sales dan admin.
+- Customer management.
+- Reusable DataTable dan komponen UI.
 
 ## Tech Stack
 
-- Backend: Laravel 12, PHP 8.2+
-- Frontend: React 19, Inertia.js, Vite
-- Styling: Tailwind CSS, utility class berbasis komponen
-- State: Redux Toolkit
-- Testing: Pest PHP
-- Code style: Laravel Pint
+- Laravel 12
+- PHP 8.2+
+- React 18
+- Inertia.js v2
+- Tailwind CSS v3
+- Redux Toolkit
+- Vite
+- Pest
+- Laravel Pint
 
-## Fitur Utama
-
-- Login dan otorisasi berbasis role
-- Dashboard admin, sales, dan customer
-- Manajemen produk dan stok
-- Manajemen pesanan dan invoice
-- Alur offer untuk tim sales
-- Public order page untuk akses pelanggan
-- Komponen tabel, modal, dan input yang reusable
-
-## Screenshot Proyek
-
-| Login | Dashboard | Products | Orders |
-| --- | --- | --- | --- |
-| ![Login](docs/screenshots/Screenshot%202026-06-18%20235101.png) | ![Dashboard](docs/screenshots/Screenshot%202026-06-18%20235149.png) | ![Products](docs/screenshots/Screenshot%202026-06-18%20235204.png) | ![Orders](docs/screenshots/Screenshot%202026-06-18%20235217.png) |
-
-## Tim Pengembang
-
-| Nama / Identitas | Peran |
-| --- | --- |
-| Ihsan Nul Amri | Project Manager dan Lead Programmer |
-| Dwi Melza Utari | Quality Assurance |
-| Achmad Ghozali | AI Specialist |
-| Faizul Ananda | System Analyst |
-
-## Dokumentasi
-
-- [Panduan Instalasi](docs/installation.md)
-- [Dokumentasi Fitur](docs/features.md)
-- [Dokumentasi Dependency](docs/dependency.md)
-- [Dokumentasi Refactoring](docs/refactoring.md)
-- [Dokumentasi GitHub Actions](docs/github-actions.md)
-
-## Menjalankan Proyek
+## Instalasi Singkat
 
 ```bash
 composer install
@@ -62,18 +48,20 @@ php artisan storage:link
 composer run dev
 ```
 
-## Pengujian
+## Screenshoot
 
-```bash
-composer run test
-```
+<p align="center">
+  <img src="docs/screenshots/Screenshot%202026-06-18%20235101.png" alt="Login" width="100%" />
+</p>
 
-## Standar Pengembangan
+<p align="center">
+  <img src="docs/screenshots/Screenshot%202026-06-18%20235149.png" alt="Dashboard" width="100%" />
+</p>
 
-- Jalankan `vendor/bin/pint --dirty` sebelum commit perubahan PHP.
-- Gunakan `php artisan test` atau `composer run test` untuk verifikasi fitur.
-- Ikuti pola route naming `resource.action`.
+<p align="center">
+  <img src="docs/screenshots/Screenshot%202026-06-18%20235204.png" alt="Products" width="100%" />
+</p>
 
-## Lisensi
-
-Proyek ini dikembangkan untuk tujuan Project-Based Learning dan menggunakan lisensi MIT.
+<p align="center">
+  <img src="docs/screenshots/Screenshot%202026-06-18%20235217.png" alt="Orders" width="100%" />
+</p>
