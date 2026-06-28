@@ -1,58 +1,123 @@
-# Dokumentasi GitHub Actions
+# GitHub Actions Documentation
 
-Repositori ini belum memiliki workflow GitHub Actions nyata. Dokumen ini menjelaskan rancangan CI sederhana yang cocok untuk proyek Laravel + React ini.
+Dokumen ini menjelaskan workflow GitHub Actions untuk build dan test proyek Laravel + React SIISTK.
 
-## Tujuan CI
+## Workflow yang Digunakan
 
-- Memastikan kode PHP tetap rapi dengan Pint
-- Menjalankan test otomatis dengan Pest
-- Memastikan frontend berhasil dibuild
+CI workflow untuk:
 
-## Alur Workflow yang Direkomendasikan
+- Checkout source code.
+- Setup PHP 8.2.
+- Install dependency Composer.
+- Setup Node.js 20.
+- Install dependency NPM.
+- Build asset frontend.
+- Setup environment testing.
+- Menjalankan test Laravel/Pest.
 
-1. Checkout repository
-2. Setup PHP dan Composer
-3. Install dependency backend
-4. Setup Node.js
-5. Install dependency frontend
-6. Jalankan formatter check
-7. Jalankan test
-8. Jalankan build frontend
+## Lokasi File
 
-## Contoh Struktur Workflow
+Rencana lokasi workflow:
+
+```text
+.github/workflows/ci.yml
+```
+
+## Trigger
+
+Workflow dijalankan saat:
+
+- `push` ke branch utama atau branch fitur.
+- `pull_request` ke branch utama.
+
+Contoh trigger:
 
 ```yaml
-name: CI
+on:
+  push:
+  pull_request:
+```
+
+## Tahapan Workflow
+
+1. Checkout code dari repository.
+2. Setup PHP 8.2 dan ekstensi yang dibutuhkan Laravel.
+3. Install dependency Composer dengan `composer install`.
+4. Salin `.env.example` menjadi `.env` dan generate application key.
+5. Setup Node.js 20.
+6. Install dependency frontend dengan `npm ci`.
+7. Build asset dengan `npm run build`.
+8. Jalankan test dengan `composer run test` memakai SQLite in-memory.
+
+## Contoh Rencana `ci.yml`
+
+```yaml
+name: Laravel CI
 
 on:
   push:
   pull_request:
 
 jobs:
-  test:
+  build-and-test:
+    name: Build and test
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: shivammathur/setup-php@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
-      - run: composer install --no-interaction --prefer-dist
-      - uses: actions/setup-node@v4
+          extensions: mbstring, dom, fileinfo, mysql, sqlite, pdo_sqlite
+          coverage: none
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Prepare application
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: npm install
-      - run: vendor/bin/pint --dirty
-      - run: composer run test
-      - run: npm run build
+          cache: npm
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Build frontend
+        run: npm run build
+
+      - name: Run tests
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: ':memory:'
+        run: composer run test
 ```
 
-## Kapan Dijalankan
+## Hasil Workflow
 
-- `push` ke branch utama atau branch fitur
-- `pull_request` sebelum merge
+Saat workflow sudah dibuat, dokumentasi ini perlu dilengkapi dengan:
 
-## Catatan
+- Screenshot workflow berhasil di tab GitHub Actions.
+- Status badge di `README.md`.
+- Catatan jika ada test yang perlu database service khusus.
 
-- Contoh di atas hanya ilustrasi dokumentasi.
-- Jika workflow nyata ditambahkan ke repo, dokumen ini perlu diselaraskan dengan file `.github/workflows/*.yml`.
+Contoh badge setelah workflow tersedia:
+
+```markdown
+[![Laravel CI](https://github.com/zenlab-teams/zenlab-siistk-web/actions/workflows/ci.yml/badge.svg)](https://github.com/zenlab-teams/zenlab-siistk-web/actions/workflows/ci.yml)
+```
+
+## Catatan Implementasi Final
+
+- Jika test memakai MySQL, tambahkan service MySQL di workflow.
+- Jika test dapat memakai SQLite memory, atur environment testing agar lebih cepat.
+- Jangan menyimpan secret di file workflow.
+- Semua secret harus masuk ke GitHub Repository Secrets.
