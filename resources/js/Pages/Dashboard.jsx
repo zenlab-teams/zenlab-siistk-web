@@ -217,38 +217,43 @@ const Dashboard = ({ flash, stats = {}, recentOrders = [], lowStockProducts = []
                                         <th className="py-2">Stok</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    {lowStockProducts.length > 0 ? (
-                                        lowStockProducts.map((product) => (
-                                            <tr key={product.id} className="border-b dark:border-slate-700 last:border-0">
-                                                <td className="py-3 pr-3">
-                                                    {product.thumbnail ? (
-                                                        <img
-                                                            src={`/storage/${product.thumbnail}`}
-                                                            className="w-8 h-8 rounded object-cover"
-                                                        />
-                                                    ) : (
-                                                        <div className="w-8 h-8 rounded bg-slate-200 dark:bg-slate-700 flex items-center justify-center">
-                                                            <TbPhoto className="text-slate-400 dark:text-slate-500" />
-                                                        </div>
-                                                    )}
-                                                </td>
-                                                <td className="py-3 pr-3">{product.name}</td>
-                                                <td className="py-3 text-red-500 font-bold">
-                                                    {Number(product.stocks_sum_quantity ?? 0)}
-                                                </td>
-                                            </tr>
-                                        ))
-                                    ) : (
-                                        <tr>
-                                            <td colSpan={3} className="py-8 text-center text-slate-400 dark:text-slate-500">
-                                                Tidak ada stok kritis.
-                                            </td>
-                                        </tr>
-                                    )}
-                                </tbody>
-                            </table>
-                        </div>
+                                        <tbody>
+                                            {lowStockProducts.length > 0 ? (
+                                                lowStockProducts.map((product) => {
+                                                    const currentStock = Number(product.stocks_sum_quantity ?? 0);
+                                                    const minimum = Number(product.minimum ?? 0);
+
+                                                    return (
+                                                        <tr key={product.id} className="border-b dark:border-slate-700 last:border-0">
+                                                            <td className="py-3 pr-3">
+                                                                {product.thumbnail ? (
+                                                                    <img
+                                                                        src={`/storage/${product.thumbnail}`}
+                                                                        className="w-8 h-8 rounded object-cover"
+                                                                    />
+                                                                ) : (
+                                                                    <div className="w-8 h-8 rounded bg-slate-200 dark:bg-slate-700 flex items-center justify-center">
+                                                                        <TbPhoto className="text-slate-400 dark:text-slate-500" />
+                                                                    </div>
+                                                                )}
+                                                            </td>
+                                                            <td className="py-3 pr-3">{product.name}</td>
+                                                            <td className="py-3 text-red-500 font-bold">
+                                                                {currentStock} / {minimum}
+                                                            </td>
+                                                        </tr>
+                                                    );
+                                                })
+                                            ) : (
+                                                <tr>
+                                                    <td colSpan={3} className="py-8 text-center text-slate-400 dark:text-slate-500">
+                                                        Tidak ada stok kritis.
+                                                    </td>
+                                                </tr>
+                                            )}
+                                        </tbody>
+                                    </table>
+                                </div>
 
                         <div className="pt-4">
                             <Link
