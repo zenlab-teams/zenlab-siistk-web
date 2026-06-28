@@ -15,6 +15,9 @@ class Offer extends Model
         'name',
         'description',
         'date',
+        'location',
+        'latitude',
+        'longitude',
         'rejected_at',
         'completed_at',
         'created_by',
@@ -26,6 +29,8 @@ class Offer extends Model
     {
         return [
             'date' => 'date',
+            'latitude' => 'float',
+            'longitude' => 'float',
             'rejected_at' => 'datetime',
             'completed_at' => 'datetime',
         ];
