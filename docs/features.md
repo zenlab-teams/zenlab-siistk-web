@@ -1,48 +1,91 @@
-# Dokumentasi Fitur
+# Feature Documentation
 
-Dokumen ini merangkum fitur yang tersedia pada repo ZENLAB SIISTK berdasarkan route, controller, dan halaman React yang sudah ada.
+Dokumen ini menjadi baseline fitur ZENLAB SIISTK. Detail bisa dilengkapi saat implementasi makin stabil.
 
-## Fitur Berdasarkan Role
+## Authentication dan Role Access
 
-### Admin
+- Tujuan: memberi akses login dan redirect sesuai role.
+- Aktor: admin, sales, customer.
+- Alur: user login, sistem cek role, lalu arahkan ke dashboard yang sesuai.
+- Route: login/logout dan redirect role dari `routes/web.php`.
+- Controller: `app/Http/Controllers/Auth`.
+- Screenshot: Placeholder
+- Status: Baseline tersedia.
 
-| Modul | Lokasi | Deskripsi |
-| --- | --- | --- |
-| Login | `app/Http/Controllers/Auth` dan `resources/js/Pages/Login.jsx` | Akses ke sistem untuk role yang valid. |
-| Dashboard | `routes/web.php`, `resources/js/Pages/Dashboard.jsx` | Ringkasan operasional dan analitik bisnis. |
-| Produk | `app/Http/Controllers/Admin/ProductController.php`, `resources/js/Pages/Product/*` | CRUD produk, bulk create, detail produk, dan stok produk. |
-| Stok | `app/Http/Controllers/Admin/StockController.php`, `resources/js/Pages/Product/Stock/Create.jsx` | Input stok masuk sebagai ledger append-only. |
-| User | `app/Http/Controllers/Admin/UserController.php`, `resources/js/Pages/User/*` | CRUD pengguna sistem. |
-| Customer | `app/Http/Controllers/Admin/CustomerController.php`, `resources/js/Pages/Customer/*` | CRUD data customer dan quick create. |
-| Order | `app/Http/Controllers/Admin/OrderController.php`, `resources/js/Pages/Order/*` | Pembuatan, detail, dan pengelolaan order. |
-| Invoice / Payment | `app/Http/Controllers/Admin/InvoiceController.php` | Persetujuan dan penolakan pembayaran invoice. |
-| Offer | `app/Http/Controllers/Admin/OfferController.php`, `resources/js/Pages/Offer/*` | Alur penawaran, record, approve, reject, dan complete. |
+## Admin Dashboard
 
-### Sales
+- Tujuan: menampilkan ringkasan operasional admin.
+- Aktor: admin.
+- Alur: admin login, masuk dashboard, melihat metrik utama dan aktivitas terbaru.
+- Route: dashboard admin.
+- Controller: `app/Http/Controllers/Admin/DashboardController.php`.
+- Screenshot: Placeholder
+- Status: Baseline tersedia.
 
-| Modul | Lokasi | Deskripsi |
-| --- | --- | --- |
-| Sales Dashboard | `app/Http/Controllers/Sales/DashboardController.php`, `resources/js/Pages/Sales/Dashboard.jsx` | Ringkasan aktivitas untuk tim sales. |
-| Sales Offer | `app/Http/Controllers/Sales/OfferController.php`, `resources/js/Pages/Sales/Offer/*` | Melihat daftar offer dan mengirim offer record. |
-| Customer Quick Create | `routes/web.php` | Membuat customer secara cepat dari alur transaksi. |
+## Product dan Stock Management
 
-### Customer
+- Tujuan: mengelola produk dan ledger stok.
+- Aktor: admin.
+- Alur: admin tambah, ubah, dan lihat produk lalu mencatat stok masuk atau penyesuaian.
+- Route: product, stock, bulk create.
+- Controller: `Admin/ProductController`, `Admin/StockController`.
+- Screenshot: Placeholder
+- Status: Baseline tersedia.
 
-| Modul | Lokasi | Deskripsi |
-| --- | --- | --- |
-| Customer Dashboard | `app/Http/Controllers/Customer/DashboardController.php`, `resources/js/Pages/Customer/Dashboard.jsx` | Halaman ringkasan untuk customer yang login. |
-| Profile / Data Customer | `resources/js/Pages/Customer/*` | Form create dan edit data customer. |
-| Public Order | `app/Http/Controllers/PublicOrderController.php`, `resources/js/Pages/Public/Order/Show.jsx` | Halaman publik untuk melihat order dan melakukan payment. |
+## Order dan Invoice Management
 
-## Fitur Umum Aplikasi
+- Tujuan: mengelola order dan konfirmasi invoice.
+- Aktor: admin, customer.
+- Alur: order dibuat, invoice dikonfirmasi, lalu data transaksi dipantau.
+- Route: order dan invoice route di `routes/web.php`.
+- Controller: `Admin/OrderController`, `Admin/InvoiceController`, `PublicOrderController`.
+- Screenshot: Placeholder
+- Status: Baseline tersedia.
 
-- Autentikasi login dan logout
-- Redirect berdasarkan role setelah login
-- Tabel data dengan search, sort, pagination, dan bulk action
-- Form input reusable untuk teks, angka, gambar, checkbox, dan select
-- Layout dashboard yang konsisten untuk tiap role
+## Offer Workflow
 
-## Catatan
+- Tujuan: mengelola alur penawaran dari sales ke admin.
+- Aktor: admin, sales.
+- Alur: sales kirim offer record, admin review, lalu approve, reject, atau complete.
+- Route: offer dan sales offer route di `routes/web.php`.
+- Controller: `Admin/OfferController`, `Sales/OfferController`.
+- Screenshot: Placeholder
+- Status: Baseline tersedia.
 
-- Semua fitur di atas berasal dari route, controller, dan halaman yang memang sudah ada di repo.
-- Jika modul baru ditambahkan, dokumen ini perlu diperbarui agar tetap sesuai keadaan proyek.
+## Customer Management
+
+- Tujuan: mengelola data customer.
+- Aktor: admin, sales, customer.
+- Alur: data customer dibuat, diperbarui, dan dipakai di transaksi.
+- Route: customer route di `routes/web.php`.
+- Controller: `Admin/CustomerController`, `Customer/DashboardController`.
+- Screenshot: Placeholder
+- Status: Baseline tersedia.
+
+## Sales Dashboard
+
+- Tujuan: memberi ringkasan aktivitas sales.
+- Aktor: sales.
+- Alur: sales login, lihat aktivitas dan offer yang sedang berjalan.
+- Route: dashboard sales.
+- Controller: `Sales/DashboardController`.
+- Screenshot: Placeholder
+- Status: Baseline tersedia.
+
+## Reusable UI Components
+
+- Tujuan: menjaga UI konsisten dan reusable.
+- Aktor: developer.
+- Alur: halaman memakai komponen bersama untuk tabel, input, modal, dan button.
+- Route: semua halaman UI yang memakai komponen shared.
+- Controller: tidak spesifik; dipakai lintas page.
+- Screenshot: Placeholder
+- Status: Baseline tersedia.
+
+## Catatan Update
+
+- Screenshot aplikasi aktual perlu diganti dari placeholder.
+- Detail validasi form penting perlu dilengkapi.
+- Kondisi sukses, gagal, empty state, dan error state perlu ditulis.
+- Hak akses per fitur perlu diperinci.
+- Acceptance criteria bisa ditambahkan per fitur.
