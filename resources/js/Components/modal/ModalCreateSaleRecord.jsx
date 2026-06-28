@@ -170,8 +170,8 @@ const ModalCreateSaleRecord = ({
                                             <div className="flex flex-col gap-1">
                                                 <SelectInput
                                                     name="customer_id"
-                                                    label="Customer"
-                                                    placeholder="Pilih customer (opsional)"
+                                                    label="Pelanggan"
+                                                    placeholder="Pilih pelanggan (opsional)"
                                                     options={customerOptions}
                                                     value={data.customer_id}
                                                     onChange={setData}
@@ -183,7 +183,7 @@ const ModalCreateSaleRecord = ({
                                             <div className="md:col-span-2">
                                                 <TextAreaInput
                                                     name="notes"
-                                                    label="Notes"
+                                                    label="Catatan"
                                                     placeholder="Catatan tambahan (opsional)"
                                                     value={data.notes}
                                                     onChange={setData}
@@ -200,7 +200,7 @@ const ModalCreateSaleRecord = ({
                                                     onClick={addRecordItem}
                                                     className="flex items-center gap-2 bg-emerald-400 dark:bg-emerald-500 text-white dark:text-slate-800 hover:bg-emerald-500 dark:hover:bg-emerald-600 px-3 py-2 rounded-lg font-bold transition-all"
                                                 >
-                                                    <TbPlus className="text-xl" /> Add Item
+                                                    <TbPlus className="text-xl" /> Tambah Item
                                                 </button>
                                             </div>
 
@@ -318,7 +318,7 @@ const ModalCreateSaleRecord = ({
                                                 disabled={processing}
                                                 className="bg-emerald-500 hover:bg-emerald-600 disabled:bg-slate-400 text-white dark:text-slate-800 px-5 py-2 rounded-lg font-bold transition-all"
                                             >
-                                                {processing ? "Sending..." : "Kirim Laporan"}
+                                                {processing ? "Mengirim..." : "Kirim Laporan"}
                                             </button>
                                         </div>
                                     </form>

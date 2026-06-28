@@ -76,13 +76,13 @@ const ModalDelete = ({ itemID, closeModal, type, description }) => {
                         <TbAlertSmall className="text-7xl text-white bg-red-500 rounded-full absolute -bottom-9 dark:text-slate-800" />
                     </div>
                     <div className="flex flex-col justify-center items-center mt-12 px-5 pb-6 gap-1">
-                        <h1 className="text-2xl font-bold">Delete</h1>
+                        <h1 className="text-2xl font-bold">Hapus</h1>
                         <p className="text-slate-500 text-center text-lg whitespace-normal w-60 dark:text-slate-400">{description}</p>
                         <button
                             onClick={handleDelete}
                             className="bg-red-400 dark:bg-red-500 dark:hover:bg-red-600 text-white font-bold py-2 w-full rounded-xl mt-3 hover:bg-red-500 transition-all"
                         >
-                            Confirm
+                            Konfirmasi
                         </button>
                     </div>
                 </motion.div>

@@ -16,18 +16,18 @@ const CustomerDashboard = ({ flash, stats = {} }) => {
     }, []);
 
     const statCards = [
-        { label: "My Orders", value: stats.orders ?? 0, icon: <TbShoppingCart className="text-6xl" /> },
+        { label: "Pesanan Saya", value: stats.orders ?? 0, icon: <TbShoppingCart className="text-6xl" /> },
     ];
 
     return (
         <Layout flash={flash}>
             <Head>
-                <title>Customer Dashboard | ZenlabSIISTK</title>
+                <title>Dashboard Pelanggan | TelatenKarya</title>
             </Head>
             <Sidebar />
             <section className="sm:ml-80 p-8 relative">
                 <div className="mb-5">
-                    <h1 className="text-3xl font-bold">Customer Dashboard</h1>
+                    <h1 className="text-3xl font-bold">Dashboard Pelanggan</h1>
                     <p className="text-slate-500 dark:text-slate-400 text-lg">Ringkasan pesanan Anda</p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-8 gap-5">

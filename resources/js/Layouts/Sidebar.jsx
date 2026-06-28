@@ -88,7 +88,7 @@ const Sidebar = () => {
                                 transition={{ delay: 0.2 }}
                             >
                                 <TbPackage className="text-2xl mr-3" />
-                                <p className="font-bold text-lg">Products</p>
+                                <p className="font-bold text-lg">Produk</p>
                             </motion.div>
                         </Link>
                     )}
@@ -105,7 +105,7 @@ const Sidebar = () => {
                                 transition={{ delay: 0.25 }}
                             >
                                 <TbShoppingCart className="text-2xl mr-3" />
-                                <p className="font-bold text-lg">Orders</p>
+                                <p className="font-bold text-lg">Pesanan</p>
                             </motion.div>
                         </Link>
                     )}
@@ -122,7 +122,7 @@ const Sidebar = () => {
                                 transition={{ delay: 0.26 }}
                             >
                                 <TbUserCircle className="text-2xl mr-3" />
-                                <p className="font-bold text-lg">Customers</p>
+                                <p className="font-bold text-lg">Pelanggan</p>
                             </motion.div>
                         </Link>
                     )}
@@ -139,7 +139,7 @@ const Sidebar = () => {
                                 transition={{ delay: 0.25 }}
                             >
                                 <TbFileText className="text-2xl mr-3" />
-                                <p className="font-bold text-lg">Offers</p>
+                                <p className="font-bold text-lg">Penawaran</p>
                             </motion.div>
                         </Link>
                     )}
@@ -156,7 +156,7 @@ const Sidebar = () => {
                                 transition={{ delay: 0.25 }}
                             >
                                 <TbFileText className="text-2xl mr-3" />
-                                <p className="font-bold text-lg">Offers</p>
+                                <p className="font-bold text-lg">Penawaran</p>
                             </motion.div>
                         </Link>
                     )}
@@ -173,7 +173,7 @@ const Sidebar = () => {
                                 transition={{ delay: 0.25 }}
                             >
                                 <TbUsers className="text-2xl mr-3" />
-                                <p className="font-bold text-lg">Users</p>
+                                <p className="font-bold text-lg">Pengguna</p>
                             </motion.div>
                         </Link>
                     )}
@@ -188,7 +188,7 @@ const Sidebar = () => {
                     >
                         <div className="flex items-center">
                             <TbSunMoon className="text-2xl mr-3" />
-                            <p className="font-bold text-lg">Theme Mode</p>
+                            <p className="font-bold text-lg">Mode Tema</p>
                         </div>
                         <DarkModeToggle />
                     </motion.div>
@@ -208,7 +208,7 @@ const Sidebar = () => {
                                     onClick={handleLogout}
                                 >
                                     <TbLogout2 className="text-2xl mr-3" />
-                                    <p className="font-bold text-lg">Logout</p>
+                                    <p className="font-bold text-lg">Keluar</p>
                                 </div>
                             </motion.div>
                         )}

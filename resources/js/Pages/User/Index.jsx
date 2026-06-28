@@ -26,13 +26,13 @@ const UserIndex = ({ flash, users, filters }) => {
     return (
         <Layout flash={flash}>
             <Head>
-                <title>Users | TelatenKarya</title>
+                <title>Pengguna | TelatenKarya</title>
             </Head>
             <Sidebar />
             <section className="sm:ml-80 p-8 relative">
                 <div className="mb-5">
-                    <h1 className="text-3xl font-bold">Users</h1>
-                    <p className="text-slate-500 dark:text-slate-400 text-lg">List of all users</p>
+                    <h1 className="text-3xl font-bold">Pengguna</h1>
+                    <p className="text-slate-500 dark:text-slate-400 text-lg">Daftar semua pengguna</p>
                 </div>
                 <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl">
                     <DataTable
@@ -40,17 +40,17 @@ const UserIndex = ({ flash, users, filters }) => {
                         meta={users}
                         filters={filters}
                         routeName="user.index"
-                        searchPlaceholder="Search by Name or Email"
+                        searchPlaceholder="Cari Nama atau Email"
                         gridLayout="0.5fr 1.5fr 1.5fr 1fr 1fr 0.8fr"
-                        title="Users"
+                        title="Pengguna"
                         deleteType="user"
-                        deleteDescription="Are you sure to delete this user?"
+                        deleteDescription="Apakah Anda yakin ingin menghapus pengguna ini?"
                         addHref={route("user.create")}
-                        addLabel="Add User"
+                        addLabel="Tambah Pengguna"
                         columns={[
                             {
                                 key: "actions",
-                                label: "Action",
+                                label: "Aksi",
                                 render: (item, { onDelete }) => (
                                     <motion.div
                                         initial={{ opacity: 0, y: 10 }}
@@ -74,7 +74,7 @@ const UserIndex = ({ flash, users, filters }) => {
                             },
                             {
                                 key: "name",
-                                label: "Name",
+                                label: "Nama",
                                 sortKey: "name",
                                 render: (item) => (
                                     <motion.div
@@ -102,7 +102,7 @@ const UserIndex = ({ flash, users, filters }) => {
                             },
                             {
                                 key: "role",
-                                label: "Role",
+                                label: "Peran",
                                 render: (item) => (
                                     <motion.div
                                         initial={{ opacity: 0, y: 10 }}
@@ -117,7 +117,7 @@ const UserIndex = ({ flash, users, filters }) => {
                             },
                             {
                                 key: "created_at",
-                                label: "Created At",
+                                label: "Dibuat Pada",
                                 sortKey: "created_at",
                                 render: (item) => (
                                     <motion.div
@@ -132,7 +132,7 @@ const UserIndex = ({ flash, users, filters }) => {
                             },
                             {
                                 key: "created_by",
-                                label: "Created By",
+                                label: "Dibuat Oleh",
                                 render: (item) => (
                                     <motion.div
                                         initial={{ opacity: 0, y: 10 }}

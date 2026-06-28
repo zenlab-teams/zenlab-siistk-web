@@ -66,7 +66,7 @@ const ModalCreateCustomer = ({ isOpen, onClose, onSuccess, initialName = "" }) =
                         exit={{ opacity: 0, y: -20 }}
                     >
                         <div className="flex items-center justify-between border-b border-slate-200 p-5 dark:border-slate-700">
-                            <p className="text-xl font-bold">Create New Customer</p>
+                            <p className="text-xl font-bold">Tambah Pelanggan Baru</p>
                             <button
                                 type="button"
                                 onClick={onClose}
@@ -80,8 +80,8 @@ const ModalCreateCustomer = ({ isOpen, onClose, onSuccess, initialName = "" }) =
                             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                                 <TextInput
                                     name="name"
-                                    label="Name"
-                                    placeholder="Enter Customer Name"
+                                    label="Nama"
+                                    placeholder="Masukkan Nama Pelanggan"
                                     required={true}
                                     value={data.name}
                                     onChange={setData}
@@ -92,14 +92,14 @@ const ModalCreateCustomer = ({ isOpen, onClose, onSuccess, initialName = "" }) =
                                         type="email"
                                         name="email"
                                         label="Email"
-                                        placeholder="Enter Email (optional)"
+                                        placeholder="Masukkan Email (opsional)"
                                         value={data.email}
                                         onChange={setData}
                                         error={errors.email}
                                     />
                                     <NumberInput
                                         name="number_phone"
-                                        label="Phone Number"
+                                        label="Nomor Telepon"
                                         type="phone"
                                         value={data.number_phone}
                                         onChange={setData}
@@ -108,8 +108,8 @@ const ModalCreateCustomer = ({ isOpen, onClose, onSuccess, initialName = "" }) =
                                 </div>
                                 <TextAreaInput
                                     name="address"
-                                    label="Address"
-                                    placeholder="Enter Address"
+                                    label="Alamat"
+                                    placeholder="Masukkan Alamat"
                                     required={true}
                                     value={data.address}
                                     onChange={setData}
@@ -121,7 +121,7 @@ const ModalCreateCustomer = ({ isOpen, onClose, onSuccess, initialName = "" }) =
                                         disabled={processing}
                                         className="bg-sky-500 hover:bg-sky-600 disabled:bg-slate-400 text-white dark:text-slate-800 px-5 py-2 rounded-lg font-bold transition-all"
                                     >
-                                        {processing ? "Saving..." : "Save Customer"}
+                                        {processing ? "Menyimpan..." : "Simpan Pelanggan"}
                                     </button>
                                 </div>
                             </form>

@@ -129,7 +129,7 @@ const OfferShow = ({ flash, offer, customers }) => {
         <>
             <Layout flash={flash}>
                 <Head>
-                    <title>Offer Detail | TelatenKarya</title>
+                    <title>Detail Penawaran | TelatenKarya</title>
                 </Head>
                 <Sidebar />
 
@@ -151,12 +151,12 @@ const OfferShow = ({ flash, offer, customers }) => {
                         href={route("offer.index")}
                         className="flex items-center gap-2 bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 text-slate-500 dark:text-slate-400 px-3 py-2 rounded-lg font-bold transition-all"
                     >
-                        <MdKeyboardArrowLeft className="font-bold text-xl" /> Back
+                        <MdKeyboardArrowLeft className="font-bold text-xl" /> Kembali
                     </Link>
                 </div>
 
                 <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl mb-5">
-                    <p className="text-xl font-bold mb-3">Info Offer</p>
+                    <p className="text-xl font-bold mb-3">Info Penawaran</p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <p className="text-slate-500 dark:text-slate-400 text-sm">Nama Penawaran</p>
@@ -197,7 +197,7 @@ const OfferShow = ({ flash, offer, customers }) => {
                         columns={[
                             {
                                 key: "thumbnail",
-                                label: "Thumbnail",
+                                label: "Gambar",
                                 render: (item) =>
                                     item.product?.thumbnail ? (
                                         <img
@@ -222,7 +222,7 @@ const OfferShow = ({ flash, offer, customers }) => {
                             },
                             {
                                 key: "remaining",
-                                label: "Sisa Stock",
+                                label: "Sisa Stok",
                                 render: (item) => {
                                     const remaining = remainingStockMap[item.product_id] ?? 0;
                                     return (
@@ -256,7 +256,7 @@ const OfferShow = ({ flash, offer, customers }) => {
                         paginated={false}
                         selectable={false}
                         gridLayout="0.5fr 1fr 1fr 2fr 1fr 0.8fr"
-                        title="Sale Records"
+                        title="Laporan Penjualan"
                         toolbar={
                             offer.status === "active" ? (
                                 <button
@@ -271,7 +271,7 @@ const OfferShow = ({ flash, offer, customers }) => {
                         columns={[
                             {
                                 key: "action",
-                                label: "Action",
+                                label: "Aksi",
                                 cellClassName: "!items-start !p-3",
                                 render: (record) => (
                                     <div className="flex gap-2 items-center">
@@ -309,7 +309,7 @@ const OfferShow = ({ flash, offer, customers }) => {
                             },
                             {
                                 key: "customer",
-                                label: "Customer",
+                                label: "Pelanggan",
                                 cellClassName: "!items-start !p-3",
                                 render: (record) =>
                                     record.customer?.name ?? (
@@ -324,7 +324,7 @@ const OfferShow = ({ flash, offer, customers }) => {
                             },
                             {
                                 key: "items",
-                                label: "Items",
+                                label: "Item",
                                 cellClassName: "!items-start !p-3",
                                 render: (record) => (
                                     <div className="flex flex-col gap-1 w-full">
@@ -375,14 +375,14 @@ const OfferShow = ({ flash, offer, customers }) => {
                             onClick={handleCompleteOffer}
                             className="bg-emerald-500 hover:bg-emerald-600 text-white dark:text-slate-800 px-4 py-2 rounded-lg font-bold transition-all"
                         >
-                            Selesaikan Offer
+                            Selesaikan Penawaran
                         </button>
                         <button
                             type="button"
                             onClick={handleRejectOffer}
                             className="bg-red-500 hover:bg-red-600 text-white dark:text-slate-800 px-4 py-2 rounded-lg font-bold transition-all"
                         >
-                            Batalkan Offer
+                            Batalkan Penawaran
                         </button>
                     </div>
                 )}

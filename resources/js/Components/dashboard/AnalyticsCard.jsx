@@ -112,7 +112,7 @@ const AnalyticsCard = () => {
                     label: (ctx) => {
                         const label = ctx.dataset.label || "";
                         const val = ctx.parsed.y;
-                        if (label.toLowerCase().includes("revenue") || label.toLowerCase().includes("modal") || label.toLowerCase().includes("cost")) {
+                        if (label.toLowerCase().includes("pendapatan") || label.toLowerCase().includes("modal") || label.toLowerCase().includes("cost")) {
                             return `${label}: ${formatRp(val)}`;
                         }
                         return `${label}: ${formatNum(val)}`;
@@ -157,7 +157,7 @@ const AnalyticsCard = () => {
               labels: data.sales.labels,
               datasets: [
                   {
-                      label: "Revenue",
+                      label: "Pendapatan",
                       data: data.sales.datasets.revenue,
                       borderColor: "#0ea5e9",
                       backgroundColor: "rgba(14, 165, 233, 0.1)",
@@ -168,7 +168,7 @@ const AnalyticsCard = () => {
                       yAxisID: "y",
                   },
                   {
-                      label: "Qty Sold",
+                      label: "Jumlah Terjual",
                       data: data.sales.datasets.quantity,
                       borderColor: "#10b981",
                       backgroundColor: "rgba(16, 185, 129, 0.1)",
@@ -340,8 +340,8 @@ const AnalyticsCard = () => {
                     {/* Summary Cards */}
                     {activeTab === "sales" && data?.sales?.summary && (
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
-                            <SummaryCard label="Total Revenue" value={formatRp(data.sales.summary.total_revenue)} color="sky" />
-                            <SummaryCard label="Avg Revenue / Periode" value={formatRp(data.sales.summary.avg_revenue)} color="emerald" />
+                            <SummaryCard label="Total Pendapatan" value={formatRp(data.sales.summary.total_revenue)} color="sky" />
+                            <SummaryCard label="Rata-rata Pendapatan / Periode" value={formatRp(data.sales.summary.avg_revenue)} color="emerald" />
                             <SummaryCard label="Total Qty Terjual" value={formatNum(data.sales.summary.total_quantity)} color="orange" />
                             <SummaryCard label="Avg Qty / Periode" value={formatNum(data.sales.summary.avg_quantity)} color="rose" />
                         </div>
@@ -358,7 +358,7 @@ const AnalyticsCard = () => {
                     {/* Chart */}
                     <div className="h-[350px]">
                         {activeTab === "sales" && salesChartData && (
-                            <Line data={salesChartData} options={chartOptions("Revenue (Rp)", "Quantity")} />
+                            <Line data={salesChartData} options={chartOptions("Pendapatan (Rp)", "Jumlah")} />
                         )}
                         {activeTab === "stock" && stockChartData && (
                             <Bar data={stockChartData} options={chartOptions("Modal (Rp)")} />

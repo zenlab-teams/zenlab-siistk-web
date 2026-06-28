@@ -35,7 +35,7 @@ const ProductShow = ({ flash, product, stocks, currentStock }) => {
     return (
         <Layout flash={flash}>
             <Head>
-                <title>Product Detail | TelatenKarya</title>
+                <title>Detail Produk | TelatenKarya</title>
             </Head>
             <Sidebar />
             <section className="sm:ml-80 p-8 relative">
@@ -47,20 +47,20 @@ const ProductShow = ({ flash, product, stocks, currentStock }) => {
                                 Stock: {currentStock}
                             </span>
                         </div>
-                        <p className="text-slate-500 dark:text-slate-400 text-lg">Product details and stock history</p>
+                        <p className="text-slate-500 dark:text-slate-400 text-lg">Detail produk dan riwayat stok</p>
                     </div>
                     <div className="flex items-center gap-3">
                         <Link
                             href={route("product.index")}
                             className="flex items-center gap-2 bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 text-slate-500 dark:text-slate-400 px-3 py-2 rounded-lg font-bold transition-all"
                         >
-                            <MdKeyboardArrowLeft className="font-bold text-xl" /> Back
+                            <MdKeyboardArrowLeft className="font-bold text-xl" /> Kembali
                         </Link>
                         <Link
                             href={route("product.stock.create", product.id)}
                             className="flex items-center gap-2 bg-emerald-400 dark:bg-emerald-500 text-white dark:text-slate-800 hover:bg-emerald-500 dark:hover:bg-emerald-600 px-3 py-2 rounded-lg font-bold transition-all"
                         >
-                            <TbPlus className="font-bold text-xl" /> Add Stock
+                            <TbPlus className="font-bold text-xl" /> Tambah Stok
                         </Link>
                     </div>
                 </div>
@@ -73,21 +73,21 @@ const ProductShow = ({ flash, product, stocks, currentStock }) => {
                             ) : (
                                 <div className="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500">
                                     <TbPhoto className="text-7xl mb-2" />
-                                    <span>No Thumbnail</span>
+                                    <span>Tidak Ada Gambar</span>
                                 </div>
                             )}
                         </div>
                         <div className="md:col-span-2 flex flex-col gap-3">
                             <div>
-                                <p className="text-sm text-slate-500 dark:text-slate-400">Name</p>
+                                <p className="text-sm text-slate-500 dark:text-slate-400">Nama</p>
                                 <p className="text-2xl font-bold">{product.name}</p>
                             </div>
                             <div>
-                                <p className="text-sm text-slate-500 dark:text-slate-400">Price</p>
+                                <p className="text-sm text-slate-500 dark:text-slate-400">Harga</p>
                                 <p className="text-xl font-bold">Rp{product.price.toLocaleString("id-ID")}</p>
                             </div>
                             <div>
-                                <p className="text-sm text-slate-500 dark:text-slate-400">Description</p>
+                                <p className="text-sm text-slate-500 dark:text-slate-400">Deskripsi</p>
                                 <p className="text-base whitespace-pre-line">{product.description ?? "-"}</p>
                             </div>
                         </div>
@@ -96,9 +96,9 @@ const ProductShow = ({ flash, product, stocks, currentStock }) => {
 
                 <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl">
                     <div className="flex items-center justify-between mb-3">
-                        <p className="text-xl font-bold">Stock History</p>
+                        <p className="text-xl font-bold">Riwayat Stok</p>
                         <span className="bg-slate-200 text-slate-500 dark:bg-slate-700 dark:text-slate-400 px-3 py-1 rounded-lg text-sm">
-                            {stocks.length} entries
+                            {stocks.length} entri
                         </span>
                     </div>
                     <div className="overflow-x-auto">
@@ -117,13 +117,13 @@ const ProductShow = ({ flash, product, stocks, currentStock }) => {
                                                 layout={{ custom: true }}
                                             >
                                                 <HeaderCell className="border-s-2 border-y-2 rounded-s-xl !py-2 !px-3 dark:border-slate-600">
-                                                    Date
+                                                    Tanggal
                                                 </HeaderCell>
-                                                <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Type</HeaderCell>
-                                                <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Quantity</HeaderCell>
-                                                <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Unit Cost</HeaderCell>
+                                                <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Tipe</HeaderCell>
+                                                <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Jumlah</HeaderCell>
+                                                <HeaderCell className="!py-2 !px-3 border-y-2 dark:border-slate-600">Harga Satuan</HeaderCell>
                                                 <HeaderCell className="!py-2 !px-3 rounded-r-xl border-y-2 border-r-2 border-slate-200 dark:border-slate-600">
-                                                    Note
+                                                    Catatan
                                                 </HeaderCell>
                                             </HeaderRow>
                                         </Header>
@@ -193,7 +193,7 @@ const ProductShow = ({ flash, product, stocks, currentStock }) => {
                                                     gridColumnEnd={100}
                                                     className="text-center py-16 text-slate-400 dark:text-slate-500"
                                                 >
-                                                    No stock history found.
+                                                    Belum ada riwayat stok.
                                                 </Cell>
                                             )}
                                         </Body>

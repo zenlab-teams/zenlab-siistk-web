@@ -163,24 +163,24 @@ const OfferCreate = ({ flash, sales, products }) => {
     return (
         <Layout flash={flash}>
             <Head>
-                <title>Create Offer | TelatenKarya</title>
+                <title>Buat Penawaran | TelatenKarya</title>
             </Head>
             <Sidebar />
 
             <section className="sm:ml-80 p-8 relative">
                 <div className="mb-5">
-                    <h1 className="text-3xl font-bold">Offers</h1>
-                    <p className="text-slate-500 dark:text-slate-400 text-lg">Create weekly offer for sales team</p>
+                    <h1 className="text-3xl font-bold">Penawaran</h1>
+                    <p className="text-slate-500 dark:text-slate-400 text-lg">Buat penawaran mingguan untuk tim sales</p>
                 </div>
 
                 <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl">
                     <div className="flex justify-between items-center mb-4">
-                        <p className="text-xl font-bold">Create Offer</p>
+                        <p className="text-xl font-bold">Buat Penawaran</p>
                         <Link
                             href={route("offer.index")}
                             className="flex items-center gap-2 bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 text-slate-500 dark:text-slate-400 px-3 py-2 rounded-lg font-bold transition-all"
                         >
-                            <MdKeyboardArrowLeft className="font-bold text-xl" /> Back
+                            <MdKeyboardArrowLeft className="font-bold text-xl" /> Kembali
                         </Link>
                     </div>
 
@@ -235,7 +235,7 @@ const OfferCreate = ({ flash, sales, products }) => {
                                     onClick={addSales}
                                     disabled={salesOptions.length === data.sales.length}
                                 >
-                                    <TbPlus className="text-xl" /> Add Sales Rep
+                                    <TbPlus className="text-xl" /> Tambah Sales
                                 </button>
                             </div>
 
@@ -244,7 +244,7 @@ const OfferCreate = ({ flash, sales, products }) => {
                             <div className="flex flex-col gap-3">
                                 {data.sales.length === 0 && (
                                     <div className="border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-xl p-6 text-center text-slate-500 dark:text-slate-400">
-                                        Belum ada sales rep. Klik <span className="font-bold">Add Sales Rep</span> untuk mulai.
+                                        Belum ada sales rep. Klik <span className="font-bold">Tambah Sales</span> untuk mulai.
                                     </div>
                                 )}
 
@@ -260,7 +260,7 @@ const OfferCreate = ({ flash, sales, products }) => {
                                                 <div className="lg:col-span-11">
                                                     <SelectInput
                                                         name={`sales_${index}`}
-                                                        label="Sales Representative"
+                                                        label="Perwakilan Sales"
                                                         placeholder="Pilih sales rep"
                                                         options={getAvailableSalesOptions(index)}
                                                         value={sale.sale_id}
@@ -274,7 +274,7 @@ const OfferCreate = ({ flash, sales, products }) => {
                                                         type="button"
                                                         className="w-full h-[45px] flex items-center justify-center rounded-lg bg-red-100 text-red-500 hover:bg-red-200 dark:bg-red-900/30 dark:text-red-400 dark:hover:bg-red-900/50 transition-all"
                                                         onClick={() => removeSales(index)}
-                                                        aria-label="Remove sales rep"
+                                                        aria-label="Hapus sales rep"
                                                     >
                                                         <TbTrash className="text-2xl" />
                                                     </button>
@@ -288,13 +288,13 @@ const OfferCreate = ({ flash, sales, products }) => {
 
                         <div className="border-2 border-slate-200 dark:border-slate-700 rounded-xl p-4">
                             <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-                                <p className="text-lg font-bold">Offer Items</p>
+                                <p className="text-lg font-bold">Item Penawaran</p>
                                 <button
                                     type="button"
                                     className="flex items-center gap-2 bg-emerald-400 dark:bg-emerald-500 text-white dark:text-slate-800 hover:bg-emerald-500 dark:hover:bg-emerald-600 px-3 py-2 rounded-lg font-bold transition-all"
                                     onClick={addItem}
                                 >
-                                    <TbPlus className="text-xl" /> Add Item
+                                    <TbPlus className="text-xl" /> Tambah Item
                                 </button>
                             </div>
 
@@ -305,7 +305,7 @@ const OfferCreate = ({ flash, sales, products }) => {
                             <div className="flex flex-col gap-3">
                                 {data.items.length === 0 && (
                                     <div className="border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-xl p-6 text-center text-slate-500 dark:text-slate-400">
-                                        Belum ada item. Klik <span className="font-bold">Add Item</span> untuk mulai.
+                                        Belum ada item. Klik <span className="font-bold">Tambah Item</span> untuk mulai.
                                     </div>
                                 )}
 
@@ -336,7 +336,7 @@ const OfferCreate = ({ flash, sales, products }) => {
                                                                     <span className="text-xs text-slate-400">Normal: Rp{Number(price ?? 0).toLocaleString("id-ID")}</span>
                                                                 </div>
                                                                 <span className={`text-sm ${stock <= 0 ? "text-red-400 font-bold" : "text-slate-400"}`}>
-                                                                    {stock <= 0 ? "Out of Stock" : `Stock: ${stock}`}
+                                                                    {stock <= 0 ? "Stok Habis" : `Stok: ${stock}`}
                                                                 </span>
                                                             </div>
                                                         )}
@@ -418,7 +418,7 @@ const OfferCreate = ({ flash, sales, products }) => {
                                 disabled={processing}
                                 className="bg-sky-500 hover:bg-sky-600 disabled:bg-slate-400 text-white dark:text-slate-800 px-5 py-2 rounded-lg font-bold transition-all"
                             >
-                                {processing ? "Saving..." : "Buat Offer"}
+                                {processing ? "Menyimpan..." : "Buat Penawaran"}
                             </button>
                         </div>
                     </form>

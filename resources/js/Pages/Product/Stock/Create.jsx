@@ -17,9 +17,9 @@ const ProductStockCreate = ({ flash, product }) => {
     }, [dispatch]);
 
     const stockTypeOptions = [
-        { value: "in", label: "Stock In" },
-        { value: "out", label: "Stock Out" },
-        { value: "adjustment", label: "Adjustment" },
+        { value: "in", label: "Stok Masuk" },
+        { value: "out", label: "Stok Keluar" },
+        { value: "adjustment", label: "Penyesuaian" },
     ];
 
     const initialForm = {
@@ -43,22 +43,22 @@ const ProductStockCreate = ({ flash, product }) => {
     return (
         <Layout flash={flash}>
             <Head>
-                <title>Add Stock | TelatenKarya</title>
+                <title>Tambah Stok | TelatenKarya</title>
             </Head>
             <Sidebar />
             <section className="sm:ml-80 p-8 relative">
                 <div className="mb-5">
-                    <h1 className="text-3xl font-bold">Add Stock - {product.name}</h1>
-                    <p className="text-slate-500 dark:text-slate-400 text-lg">Create a new stock entry for this product</p>
+                    <h1 className="text-3xl font-bold">Tambah Stok - {product.name}</h1>
+                    <p className="text-slate-500 dark:text-slate-400 text-lg">Buat entri stok baru untuk produk ini</p>
                 </div>
                 <div className="bg-white dark:bg-slate-800 shadow-lg p-5 rounded-xl">
                     <div className="flex justify-between items-center mb-3">
-                        <p className="text-xl font-bold">Add Stock Entry</p>
+                        <p className="text-xl font-bold">Tambah Entri Stok</p>
                         <Link
                             href={route("product.show", product.id)}
                             className="flex items-center gap-2 bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 text-slate-500 dark:text-slate-400 px-3 py-2 rounded-lg font-bold transition-all"
                         >
-                            <MdKeyboardArrowLeft className="font-bold text-xl" /> Back
+                            <MdKeyboardArrowLeft className="font-bold text-xl" /> Kembali
                         </Link>
                     </div>
                     <div className="flex justify-center w-full">
@@ -66,8 +66,8 @@ const ProductStockCreate = ({ flash, product }) => {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                 <SelectInput
                                     name="type"
-                                    label="Type"
-                                    placeholder="Select Stock Type"
+                                    label="Tipe"
+                                    placeholder="Pilih Tipe Stok"
                                     options={stockTypeOptions}
                                     value={data.type}
                                     onChange={setData}
@@ -76,8 +76,8 @@ const ProductStockCreate = ({ flash, product }) => {
                                 />
                                 <NumberInput
                                     name="quantity"
-                                    label="Quantity"
-                                    placeholder="Enter Quantity"
+                                    label="Jumlah"
+                                    placeholder="Masukkan Jumlah"
                                     value={data.quantity}
                                     onChange={setData}
                                     required={true}
@@ -86,16 +86,16 @@ const ProductStockCreate = ({ flash, product }) => {
                                 <NumberInput
                                     name="unit_cost"
                                     type="currency"
-                                    label="Unit Cost"
-                                    placeholder="Enter Unit Cost (Rp)"
+                                    label="Harga Satuan"
+                                    placeholder="Masukkan Harga Satuan (Rp)"
                                     value={data.unit_cost}
                                     onChange={(_, value) => setData("unit_cost", value)}
                                     error={errors.unit_cost && errors.unit_cost}
                                 />
                                 <TextInput
                                     name="note"
-                                    label="Note"
-                                    placeholder="Enter Note"
+                                    label="Catatan"
+                                    placeholder="Masukkan Catatan"
                                     onChange={setData}
                                     value={data.note}
                                     error={errors.note && errors.note}
@@ -113,7 +113,7 @@ const ProductStockCreate = ({ flash, product }) => {
                                     type="submit"
                                     className="bg-sky-500 hover:bg-sky-600 text-white dark:text-slate-800 px-5 py-2 rounded-lg font-bold transition-all"
                                 >
-                                    Add Stock
+                                    Tambah Stok
                                 </button>
                             </div>
                         </form>
