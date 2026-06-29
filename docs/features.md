@@ -1,90 +1,83 @@
 # Feature Documentation
 
-Dokumen ini menjadi baseline fitur ZENLAB SIISTK. Detail bisa dilengkapi saat implementasi makin stabil.
+Dokumen ini menjelaskan fitur utama ZENLAB SIISTK, aktor yang terlibat,
+alur penggunaan, route terkait, controller, dan screenshot pendukung.
 
 ## Authentication dan Role Access
 
 - Tujuan: memberi akses login dan redirect sesuai role.
 - Aktor: admin, sales, customer.
 - Alur: user login, sistem cek role, lalu arahkan ke dashboard yang sesuai.
-- Route: login/logout dan redirect role dari `routes/web.php`.
+- Route: `/login`, `/logout`, dan `/` untuk redirect ke `/admin/dashboard`, `/sales/dashboard`, atau `/customer/dashboard`.
 - Controller: `app/Http/Controllers/Auth`.
-- Screenshot: Placeholder
-- Status: Baseline tersedia.
+- Screenshot: ![Halaman Login](screenshots/Screenshot%202026-06-18%20235101.png)
 
 ## Admin Dashboard
 
 - Tujuan: menampilkan ringkasan operasional admin.
 - Aktor: admin.
 - Alur: admin login, masuk dashboard, melihat metrik utama dan aktivitas terbaru.
-- Route: dashboard admin.
+- Route: `/admin/dashboard` dan `/admin/dashboard/analytics`.
 - Controller: `app/Http/Controllers/Admin/DashboardController.php`.
-- Screenshot: Placeholder
-- Status: Baseline tersedia.
+- Screenshot: ![Dashboard Admin](screenshots/Screenshot%202026-06-18%20235149.png)
 
 ## Product dan Stock Management
 
 - Tujuan: mengelola produk dan ledger stok.
 - Aktor: admin.
 - Alur: admin tambah, ubah, dan lihat produk lalu mencatat stok masuk atau penyesuaian.
-- Route: product, stock, bulk create.
+- Route: `/admin/product`, `/admin/product/create`, `/admin/product/bulk-create`, dan `/admin/product/{product}/stock/create`.
 - Controller: `Admin/ProductController`, `Admin/StockController`.
-- Screenshot: Placeholder
-- Status: Baseline tersedia.
+- Screenshot: ![Manajemen Produk](screenshots/Screenshot%202026-06-18%20235204.png)
 
 ## Order dan Invoice Management
 
 - Tujuan: mengelola order dan konfirmasi invoice.
 - Aktor: admin, customer.
 - Alur: order dibuat, invoice dikonfirmasi, lalu data transaksi dipantau.
-- Route: order dan invoice route di `routes/web.php`.
+- Route: `/admin/order`, `/admin/order/create`, `/admin/order/{order}`, `/admin/order/{order}/invoice/download`, `/order/v/{uuid}`, dan `/order/v/{uuid}/payment`.
 - Controller: `Admin/OrderController`, `Admin/InvoiceController`, `PublicOrderController`.
-- Screenshot: Placeholder
-- Status: Baseline tersedia.
+- Screenshot: ![Manajemen Pesanan](screenshots/Screenshot%202026-06-18%20235217.png)
 
 ## Offer Workflow
 
 - Tujuan: mengelola alur penawaran dari sales ke admin.
 - Aktor: admin, sales.
 - Alur: sales kirim offer record, admin review, lalu approve, reject, atau complete.
-- Route: offer dan sales offer route di `routes/web.php`.
+- Route: `/sales/offer`, `/sales/offer/{offer}`, `/admin/offer`, `/admin/offer/create`, dan `/admin/offer/{offer}`.
 - Controller: `Admin/OfferController`, `Sales/OfferController`.
-- Screenshot: Placeholder
-- Status: Baseline tersedia.
+- Screenshot: ![Offer Workflow](screenshots/features/offer-workflow.png)
 
 ## Customer Management
 
 - Tujuan: mengelola data customer.
 - Aktor: admin, sales, customer.
 - Alur: data customer dibuat, diperbarui, dan dipakai di transaksi.
-- Route: customer route di `routes/web.php`.
+- Route: `/admin/customer`, `/admin/customer/create`, `/admin/customer/{customer}/edit`, `/customer/quick`, dan `/customer/dashboard`.
 - Controller: `Admin/CustomerController`, `Customer/DashboardController`.
-- Screenshot: Placeholder
-- Status: Baseline tersedia.
+- Screenshot: ![Customer Management](screenshots/features/customer-management.png)
 
 ## Sales Dashboard
 
 - Tujuan: memberi ringkasan aktivitas sales.
 - Aktor: sales.
 - Alur: sales login, lihat aktivitas dan offer yang sedang berjalan.
-- Route: dashboard sales.
+- Route: `/sales/dashboard`.
 - Controller: `Sales/DashboardController`.
-- Screenshot: Placeholder
-- Status: Baseline tersedia.
+- Screenshot: ![Sales Dashboard](screenshots/features/sales-dashboard.png)
 
 ## Reusable UI Components
 
 - Tujuan: menjaga UI konsisten dan reusable.
 - Aktor: developer.
 - Alur: halaman memakai komponen bersama untuk tabel, input, modal, dan button.
-- Route: semua halaman UI yang memakai komponen shared.
+- Route: dipakai di `/admin/product`, `/admin/order`, `/admin/customer`, dan `/sales/offer`.
 - Controller: tidak spesifik; dipakai lintas page.
-- Screenshot: Placeholder
-- Status: Baseline tersedia.
+- Screenshot: Belum tersedia.
 
 ## Catatan Update
 
-- Screenshot aplikasi aktual perlu diganti dari placeholder.
+- Screenshot untuk reusable UI perlu ditambahkan saat aset tersedia.
 - Detail validasi form penting perlu dilengkapi.
 - Kondisi sukses, gagal, empty state, dan error state perlu ditulis.
 - Hak akses per fitur perlu diperinci.

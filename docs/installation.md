@@ -177,15 +177,3 @@ php artisan storage:link
 
 Cek ulang koneksi database di `.env`, lalu pastikan database lokal sudah dibuat.
 
-## Checklist Instalasi
-
-- Repository berhasil di-clone.
-- Dependency Composer dan NPM berhasil terpasang.
-- File `.env` sudah dibuat dan disesuaikan.
-- `APP_KEY` sudah dibuat.
-- Database sudah dibuat.
-- Migration berhasil dijalankan.
-- Storage link berhasil dibuat.
-- Asset berhasil dibuild.
-- Aplikasi bisa dibuka di browser.
-- Test berhasil dijalankan.
