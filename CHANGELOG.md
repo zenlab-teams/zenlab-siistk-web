@@ -7,6 +7,16 @@ dan proyek ini mengikuti [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 
 ## [Unreleased]
 
+### Added
+
+- Workflow CI GitHub Actions untuk validasi proyek.
+- Terjemahan antarmuka ke bahasa Indonesia.
+
+### Changed
+
+- README diperbarui untuk branding TelatenKarya dan screenshot terbaru.
+- Dokumentasi instalasi, fitur, dependency, dan catatan refactoring diperbarui.
+
 ## [0.3.0] - 2026-06-27
 
 ### Added
