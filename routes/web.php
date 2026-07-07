@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\StockController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\ChatBotController;
 use App\Http\Controllers\Customer\DashboardController as CustomerDashboard;
 use App\Http\Controllers\PublicOrderController;
 use App\Http\Controllers\Sales\DashboardController as SalesDashboard;
@@ -124,3 +125,5 @@ Route::middleware('auth')->get('/', function () {
         default => redirect()->route('login'),
     };
 });
+
+Route::middleware('auth')->post('/chat', ChatBotController::class)->name('chat.send');
