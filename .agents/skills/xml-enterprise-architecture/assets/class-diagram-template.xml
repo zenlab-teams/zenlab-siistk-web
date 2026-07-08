@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<xmi:XMI xmi:version="2.1"
+         xmlns:uml="http://schema.omg.org/spec/UML/2.1"
+         xmlns:xmi="http://schema.omg.org/spec/XMI/2.1">
+  <xmi:Documentation exporter="Enterprise Architect" exporterVersion="6.5"/>
+  <uml:Model xmi:type="uml:Model" name="EA_Model" visibility="public">
+    <packagedElement xmi:type="uml:Package"
+                     xmi:id="EAPK_11111111_1111_1111_1111_111111111111"
+                     name="Domain" visibility="public">
+      <packagedElement xmi:type="uml:Class"
+                       xmi:id="EAID_AAAAAAAA_0000_0000_0000_000000000001"
+                       name="Customer" visibility="public">
+        <ownedAttribute xmi:type="uml:Property"
+                        xmi:id="EAID_AT_0000_0000_0000_000000000001"
+                        name="id" visibility="private"/>
+        <ownedAttribute xmi:type="uml:Property"
+                        xmi:id="EAID_AT_0000_0000_0000_000000000002"
+                        name="name" visibility="private"/>
+        <ownedOperation xmi:type="uml:Operation"
+                        xmi:id="EAID_OP_0000_0000_0000_000000000001"
+                        name="register" visibility="public"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class"
+                       xmi:id="EAID_BBBBBBBB_0000_0000_0000_000000000002"
+                       name="Order" visibility="public">
+        <ownedAttribute xmi:type="uml:Property"
+                        xmi:id="EAID_AT_0000_0000_0000_000000000003"
+                        name="total" visibility="private"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association"
+                       xmi:id="EAID_C0000001_0000_0000_0000_000000000001"
+                       name="places" visibility="public">
+        <memberEnd xmi:idref="EAID_AAAAAAAA_0000_0000_0000_000000000001"/>
+        <memberEnd xmi:idref="EAID_BBBBBBBB_0000_0000_0000_000000000002"/>
+      </packagedElement>
+    </packagedElement>
+  </uml:Model>
+  <xmi:Extension extender="Enterprise Architect" extenderID="6.5">
+    <elements>
+      <element xmi:idref="EAID_AAAAAAAA_0000_0000_0000_000000000001"
+               xmi:type="uml:Class" name="Customer" scope="public">
+        <model package="EAPK_11111111_1111_1111_1111_111111111111" tpos="0" ea_localid="1" ea_eleType="element"/>
+        <properties documentation="" ea_stype="Class"/>
+        <project author="Muhammad Luthfi" version="1.0" phase="1.0" status="Proposed"/>
+        <attributes>
+          <attribute xmi:idref="EAID_AT_0000_0000_0000_000000000001" name="id" scope="Private">
+            <properties type="int"/>
+          </attribute>
+          <attribute xmi:idref="EAID_AT_0000_0000_0000_000000000002" name="name" scope="Private">
+            <properties type="String"/>
+          </attribute>
+        </attributes>
+        <operations>
+          <operation xmi:idref="EAID_OP_0000_0000_0000_000000000001" name="register" scope="Public"/>
+        </operations>
+      </element>
+      <element xmi:idref="EAID_BBBBBBBB_0000_0000_0000_000000000002"
+               xmi:type="uml:Class" name="Order" scope="public">
+        <model package="EAPK_11111111_1111_1111_1111_111111111111" tpos="0" ea_localid="2" ea_eleType="element"/>
+        <properties documentation="" ea_stype="Class"/>
+        <project author="Muhammad Luthfi" version="1.0" phase="1.0" status="Proposed"/>
+        <attributes>
+          <attribute xmi:idref="EAID_AT_0000_0000_0000_000000000003" name="total" scope="Private">
+            <properties type="double"/>
+          </attribute>
+        </attributes>
+      </element>
+    </elements>
+    <connectors>
+      <connector xmi:idref="EAID_C0000001_0000_0000_0000_000000000001">
+        <source xmi:idref="EAID_AAAAAAAA_0000_0000_0000_000000000001">
+          <model ea_localid="1" type="Class" name="Customer"/>
+          <role visibility="Public"/>
+          <type multiplicity="1" aggregation="none"/>
+        </source>
+        <target xmi:idref="EAID_BBBBBBBB_0000_0000_0000_000000000002">
+          <model ea_localid="2" type="Class" name="Order"/>
+          <role visibility="Public"/>
+          <type multiplicity="0..*" aggregation="none"/>
+        </target>
+        <properties ea_type="Association" direction="Source -&gt; Destination"/>
+      </connector>
+    </connectors>
+    <diagrams>
+      <diagram xmi:id="EAID_D0000001_0000_0000_0000_000000000001">
+        <model package="EAPK_11111111_1111_1111_1111_111111111111" owner="EAPK_11111111_1111_1111_1111_111111111111"/>
+        <properties name="Domain Class Diagram" type="Logical"/>
+        <project author="Muhammad Luthfi" version="1.0"/>
+        <elements>
+          <element geometry="Left=40;Top=40;Right=200;Bottom=160;"
+                   subject="EAID_AAAAAAAA_0000_0000_0000_000000000001" seqno="1"/>
+          <element geometry="Left=360;Top=40;Right=520;Bottom=140;"
+                   subject="EAID_BBBBBBBB_0000_0000_0000_000000000002" seqno="2"/>
+        </elements>
+      </diagram>
+    </diagrams>
+  </xmi:Extension>
+</xmi:XMI>
