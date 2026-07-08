@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import { setSidebar } from "../Redux/slice";
 import Navbar from "./Navbar";
+import ChatBot from "../Components/ChatBot";
 
 const Layout = ({ children, flash = {} }) => {
     const darkMode = useSelector((state) => state.darkMode);
@@ -19,7 +20,7 @@ const Layout = ({ children, flash = {} }) => {
 
     return (
         <main className={`min-h-screen bg-slate-100 text-slate-900 ${darkMode && "dark"} dark:bg-slate-900 dark:text-slate-200`} id="modal-root">
-            <Toaster toastOptions={{ className: 'dark:!bg-slate-800 dark:!text-slate-200' }} />
+            <Toaster toastOptions={{ className: "dark:!bg-slate-800 dark:!text-slate-200" }} />
             <motion.div
                 className="bg-sky-200 w-[200px] h-[200px] sm:w-[500px] sm:h-[500px] absolute left-48 -top-96 rounded-full bg-opacity-50 dark:bg-sky-900"
                 initial={{ y: -80 }}
@@ -35,6 +36,7 @@ const Layout = ({ children, flash = {} }) => {
             <div className="pt-14 sm:pt-0">
                 {children}
             </div>
+            <ChatBot />
         </main>
     );
 };
