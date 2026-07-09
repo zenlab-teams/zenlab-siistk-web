@@ -2599,14 +2599,14 @@
       </element>
       <element xmi:idref="EAID_AF280C30_F859_422E_BE3D_74E349AA7743" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="5" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_1B253B11_1C54_4A3F_87D6_B5B7C5117D1B" start="EAID_AF280C30_F859_422E_BE3D_74E349AA7743" end="EAID_5CD5E9C0_28A9_4EA3_8153_426213546A68" /></links>
       </element>
       <element xmi:idref="EAID_5CD5E9C0_28A9_4EA3_8153_426213546A68" xmi:type="uml:Action" scope="public" name="Buka halaman login">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="6" ea_eleType="element" />
@@ -2731,14 +2731,14 @@
       </element>
       <element xmi:idref="EAID_60842E35_279B_4D20_8514_27326B0025FD" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="17" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_94EA3F2A_1C33_4B73_93C6_51354F416F29" start="EAID_2593CCBE_74DA_4098_B2D6_E486109970EC" end="EAID_60842E35_279B_4D20_8514_27326B0025FD" /><ControlFlow xmi:idref="EAID_723DF0B3_F7B0_4DD8_A172_D2A095C26E67" start="EAID_E0CA945F_10DE_4ADF_88AB_C36A6EEB56D0" end="EAID_60842E35_279B_4D20_8514_27326B0025FD" /><ControlFlow xmi:idref="EAID_3C66BC00_A3A4_40C4_8962_F4B80FCF2741" start="EAID_FEBC29C4_FD1D_430B_B791_DD9C8AAD06B6" end="EAID_60842E35_279B_4D20_8514_27326B0025FD" /><ControlFlow xmi:idref="EAID_4A964B4D_947A_4823_9178_B06500A373C4" start="EAID_2593CCBE_74DA_4098_B2D6_E486109970EC" end="EAID_60842E35_279B_4D20_8514_27326B0025FD" /></links>
       </element>
       <element xmi:idref="EAID_9146E21C_2BBD_4D8F_AB4B_AEA139B1C907" xmi:type="uml:ActivityPartition" scope="public" name="Admin/Sales/Customer">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="18" ea_eleType="element" />
@@ -2764,14 +2764,14 @@
       </element>
       <element xmi:idref="EAID_F45386D8_8AD9_4A8B_8D91_8BF2B206367E" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="21" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_43BE7A15_ADE7_4473_A4F8_0FB5C392BFF6" start="EAID_F45386D8_8AD9_4A8B_8D91_8BF2B206367E" end="EAID_AFDC162D_1AE3_4867_AAD6_E6749A50FE96" /></links>
       </element>
       <element xmi:idref="EAID_AFDC162D_1AE3_4867_AAD6_E6749A50FE96" xmi:type="uml:Action" scope="public" name="Klik logout">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="22" ea_eleType="element" />
@@ -2841,14 +2841,14 @@
       </element>
       <element xmi:idref="EAID_A2565116_EF98_42EA_9C81_294F92336F9C" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="28" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_B8F4B5BB_5169_4761_9C93_0277F99389C9" start="EAID_11223D61_9858_4E87_8F82_8DD7FCC3B6C2" end="EAID_A2565116_EF98_42EA_9C81_294F92336F9C" /></links>
       </element>
       <element xmi:idref="EAID_A86B76C2_8568_40C7_9989_EBAD3B811406" xmi:type="uml:ActivityPartition" scope="public" name="Admin/Sales/Customer">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="29" ea_eleType="element" />
@@ -2874,14 +2874,14 @@
       </element>
       <element xmi:idref="EAID_9DC8F8A7_6730_411D_918E_1F722050C812" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="32" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_8E15EB87_EB4F_4827_A56C_001B3193030A" start="EAID_9DC8F8A7_6730_411D_918E_1F722050C812" end="EAID_968B9B43_A345_4B64_AE4C_1B331CBB9DB0" /></links>
       </element>
       <element xmi:idref="EAID_968B9B43_A345_4B64_AE4C_1B331CBB9DB0" xmi:type="uml:Action" scope="public" name="Akses /">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="33" ea_eleType="element" />
@@ -2962,14 +2962,14 @@
       </element>
       <element xmi:idref="EAID_F3988C9D_434D_4748_B22D_EEDAD57DCECB" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="40" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_47B7CDDC_03A0_469B_A184_9FBEDD2EEC94" start="EAID_0F01D6E7_7DCF_477A_ACE1_81236EE9A56D" end="EAID_F3988C9D_434D_4748_B22D_EEDAD57DCECB" /><ControlFlow xmi:idref="EAID_B999CB61_DDAF_4A83_A52E_CFE24B61870C" start="EAID_C1AAA3F5_01F1_4F5A_BDE8_C468A7063132" end="EAID_F3988C9D_434D_4748_B22D_EEDAD57DCECB" /><ControlFlow xmi:idref="EAID_FA453272_7425_4726_AC29_EEDA53242BAB" start="EAID_7076D61D_B26A_49A8_8EA5_825CF4158316" end="EAID_F3988C9D_434D_4748_B22D_EEDAD57DCECB" /><ControlFlow xmi:idref="EAID_80551F1B_B81B_41CB_8D47_93B0F3F5A53E" start="EAID_C1AC043D_B649_4FFD_9D58_A6E9307E709B" end="EAID_F3988C9D_434D_4748_B22D_EEDAD57DCECB" /><ControlFlow xmi:idref="EAID_471A1C98_2B98_4821_AE1B_5A0BE0A05920" start="EAID_0F01D6E7_7DCF_477A_ACE1_81236EE9A56D" end="EAID_F3988C9D_434D_4748_B22D_EEDAD57DCECB" /></links>
       </element>
       <element xmi:idref="EAID_F5343531_968E_4ACB_9F47_8EE4C29E75F5" xmi:type="uml:ActivityPartition" scope="public" name="Admin">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="41" ea_eleType="element" />
@@ -2995,14 +2995,14 @@
       </element>
       <element xmi:idref="EAID_1AB6DB8A_8DB2_4C0F_AA7B_90C52C145502" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="44" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_2D7E321D_06E1_48A3_9D61_6BFE5A22F269" start="EAID_1AB6DB8A_8DB2_4C0F_AA7B_90C52C145502" end="EAID_0FEB16CC_0DA6_47FF_9117_5ADE93707D46" /></links>
       </element>
       <element xmi:idref="EAID_0FEB16CC_0DA6_47FF_9117_5ADE93707D46" xmi:type="uml:Action" scope="public" name="Buka dashboard admin">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="45" ea_eleType="element" />
@@ -3105,14 +3105,14 @@
       </element>
       <element xmi:idref="EAID_6C90A12A_886C_4E0B_BED1_BBE08F2BB300" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="54" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_3367277B_4170_4094_B880_4020C0810CAE" start="EAID_EE7F52A6_EDBB_49F2_ACDE_9DA4152D34A7" end="EAID_6C90A12A_886C_4E0B_BED1_BBE08F2BB300" /></links>
       </element>
       <element xmi:idref="EAID_CF7B83E2_1D96_4D43_A66D_2FB7B3A4D81E" xmi:type="uml:ActivityPartition" scope="public" name="Admin">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="55" ea_eleType="element" />
@@ -3138,14 +3138,14 @@
       </element>
       <element xmi:idref="EAID_864B8701_E35F_4273_AEAD_45F51C665519" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="58" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_DB06939D_635C_4E0E_BB08_68077F2D4A18" start="EAID_864B8701_E35F_4273_AEAD_45F51C665519" end="EAID_2F1053BC_E2F1_4455_BB30_4A66A318C21A" /></links>
       </element>
       <element xmi:idref="EAID_2F1053BC_E2F1_4455_BB30_4A66A318C21A" xmi:type="uml:Action" scope="public" name="Buka form create pengguna">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="59" ea_eleType="element" />
@@ -3248,14 +3248,14 @@
       </element>
       <element xmi:idref="EAID_8FEA86CA_56F3_4452_B388_3C82B040685F" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="68" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_06A06170_487A_47FF_9AFF_EFA3080E29E0" start="EAID_5F387200_8EA3_49F5_BDE0_61F2350B93E4" end="EAID_8FEA86CA_56F3_4452_B388_3C82B040685F" /><ControlFlow xmi:idref="EAID_AE8A1F94_AC1B_4998_96C0_56634BDC04F1" start="EAID_609B7154_A890_4A60_9E24_CE1192054076" end="EAID_8FEA86CA_56F3_4452_B388_3C82B040685F" /></links>
       </element>
       <element xmi:idref="EAID_D4AE24E1_90B1_47FE_9229_2A34B4F53AAB" xmi:type="uml:ActivityPartition" scope="public" name="Admin">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="69" ea_eleType="element" />
@@ -3281,14 +3281,14 @@
       </element>
       <element xmi:idref="EAID_37C27EDA_76E2_4285_ABFA_C0249204F195" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="73" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_F1685C5A_E2A2_46CD_8511_42F2E667BAD4" start="EAID_37C27EDA_76E2_4285_ABFA_C0249204F195" end="EAID_1EC27081_C805_453C_97AB_6BE8731FFAD3" /></links>
       </element>
       <element xmi:idref="EAID_1EC27081_C805_453C_97AB_6BE8731FFAD3" xmi:type="uml:Action" scope="public" name="Buka form create produk">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="74" ea_eleType="element" />
@@ -3402,14 +3402,14 @@
       </element>
       <element xmi:idref="EAID_719C5581_DDE5_49C4_9052_AAB771011A10" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="84" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_15220A80_D81E_4C34_950D_EA5020F06BF0" start="EAID_B7A86558_33FD_492D_917A_473596EDA752" end="EAID_719C5581_DDE5_49C4_9052_AAB771011A10" /><ControlFlow xmi:idref="EAID_758CBEB2_E3EE_469E_ADFA_E97EDF805600" start="EAID_AC9541FF_422C_44EF_9503_22890DC94A9C" end="EAID_719C5581_DDE5_49C4_9052_AAB771011A10" /></links>
       </element>
       <element xmi:idref="EAID_73F63C8A_8875_4D62_BF27_0C0602B6CCBF" xmi:type="uml:ActivityPartition" scope="public" name="Admin">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="85" ea_eleType="element" />
@@ -3435,14 +3435,14 @@
       </element>
       <element xmi:idref="EAID_DB4AACCF_C33A_4C68_931D_6D43F1013B2F" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="88" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_406DCBD2_102E_42DB_B074_1B9F24C506F7" start="EAID_DB4AACCF_C33A_4C68_931D_6D43F1013B2F" end="EAID_3522A322_FBCA_487D_B88F_FCA6EBACE827" /></links>
       </element>
       <element xmi:idref="EAID_3522A322_FBCA_487D_B88F_FCA6EBACE827" xmi:type="uml:Action" scope="public" name="Buka form create pelanggan">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="89" ea_eleType="element" />
@@ -3534,14 +3534,14 @@
       </element>
       <element xmi:idref="EAID_695DE0B0_E6BF_4A8D_B5FB_6ACAD0913013" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="97" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_236CB699_7DA8_4AFF_95BA_33811978DD85" start="EAID_5019135D_271F_4905_82A9_5E1D692A4DC6" end="EAID_695DE0B0_E6BF_4A8D_B5FB_6ACAD0913013" /><ControlFlow xmi:idref="EAID_E7119E79_35B9_4C3F_BCCF_BF97F761032E" start="EAID_FF94F4F4_EDA3_40BE_A6ED_FD26AADE2F27" end="EAID_695DE0B0_E6BF_4A8D_B5FB_6ACAD0913013" /></links>
       </element>
       <element xmi:idref="EAID_C7F741F0_6009_463C_B07C_B80EE3792239" xmi:type="uml:ActivityPartition" scope="public" name="Admin">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="98" ea_eleType="element" />
@@ -3567,14 +3567,14 @@
       </element>
       <element xmi:idref="EAID_4C03B75D_F6D1_41DC_AFFD_36F9CDA8B893" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="101" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_7F51869A_1D1C_4685_A4CF_591EF730C20B" start="EAID_4C03B75D_F6D1_41DC_AFFD_36F9CDA8B893" end="EAID_481A795D_038D_46E7_8AEA_F3672ACC3533" /></links>
       </element>
       <element xmi:idref="EAID_481A795D_038D_46E7_8AEA_F3672ACC3533" xmi:type="uml:Action" scope="public" name="Buka index pengguna">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="102" ea_eleType="element" />
@@ -3644,14 +3644,14 @@
       </element>
       <element xmi:idref="EAID_CE3B2346_AFC6_4DB9_AFD5_AAF6B1A07DC7" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="108" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_792E5020_34D9_4BE3_93A3_CC7611AB6E84" start="EAID_031BF142_2512_4325_9626_6EA8F055579D" end="EAID_CE3B2346_AFC6_4DB9_AFD5_AAF6B1A07DC7" /></links>
       </element>
       <element xmi:idref="EAID_07E50372_9B7F_4A56_9865_928502D14084" xmi:type="uml:ActivityPartition" scope="public" name="Admin">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="109" ea_eleType="element" />
@@ -3677,14 +3677,14 @@
       </element>
       <element xmi:idref="EAID_E8350BEB_C3B9_4932_8614_3B40AA2790F3" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="112" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_ED071D7B_D9A7_4E2D_B281_6978D48D7258" start="EAID_E8350BEB_C3B9_4932_8614_3B40AA2790F3" end="EAID_E7977CBD_2247_4FA3_87F6_939033D598DE" /></links>
       </element>
       <element xmi:idref="EAID_E7977CBD_2247_4FA3_87F6_939033D598DE" xmi:type="uml:Action" scope="public" name="Pilih edit pengguna">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="113" ea_eleType="element" />
@@ -3798,14 +3798,14 @@
       </element>
       <element xmi:idref="EAID_11AF1B1D_DE7E_4F10_AA92_A5CDA75C0C0D" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="123" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_4623AC93_9AA5_41C2_A3D8_4BE69930A69D" start="EAID_800220A5_3ED0_4E19_A305_B7937DD7A224" end="EAID_11AF1B1D_DE7E_4F10_AA92_A5CDA75C0C0D" /><ControlFlow xmi:idref="EAID_5AB2CDB6_560B_48C8_9AD8_D7BC4E0FADD9" start="EAID_21757E3E_90C7_48A2_A6F1_53FE6D2AEECC" end="EAID_11AF1B1D_DE7E_4F10_AA92_A5CDA75C0C0D" /></links>
       </element>
       <element xmi:idref="EAID_D4DDC9C4_6CE6_4962_BFB1_D4AC1DAFDEA1" xmi:type="uml:ActivityPartition" scope="public" name="Admin">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="124" ea_eleType="element" />
@@ -3831,14 +3831,14 @@
       </element>
       <element xmi:idref="EAID_AF930669_D355_4BF0_94C6_2B50725286DE" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="127" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_15B49BEC_2CDD_49AA_9FBE_CF56DBB88F21" start="EAID_AF930669_D355_4BF0_94C6_2B50725286DE" end="EAID_5950598C_4B95_4E6A_8D7E_D6AF46D7ADAB" /></links>
       </element>
       <element xmi:idref="EAID_5950598C_4B95_4E6A_8D7E_D6AF46D7ADAB" xmi:type="uml:Action" scope="public" name="Pilih delete pengguna">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="128" ea_eleType="element" />
@@ -3952,14 +3952,14 @@
       </element>
       <element xmi:idref="EAID_C8C32068_6E33_4AC1_8084_206763D390BD" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="138" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_A97A7D82_9777_41FC_80B3_6B398DAB4807" start="EAID_4FF5FB88_5F48_4F82_A690_2F120975A027" end="EAID_C8C32068_6E33_4AC1_8084_206763D390BD" /><ControlFlow xmi:idref="EAID_2BF7AC22_972D_4294_895E_8FAC4ECBF0A7" start="EAID_39047607_2327_423C_A1C0_BBB88D311511" end="EAID_C8C32068_6E33_4AC1_8084_206763D390BD" /></links>
       </element>
       <element xmi:idref="EAID_503D1500_838C_4E38_9508_09D7A890CAD2" xmi:type="uml:ActivityPartition" scope="public" name="Admin">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="139" ea_eleType="element" />
@@ -3985,14 +3985,14 @@
       </element>
       <element xmi:idref="EAID_D8658995_EB57_423A_BC2A_B32BBC94ED4D" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="142" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_99DFB880_FD1B_479D_AFA4_5919AED9BC03" start="EAID_D8658995_EB57_423A_BC2A_B32BBC94ED4D" end="EAID_8D3EEB31_9D7F_471E_BF70_FC011016B5A1" /></links>
       </element>
       <element xmi:idref="EAID_8D3EEB31_9D7F_471E_BF70_FC011016B5A1" xmi:type="uml:Action" scope="public" name="Buka index produk">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="143" ea_eleType="element" />
@@ -4062,14 +4062,14 @@
       </element>
       <element xmi:idref="EAID_3AA49527_8C85_404F_A012_1938C37E26FB" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="149" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_CCFC59D8_1044_40E9_9FC5_733057EE3A4D" start="EAID_E6186E62_1E46_4740_BB7D_2FB0A9C51B06" end="EAID_3AA49527_8C85_404F_A012_1938C37E26FB" /></links>
       </element>
       <element xmi:idref="EAID_677CE6D6_58E1_41A0_A912_CEAB28A381F6" xmi:type="uml:ActivityPartition" scope="public" name="Admin">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="150" ea_eleType="element" />
@@ -4095,14 +4095,14 @@
       </element>
       <element xmi:idref="EAID_5E54A34B_808F_4830_B6C2_D6FC212FB94F" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="154" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_4E2ED6BA_1BDB_46EC_846D_BD744D456DFD" start="EAID_5E54A34B_808F_4830_B6C2_D6FC212FB94F" end="EAID_7D0D4607_6216_4036_AE9D_E9F55740D25C" /></links>
       </element>
       <element xmi:idref="EAID_7D0D4607_6216_4036_AE9D_E9F55740D25C" xmi:type="uml:Action" scope="public" name="Pilih edit produk">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="155" ea_eleType="element" />
@@ -4227,14 +4227,14 @@
       </element>
       <element xmi:idref="EAID_FC014E3F_4C36_4537_ABC8_BA15FBD3DAF9" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="166" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_BA3D9E83_7210_402B_9E10_3600BE4782C0" start="EAID_81B24F1B_BEDC_47A5_9A33_21C1C10CC290" end="EAID_FC014E3F_4C36_4537_ABC8_BA15FBD3DAF9" /><ControlFlow xmi:idref="EAID_AEC97881_BA12_4C41_A744_5B85F4A48B05" start="EAID_21E53F94_B494_464C_8C82_DDB84AD8473E" end="EAID_FC014E3F_4C36_4537_ABC8_BA15FBD3DAF9" /></links>
       </element>
       <element xmi:idref="EAID_8BEB02D4_1D5B_4CCE_A3EF_7E6CA7A24242" xmi:type="uml:ActivityPartition" scope="public" name="Admin">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="167" ea_eleType="element" />
@@ -4260,14 +4260,14 @@
       </element>
       <element xmi:idref="EAID_E286407E_84DE_4FFB_A1E5_BA10892C4C9A" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="170" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_BE119935_1A3E_4FCE_9BA9_0F469D8F09C2" start="EAID_E286407E_84DE_4FFB_A1E5_BA10892C4C9A" end="EAID_18531671_32BC_4B6B_9ED7_2E2A233A5B13" /></links>
       </element>
       <element xmi:idref="EAID_18531671_32BC_4B6B_9ED7_2E2A233A5B13" xmi:type="uml:Action" scope="public" name="Pilih delete produk">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="171" ea_eleType="element" />
@@ -4381,14 +4381,14 @@
       </element>
       <element xmi:idref="EAID_D5BDAB31_3BD2_4758_BA1F_B12BC71F09D7" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="181" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_7706B426_FE3C_482A_A4E0_CAF92CA539A4" start="EAID_9D865C60_5091_41C7_8D1E_1D1AEF353437" end="EAID_D5BDAB31_3BD2_4758_BA1F_B12BC71F09D7" /><ControlFlow xmi:idref="EAID_87C600F6_2CE3_4B74_99FB_F2CB56C103BD" start="EAID_EAF32830_015E_42AD_8C74_99E7DC1824F2" end="EAID_D5BDAB31_3BD2_4758_BA1F_B12BC71F09D7" /></links>
       </element>
       <element xmi:idref="EAID_58BBD463_BC6C_457D_99DE_B962C8CFA232" xmi:type="uml:ActivityPartition" scope="public" name="Admin">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="182" ea_eleType="element" />
@@ -4414,14 +4414,14 @@
       </element>
       <element xmi:idref="EAID_A14BC873_EFD4_4055_AFA6_A6C2C638250A" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="185" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_7BB27134_A55F_4709_B4A8_5549EF1119D7" start="EAID_A14BC873_EFD4_4055_AFA6_A6C2C638250A" end="EAID_93EDCC32_22C0_4F8A_8D0E_4D3E06F3E29B" /></links>
       </element>
       <element xmi:idref="EAID_93EDCC32_22C0_4F8A_8D0E_4D3E06F3E29B" xmi:type="uml:Action" scope="public" name="Buka index pelanggan">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="186" ea_eleType="element" />
@@ -4491,14 +4491,14 @@
       </element>
       <element xmi:idref="EAID_36A491BF_73E7_4F2B_AA5F_2CC1A874B70C" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="192" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_0C34F105_11B4_466E_911C_113F31C876A2" start="EAID_6E34A19D_7A8D_4AC7_8002_5803623094F5" end="EAID_36A491BF_73E7_4F2B_AA5F_2CC1A874B70C" /></links>
       </element>
       <element xmi:idref="EAID_BE3E5309_64E7_466A_B934_6352555F84F7" xmi:type="uml:ActivityPartition" scope="public" name="Admin">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="193" ea_eleType="element" />
@@ -4524,14 +4524,14 @@
       </element>
       <element xmi:idref="EAID_6788341D_7308_4844_AB12_F7A13E7A1909" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="196" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_088885B1_7DF4_4463_A769_A71ACAD88A55" start="EAID_6788341D_7308_4844_AB12_F7A13E7A1909" end="EAID_BC1172C7_D55E_4A46_9527_263F540C46A5" /></links>
       </element>
       <element xmi:idref="EAID_BC1172C7_D55E_4A46_9527_263F540C46A5" xmi:type="uml:Action" scope="public" name="Pilih edit pelanggan">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="197" ea_eleType="element" />
@@ -4634,14 +4634,14 @@
       </element>
       <element xmi:idref="EAID_601EF357_BF8B_4C5E_8B24_E3567C0AF3C8" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="206" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_EC9EE241_ADE0_4A07_9A8E_3EC387790336" start="EAID_AA3D8C18_0534_4CBE_B229_528E464232CC" end="EAID_601EF357_BF8B_4C5E_8B24_E3567C0AF3C8" /><ControlFlow xmi:idref="EAID_01F2F1C6_DCF6_4123_8E7D_889625C412A4" start="EAID_8CE65A02_E5AC_4F36_BD86_F11E87815083" end="EAID_601EF357_BF8B_4C5E_8B24_E3567C0AF3C8" /></links>
       </element>
       <element xmi:idref="EAID_E28CDACA_3894_4FA3_9784_9856D66A235F" xmi:type="uml:ActivityPartition" scope="public" name="Admin">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="207" ea_eleType="element" />
@@ -4667,14 +4667,14 @@
       </element>
       <element xmi:idref="EAID_37AEFEB2_5144_4704_98AC_B537B3C79322" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="210" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_FB09541E_2B58_4335_A7EB_984EB386C52E" start="EAID_37AEFEB2_5144_4704_98AC_B537B3C79322" end="EAID_3BCBD06F_A463_449D_BA2D_87A5F955729C" /></links>
       </element>
       <element xmi:idref="EAID_3BCBD06F_A463_449D_BA2D_87A5F955729C" xmi:type="uml:Action" scope="public" name="Pilih delete pelanggan">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="211" ea_eleType="element" />
@@ -4788,14 +4788,14 @@
       </element>
       <element xmi:idref="EAID_E0134A9E_F110_496E_8DD8_718A551B485D" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="221" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_A8321644_A750_4FC1_9390_98C8F33D2894" start="EAID_3C619E30_62B8_4A94_9738_F0D98C24E9DF" end="EAID_E0134A9E_F110_496E_8DD8_718A551B485D" /><ControlFlow xmi:idref="EAID_5A0A8D8F_F9EE_40D8_B6FF_65ACF7957DD1" start="EAID_E525BC9F_A04B_41E4_A7FF_348EFB431E4C" end="EAID_E0134A9E_F110_496E_8DD8_718A551B485D" /></links>
       </element>
       <element xmi:idref="EAID_FD8F92A6_33FB_4AEE_93A9_C8C04E0E6CA9" xmi:type="uml:ActivityPartition" scope="public" name="Admin">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="222" ea_eleType="element" />
@@ -4821,14 +4821,14 @@
       </element>
       <element xmi:idref="EAID_C842E039_33E2_4252_86D1_AE9504532707" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="225" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_40333958_BCB8_487A_89E3_BBC48656C7D7" start="EAID_C842E039_33E2_4252_86D1_AE9504532707" end="EAID_76D44421_1328_4B03_9B61_9F6C87FF3034" /></links>
       </element>
       <element xmi:idref="EAID_76D44421_1328_4B03_9B61_9F6C87FF3034" xmi:type="uml:Action" scope="public" name="Buka form stok produk">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="226" ea_eleType="element" />
@@ -4931,14 +4931,14 @@
       </element>
       <element xmi:idref="EAID_BFD05168_C93B_40F1_8652_FF22DB95DFE9" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="235" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_5FBD3162_4DBF_442F_B041_EBF6173DD016" start="EAID_5E13B186_307F_4D51_920A_8BE4947F4249" end="EAID_BFD05168_C93B_40F1_8652_FF22DB95DFE9" /><ControlFlow xmi:idref="EAID_FD3A891C_C41C_4F9A_B292_172BC526BC2F" start="EAID_C756424B_E802_41B3_AE71_2A78AD4E0FC4" end="EAID_BFD05168_C93B_40F1_8652_FF22DB95DFE9" /></links>
       </element>
       <element xmi:idref="EAID_975E2850_3C0D_4ED5_B2CD_65D926642183" xmi:type="uml:ActivityPartition" scope="public" name="Admin">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="236" ea_eleType="element" />
@@ -4964,14 +4964,14 @@
       </element>
       <element xmi:idref="EAID_47B82BA7_9B63_4256_B141_825170CDD858" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="239" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_CA4D8DD4_6651_44D1_B2A6_1CAFF6394AC9" start="EAID_47B82BA7_9B63_4256_B141_825170CDD858" end="EAID_D69EF97F_7046_4E34_9E69_166DB99904B6" /></links>
       </element>
       <element xmi:idref="EAID_D69EF97F_7046_4E34_9E69_166DB99904B6" xmi:type="uml:Action" scope="public" name="Buka detail produk">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="240" ea_eleType="element" />
@@ -5041,14 +5041,14 @@
       </element>
       <element xmi:idref="EAID_8B02608E_E9D7_4C26_B563_057980B6444F" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="246" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_06139AB9_BEEE_4273_889D_C7434202C716" start="EAID_D14255D5_FB25_4B27_A68B_C8146EA0F970" end="EAID_8B02608E_E9D7_4C26_B563_057980B6444F" /></links>
       </element>
       <element xmi:idref="EAID_C1E07DE4_3B62_4188_B9AB_9B0AEAF9FB69" xmi:type="uml:ActivityPartition" scope="public" name="Admin/Sales">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="247" ea_eleType="element" />
@@ -5074,14 +5074,14 @@
       </element>
       <element xmi:idref="EAID_F6D9D4EF_B1E4_4ED3_BEF6_F02D9AE74808" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="250" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_CD02B8E2_3C92_4EDC_9EE0_A5BF194FC888" start="EAID_F6D9D4EF_B1E4_4ED3_BEF6_F02D9AE74808" end="EAID_5CBD4208_8DED_4EB9_9981_5AA19DCCA46E" /></links>
       </element>
       <element xmi:idref="EAID_5CBD4208_8DED_4EB9_9981_5AA19DCCA46E" xmi:type="uml:Action" scope="public" name="Buka modal customer cepat">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="251" ea_eleType="element" />
@@ -5173,14 +5173,14 @@
       </element>
       <element xmi:idref="EAID_2EF60DFE_87E9_477E_9198_C0B4D1BE4C06" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="259" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_D1AAD9EA_B64E_4D72_8654_11C86E4F0CE0" start="EAID_8822BAE5_BA83_4901_9989_5AB9E24D07B4" end="EAID_2EF60DFE_87E9_477E_9198_C0B4D1BE4C06" /><ControlFlow xmi:idref="EAID_DDD1F616_684A_4B0B_8AF6_8BA6D13EC7FD" start="EAID_77EAC63F_16AB_49F8_B4B4_85E47F5B6846" end="EAID_2EF60DFE_87E9_477E_9198_C0B4D1BE4C06" /></links>
       </element>
       <element xmi:idref="EAID_8F32D46A_07B0_4A4D_9146_7EA29CE31584" xmi:type="uml:ActivityPartition" scope="public" name="Admin">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="260" ea_eleType="element" />
@@ -5206,14 +5206,14 @@
       </element>
       <element xmi:idref="EAID_ADB50EB4_669F_4C64_B36C_F908653FFD77" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="264" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_F74CC25A_4A08_4877_81C2_AA2603B68234" start="EAID_ADB50EB4_669F_4C64_B36C_F908653FFD77" end="EAID_E15D1C63_08F8_4B5B_93D6_60139496444E" /></links>
       </element>
       <element xmi:idref="EAID_E15D1C63_08F8_4B5B_93D6_60139496444E" xmi:type="uml:Action" scope="public" name="Buka form create order">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="265" ea_eleType="element" />
@@ -5371,14 +5371,14 @@
       </element>
       <element xmi:idref="EAID_78831E4C_FD9D_44F3_813B_8702FDADF56D" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="279" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_0DCD6090_505A_449D_BB1E_0CC11DB09E75" start="EAID_806E75F6_B0F4_449D_8D18_103E5D12D68D" end="EAID_78831E4C_FD9D_44F3_813B_8702FDADF56D" /><ControlFlow xmi:idref="EAID_CE4C29F5_5D7A_465C_A273_48C26922B0E2" start="EAID_D6B27049_4355_4966_8564_2CC767BED0BC" end="EAID_78831E4C_FD9D_44F3_813B_8702FDADF56D" /></links>
       </element>
       <element xmi:idref="EAID_40AA92A5_16D0_4149_81CD_299DC793BD03" xmi:type="uml:ActivityPartition" scope="public" name="Admin">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="280" ea_eleType="element" />
@@ -5404,14 +5404,14 @@
       </element>
       <element xmi:idref="EAID_CEA12F84_2A13_476A_925A_E8BBC7C63760" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="283" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_3A0C94F3_16A7_49F8_B5A9_AE3AD9E97E83" start="EAID_CEA12F84_2A13_476A_925A_E8BBC7C63760" end="EAID_D41F1F12_10A7_43D0_9C0F_43B1E09501AF" /></links>
       </element>
       <element xmi:idref="EAID_D41F1F12_10A7_43D0_9C0F_43B1E09501AF" xmi:type="uml:Action" scope="public" name="Buka index order">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="284" ea_eleType="element" />
@@ -5481,14 +5481,14 @@
       </element>
       <element xmi:idref="EAID_870FBACB_FBCE_4B9F_9F61_5AFE5DB49034" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="290" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_84CF9F6E_BFE3_43FB_9862_217D52679AD2" start="EAID_39007357_F1D9_415F_AA06_081638E08908" end="EAID_870FBACB_FBCE_4B9F_9F61_5AFE5DB49034" /></links>
       </element>
       <element xmi:idref="EAID_73483198_5B86_4716_80FA_2246EA434FED" xmi:type="uml:ActivityPartition" scope="public" name="Admin/Sales">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="291" ea_eleType="element" />
@@ -5514,14 +5514,14 @@
       </element>
       <element xmi:idref="EAID_776B1E4D_F12A_4446_B18A_A018B4DBECB9" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="294" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_9E12D48C_07AD_4774_99DA_B9B07FAAD2FF" start="EAID_776B1E4D_F12A_4446_B18A_A018B4DBECB9" end="EAID_C9223570_9EE1_4AED_A3FD_6F95D23A4A02" /></links>
       </element>
       <element xmi:idref="EAID_C9223570_9EE1_4AED_A3FD_6F95D23A4A02" xmi:type="uml:Action" scope="public" name="Buka detail order">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="295" ea_eleType="element" />
@@ -5602,14 +5602,14 @@
       </element>
       <element xmi:idref="EAID_84E0ABEB_FF7E_442E_B414_F7912CBC9E77" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="302" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_6F45F12E_3972_47CA_82B3_C1B19A9A0B90" start="EAID_74FA8B0E_22D5_42A6_A53F_5E6E479CEA5B" end="EAID_84E0ABEB_FF7E_442E_B414_F7912CBC9E77" /><ControlFlow xmi:idref="EAID_09814BC3_996A_4D47_A2B2_E1E15A6986AF" start="EAID_88E4CB25_A32C_4311_99F7_0B117A306F5C" end="EAID_84E0ABEB_FF7E_442E_B414_F7912CBC9E77" /></links>
       </element>
       <element xmi:idref="EAID_AC892950_DC15_4AAE_9506_9BBFEB84DDEA" xmi:type="uml:ActivityPartition" scope="public" name="Admin">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="303" ea_eleType="element" />
@@ -5635,14 +5635,14 @@
       </element>
       <element xmi:idref="EAID_0C327343_008D_41BE_9960_8FAA7C58372E" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="306" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_8D167783_AA3B_4E40_AFA4_07C2A0687269" start="EAID_0C327343_008D_41BE_9960_8FAA7C58372E" end="EAID_70055658_8719_4736_B79E_F11398775E78" /></links>
       </element>
       <element xmi:idref="EAID_70055658_8719_4736_B79E_F11398775E78" xmi:type="uml:Action" scope="public" name="Klik cancel order">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="307" ea_eleType="element" />
@@ -5712,14 +5712,14 @@
       </element>
       <element xmi:idref="EAID_345361AF_F266_45EF_A06E_C1861E7A9412" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="313" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_890B1477_AC2E_44DC_87BE_DD70714A3C2D" start="EAID_A91B7571_2BB1_4F5A_8228_2DE17E088B1A" end="EAID_345361AF_F266_45EF_A06E_C1861E7A9412" /><ControlFlow xmi:idref="EAID_5805FBFF_9A30_4216_9F2C_93E3FD04FE36" start="EAID_4AF7AC11_241D_489F_850F_1D859FC7C060" end="EAID_345361AF_F266_45EF_A06E_C1861E7A9412" /></links>
       </element>
       <element xmi:idref="EAID_CC6FEB22_186E_45C2_9453_54B82A786B47" xmi:type="uml:ActivityPartition" scope="public" name="Admin/Sales">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="314" ea_eleType="element" />
@@ -5745,14 +5745,14 @@
       </element>
       <element xmi:idref="EAID_EC18E0A4_6A4F_4737_A125_07A2B16962A2" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="317" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_427DF794_01DF_46B2_A584_355385FA1CFE" start="EAID_EC18E0A4_6A4F_4737_A125_07A2B16962A2" end="EAID_A9EE9092_DF8C_47CC_BA66_E74CDD47AE0F" /></links>
       </element>
       <element xmi:idref="EAID_A9EE9092_DF8C_47CC_BA66_E74CDD47AE0F" xmi:type="uml:Action" scope="public" name="Buka detail order">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="318" ea_eleType="element" />
@@ -5822,14 +5822,14 @@
       </element>
       <element xmi:idref="EAID_CBD2B481_4490_45A9_81DB_7D054E109821" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="324" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_01DE63F0_DA94_4ECD_B505_3E5CD52C4566" start="EAID_499BC706_4ED0_4AF0_81DF_EE6B72061A59" end="EAID_CBD2B481_4490_45A9_81DB_7D054E109821" /></links>
       </element>
       <element xmi:idref="EAID_2AC221FC_8AB7_4279_9766_62D70BF52729" xmi:type="uml:ActivityPartition" scope="public" name="Admin">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="325" ea_eleType="element" />
@@ -5855,14 +5855,14 @@
       </element>
       <element xmi:idref="EAID_893C91BD_0226_4CE8_9150_08AF075755A6" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="329" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_BBB2AF03_BEFC_475A_96DB_16A5686348AD" start="EAID_893C91BD_0226_4CE8_9150_08AF075755A6" end="EAID_D89F94AE_EEB6_43D6_98AD_4307DDF6D42A" /></links>
       </element>
       <element xmi:idref="EAID_D89F94AE_EEB6_43D6_98AD_4307DDF6D42A" xmi:type="uml:Action" scope="public" name="Buka detail order/invoice">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="330" ea_eleType="element" />
@@ -5965,14 +5965,14 @@
       </element>
       <element xmi:idref="EAID_84E78D0D_C779_493C_94EB_2801B91F56C9" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="339" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_E6A7464E_442B_46B6_BBFB_AF35B5C3F68F" start="EAID_CBCB7B3A_6EFA_4648_83B0_9611727DB9DF" end="EAID_84E78D0D_C779_493C_94EB_2801B91F56C9" /></links>
       </element>
       <element xmi:idref="EAID_7E1BB080_1CEE_4BAA_B9C0_2C6FBB1BCF0B" xmi:type="uml:ActivityPartition" scope="public" name="Admin/Sales">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="340" ea_eleType="element" />
@@ -5998,14 +5998,14 @@
       </element>
       <element xmi:idref="EAID_525E83D1_F126_4385_919A_A88AF875C138" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="344" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_C84A69CF_AB62_4E8C_BE50_A889B90371FC" start="EAID_525E83D1_F126_4385_919A_A88AF875C138" end="EAID_B3B4C437_28A3_4561_9510_DD8BAA644446" /></links>
       </element>
       <element xmi:idref="EAID_B3B4C437_28A3_4561_9510_DD8BAA644446" xmi:type="uml:Action" scope="public" name="Klik unduh invoice">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="345" ea_eleType="element" />
@@ -6064,14 +6064,14 @@
       </element>
       <element xmi:idref="EAID_DA270313_650E_4030_A48D_F28441DACB6F" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="350" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_76E11CCA_EE32_4677_BEDD_E27641E9889E" start="EAID_A7299A81_0BEB_4263_B221_4DF4D7A3BDBB" end="EAID_DA270313_650E_4030_A48D_F28441DACB6F" /></links>
       </element>
       <element xmi:idref="EAID_1F3E2EBF_6B52_4790_8866_BE2BE9805CCB" xmi:type="uml:ActivityPartition" scope="public" name="Admin">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="351" ea_eleType="element" />
@@ -6097,14 +6097,14 @@
       </element>
       <element xmi:idref="EAID_7350D3FF_9603_4E2F_A665_AAAD7168DA50" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="355" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_6A4D02D7_B29F_462E_A28D_91493CC10D02" start="EAID_7350D3FF_9603_4E2F_A665_AAAD7168DA50" end="EAID_ACCD88BF_A136_41C9_A781_CFBD9F7F6CD2" /></links>
       </element>
       <element xmi:idref="EAID_ACCD88BF_A136_41C9_A781_CFBD9F7F6CD2" xmi:type="uml:Action" scope="public" name="Buka form create offer">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="356" ea_eleType="element" />
@@ -6240,14 +6240,14 @@
       </element>
       <element xmi:idref="EAID_0B477DE4_7E87_47A9_9F23_1E4AEA4057DF" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="368" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_CCD12FA5_C8CD_4C70_A8A0_891FB9E6BFC8" start="EAID_DD7AE713_D7D8_4186_B048_7007438DDA6A" end="EAID_0B477DE4_7E87_47A9_9F23_1E4AEA4057DF" /><ControlFlow xmi:idref="EAID_FBCBCD18_8CBD_427E_BA8A_8E00233B4B66" start="EAID_A91EE1B4_A8D2_4DC0_8DCB_C9C691A023CC" end="EAID_0B477DE4_7E87_47A9_9F23_1E4AEA4057DF" /></links>
       </element>
       <element xmi:idref="EAID_4EDF0A4E_6A4B_40CD_844D_D53CB7F05EB3" xmi:type="uml:ActivityPartition" scope="public" name="Admin">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="369" ea_eleType="element" />
@@ -6273,14 +6273,14 @@
       </element>
       <element xmi:idref="EAID_1AC2979E_8FD2_4422_8A95_8B3BC966CF4F" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="372" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_6BDC6E11_5402_4A82_9EE0_E4E57495D0BE" start="EAID_1AC2979E_8FD2_4422_8A95_8B3BC966CF4F" end="EAID_738F5FE0_804D_4249_AEA3_0CD698FA5D54" /></links>
       </element>
       <element xmi:idref="EAID_738F5FE0_804D_4249_AEA3_0CD698FA5D54" xmi:type="uml:Action" scope="public" name="Buka index/detail offer">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="373" ea_eleType="element" />
@@ -6350,14 +6350,14 @@
       </element>
       <element xmi:idref="EAID_993335B8_B584_452A_B0D9_0ECF5975B6D1" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="379" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_F777C241_5D79_461A_8838_3C8F0BD61AEF" start="EAID_19A57A3F_62E8_49C5_9D8E_EC9D2886E7A6" end="EAID_993335B8_B584_452A_B0D9_0ECF5975B6D1" /></links>
       </element>
       <element xmi:idref="EAID_5F8368CF_DAA9_4E36_8DDD_6FA8D49A82D9" xmi:type="uml:ActivityPartition" scope="public" name="Admin/Sales">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="380" ea_eleType="element" />
@@ -6383,14 +6383,14 @@
       </element>
       <element xmi:idref="EAID_742BAD1F_1D1E_4896_B8A3_30C2B101FE1A" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="383" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_CBD254CF_0EFE_4641_91E0_2664310F4241" start="EAID_742BAD1F_1D1E_4896_B8A3_30C2B101FE1A" end="EAID_3E9406EC_876A_4C6F_83B4_8711ABAD51A1" /></links>
       </element>
       <element xmi:idref="EAID_3E9406EC_876A_4C6F_83B4_8711ABAD51A1" xmi:type="uml:Action" scope="public" name="Buka detail offer">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="384" ea_eleType="element" />
@@ -6515,14 +6515,14 @@
       </element>
       <element xmi:idref="EAID_9E822323_D17F_407E_8CE8_99D0DAD9315D" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="395" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_2DDA2F16_503A_43E0_B27B_599EA9FBF0ED" start="EAID_1C448561_80CF_42AF_B8FC_CFD42CCEA312" end="EAID_9E822323_D17F_407E_8CE8_99D0DAD9315D" /><ControlFlow xmi:idref="EAID_B1662177_34BC_4A62_946C_A28E5FE287BE" start="EAID_10AAECCD_B6F7_4FAF_9EE8_FA78E26F9DFE" end="EAID_9E822323_D17F_407E_8CE8_99D0DAD9315D" /><ControlFlow xmi:idref="EAID_C678C08E_7139_403D_8496_78A493FF4342" start="EAID_D1196B18_821A_47FF_B53D_E768E8EFB8E6" end="EAID_9E822323_D17F_407E_8CE8_99D0DAD9315D" /></links>
       </element>
       <element xmi:idref="EAID_A68A4120_FB4B_4EBE_9976_926F51E99D46" xmi:type="uml:ActivityPartition" scope="public" name="Admin">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="396" ea_eleType="element" />
@@ -6548,14 +6548,14 @@
       </element>
       <element xmi:idref="EAID_364E7B3F_5128_42B0_87B5_05595E5AFC65" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="399" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_114D35E9_EBC3_4E94_9A58_48D4BDB6BE7D" start="EAID_364E7B3F_5128_42B0_87B5_05595E5AFC65" end="EAID_02C89BDA_D7CF_41F8_8846_ADA8B37D2472" /></links>
       </element>
       <element xmi:idref="EAID_02C89BDA_D7CF_41F8_8846_ADA8B37D2472" xmi:type="uml:Action" scope="public" name="Pilih approve/reject record">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="400" ea_eleType="element" />
@@ -6680,14 +6680,14 @@
       </element>
       <element xmi:idref="EAID_84646B5C_6546_4E9F_A417_F4097112EA9C" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="411" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_F9DB6A63_E4D8_42F9_B5C0_4BF8F24862C8" start="EAID_0F5C2886_1843_4AA3_A246_0F2AD8C3CE42" end="EAID_84646B5C_6546_4E9F_A417_F4097112EA9C" /><ControlFlow xmi:idref="EAID_F9322680_B43F_4D15_8F48_A410F3B8ECA6" start="EAID_150A2644_6906_477C_81C4_691433D2EDB1" end="EAID_84646B5C_6546_4E9F_A417_F4097112EA9C" /></links>
       </element>
       <element xmi:idref="EAID_4651EB0C_1A39_4DC7_98A4_ECC009C13B3D" xmi:type="uml:ActivityPartition" scope="public" name="Admin">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="412" ea_eleType="element" />
@@ -6713,14 +6713,14 @@
       </element>
       <element xmi:idref="EAID_22FA560F_E921_4E7C_8F12_A7FE551C9FEC" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="415" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_C42434B9_9A5B_409C_AE85_AD09D6B89E24" start="EAID_22FA560F_E921_4E7C_8F12_A7FE551C9FEC" end="EAID_461A81EC_D07A_4156_9C01_A285C58E90A4" /></links>
       </element>
       <element xmi:idref="EAID_461A81EC_D07A_4156_9C01_A285C58E90A4" xmi:type="uml:Action" scope="public" name="Pilih complete atau reject offer">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="416" ea_eleType="element" />
@@ -6845,14 +6845,14 @@
       </element>
       <element xmi:idref="EAID_1C9FC08E_EEED_4418_9BB2_BD835B58CF8D" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="427" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_27F55125_F293_4460_8D53_59FB15907831" start="EAID_93B9081C_877C_4810_B762_03BE7D65D34F" end="EAID_1C9FC08E_EEED_4418_9BB2_BD835B58CF8D" /><ControlFlow xmi:idref="EAID_90E8DF69_004B_4775_B969_86C2023C64FB" start="EAID_60DF695C_0401_44E3_B223_D20794AFC3C6" end="EAID_1C9FC08E_EEED_4418_9BB2_BD835B58CF8D" /></links>
       </element>
       <element xmi:idref="EAID_76955595_B828_4030_8570_7A800BA3C65E" xmi:type="uml:ActivityPartition" scope="public" name="Sales">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="428" ea_eleType="element" />
@@ -6878,14 +6878,14 @@
       </element>
       <element xmi:idref="EAID_5FCFABCC_71DD_4E3D_A05E_524A736ABBBB" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="431" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_1424F237_B559_47EF_8E4D_83EE4F5D14A3" start="EAID_5FCFABCC_71DD_4E3D_A05E_524A736ABBBB" end="EAID_2F100911_B161_42AF_AA61_DEE6360DC001" /></links>
       </element>
       <element xmi:idref="EAID_2F100911_B161_42AF_AA61_DEE6360DC001" xmi:type="uml:Action" scope="public" name="Buka sales offer">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="432" ea_eleType="element" />
@@ -6966,14 +6966,14 @@
       </element>
       <element xmi:idref="EAID_0638A10A_96D4_49A6_A18D_4EA45F7680C9" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="439" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_E2A745B4_3EF0_471E_9D7F_03265C87DB54" start="EAID_40BB5DEC_D746_434E_A6B8_19DD808B6987" end="EAID_0638A10A_96D4_49A6_A18D_4EA45F7680C9" /><ControlFlow xmi:idref="EAID_135CE8E4_09DD_477A_B211_C1CB3F47774A" start="EAID_2BB63F03_CD3B_4770_8287_3E51D5B046D9" end="EAID_0638A10A_96D4_49A6_A18D_4EA45F7680C9" /></links>
       </element>
       <element xmi:idref="EAID_3BCB391A_6918_4043_9145_5C1742837971" xmi:type="uml:ActivityPartition" scope="public" name="Customer">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="440" ea_eleType="element" />
@@ -6999,14 +6999,14 @@
       </element>
       <element xmi:idref="EAID_51A597C3_C3F6_4887_A194_4ABB001C1707" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="443" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_3F38DEA3_02F1_47BC_A778_7D7DA604D821" start="EAID_51A597C3_C3F6_4887_A194_4ABB001C1707" end="EAID_ED4DAC9B_2E98_4E90_9F8B_188594A72FC9" /></links>
       </element>
       <element xmi:idref="EAID_ED4DAC9B_2E98_4E90_9F8B_188594A72FC9" xmi:type="uml:Action" scope="public" name="Buka URL order/v/{uuid}">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="444" ea_eleType="element" />
@@ -7087,14 +7087,14 @@
       </element>
       <element xmi:idref="EAID_05173468_D979_4866_AA89_FCF143A65D1F" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="451" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_3FEF1CDC_47BB_4044_A7F4_94DA67B9C879" start="EAID_58D3BF9F_FCCE_4869_A50D_0C334A3893F1" end="EAID_05173468_D979_4866_AA89_FCF143A65D1F" /><ControlFlow xmi:idref="EAID_1B1600C8_BE3F_4AAF_8018_19142D3B0455" start="EAID_2A9C4251_BE9B_41F9_A871_A431897C6336" end="EAID_05173468_D979_4866_AA89_FCF143A65D1F" /></links>
       </element>
       <element xmi:idref="EAID_DD5825B7_27AB_4510_93F6_731F1451AC28" xmi:type="uml:ActivityPartition" scope="public" name="Customer">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="452" ea_eleType="element" />
@@ -7120,14 +7120,14 @@
       </element>
       <element xmi:idref="EAID_3D44A9FD_383F_4D62_8FA6_FF0D98461B11" xmi:type="uml:StateNode" scope="public" name="Mulai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="456" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="100" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_87CFB7E1_C64B_4257_9D0E_E8970B77DAB6" start="EAID_3D44A9FD_383F_4D62_8FA6_FF0D98461B11" end="EAID_9E16F5DA_8B2D_4513_A28F_41B4E7BEE983" /></links>
       </element>
       <element xmi:idref="EAID_9E16F5DA_8B2D_4513_A28F_41B4E7BEE983" xmi:type="uml:Action" scope="public" name="Isi amount, type, proof_image, note">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="457" ea_eleType="element" />
@@ -7219,14 +7219,14 @@
       </element>
       <element xmi:idref="EAID_F9ED27F0_B1D0_492B_BBDD_1720286A4EFE" xmi:type="uml:StateNode" scope="public" name="Selesai">
         <model package="EAPK_F858E154_34CC_42B8_993D_76C614C0E24E" tpos="0" ea_localid="465" ea_eleType="element" />
-        <properties isSpecification="false" sType="StateNode" nType="0" scope="public" />
+        <properties isSpecification="false" sType="StateNode" nType="101" scope="public" />
         <project author="Codex" version="1.0" phase="1.0" created="2026-07-08 00:00:00" modified="2026-07-08 00:00:00" complexity="1" status="Proposed" />
         <code gentype="Java" />
-        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;" />
+        <style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" />
         <tags />
         <xrefs />
         <extendedProperties tagged="0" package_name="TelatenKarya Activity Diagrams v4" />
-        <links />
+        <links><ControlFlow xmi:idref="EAID_55F41ADF_EE59_4725_9193_654FC70D3B18" start="EAID_748F3530_0AA3_4585_BE64_6B789C9AED58" end="EAID_F9ED27F0_B1D0_492B_BBDD_1720286A4EFE" /><ControlFlow xmi:idref="EAID_FD1BD84B_DAF6_4970_B6D0_52B22645963A" start="EAID_F797F40B_B788_4709_B2ED_C26C04297EF7" end="EAID_F9ED27F0_B1D0_492B_BBDD_1720286A4EFE" /></links>
       </element>
     </elements>
     <connectors>
