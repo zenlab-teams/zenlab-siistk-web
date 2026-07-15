@@ -37,14 +37,14 @@ class ImageGenerator
         // Text
         $white = imagecolorallocate($img, 255, 255, 255);
         $fontSize = 4; // Built-in font size (1-5)
-        
+
         // Center the product name
         $lines = wordwrap($productName, 15, "\n", true);
         $lineArray = explode("\n", $lines);
         $lineHeight = imagefontheight($fontSize) + 4;
         $totalHeight = count($lineArray) * $lineHeight;
         $startY = ($height - $totalHeight) / 2;
-        
+
         foreach ($lineArray as $i => $line) {
             $textWidth = imagefontwidth($fontSize) * strlen($line);
             $x = ($width - $textWidth) / 2;
@@ -62,7 +62,7 @@ class ImageGenerator
         $filename = 'product_' . str_replace(' ', '_', strtolower($productName)) . '_' . $index . '.png';
         $relativePath = 'productImages/' . $filename;
         $absolutePath = storage_path('app/public/' . $relativePath);
-        
+
         // Ensure directory exists
         $dir = dirname($absolutePath);
         if (!is_dir($dir)) {
@@ -96,7 +96,7 @@ class ImageGenerator
         // Invoice info
         $black = imagecolorallocate($img, 33, 33, 33);
         $gray = imagecolorallocate($img, 120, 120, 120);
-        
+
         imagestring($img, 4, 20, 80, 'Invoice #' . $invoiceId, $black);
         imagestring($img, 3, 20, 110, 'Tanggal: ' . now()->format('d/m/Y H:i'), $gray);
         imagestring($img, 3, 20, 135, 'Status: BERHASIL', $gray);
