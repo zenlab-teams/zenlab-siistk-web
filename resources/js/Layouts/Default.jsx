@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";
+import { usePage } from "@inertiajs/react";
 import { setSidebar } from "../Redux/slice";
 import Navbar from "./Navbar";
 import ChatBot from "../Components/ChatBot";
@@ -10,6 +11,7 @@ const Layout = ({ children, flash = {} }) => {
     const darkMode = useSelector((state) => state.darkMode);
     const sidebarOpen = useSelector((state) => state.sidebar);
     const dispatch = useDispatch();
+    const { auth } = usePage().props;
 
     useEffect(() => {
         const { success, error, info } = flash || {};
@@ -36,7 +38,7 @@ const Layout = ({ children, flash = {} }) => {
             <div className="pt-14 sm:pt-0">
                 {children}
             </div>
-            <ChatBot />
+            {auth?.user?.role === "admin" && <ChatBot />}
         </main>
     );
 };

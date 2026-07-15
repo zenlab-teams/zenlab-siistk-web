@@ -92,6 +92,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
         Route::delete('/{customer}', 'destroy')->name('destroy');
         Route::delete('/destroy-selected/{ids}', 'destroySelected')->name('destroySelected');
     });
+
+    // Chatbot Routes
+    Route::post('/chatbot/upload-temp', [ChatBotController::class, 'uploadTemp'])->name('admin.chatbot.upload-temp');
+    Route::post('/chatbot/messages', ChatBotController::class)->name('admin.chatbot.messages');
 });
 
 Route::middleware(['auth', 'role:admin,sales'])->group(function () {
@@ -125,5 +129,3 @@ Route::middleware('auth')->get('/', function () {
         default => redirect()->route('login'),
     };
 });
-
-Route::middleware('auth')->post('/chat', ChatBotController::class)->name('chat.send');
