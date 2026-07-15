@@ -31,15 +31,5 @@ class UserSeeder extends Seeder
                 'email' => 'sales' . ($i + 1) . '@zenlab.dev',
             ]);
         }
-
-        // Customer users
-        $customerNames = ['Joko Widodo', 'Maria Tanoesoedibjo', 'Agus Harimurti', 'Puan Maharani', 'Anies Baswedan',
-                          'Sandiaga Uno', 'Erick Thohir', 'Nadiem Makarim', 'Sri Mulyani', 'Retno Marsudi'];
-        foreach ($customerNames as $i => $name) {
-            User::factory()->customer()->create([
-                'name' => $name,
-                'email' => 'customer' . ($i + 1) . '@zenlab.dev',
-            ]);
-        }
     }
 }
