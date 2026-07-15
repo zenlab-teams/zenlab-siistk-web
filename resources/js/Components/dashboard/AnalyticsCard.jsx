@@ -194,14 +194,6 @@ const AnalyticsCard = () => {
                       borderWidth: 1,
                       borderRadius: 4,
                   },
-                  {
-                      label: "Modal Keluar",
-                      data: data.stock.datasets.stock_out_cost,
-                      backgroundColor: "rgba(244, 63, 94, 0.7)",
-                      borderColor: "#f43f5e",
-                      borderWidth: 1,
-                      borderRadius: 4,
-                  },
               ],
           }
         : null;
@@ -347,11 +339,9 @@ const AnalyticsCard = () => {
                         </div>
                     )}
                     {activeTab === "stock" && data?.stock?.summary && (
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+                        <div className="grid grid-cols-2 md:grid-cols-2 gap-3 mb-5">
                             <SummaryCard label="Total Modal Masuk" value={formatRp(data.stock.summary.total_stock_in_cost)} color="sky" />
-                            <SummaryCard label="Total Modal Keluar" value={formatRp(data.stock.summary.total_stock_out_cost)} color="rose" />
                             <SummaryCard label="Total Qty Masuk" value={formatNum(data.stock.summary.total_stock_in_qty)} color="emerald" />
-                            <SummaryCard label="Total Qty Keluar" value={formatNum(data.stock.summary.total_stock_out_qty)} color="orange" />
                         </div>
                     )}
 
