@@ -2,35 +2,40 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
     public function run(): void
     {
-        User::create([
-            'name' => 'Admin User',
-            'email' => 'admin@zenlab.dev',
-            'password' => 'password',
-            'role' => 'admin',
-        ]);
+        \Illuminate\Support\Facades\Schema::disableForeignKeyConstraints();
+        
+        \App\Models\User::truncate();
+        \App\Models\Customer::truncate();
+        \App\Models\Product::truncate();
+        \App\Models\Stock::truncate();
+        \App\Models\Offer::truncate();
+        \Illuminate\Support\Facades\DB::table('offers_items')->truncate();
+        \Illuminate\Support\Facades\DB::table('offers_sales')->truncate();
+        \App\Models\OfferRecord::truncate();
+        \Illuminate\Support\Facades\DB::table('offers_record_items')->truncate();
+        \App\Models\Order::truncate();
+        \Illuminate\Support\Facades\DB::table('orders_items')->truncate();
+        \App\Models\Invoice::truncate();
+        \App\Models\Payment::truncate();
+        \App\Models\Sale::truncate();
+        \Illuminate\Support\Facades\DB::table('sales_targets')->truncate();
 
-        User::create([
-            'name' => 'Sales User',
-            'email' => 'sales@zenlab.dev',
-            'password' => 'password',
-            'role' => 'sales',
-        ]);
+        \Illuminate\Support\Facades\Schema::enableForeignKeyConstraints();
 
-        User::create([
-            'name' => 'Customer User',
-            'email' => 'customer@zenlab.dev',
-            'password' => 'password',
-            'role' => 'customer',
+        $this->call([
+            UserSeeder::class,
+            SaleSeeder::class,
+            CustomerSeeder::class,
+            ProductSeeder::class,
+            OfferSeeder::class,
+            OrderSeeder::class,
+            InvoicePaymentSeeder::class,
         ]);
     }
 }
