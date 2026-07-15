@@ -1,0 +1,1017 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<xmi:XMI xmi:version="2.1" xmlns:uml="http://schema.omg.org/spec/UML/2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1">
+	<xmi:Documentation exporter="Enterprise Architect" exporterVersion="6.5" exporterID="1559"/>
+	<uml:Model xmi:type="uml:Model" name="EA_Model" visibility="public">
+		<packagedElement xmi:type="uml:Package" xmi:id="EAPK_CEF6DE20_CE73_471B_A845_C8C66692DB57" name="TelatenKarya System Architecture" visibility="public">
+			<ownedComment xmi:type="uml:Comment" xmi:id="EAID_FC85F161_E68A_49E7_938B_A9E5D92EF1B5" body="Auth\LoginController, Auth\LogoutController&#xA;Admin\DashboardController, ProductController, StockController, UserController&#xA;Admin\CustomerController, OrderController, InvoiceController, OfferController&#xA;Sales\DashboardController, Sales\OfferController&#xA;Customer\DashboardController&#xA;PublicOrderController, ChatBotController"/>
+			<ownedComment xmi:type="uml:Comment" xmi:id="EAID_F955B0CE_5B0C_49A0_884E_B16454C04455" body="Admin: dashboard, user, product, stock, customer, order, invoice, offer&#xA;Sales: dashboard, assigned offers, sales record&#xA;Customer: dashboard&#xA;Public: view order link, upload payment proof&#xA;Chat: operational Q&amp;A, product/customer/order snippets, simple CRUD intent"/>
+			<ownedComment xmi:type="uml:Comment" xmi:id="EAID_80D018D1_79D9_4851_BC41_C67BE16A8C19" body="users, sessions, cache, jobs&#xA;customers, sales, sales_targets&#xA;products, stocks&#xA;offers, offers_items, offers_sales, offers_records, offers_record_items&#xA;orders, orders_items, invoices, payments"/>
+			<ownedComment xmi:type="uml:Comment" xmi:id="EAID_60B83BAB_4C12_41FD_B804_4A53AC8CB411" body="User&#xA;Customer&#xA;Sale,SalesTarget&#xA;Product, Stock&#xA;Offer, OfferItem, OfferSale, OfferRecord, OfferRecordItem&#xA;Order, OrderItem, Invoice, Payment&#xA;Observers: OfferObserver, OrderObserver"/>
+			<ownedComment xmi:type="uml:Comment" xmi:id="EAID_3927DEF3_2483_44EB_8506_37535CAC6D24" body="admin&#xA;sales&#xA;customer&#xA;public order viewer"/>
+			<ownedComment xmi:type="uml:Comment" xmi:id="EAID_0666EB0C_EFFB_416E_A427_9D4622922AEA" body="Laravel 12, PHP 8.2+&#xA;Inertia.js v2, React 18, Redux Toolkit&#xA;Vite 7, Tailwind CSS 3.4, Ziggy&#xA;MySQL primary database&#xA;DomPDF invoice export&#xA;Laravel Form Requests, middleware role, Eloquent ORM"/>
+			<packagedElement xmi:type="uml:Component" xmi:id="EAID_4E4F5C13_C70C_420C_8FA2_FDC2533779D8" name="Admin Panel" visibility="public">
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_dst90FCD6_DF96_4A51_AE2D_487391DBF60F" visibility="public" association="EAID_C690FCD6_DF96_4A51_AE2D_487391DBF60F" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_D43474DB_2FBB_4F88_845D_C0EC5FAF424B"/>
+				</ownedAttribute>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Association" xmi:id="EAID_C690FCD6_DF96_4A51_AE2D_487391DBF60F" visibility="public">
+				<memberEnd xmi:idref="EAID_dst90FCD6_DF96_4A51_AE2D_487391DBF60F"/>
+				<memberEnd xmi:idref="EAID_src90FCD6_DF96_4A51_AE2D_487391DBF60F"/>
+				<ownedEnd xmi:type="uml:Property" xmi:id="EAID_src90FCD6_DF96_4A51_AE2D_487391DBF60F" visibility="public" association="EAID_C690FCD6_DF96_4A51_AE2D_487391DBF60F" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_4E4F5C13_C70C_420C_8FA2_FDC2533779D8"/>
+				</ownedEnd>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Association" xmi:id="EAID_1CE32378_79BF_47E5_9503_4FBE0F8864C2" visibility="public">
+				<memberEnd xmi:idref="EAID_dstE32378_79BF_47E5_9503_4FBE0F8864C2"/>
+				<memberEnd xmi:idref="EAID_srcE32378_79BF_47E5_9503_4FBE0F8864C2"/>
+				<ownedEnd xmi:type="uml:Property" xmi:id="EAID_srcE32378_79BF_47E5_9503_4FBE0F8864C2" visibility="public" association="EAID_1CE32378_79BF_47E5_9503_4FBE0F8864C2" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_B2D8C208_FC44_4AD0_84B7_EE9C639077E8"/>
+				</ownedEnd>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Component" xmi:id="EAID_944FDA94_0B8F_4E4D_9DFE_2AEF546BAB9E" name="Authentication &amp; Role Access" visibility="public">
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_dst2D4E01_288B_403B_96BE_DB2711A7A237" visibility="public" association="EAID_862D4E01_288B_403B_96BE_DB2711A7A237" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_D43474DB_2FBB_4F88_845D_C0EC5FAF424B"/>
+				</ownedAttribute>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Association" xmi:id="EAID_862D4E01_288B_403B_96BE_DB2711A7A237" visibility="public">
+				<memberEnd xmi:idref="EAID_dst2D4E01_288B_403B_96BE_DB2711A7A237"/>
+				<memberEnd xmi:idref="EAID_src2D4E01_288B_403B_96BE_DB2711A7A237"/>
+				<ownedEnd xmi:type="uml:Property" xmi:id="EAID_src2D4E01_288B_403B_96BE_DB2711A7A237" visibility="public" association="EAID_862D4E01_288B_403B_96BE_DB2711A7A237" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_944FDA94_0B8F_4E4D_9DFE_2AEF546BAB9E"/>
+				</ownedEnd>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Association" xmi:id="EAID_34F7F4DF_88E0_4D3A_9B76_76FD6E5D358D" visibility="public">
+				<memberEnd xmi:idref="EAID_dstF7F4DF_88E0_4D3A_9B76_76FD6E5D358D"/>
+				<memberEnd xmi:idref="EAID_srcF7F4DF_88E0_4D3A_9B76_76FD6E5D358D"/>
+				<ownedEnd xmi:type="uml:Property" xmi:id="EAID_srcF7F4DF_88E0_4D3A_9B76_76FD6E5D358D" visibility="public" association="EAID_34F7F4DF_88E0_4D3A_9B76_76FD6E5D358D" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_B2D8C208_FC44_4AD0_84B7_EE9C639077E8"/>
+				</ownedEnd>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Component" xmi:id="EAID_7B3AAAB8_7E68_40BA_A63F_12A6D4F8DDEA" name="Chat Assistant" visibility="public">
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_dst5F5842_F0AA_4A64_93C6_59F9800CC4E0" visibility="public" association="EAID_475F5842_F0AA_4A64_93C6_59F9800CC4E0" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_D43474DB_2FBB_4F88_845D_C0EC5FAF424B"/>
+				</ownedAttribute>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Association" xmi:id="EAID_475F5842_F0AA_4A64_93C6_59F9800CC4E0" visibility="public">
+				<memberEnd xmi:idref="EAID_dst5F5842_F0AA_4A64_93C6_59F9800CC4E0"/>
+				<memberEnd xmi:idref="EAID_src5F5842_F0AA_4A64_93C6_59F9800CC4E0"/>
+				<ownedEnd xmi:type="uml:Property" xmi:id="EAID_src5F5842_F0AA_4A64_93C6_59F9800CC4E0" visibility="public" association="EAID_475F5842_F0AA_4A64_93C6_59F9800CC4E0" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_7B3AAAB8_7E68_40BA_A63F_12A6D4F8DDEA"/>
+				</ownedEnd>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Association" xmi:id="EAID_9AA58D80_DBA0_4A36_8BD8_8A33BFD481CA" visibility="public">
+				<memberEnd xmi:idref="EAID_dstA58D80_DBA0_4A36_8BD8_8A33BFD481CA"/>
+				<memberEnd xmi:idref="EAID_srcA58D80_DBA0_4A36_8BD8_8A33BFD481CA"/>
+				<ownedEnd xmi:type="uml:Property" xmi:id="EAID_srcA58D80_DBA0_4A36_8BD8_8A33BFD481CA" visibility="public" association="EAID_9AA58D80_DBA0_4A36_8BD8_8A33BFD481CA" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_B2D8C208_FC44_4AD0_84B7_EE9C639077E8"/>
+				</ownedEnd>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Component" xmi:id="EAID_58CD9502_69B6_4C1A_BB66_3C1FD91DC053" name="Client / Browser" visibility="public"/>
+			<packagedElement xmi:type="uml:Association" xmi:id="EAID_DD7C7B31_3227_49FE_8F45_BE3D8C0A7E69" visibility="public">
+				<memberEnd xmi:idref="EAID_dst7C7B31_3227_49FE_8F45_BE3D8C0A7E69"/>
+				<memberEnd xmi:idref="EAID_src7C7B31_3227_49FE_8F45_BE3D8C0A7E69"/>
+				<ownedEnd xmi:type="uml:Property" xmi:id="EAID_src7C7B31_3227_49FE_8F45_BE3D8C0A7E69" visibility="public" association="EAID_DD7C7B31_3227_49FE_8F45_BE3D8C0A7E69" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_D43474DB_2FBB_4F88_845D_C0EC5FAF424B"/>
+				</ownedEnd>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Component" xmi:id="EAID_B317DDD5_A5FE_4913_BE5B_B80EDB44B06A" name="Customer &amp; Public Portal" visibility="public">
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_dst788354_37B5_48FB_A0CB_D5AD604515A0" visibility="public" association="EAID_0B788354_37B5_48FB_A0CB_D5AD604515A0" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_D43474DB_2FBB_4F88_845D_C0EC5FAF424B"/>
+				</ownedAttribute>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Association" xmi:id="EAID_0B788354_37B5_48FB_A0CB_D5AD604515A0" visibility="public">
+				<memberEnd xmi:idref="EAID_dst788354_37B5_48FB_A0CB_D5AD604515A0"/>
+				<memberEnd xmi:idref="EAID_src788354_37B5_48FB_A0CB_D5AD604515A0"/>
+				<ownedEnd xmi:type="uml:Property" xmi:id="EAID_src788354_37B5_48FB_A0CB_D5AD604515A0" visibility="public" association="EAID_0B788354_37B5_48FB_A0CB_D5AD604515A0" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_B317DDD5_A5FE_4913_BE5B_B80EDB44B06A"/>
+				</ownedEnd>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Association" xmi:id="EAID_05BA7513_5F6D_40E1_A76D_0B5D80D53544" visibility="public">
+				<memberEnd xmi:idref="EAID_dstBA7513_5F6D_40E1_A76D_0B5D80D53544"/>
+				<memberEnd xmi:idref="EAID_srcBA7513_5F6D_40E1_A76D_0B5D80D53544"/>
+				<ownedEnd xmi:type="uml:Property" xmi:id="EAID_srcBA7513_5F6D_40E1_A76D_0B5D80D53544" visibility="public" association="EAID_05BA7513_5F6D_40E1_A76D_0B5D80D53544" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_B2D8C208_FC44_4AD0_84B7_EE9C639077E8"/>
+				</ownedEnd>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Component" xmi:id="EAID_F9BFBEEB_3C61_4DF3_9C96_095523E25EDD" name="Domain / Business Layer" visibility="public">
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_dst2F31C4_4A18_4CFE_AE3B_B2EC7AA3B29E" visibility="public" association="EAID_A22F31C4_4A18_4CFE_AE3B_B2EC7AA3B29E" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_B2D8C208_FC44_4AD0_84B7_EE9C639077E8"/>
+				</ownedAttribute>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Association" xmi:id="EAID_A22F31C4_4A18_4CFE_AE3B_B2EC7AA3B29E" visibility="public">
+				<memberEnd xmi:idref="EAID_dst2F31C4_4A18_4CFE_AE3B_B2EC7AA3B29E"/>
+				<memberEnd xmi:idref="EAID_src2F31C4_4A18_4CFE_AE3B_B2EC7AA3B29E"/>
+				<ownedEnd xmi:type="uml:Property" xmi:id="EAID_src2F31C4_4A18_4CFE_AE3B_B2EC7AA3B29E" visibility="public" association="EAID_A22F31C4_4A18_4CFE_AE3B_B2EC7AA3B29E" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_F9BFBEEB_3C61_4DF3_9C96_095523E25EDD"/>
+				</ownedEnd>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Association" xmi:id="EAID_368D42A2_6028_4113_8A70_1E89B5B3D982" visibility="public">
+				<memberEnd xmi:idref="EAID_dst8D42A2_6028_4113_8A70_1E89B5B3D982"/>
+				<memberEnd xmi:idref="EAID_src8D42A2_6028_4113_8A70_1E89B5B3D982"/>
+				<ownedEnd xmi:type="uml:Property" xmi:id="EAID_src8D42A2_6028_4113_8A70_1E89B5B3D982" visibility="public" association="EAID_368D42A2_6028_4113_8A70_1E89B5B3D982" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_D1C9B435_81A5_4713_A9C2_959031EC802B"/>
+				</ownedEnd>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Association" xmi:id="EAID_B6790DC3_CDE5_4252_A5DB_740F7BF3BDCD" visibility="public">
+				<memberEnd xmi:idref="EAID_dst790DC3_CDE5_4252_A5DB_740F7BF3BDCD"/>
+				<memberEnd xmi:idref="EAID_src790DC3_CDE5_4252_A5DB_740F7BF3BDCD"/>
+				<ownedEnd xmi:type="uml:Property" xmi:id="EAID_src790DC3_CDE5_4252_A5DB_740F7BF3BDCD" visibility="public" association="EAID_B6790DC3_CDE5_4252_A5DB_740F7BF3BDCD" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_759FC5CA_859D_4975_B8C5_A9E4C696533F"/>
+				</ownedEnd>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Association" xmi:id="EAID_D8678D73_AB22_49C2_8804_1BF3E11432F3" visibility="public">
+				<memberEnd xmi:idref="EAID_dst678D73_AB22_49C2_8804_1BF3E11432F3"/>
+				<memberEnd xmi:idref="EAID_src678D73_AB22_49C2_8804_1BF3E11432F3"/>
+				<ownedEnd xmi:type="uml:Property" xmi:id="EAID_src678D73_AB22_49C2_8804_1BF3E11432F3" visibility="public" association="EAID_D8678D73_AB22_49C2_8804_1BF3E11432F3" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_2D97D75B_504C_4D12_8863_49220CC22F6C"/>
+				</ownedEnd>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Component" xmi:id="EAID_B2D8C208_FC44_4AD0_84B7_EE9C639077E8" name="Laravel Routes &amp; Controllers" visibility="public">
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_dstBA7513_5F6D_40E1_A76D_0B5D80D53544" visibility="public" association="EAID_05BA7513_5F6D_40E1_A76D_0B5D80D53544" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_B317DDD5_A5FE_4913_BE5B_B80EDB44B06A"/>
+				</ownedAttribute>
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_dstE32378_79BF_47E5_9503_4FBE0F8864C2" visibility="public" association="EAID_1CE32378_79BF_47E5_9503_4FBE0F8864C2" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_4E4F5C13_C70C_420C_8FA2_FDC2533779D8"/>
+				</ownedAttribute>
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_dstAB3CE9_1FF0_4908_B15B_3A94F694D39B" visibility="public" association="EAID_31AB3CE9_1FF0_4908_B15B_3A94F694D39B" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_44AB00E1_2EBB_4CC9_B0B3_E4D6CA518F67"/>
+				</ownedAttribute>
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_dstF7F4DF_88E0_4D3A_9B76_76FD6E5D358D" visibility="public" association="EAID_34F7F4DF_88E0_4D3A_9B76_76FD6E5D358D" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_944FDA94_0B8F_4E4D_9DFE_2AEF546BAB9E"/>
+				</ownedAttribute>
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_dstA58D80_DBA0_4A36_8BD8_8A33BFD481CA" visibility="public" association="EAID_9AA58D80_DBA0_4A36_8BD8_8A33BFD481CA" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_7B3AAAB8_7E68_40BA_A63F_12A6D4F8DDEA"/>
+				</ownedAttribute>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Association" xmi:id="EAID_31AB3CE9_1FF0_4908_B15B_3A94F694D39B" visibility="public">
+				<memberEnd xmi:idref="EAID_dstAB3CE9_1FF0_4908_B15B_3A94F694D39B"/>
+				<memberEnd xmi:idref="EAID_srcAB3CE9_1FF0_4908_B15B_3A94F694D39B"/>
+				<ownedEnd xmi:type="uml:Property" xmi:id="EAID_srcAB3CE9_1FF0_4908_B15B_3A94F694D39B" visibility="public" association="EAID_31AB3CE9_1FF0_4908_B15B_3A94F694D39B" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_B2D8C208_FC44_4AD0_84B7_EE9C639077E8"/>
+				</ownedEnd>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Component" xmi:id="EAID_2D97D75B_504C_4D12_8863_49220CC22F6C" name="MySQL Database" visibility="public">
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_dst678D73_AB22_49C2_8804_1BF3E11432F3" visibility="public" association="EAID_D8678D73_AB22_49C2_8804_1BF3E11432F3" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_F9BFBEEB_3C61_4DF3_9C96_095523E25EDD"/>
+				</ownedAttribute>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Component" xmi:id="EAID_D1C9B435_81A5_4713_A9C2_959031EC802B" name="PDF Invoice Renderer" visibility="public">
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_dst8D42A2_6028_4113_8A70_1E89B5B3D982" visibility="public" association="EAID_368D42A2_6028_4113_8A70_1E89B5B3D982" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_F9BFBEEB_3C61_4DF3_9C96_095523E25EDD"/>
+				</ownedAttribute>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Component" xmi:id="EAID_759FC5CA_859D_4975_B8C5_A9E4C696533F" name="Public File Storage" visibility="public">
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_dst790DC3_CDE5_4252_A5DB_740F7BF3BDCD" visibility="public" association="EAID_B6790DC3_CDE5_4252_A5DB_740F7BF3BDCD" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_F9BFBEEB_3C61_4DF3_9C96_095523E25EDD"/>
+				</ownedAttribute>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Component" xmi:id="EAID_D43474DB_2FBB_4F88_845D_C0EC5FAF424B" name="React Inertia Frontend" visibility="public">
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_dst7C7B31_3227_49FE_8F45_BE3D8C0A7E69" visibility="public" association="EAID_DD7C7B31_3227_49FE_8F45_BE3D8C0A7E69" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_58CD9502_69B6_4C1A_BB66_3C1FD91DC053"/>
+				</ownedAttribute>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Association" xmi:id="EAID_6D2BE481_ECB6_4FDF_9068_4973507C93BF" visibility="public">
+				<memberEnd xmi:idref="EAID_dst2BE481_ECB6_4FDF_9068_4973507C93BF"/>
+				<memberEnd xmi:idref="EAID_src2BE481_ECB6_4FDF_9068_4973507C93BF"/>
+				<ownedEnd xmi:type="uml:Property" xmi:id="EAID_src2BE481_ECB6_4FDF_9068_4973507C93BF" visibility="public" association="EAID_6D2BE481_ECB6_4FDF_9068_4973507C93BF" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_44AB00E1_2EBB_4CC9_B0B3_E4D6CA518F67"/>
+				</ownedEnd>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Component" xmi:id="EAID_44AB00E1_2EBB_4CC9_B0B3_E4D6CA518F67" name="Sales Panel" visibility="public">
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_dst2BE481_ECB6_4FDF_9068_4973507C93BF" visibility="public" association="EAID_6D2BE481_ECB6_4FDF_9068_4973507C93BF" isStatic="false" isReadOnly="true" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_D43474DB_2FBB_4F88_845D_C0EC5FAF424B"/>
+				</ownedAttribute>
+			</packagedElement>
+		</packagedElement>
+	</uml:Model>
+	<xmi:Extension extender="Enterprise Architect" extenderID="6.5">
+		<elements>
+			<element xmi:idref="EAPK_CEF6DE20_CE73_471B_A845_C8C66692DB57" xmi:type="uml:Package" name="TelatenKarya System Architecture" scope="public">
+				<model package2="EAID_CEF6DE20_CE73_471B_A845_C8C66692DB57" package="EAPK_4F21F4B3_E517_4c6e_A78E_1B7EB419361D" tpos="0" ea_localid="39" ea_eleType="package"/>
+				<properties isSpecification="false" sType="Package" nType="0" scope="public"/>
+				<project author="Codex" version="1.0" phase="1.0" created="2026-07-14 00:00:00" modified="2026-07-14 00:43:52" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs/>
+				<extendedProperties tagged="0" package_name="Model"/>
+				<packageproperties version="1.0"/>
+				<paths/>
+				<times created="2026-07-14 00:00:00" modified="2026-07-14 00:43:52"/>
+				<flags iscontrolled="FALSE" isprotected="FALSE" usedtd="FALSE" logxml="FALSE"/>
+			</element>
+			<element xmi:idref="EAID_4E4F5C13_C70C_420C_8FA2_FDC2533779D8" xmi:type="uml:Component" name="Admin Panel" scope="public">
+				<model package="EAPK_CEF6DE20_CE73_471B_A845_C8C66692DB57" tpos="0" ea_localid="6113" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Component" nType="0" scope="public" isRoot="false" isLeaf="false" isAbstract="false"/>
+				<project author="null" version="1.0" phase="1.0" created="2026-07-14 00:40:35" modified="2026-07-14 00:40:35" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs/>
+				<extendedProperties tagged="0" package_name="TelatenKarya System Architecture"/>
+				<links>
+					<Association xmi:id="EAID_C690FCD6_DF96_4A51_AE2D_487391DBF60F" start="EAID_4E4F5C13_C70C_420C_8FA2_FDC2533779D8" end="EAID_D43474DB_2FBB_4F88_845D_C0EC5FAF424B"/>
+					<Association xmi:id="EAID_1CE32378_79BF_47E5_9503_4FBE0F8864C2" start="EAID_B2D8C208_FC44_4AD0_84B7_EE9C639077E8" end="EAID_4E4F5C13_C70C_420C_8FA2_FDC2533779D8"/>
+				</links>
+			</element>
+			<element xmi:idref="EAID_944FDA94_0B8F_4E4D_9DFE_2AEF546BAB9E" xmi:type="uml:Component" name="Authentication &amp; Role Access" scope="public">
+				<model package="EAPK_CEF6DE20_CE73_471B_A845_C8C66692DB57" tpos="0" ea_localid="6112" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Component" nType="0" scope="public" isRoot="false" isLeaf="false" isAbstract="false"/>
+				<project author="null" version="1.0" phase="1.0" created="2026-07-14 00:40:35" modified="2026-07-14 00:40:35" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs/>
+				<extendedProperties tagged="0" package_name="TelatenKarya System Architecture"/>
+				<links>
+					<Association xmi:id="EAID_862D4E01_288B_403B_96BE_DB2711A7A237" start="EAID_944FDA94_0B8F_4E4D_9DFE_2AEF546BAB9E" end="EAID_D43474DB_2FBB_4F88_845D_C0EC5FAF424B"/>
+					<Association xmi:id="EAID_34F7F4DF_88E0_4D3A_9B76_76FD6E5D358D" start="EAID_B2D8C208_FC44_4AD0_84B7_EE9C639077E8" end="EAID_944FDA94_0B8F_4E4D_9DFE_2AEF546BAB9E"/>
+				</links>
+			</element>
+			<element xmi:idref="EAID_7B3AAAB8_7E68_40BA_A63F_12A6D4F8DDEA" xmi:type="uml:Component" name="Chat Assistant" scope="public">
+				<model package="EAPK_CEF6DE20_CE73_471B_A845_C8C66692DB57" tpos="0" ea_localid="6116" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Component" nType="0" scope="public" isRoot="false" isLeaf="false" isAbstract="false"/>
+				<project author="null" version="1.0" phase="1.0" created="2026-07-14 00:40:35" modified="2026-07-14 00:40:35" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs/>
+				<extendedProperties tagged="0" package_name="TelatenKarya System Architecture"/>
+				<links>
+					<Association xmi:id="EAID_475F5842_F0AA_4A64_93C6_59F9800CC4E0" start="EAID_7B3AAAB8_7E68_40BA_A63F_12A6D4F8DDEA" end="EAID_D43474DB_2FBB_4F88_845D_C0EC5FAF424B"/>
+					<Association xmi:id="EAID_9AA58D80_DBA0_4A36_8BD8_8A33BFD481CA" start="EAID_B2D8C208_FC44_4AD0_84B7_EE9C639077E8" end="EAID_7B3AAAB8_7E68_40BA_A63F_12A6D4F8DDEA"/>
+				</links>
+			</element>
+			<element xmi:idref="EAID_58CD9502_69B6_4C1A_BB66_3C1FD91DC053" xmi:type="uml:Component" name="Client / Browser" scope="public">
+				<model package="EAPK_CEF6DE20_CE73_471B_A845_C8C66692DB57" tpos="0" ea_localid="6110" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Component" nType="0" scope="public" isRoot="false" isLeaf="false" isAbstract="false"/>
+				<project author="null" version="1.0" phase="1.0" created="2026-07-14 00:40:35" modified="2026-07-14 00:40:35" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs/>
+				<extendedProperties tagged="0" package_name="TelatenKarya System Architecture"/>
+				<links>
+					<Association xmi:id="EAID_DD7C7B31_3227_49FE_8F45_BE3D8C0A7E69" start="EAID_D43474DB_2FBB_4F88_845D_C0EC5FAF424B" end="EAID_58CD9502_69B6_4C1A_BB66_3C1FD91DC053"/>
+				</links>
+			</element>
+			<element xmi:idref="EAID_B317DDD5_A5FE_4913_BE5B_B80EDB44B06A" xmi:type="uml:Component" name="Customer &amp; Public Portal" scope="public">
+				<model package="EAPK_CEF6DE20_CE73_471B_A845_C8C66692DB57" tpos="0" ea_localid="6115" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Component" nType="0" scope="public" isRoot="false" isLeaf="false" isAbstract="false"/>
+				<project author="null" version="1.0" phase="1.0" created="2026-07-14 00:40:35" modified="2026-07-14 00:40:35" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs/>
+				<extendedProperties tagged="0" package_name="TelatenKarya System Architecture"/>
+				<links>
+					<Association xmi:id="EAID_0B788354_37B5_48FB_A0CB_D5AD604515A0" start="EAID_B317DDD5_A5FE_4913_BE5B_B80EDB44B06A" end="EAID_D43474DB_2FBB_4F88_845D_C0EC5FAF424B"/>
+					<Association xmi:id="EAID_05BA7513_5F6D_40E1_A76D_0B5D80D53544" start="EAID_B2D8C208_FC44_4AD0_84B7_EE9C639077E8" end="EAID_B317DDD5_A5FE_4913_BE5B_B80EDB44B06A"/>
+				</links>
+			</element>
+			<element xmi:idref="EAID_F9BFBEEB_3C61_4DF3_9C96_095523E25EDD" xmi:type="uml:Component" name="Domain / Business Layer" scope="public">
+				<model package="EAPK_CEF6DE20_CE73_471B_A845_C8C66692DB57" tpos="0" ea_localid="6118" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Component" nType="0" scope="public" isRoot="false" isLeaf="false" isAbstract="false"/>
+				<project author="null" version="1.0" phase="1.0" created="2026-07-14 00:40:35" modified="2026-07-14 00:40:35" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs/>
+				<extendedProperties tagged="0" package_name="TelatenKarya System Architecture"/>
+				<links>
+					<Association xmi:id="EAID_A22F31C4_4A18_4CFE_AE3B_B2EC7AA3B29E" start="EAID_F9BFBEEB_3C61_4DF3_9C96_095523E25EDD" end="EAID_B2D8C208_FC44_4AD0_84B7_EE9C639077E8"/>
+					<Association xmi:id="EAID_368D42A2_6028_4113_8A70_1E89B5B3D982" start="EAID_D1C9B435_81A5_4713_A9C2_959031EC802B" end="EAID_F9BFBEEB_3C61_4DF3_9C96_095523E25EDD"/>
+					<Association xmi:id="EAID_B6790DC3_CDE5_4252_A5DB_740F7BF3BDCD" start="EAID_759FC5CA_859D_4975_B8C5_A9E4C696533F" end="EAID_F9BFBEEB_3C61_4DF3_9C96_095523E25EDD"/>
+					<Association xmi:id="EAID_D8678D73_AB22_49C2_8804_1BF3E11432F3" start="EAID_2D97D75B_504C_4D12_8863_49220CC22F6C" end="EAID_F9BFBEEB_3C61_4DF3_9C96_095523E25EDD"/>
+				</links>
+			</element>
+			<element xmi:idref="EAID_B2D8C208_FC44_4AD0_84B7_EE9C639077E8" xmi:type="uml:Component" name="Laravel Routes &amp; Controllers" scope="public">
+				<model package="EAPK_CEF6DE20_CE73_471B_A845_C8C66692DB57" tpos="0" ea_localid="6117" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Component" nType="0" scope="public" isRoot="false" isLeaf="false" isAbstract="false"/>
+				<project author="null" version="1.0" phase="1.0" created="2026-07-14 00:40:35" modified="2026-07-14 00:40:35" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs/>
+				<extendedProperties tagged="0" package_name="TelatenKarya System Architecture"/>
+				<links>
+					<Association xmi:id="EAID_05BA7513_5F6D_40E1_A76D_0B5D80D53544" start="EAID_B2D8C208_FC44_4AD0_84B7_EE9C639077E8" end="EAID_B317DDD5_A5FE_4913_BE5B_B80EDB44B06A"/>
+					<Association xmi:id="EAID_1CE32378_79BF_47E5_9503_4FBE0F8864C2" start="EAID_B2D8C208_FC44_4AD0_84B7_EE9C639077E8" end="EAID_4E4F5C13_C70C_420C_8FA2_FDC2533779D8"/>
+					<Association xmi:id="EAID_31AB3CE9_1FF0_4908_B15B_3A94F694D39B" start="EAID_B2D8C208_FC44_4AD0_84B7_EE9C639077E8" end="EAID_44AB00E1_2EBB_4CC9_B0B3_E4D6CA518F67"/>
+					<Association xmi:id="EAID_34F7F4DF_88E0_4D3A_9B76_76FD6E5D358D" start="EAID_B2D8C208_FC44_4AD0_84B7_EE9C639077E8" end="EAID_944FDA94_0B8F_4E4D_9DFE_2AEF546BAB9E"/>
+					<Association xmi:id="EAID_9AA58D80_DBA0_4A36_8BD8_8A33BFD481CA" start="EAID_B2D8C208_FC44_4AD0_84B7_EE9C639077E8" end="EAID_7B3AAAB8_7E68_40BA_A63F_12A6D4F8DDEA"/>
+					<Association xmi:id="EAID_A22F31C4_4A18_4CFE_AE3B_B2EC7AA3B29E" start="EAID_F9BFBEEB_3C61_4DF3_9C96_095523E25EDD" end="EAID_B2D8C208_FC44_4AD0_84B7_EE9C639077E8"/>
+				</links>
+			</element>
+			<element xmi:idref="EAID_2D97D75B_504C_4D12_8863_49220CC22F6C" xmi:type="uml:Component" name="MySQL Database" scope="public">
+				<model package="EAPK_CEF6DE20_CE73_471B_A845_C8C66692DB57" tpos="0" ea_localid="6119" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Component" nType="0" scope="public" isRoot="false" isLeaf="false" isAbstract="false"/>
+				<project author="null" version="1.0" phase="1.0" created="2026-07-14 00:40:35" modified="2026-07-14 00:40:35" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs/>
+				<extendedProperties tagged="0" package_name="TelatenKarya System Architecture"/>
+				<links>
+					<Association xmi:id="EAID_D8678D73_AB22_49C2_8804_1BF3E11432F3" start="EAID_2D97D75B_504C_4D12_8863_49220CC22F6C" end="EAID_F9BFBEEB_3C61_4DF3_9C96_095523E25EDD"/>
+				</links>
+			</element>
+			<element xmi:idref="EAID_D1C9B435_81A5_4713_A9C2_959031EC802B" xmi:type="uml:Component" name="PDF Invoice Renderer" scope="public">
+				<model package="EAPK_CEF6DE20_CE73_471B_A845_C8C66692DB57" tpos="0" ea_localid="6121" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Component" nType="0" scope="public" isRoot="false" isLeaf="false" isAbstract="false"/>
+				<project author="null" version="1.0" phase="1.0" created="2026-07-14 00:40:35" modified="2026-07-14 00:40:35" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs/>
+				<extendedProperties tagged="0" package_name="TelatenKarya System Architecture"/>
+				<links>
+					<Association xmi:id="EAID_368D42A2_6028_4113_8A70_1E89B5B3D982" start="EAID_D1C9B435_81A5_4713_A9C2_959031EC802B" end="EAID_F9BFBEEB_3C61_4DF3_9C96_095523E25EDD"/>
+				</links>
+			</element>
+			<element xmi:idref="EAID_759FC5CA_859D_4975_B8C5_A9E4C696533F" xmi:type="uml:Component" name="Public File Storage" scope="public">
+				<model package="EAPK_CEF6DE20_CE73_471B_A845_C8C66692DB57" tpos="0" ea_localid="6120" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Component" nType="0" scope="public" isRoot="false" isLeaf="false" isAbstract="false"/>
+				<project author="null" version="1.0" phase="1.0" created="2026-07-14 00:40:35" modified="2026-07-14 00:40:35" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs/>
+				<extendedProperties tagged="0" package_name="TelatenKarya System Architecture"/>
+				<links>
+					<Association xmi:id="EAID_B6790DC3_CDE5_4252_A5DB_740F7BF3BDCD" start="EAID_759FC5CA_859D_4975_B8C5_A9E4C696533F" end="EAID_F9BFBEEB_3C61_4DF3_9C96_095523E25EDD"/>
+				</links>
+			</element>
+			<element xmi:idref="EAID_D43474DB_2FBB_4F88_845D_C0EC5FAF424B" xmi:type="uml:Component" name="React Inertia Frontend" scope="public">
+				<model package="EAPK_CEF6DE20_CE73_471B_A845_C8C66692DB57" tpos="0" ea_localid="6111" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Component" nType="0" scope="public" isRoot="false" isLeaf="false" isAbstract="false"/>
+				<project author="null" version="1.0" phase="1.0" created="2026-07-14 00:40:35" modified="2026-07-14 00:40:35" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs/>
+				<extendedProperties tagged="0" package_name="TelatenKarya System Architecture"/>
+				<links>
+					<Association xmi:id="EAID_DD7C7B31_3227_49FE_8F45_BE3D8C0A7E69" start="EAID_D43474DB_2FBB_4F88_845D_C0EC5FAF424B" end="EAID_58CD9502_69B6_4C1A_BB66_3C1FD91DC053"/>
+					<Association xmi:id="EAID_0B788354_37B5_48FB_A0CB_D5AD604515A0" start="EAID_B317DDD5_A5FE_4913_BE5B_B80EDB44B06A" end="EAID_D43474DB_2FBB_4F88_845D_C0EC5FAF424B"/>
+					<Association xmi:id="EAID_475F5842_F0AA_4A64_93C6_59F9800CC4E0" start="EAID_7B3AAAB8_7E68_40BA_A63F_12A6D4F8DDEA" end="EAID_D43474DB_2FBB_4F88_845D_C0EC5FAF424B"/>
+					<Association xmi:id="EAID_6D2BE481_ECB6_4FDF_9068_4973507C93BF" start="EAID_44AB00E1_2EBB_4CC9_B0B3_E4D6CA518F67" end="EAID_D43474DB_2FBB_4F88_845D_C0EC5FAF424B"/>
+					<Association xmi:id="EAID_862D4E01_288B_403B_96BE_DB2711A7A237" start="EAID_944FDA94_0B8F_4E4D_9DFE_2AEF546BAB9E" end="EAID_D43474DB_2FBB_4F88_845D_C0EC5FAF424B"/>
+					<Association xmi:id="EAID_C690FCD6_DF96_4A51_AE2D_487391DBF60F" start="EAID_4E4F5C13_C70C_420C_8FA2_FDC2533779D8" end="EAID_D43474DB_2FBB_4F88_845D_C0EC5FAF424B"/>
+				</links>
+			</element>
+			<element xmi:idref="EAID_44AB00E1_2EBB_4CC9_B0B3_E4D6CA518F67" xmi:type="uml:Component" name="Sales Panel" scope="public">
+				<model package="EAPK_CEF6DE20_CE73_471B_A845_C8C66692DB57" tpos="0" ea_localid="6114" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Component" nType="0" scope="public" isRoot="false" isLeaf="false" isAbstract="false"/>
+				<project author="null" version="1.0" phase="1.0" created="2026-07-14 00:40:35" modified="2026-07-14 00:40:35" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs/>
+				<extendedProperties tagged="0" package_name="TelatenKarya System Architecture"/>
+				<links>
+					<Association xmi:id="EAID_6D2BE481_ECB6_4FDF_9068_4973507C93BF" start="EAID_44AB00E1_2EBB_4CC9_B0B3_E4D6CA518F67" end="EAID_D43474DB_2FBB_4F88_845D_C0EC5FAF424B"/>
+					<Association xmi:id="EAID_31AB3CE9_1FF0_4908_B15B_3A94F694D39B" start="EAID_B2D8C208_FC44_4AD0_84B7_EE9C639077E8" end="EAID_44AB00E1_2EBB_4CC9_B0B3_E4D6CA518F67"/>
+				</links>
+			</element>
+			<element xmi:idref="EAID_0666EB0C_EFFB_416E_A427_9D4622922AEA" xmi:type="uml:Note" scope="public">
+				<model package="EAPK_CEF6DE20_CE73_471B_A845_C8C66692DB57" tpos="0" ea_localid="6109" ea_eleType="element"/>
+				<properties documentation="Laravel 12, PHP 8.2+&#xA;Inertia.js v2, React 18, Redux Toolkit&#xA;Vite 7, Tailwind CSS 3.4, Ziggy&#xA;MySQL primary database&#xA;DomPDF invoice export&#xA;Laravel Form Requests, middleware role, Eloquent ORM" isSpecification="false" sType="Note" nType="0" scope="public"/>
+				<project author="null" version="1.0" phase="1.0" created="2026-07-14 00:40:35" modified="2026-07-14 00:40:35" complexity="1" status="Proposed"/>
+				<code gentype="&lt;none&gt;"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs/>
+				<extendedProperties tagged="0" package_name="TelatenKarya System Architecture"/>
+			</element>
+			<element xmi:idref="EAID_3927DEF3_2483_44EB_8506_37535CAC6D24" xmi:type="uml:Note" scope="public">
+				<model package="EAPK_CEF6DE20_CE73_471B_A845_C8C66692DB57" tpos="0" ea_localid="6104" ea_eleType="element"/>
+				<properties documentation="admin&#xA;sales&#xA;customer&#xA;public order viewer" isSpecification="false" sType="Note" nType="0" scope="public"/>
+				<project author="null" version="1.0" phase="1.0" created="2026-07-14 00:40:35" modified="2026-07-14 00:40:35" complexity="1" status="Proposed"/>
+				<code gentype="&lt;none&gt;"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs/>
+				<extendedProperties tagged="0" package_name="TelatenKarya System Architecture"/>
+			</element>
+			<element xmi:idref="EAID_60B83BAB_4C12_41FD_B804_4A53AC8CB411" xmi:type="uml:Note" scope="public">
+				<model package="EAPK_CEF6DE20_CE73_471B_A845_C8C66692DB57" tpos="0" ea_localid="6107" ea_eleType="element"/>
+				<properties documentation="User&#xA;Customer&#xA;Sale,SalesTarget&#xA;Product, Stock&#xA;Offer, OfferItem, OfferSale, OfferRecord, OfferRecordItem&#xA;Order, OrderItem, Invoice, Payment&#xA;Observers: OfferObserver, OrderObserver" isSpecification="false" sType="Note" nType="0" scope="public"/>
+				<project author="null" version="1.0" phase="1.0" created="2026-07-14 00:40:35" modified="2026-07-14 00:41:11" complexity="1" status="Proposed"/>
+				<code gentype="&lt;none&gt;"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs/>
+				<extendedProperties tagged="0" package_name="TelatenKarya System Architecture"/>
+			</element>
+			<element xmi:idref="EAID_80D018D1_79D9_4851_BC41_C67BE16A8C19" xmi:type="uml:Note" scope="public">
+				<model package="EAPK_CEF6DE20_CE73_471B_A845_C8C66692DB57" tpos="0" ea_localid="6108" ea_eleType="element"/>
+				<properties documentation="users, sessions, cache, jobs&#xA;customers, sales, sales_targets&#xA;products, stocks&#xA;offers, offers_items, offers_sales, offers_records, offers_record_items&#xA;orders, orders_items, invoices, payments" isSpecification="false" sType="Note" nType="0" scope="public"/>
+				<project author="null" version="1.0" phase="1.0" created="2026-07-14 00:40:35" modified="2026-07-14 00:40:35" complexity="1" status="Proposed"/>
+				<code gentype="&lt;none&gt;"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs/>
+				<extendedProperties tagged="0" package_name="TelatenKarya System Architecture"/>
+			</element>
+			<element xmi:idref="EAID_F955B0CE_5B0C_49A0_884E_B16454C04455" xmi:type="uml:Note" scope="public">
+				<model package="EAPK_CEF6DE20_CE73_471B_A845_C8C66692DB57" tpos="0" ea_localid="6105" ea_eleType="element"/>
+				<properties documentation="Admin: dashboard, user, product, stock, customer, order, invoice, offer&#xA;Sales: dashboard, assigned offers, sales record&#xA;Customer: dashboard&#xA;Public: view order link, upload payment proof&#xA;Chat: operational Q&amp;A, product/customer/order snippets, simple CRUD intent" isSpecification="false" sType="Note" nType="0" scope="public"/>
+				<project author="null" version="1.0" phase="1.0" created="2026-07-14 00:40:35" modified="2026-07-14 00:40:35" complexity="1" status="Proposed"/>
+				<code gentype="&lt;none&gt;"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs/>
+				<extendedProperties tagged="0" package_name="TelatenKarya System Architecture"/>
+			</element>
+			<element xmi:idref="EAID_FC85F161_E68A_49E7_938B_A9E5D92EF1B5" xmi:type="uml:Note" scope="public">
+				<model package="EAPK_CEF6DE20_CE73_471B_A845_C8C66692DB57" tpos="0" ea_localid="6106" ea_eleType="element"/>
+				<properties documentation="Auth\LoginController, Auth\LogoutController&#xA;Admin\DashboardController, ProductController, StockController, UserController&#xA;Admin\CustomerController, OrderController, InvoiceController, OfferController&#xA;Sales\DashboardController, Sales\OfferController&#xA;Customer\DashboardController&#xA;PublicOrderController, ChatBotController" isSpecification="false" sType="Note" nType="0" scope="public"/>
+				<project author="null" version="1.0" phase="1.0" created="2026-07-14 00:40:35" modified="2026-07-14 00:40:35" complexity="1" status="Proposed"/>
+				<code gentype="&lt;none&gt;"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs/>
+				<extendedProperties tagged="0" package_name="TelatenKarya System Architecture"/>
+			</element>
+		</elements>
+		<connectors>
+			<connector xmi:idref="EAID_C690FCD6_DF96_4A51_AE2D_487391DBF60F">
+				<source xmi:idref="EAID_4E4F5C13_C70C_420C_8FA2_FDC2533779D8">
+					<model ea_localid="6113" type="Component" name="Admin Panel"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Non-Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_D43474DB_2FBB_4F88_845D_C0EC5FAF424B">
+					<model ea_localid="6111" type="Component" name="React Inertia Frontend"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="6879"/>
+				<properties ea_type="Association" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<parameterSubstitutions/>
+				<documentation/>
+				<appearance linemode="3" linecolor="0" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels/>
+				<extendedProperties/>
+				<style/>
+				<xrefs/>
+				<tags/>
+			</connector>
+			<connector xmi:idref="EAID_1CE32378_79BF_47E5_9503_4FBE0F8864C2">
+				<source xmi:idref="EAID_B2D8C208_FC44_4AD0_84B7_EE9C639077E8">
+					<model ea_localid="6117" type="Component" name="Laravel Routes &amp; Controllers"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Non-Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_4E4F5C13_C70C_420C_8FA2_FDC2533779D8">
+					<model ea_localid="6113" type="Component" name="Admin Panel"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="6874"/>
+				<properties ea_type="Association" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<parameterSubstitutions/>
+				<documentation/>
+				<appearance linemode="3" linecolor="0" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels/>
+				<extendedProperties/>
+				<style/>
+				<xrefs/>
+				<tags/>
+			</connector>
+			<connector xmi:idref="EAID_862D4E01_288B_403B_96BE_DB2711A7A237">
+				<source xmi:idref="EAID_944FDA94_0B8F_4E4D_9DFE_2AEF546BAB9E">
+					<model ea_localid="6112" type="Component" name="Authentication &amp; Role Access"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Non-Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_D43474DB_2FBB_4F88_845D_C0EC5FAF424B">
+					<model ea_localid="6111" type="Component" name="React Inertia Frontend"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="6880"/>
+				<properties ea_type="Association" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<parameterSubstitutions/>
+				<documentation/>
+				<appearance linemode="3" linecolor="0" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels/>
+				<extendedProperties/>
+				<style/>
+				<xrefs/>
+				<tags/>
+			</connector>
+			<connector xmi:idref="EAID_34F7F4DF_88E0_4D3A_9B76_76FD6E5D358D">
+				<source xmi:idref="EAID_B2D8C208_FC44_4AD0_84B7_EE9C639077E8">
+					<model ea_localid="6117" type="Component" name="Laravel Routes &amp; Controllers"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Non-Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_944FDA94_0B8F_4E4D_9DFE_2AEF546BAB9E">
+					<model ea_localid="6112" type="Component" name="Authentication &amp; Role Access"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="6875"/>
+				<properties ea_type="Association" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<parameterSubstitutions/>
+				<documentation/>
+				<appearance linemode="3" linecolor="0" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels/>
+				<extendedProperties/>
+				<style/>
+				<xrefs/>
+				<tags/>
+			</connector>
+			<connector xmi:idref="EAID_475F5842_F0AA_4A64_93C6_59F9800CC4E0">
+				<source xmi:idref="EAID_7B3AAAB8_7E68_40BA_A63F_12A6D4F8DDEA">
+					<model ea_localid="6116" type="Component" name="Chat Assistant"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Non-Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_D43474DB_2FBB_4F88_845D_C0EC5FAF424B">
+					<model ea_localid="6111" type="Component" name="React Inertia Frontend"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="6876"/>
+				<properties ea_type="Association" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<parameterSubstitutions/>
+				<documentation/>
+				<appearance linemode="3" linecolor="0" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels/>
+				<extendedProperties/>
+				<style/>
+				<xrefs/>
+				<tags/>
+			</connector>
+			<connector xmi:idref="EAID_9AA58D80_DBA0_4A36_8BD8_8A33BFD481CA">
+				<source xmi:idref="EAID_B2D8C208_FC44_4AD0_84B7_EE9C639077E8">
+					<model ea_localid="6117" type="Component" name="Laravel Routes &amp; Controllers"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Non-Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_7B3AAAB8_7E68_40BA_A63F_12A6D4F8DDEA">
+					<model ea_localid="6116" type="Component" name="Chat Assistant"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="6871"/>
+				<properties ea_type="Association" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<parameterSubstitutions/>
+				<documentation/>
+				<appearance linemode="3" linecolor="0" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels/>
+				<extendedProperties/>
+				<style/>
+				<xrefs/>
+				<tags/>
+			</connector>
+			<connector xmi:idref="EAID_DD7C7B31_3227_49FE_8F45_BE3D8C0A7E69">
+				<source xmi:idref="EAID_D43474DB_2FBB_4F88_845D_C0EC5FAF424B">
+					<model ea_localid="6111" type="Component" name="React Inertia Frontend"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Non-Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_58CD9502_69B6_4C1A_BB66_3C1FD91DC053">
+					<model ea_localid="6110" type="Component" name="Client / Browser"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="6881"/>
+				<properties ea_type="Association" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<parameterSubstitutions/>
+				<documentation/>
+				<appearance linemode="3" linecolor="0" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels/>
+				<extendedProperties/>
+				<style/>
+				<xrefs/>
+				<tags/>
+			</connector>
+			<connector xmi:idref="EAID_0B788354_37B5_48FB_A0CB_D5AD604515A0">
+				<source xmi:idref="EAID_B317DDD5_A5FE_4913_BE5B_B80EDB44B06A">
+					<model ea_localid="6115" type="Component" name="Customer &amp; Public Portal"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Non-Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_D43474DB_2FBB_4F88_845D_C0EC5FAF424B">
+					<model ea_localid="6111" type="Component" name="React Inertia Frontend"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="6877"/>
+				<properties ea_type="Association" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<parameterSubstitutions/>
+				<documentation/>
+				<appearance linemode="3" linecolor="0" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels/>
+				<extendedProperties/>
+				<style/>
+				<xrefs/>
+				<tags/>
+			</connector>
+			<connector xmi:idref="EAID_05BA7513_5F6D_40E1_A76D_0B5D80D53544">
+				<source xmi:idref="EAID_B2D8C208_FC44_4AD0_84B7_EE9C639077E8">
+					<model ea_localid="6117" type="Component" name="Laravel Routes &amp; Controllers"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Non-Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_B317DDD5_A5FE_4913_BE5B_B80EDB44B06A">
+					<model ea_localid="6115" type="Component" name="Customer &amp; Public Portal"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="6872"/>
+				<properties ea_type="Association" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<parameterSubstitutions/>
+				<documentation/>
+				<appearance linemode="3" linecolor="0" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels/>
+				<extendedProperties/>
+				<style/>
+				<xrefs/>
+				<tags/>
+			</connector>
+			<connector xmi:idref="EAID_A22F31C4_4A18_4CFE_AE3B_B2EC7AA3B29E">
+				<source xmi:idref="EAID_F9BFBEEB_3C61_4DF3_9C96_095523E25EDD">
+					<model ea_localid="6118" type="Component" name="Domain / Business Layer"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Non-Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_B2D8C208_FC44_4AD0_84B7_EE9C639077E8">
+					<model ea_localid="6117" type="Component" name="Laravel Routes &amp; Controllers"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="6870"/>
+				<properties ea_type="Association" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<parameterSubstitutions/>
+				<documentation/>
+				<appearance linemode="3" linecolor="0" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels/>
+				<extendedProperties/>
+				<style/>
+				<xrefs/>
+				<tags/>
+			</connector>
+			<connector xmi:idref="EAID_368D42A2_6028_4113_8A70_1E89B5B3D982">
+				<source xmi:idref="EAID_D1C9B435_81A5_4713_A9C2_959031EC802B">
+					<model ea_localid="6121" type="Component" name="PDF Invoice Renderer"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Non-Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_F9BFBEEB_3C61_4DF3_9C96_095523E25EDD">
+					<model ea_localid="6118" type="Component" name="Domain / Business Layer"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="6867"/>
+				<properties ea_type="Association" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<parameterSubstitutions/>
+				<documentation/>
+				<appearance linemode="3" linecolor="0" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels/>
+				<extendedProperties/>
+				<style/>
+				<xrefs/>
+				<tags/>
+			</connector>
+			<connector xmi:idref="EAID_B6790DC3_CDE5_4252_A5DB_740F7BF3BDCD">
+				<source xmi:idref="EAID_759FC5CA_859D_4975_B8C5_A9E4C696533F">
+					<model ea_localid="6120" type="Component" name="Public File Storage"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Non-Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_F9BFBEEB_3C61_4DF3_9C96_095523E25EDD">
+					<model ea_localid="6118" type="Component" name="Domain / Business Layer"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="6868"/>
+				<properties ea_type="Association" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<parameterSubstitutions/>
+				<documentation/>
+				<appearance linemode="3" linecolor="0" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels/>
+				<extendedProperties/>
+				<style/>
+				<xrefs/>
+				<tags/>
+			</connector>
+			<connector xmi:idref="EAID_D8678D73_AB22_49C2_8804_1BF3E11432F3">
+				<source xmi:idref="EAID_2D97D75B_504C_4D12_8863_49220CC22F6C">
+					<model ea_localid="6119" type="Component" name="MySQL Database"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Non-Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_F9BFBEEB_3C61_4DF3_9C96_095523E25EDD">
+					<model ea_localid="6118" type="Component" name="Domain / Business Layer"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="6869"/>
+				<properties ea_type="Association" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<parameterSubstitutions/>
+				<documentation/>
+				<appearance linemode="3" linecolor="0" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels/>
+				<extendedProperties/>
+				<style/>
+				<xrefs/>
+				<tags/>
+			</connector>
+			<connector xmi:idref="EAID_31AB3CE9_1FF0_4908_B15B_3A94F694D39B">
+				<source xmi:idref="EAID_B2D8C208_FC44_4AD0_84B7_EE9C639077E8">
+					<model ea_localid="6117" type="Component" name="Laravel Routes &amp; Controllers"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Non-Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_44AB00E1_2EBB_4CC9_B0B3_E4D6CA518F67">
+					<model ea_localid="6114" type="Component" name="Sales Panel"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="6873"/>
+				<properties ea_type="Association" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<parameterSubstitutions/>
+				<documentation/>
+				<appearance linemode="3" linecolor="0" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels/>
+				<extendedProperties/>
+				<style/>
+				<xrefs/>
+				<tags/>
+			</connector>
+			<connector xmi:idref="EAID_6D2BE481_ECB6_4FDF_9068_4973507C93BF">
+				<source xmi:idref="EAID_44AB00E1_2EBB_4CC9_B0B3_E4D6CA518F67">
+					<model ea_localid="6114" type="Component" name="Sales Panel"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Non-Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_D43474DB_2FBB_4F88_845D_C0EC5FAF424B">
+					<model ea_localid="6111" type="Component" name="React Inertia Frontend"/>
+					<role visibility="Public"/>
+					<type aggregation="none"/>
+					<constraints/>
+					<modifiers isOrdered="false" isNavigable="false"/>
+					<style value="Owned=0;Navigable=Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="6878"/>
+				<properties ea_type="Association" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<parameterSubstitutions/>
+				<documentation/>
+				<appearance linemode="3" linecolor="0" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels/>
+				<extendedProperties/>
+				<style/>
+				<xrefs/>
+				<tags/>
+			</connector>
+		</connectors>
+		<primitivetypes>
+			<packagedElement xmi:type="uml:Package" xmi:id="EAPrimitiveTypesPackage" name="EA_PrimitiveTypes_Package" visibility="public"/>
+		</primitivetypes>
+		<profiles/>
+		<diagrams>
+			<diagram xmi:id="EAID_3F36AF6D_C3F3_4AA6_B742_16138A38C81F">
+				<model package="EAPK_CEF6DE20_CE73_471B_A845_C8C66692DB57" localID="638" owner="EAPK_CEF6DE20_CE73_471B_A845_C8C66692DB57"/>
+				<properties name="DIAGRAM ARSITEKTUR SISTEM SIISTK" type="Component"/>
+				<project author="Codex" version="1.0" created="2026-07-14 00:00:00" modified="2026-07-14 00:42:49"/>
+				<style1 value="ShowPrivate=1;ShowProtected=1;ShowPublic=1;HideRelationships=0;Locked=0;Border=1;HighlightForeign=1;PackageContents=1;SequenceNotes=0;ScalePrintImage=0;PPgs.cx=0;PPgs.cy=0;DocSize.cx=850;DocSize.cy=1098;ShowDetails=0;Orientation=L;Zoom=100;ShowTags=0;OpParams=0;VisibleAttributeDetail=0;ShowOpRetType=1;ShowIcons=1;CollabNums=1;HideProps=1;ShowReqs=0;ShowCons=0;PaperSize=1;HideParents=0;UseAlias=0;HideAtts=0;HideOps=0;HideStereo=0;HideElemStereo=0;ShowTests=0;ShowMaint=0;ConnectorNotation=UML 2.1;ExplicitNavigability=0;ShowShape=1;AllDockable=0;AdvancedElementProps=1;AdvancedFeatureProps=1;AdvancedConnectorProps=1;m_bElementClassifier=1;SPT=1;ShowNotes=0;SuppressBrackets=0;SuppConnectorLabels=0;PrintPageHeadFoot=0;ShowAsList=0;"/>
+				<style2 value="ExcludeRTF=0;DocAll=0;HideQuals=0;AttPkg=1;ShowTests=0;ShowMaint=0;SuppressFOC=1;MatrixActive=0;SwimlanesActive=0;KanbanActive=0;MatrixLineWidth=1;MatrixLineClr=0;MatrixLocked=0;TConnectorNotation=UML 2.1;TExplicitNavigability=0;AdvancedElementProps=1;AdvancedFeatureProps=1;AdvancedConnectorProps=1;m_bElementClassifier=1;SPT=1;MDGDgm=;STBLDgm=;ShowNotes=0;VisibleAttributeDetail=0;ShowOpRetType=1;SuppressBrackets=0;SuppConnectorLabels=0;PrintPageHeadFoot=0;ShowAsList=0;SuppressedCompartments=;Theme=:119;SaveTag=86868828;"/>
+				<swimlanes value="locked=false;orientation=0;width=0;inbar=false;names=false;color=0;bold=false;fcol=0;tcol=12370374;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;"/>
+				<matrixitems value="locked=false;matrixactive=false;swimlanesactive=false;kanbanactive=false;width=1;clrLine=0;"/>
+				<extendedProperties/>
+				<elements>
+					<element geometry="Left=40;Top=330;Right=210;Bottom=410;" subject="EAID_58CD9502_69B6_4C1A_BB66_3C1FD91DC053" seqno="1" style="DUID=0D033CCA;"/>
+					<element geometry="Left=280;Top=330;Right=470;Bottom=410;" subject="EAID_D43474DB_2FBB_4F88_845D_C0EC5FAF424B" seqno="2" style="DUID=52E02096;"/>
+					<element geometry="Left=560;Top=70;Right=780;Bottom=150;" subject="EAID_944FDA94_0B8F_4E4D_9DFE_2AEF546BAB9E" seqno="3" style="DUID=92B1A0A5;"/>
+					<element geometry="Left=560;Top=190;Right=780;Bottom=270;" subject="EAID_4E4F5C13_C70C_420C_8FA2_FDC2533779D8" seqno="4" style="DUID=74D78A95;"/>
+					<element geometry="Left=560;Top=310;Right=780;Bottom=390;" subject="EAID_44AB00E1_2EBB_4CC9_B0B3_E4D6CA518F67" seqno="5" style="DUID=A6642D5C;"/>
+					<element geometry="Left=560;Top=430;Right=780;Bottom=510;" subject="EAID_B317DDD5_A5FE_4913_BE5B_B80EDB44B06A" seqno="6" style="DUID=2B3A34A2;"/>
+					<element geometry="Left=560;Top=550;Right=780;Bottom=630;" subject="EAID_7B3AAAB8_7E68_40BA_A63F_12A6D4F8DDEA" seqno="7" style="DUID=A46C5F06;"/>
+					<element geometry="Left=870;Top=310;Right=1090;Bottom=410;" subject="EAID_B2D8C208_FC44_4AD0_84B7_EE9C639077E8" seqno="8" style="DUID=9AAD1F73;"/>
+					<element geometry="Left=1180;Top=310;Right=1400;Bottom=410;" subject="EAID_F9BFBEEB_3C61_4DF3_9C96_095523E25EDD" seqno="9" style="DUID=7C0D0B60;"/>
+					<element geometry="Left=1490;Top=170;Right=1690;Bottom=250;" subject="EAID_2D97D75B_504C_4D12_8863_49220CC22F6C" seqno="10" style="DUID=9DBD0C82;"/>
+					<element geometry="Left=1490;Top=330;Right=1690;Bottom=410;" subject="EAID_759FC5CA_859D_4975_B8C5_A9E4C696533F" seqno="11" style="DUID=5678D47C;"/>
+					<element geometry="Left=1490;Top=490;Right=1690;Bottom=570;" subject="EAID_D1C9B435_81A5_4713_A9C2_959031EC802B" seqno="12" style="DUID=84EF51BE;"/>
+					<element geometry="Left=40;Top=40;Right=146;Bottom=160;" subject="EAID_3927DEF3_2483_44EB_8506_37535CAC6D24" seqno="13" style="DUID=5D7E1B0E;"/>
+					<element geometry="Left=40;Top=510;Right=202;Bottom=721;" subject="EAID_F955B0CE_5B0C_49A0_884E_B16454C04455" seqno="14" style="DUID=02058EB1;"/>
+					<element geometry="Left=850;Top=20;Right=1012;Bottom=208;" subject="EAID_FC85F161_E68A_49E7_938B_A9E5D92EF1B5" seqno="15" style="DUID=E2F5FBD9;"/>
+					<element geometry="Left=850;Top=500;Right=1002;Bottom=690;" subject="EAID_60B83BAB_4C12_41FD_B804_4A53AC8CB411" seqno="16" style="DUID=C17FF3A2;"/>
+					<element geometry="Left=1291;Top=20;Right=1423;Bottom=183;" subject="EAID_80D018D1_79D9_4851_BC41_C67BE16A8C19" seqno="17" style="DUID=7A105C48;"/>
+					<element geometry="Left=1291;Top=620;Right=1449;Bottom=791;" subject="EAID_0666EB0C_EFFB_416E_A427_9D4622922AEA" seqno="18" style="DUID=65F777AC;"/>
+					<element geometry="EDGE=1;$LLB=;LLT=;LMT=;LMB=;LRT=;LRB=;IRHS=;ILHS=;Path=;" subject="EAID_368D42A2_6028_4113_8A70_1E89B5B3D982" style="Mode=3;EOID=7C0D0B60;SOID=84EF51BE;Color=-1;LWidth=0;Hidden=0;"/>
+					<element geometry="EDGE=4;$LLB=;LLT=;LMT=;LMB=;LRT=;LRB=;IRHS=;ILHS=;Path=;" subject="EAID_B6790DC3_CDE5_4252_A5DB_740F7BF3BDCD" style="Mode=3;EOID=7C0D0B60;SOID=5678D47C;Color=-1;LWidth=0;Hidden=0;"/>
+					<element geometry="EDGE=3;$LLB=;LLT=;LMT=;LMB=;LRT=;LRB=;IRHS=;ILHS=;Path=;" subject="EAID_D8678D73_AB22_49C2_8804_1BF3E11432F3" style="Mode=3;EOID=7C0D0B60;SOID=9DBD0C82;Color=-1;LWidth=0;Hidden=0;"/>
+					<element geometry="EDGE=4;$LLB=;LLT=;LMT=;LMB=;LRT=;LRB=;IRHS=;ILHS=;Path=;" subject="EAID_A22F31C4_4A18_4CFE_AE3B_B2EC7AA3B29E" style="Mode=3;EOID=9AAD1F73;SOID=7C0D0B60;Color=-1;LWidth=0;Hidden=0;"/>
+					<element geometry="EDGE=1;$LLB=;LLT=;LMT=;LMB=;LRT=;LRB=;IRHS=;ILHS=;Path=;" subject="EAID_34F7F4DF_88E0_4D3A_9B76_76FD6E5D358D" style="Mode=3;EOID=92B1A0A5;SOID=9AAD1F73;Color=-1;LWidth=0;Hidden=0;"/>
+					<element geometry="EDGE=4;$LLB=;LLT=;LMT=;LMB=;LRT=;LRB=;IRHS=;ILHS=;Path=;" subject="EAID_1CE32378_79BF_47E5_9503_4FBE0F8864C2" style="Mode=3;EOID=74D78A95;SOID=9AAD1F73;Color=-1;LWidth=0;Hidden=0;"/>
+					<element geometry="EDGE=4;$LLB=;LLT=;LMT=;LMB=;LRT=;LRB=;IRHS=;ILHS=;Path=;" subject="EAID_31AB3CE9_1FF0_4908_B15B_3A94F694D39B" style="Mode=3;EOID=A6642D5C;SOID=9AAD1F73;Color=-1;LWidth=0;Hidden=0;"/>
+					<element geometry="EDGE=4;$LLB=;LLT=;LMT=;LMB=;LRT=;LRB=;IRHS=;ILHS=;Path=;" subject="EAID_05BA7513_5F6D_40E1_A76D_0B5D80D53544" style="Mode=3;EOID=2B3A34A2;SOID=9AAD1F73;Color=-1;LWidth=0;Hidden=0;"/>
+					<element geometry="EDGE=3;$LLB=;LLT=;LMT=;LMB=;LRT=;LRB=;IRHS=;ILHS=;Path=;" subject="EAID_9AA58D80_DBA0_4A36_8BD8_8A33BFD481CA" style="Mode=3;EOID=A46C5F06;SOID=9AAD1F73;Color=-1;LWidth=0;Hidden=0;"/>
+					<element geometry="EDGE=1;$LLB=;LLT=;LMT=;LMB=;LRT=;LRB=;IRHS=;ILHS=;Path=;" subject="EAID_475F5842_F0AA_4A64_93C6_59F9800CC4E0" style="Mode=3;EOID=52E02096;SOID=A46C5F06;Color=-1;LWidth=0;Hidden=0;"/>
+					<element geometry="EDGE=4;$LLB=;LLT=;LMT=;LMB=;LRT=;LRB=;IRHS=;ILHS=;Path=;" subject="EAID_0B788354_37B5_48FB_A0CB_D5AD604515A0" style="Mode=3;EOID=52E02096;SOID=2B3A34A2;Color=-1;LWidth=0;Hidden=0;"/>
+					<element geometry="EDGE=4;$LLB=;LLT=;LMT=;LMB=;LRT=;LRB=;IRHS=;ILHS=;Path=;" subject="EAID_6D2BE481_ECB6_4FDF_9068_4973507C93BF" style="Mode=3;EOID=52E02096;SOID=A6642D5C;Color=-1;LWidth=0;Hidden=0;"/>
+					<element geometry="EDGE=3;$LLB=;LLT=;LMT=;LMB=;LRT=;LRB=;IRHS=;ILHS=;Path=;" subject="EAID_C690FCD6_DF96_4A51_AE2D_487391DBF60F" style="Mode=3;EOID=52E02096;SOID=74D78A95;Color=-1;LWidth=0;Hidden=0;"/>
+					<element geometry="EDGE=3;$LLB=;LLT=;LMT=;LMB=;LRT=;LRB=;IRHS=;ILHS=;Path=;" subject="EAID_862D4E01_288B_403B_96BE_DB2711A7A237" style="Mode=3;EOID=52E02096;SOID=92B1A0A5;Color=-1;LWidth=0;Hidden=0;"/>
+					<element geometry="EDGE=4;$LLB=;LLT=;LMT=;LMB=;LRT=;LRB=;IRHS=;ILHS=;Path=;" subject="EAID_DD7C7B31_3227_49FE_8F45_BE3D8C0A7E69" style="Mode=3;EOID=0D033CCA;SOID=52E02096;Color=-1;LWidth=0;Hidden=0;"/>
+				</elements>
+			</diagram>
+		</diagrams>
+	</xmi:Extension>
+</xmi:XMI>

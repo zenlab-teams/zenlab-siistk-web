@@ -1,159 +1,271 @@
-# CLAUDE.md
+# Agent Guidance
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Guidance for every AI agent planning, implementing, or reviewing work in this repository.
+`AGENTS.md` and `CLAUDE.md` must remain identical.
 
-## Role in This Project
+## Operating Rules
 
-**Claude Code acts as code reviewer only.** Implementation is done by the user or other AI
-models. When asked to review, check for: correctness against the plan, N+1 queries,
-missing Form Request validation, hardcoded values, dark mode support, and Tailwind class
-consistency. Do not refactor beyond what the plan specifies.
+- Follow the user's requested scope. Plan, implement, and review as needed.
+- Read relevant files before editing. Reuse existing patterns and components.
+- Prefer minimal targeted changes. Do not refactor unrelated code.
+- Follow numbered plans in `.claude/plans/` when the task references one.
+- Check plan dependencies before implementation. Do not assume documented status is current.
+- Do not run `php artisan migrate:fresh`; the user controls destructive database resets.
+- During active development, edit an existing migration instead of adding a corrective migration.
+- Never push, open a PR, or delete user data without explicit approval.
+- Preserve existing user changes. Do not modify `.claude/worktrees/` copies.
 
 ## Project
 
-**ZENLAB SIISTK** — Sales Information & Inventory System Toolkit Web. A Laravel 12 admin
-dashboard for managing products, orders, offers, payments, customers, and sales targets.
-Brand name: **TelatenKarya**.
+**ZENLAB SIISTK** is the **TelatenKarya** sales and inventory admin application.
+
+- Backend: PHP 8.2+, Laravel 12
+- Frontend: React 18, Inertia.js v2, Redux Toolkit
+- Styling: Tailwind CSS 3.4 with `selector` dark mode
+- Build: Vite 7
+- Tests: Pest 3
+- Primary database: MySQL; tests and CI may use SQLite in memory
+- Roles: `admin`, `sales`, `customer`
+
+Use dependency manifests as the source of truth for versions:
+`composer.json`, `package.json`, and `package-lock.json`.
 
 ## Commands
 
 ```bash
-# First-time setup
-composer run setup         # install deps, generate key, migrate, build frontend
-
-# Development (runs all three concurrently)
-composer run dev           # Laravel server + queue listener + Vite dev server
-
-# Individual processes
-php artisan serve          # Laravel on :8000
-npm run dev                # Vite only
-npm run build              # Production frontend build
-
-# Testing (Pest v3)
+composer run setup
+composer run dev
+npm run dev
+npm run build
 php artisan test --compact
 php artisan test --compact --filter=TestName
-php artisan make:test --pest {Name}    # create a new Pest test
-
-# Code formatting — always run before finalizing PHP changes
-vendor/bin/pint --dirty    # fix changed files only
-vendor/bin/pint            # fix all PHP files
+vendor/bin/pint --dirty
+php artisan route:list --name=<prefix>
 ```
 
-> **migrate:fresh** — user runs `php artisan migrate:fresh` (not `migrate`) during active
-> development. Edit existing migration files directly instead of creating new ones.
+Before running a `php artisan make:*` command, inspect available commands through Laravel
+Boost when available. Always pass `--no-interaction`.
 
-## Plan System
+## Repository Structure
 
-Implementation is driven by numbered plan files in `.claude/plans/`:
+```text
+app/
+  Http/
+    Controllers/
+      Admin/             Admin workflows
+      Auth/              Authentication
+      Customer/          Customer workflows
+      Sales/             Sales workflows
+    Middleware/          Role and request middleware
+    Requests/            Form Request validation
+  Models/                Eloquent models
+  Observers/             Domain side effects
+  Providers/             Service registration
+bootstrap/app.php         Middleware aliases and application bootstrap
+database/
+  factories/             Model factories
+  migrations/            Database schema
+  seeders/               Development seed data
+resources/js/
+  Components/             Shared React components
+    button/
+    input/
+    modal/
+    DataTable.jsx
+  Layouts/                Inertia layouts
+  Pages/                  Inertia pages grouped by domain
+  Redux/slice.jsx         Shared Redux slices
+  app.jsx                 Frontend entry point
+routes/web.php             Named web routes and role groups
+tests/Feature/             Pest feature tests
+.claude/plans/             Numbered implementation plans
+```
 
-| Plan | Feature | Status |
-|---|---|---|
-| `00-datatable-component.md` | Reusable DataTable component (server-side, columns API) | ✅ completed |
-| `01-thumbnail-produk.md` | Product thumbnail upload | pending |
-| `02-mengelola-stock.md` | Stock management & history | pending |
-| `03-mengelola-user.md` | User CRUD (admin) | pending |
-| `04-mengelola-pesanan.md` | Order management & payment confirmation | pending |
-| `05-rekap-harian.md` | Admin dashboard with daily stats | pending |
-| `06-penawaran-ngampas.md` | Weekly offer workflow (sales → admin → order) | pending |
+## Backend Conventions
 
-**Execute plans in order.** Plan 00 is prerequisite for all Index pages.
+- Controllers use explicit return types.
+- Validation belongs in Form Request classes under `app/Http/Requests/`.
+- Use `$request->safe()` or `$request->validated()` after authorization and validation.
+- Prefer `Model::query()` over `DB::table()` for domain data.
+- Reporting and aggregate queries may use the query builder when Eloquent adds no value.
+- Eager-load relationships required by views. Prevent N+1 queries.
+- Select only required columns, including foreign keys needed by relationships.
+- Models define casts through `casts(): array`, not the `$casts` property.
+- Use named routes and `route()` for URL generation.
+- Use `config()` outside configuration files; never call `env()` directly there.
+- Use constructor property promotion for injected dependencies.
+- Always use braces for control structures.
+- Use database transactions for multi-write operations that must succeed atomically.
+- Set `created_by` on auditable records. Load `creator:id,name` when displaying it.
+- Keep user-facing errors in Indonesian; logs and code comments in English.
 
-## Architecture
+### Controller Query Pattern
 
-**Framework:** Laravel 12. No `app/Http/Kernel.php` — middleware registered in
-`bootstrap/app.php` via `Application::configure()->withMiddleware()`. Service providers
-listed in `bootstrap/providers.php`.
+```php
+public function index(Request $request): Response
+{
+    $products = Product::query()
+        ->select(['id', 'name', 'price', 'created_at', 'created_by'])
+        ->with(['creator:id,name'])
+        ->when($request->string('search')->toString(), function ($query, string $search): void {
+            $query->where('name', 'like', "%{$search}%");
+        })
+        ->latest()
+        ->paginate($request->integer('per_page', 10))
+        ->withQueryString();
 
-**Frontend:** React 19 + Inertia.js v2 (JSX, not Blade). Tailwind CSS v3.4 with `selector`
-dark mode strategy. Framer Motion 12 for animations. React Hot Toast for flash notifications.
-Ziggy 2.5 for `route()` helper in JSX. Entry point: `resources/js/app.jsx`.
+    return Inertia::render('Product/Index', ['products' => $products]);
+}
+```
 
-**State Management:** Redux Toolkit v2.6 with 4 slices in `resources/js/Redux/slice.jsx`:
-- `auth` — user session (`setUser`, `logout`); persists to localStorage (remember me) or sessionStorage
-- `currentRoute` — active nav tracking (`setCurrentRoute`, shape: `{ route, subRoute }`)
-- `darkMode` — theme toggle (`setDarkMode`); persists to sessionStorage
-- `sidebar` — mobile nav toggle (`toggleSidebar`, `setSidebar`); not persisted
+Whitelist user-controlled sort columns before passing them to `orderBy()`.
 
-**Layouts:**
-- `Default.jsx` — main wrapper; includes `<Navbar />` (mobile), `<Sidebar />`, backdrop overlay for mobile, and `pt-14 sm:pt-0` wrapper for children
-- `Navbar.jsx` — mobile-only (`sm:hidden`), z-10, hamburger + TelatenKarya brand
-- `Sidebar.jsx` — fixed, z-30, `w-80`; desktop always visible, mobile slides in via `translateX`
+### Form Request Pattern
 
-**Components** (`resources/js/Components/`):
-- `button/` — Button, ActionButtonTable, DarkModeToggle, PaginationButton
-- `input/` — TextInput, PasswordInput, TextAreaInput, CheckboxInput, NumberInput, ImageInput, SelectInput
-- `modal/` — ModalCart, ModalConfirm, ModalDelete
-- `DataTable.jsx` — reusable table with search, pagination, select, bulk delete (added in Plan 00)
+```php
+public function store(StoreProductRequest $request): RedirectResponse
+{
+    $product = Product::query()->create([
+        ...$request->safe()->except('thumbnail'),
+        'created_by' => auth()->id(),
+    ]);
 
-**Database:** MySQL. Sessions, queues, and cache use the database driver.
+    return redirect()->route('product.show', $product)->with('success', 'Produk berhasil dibuat.');
+}
+```
 
-**Testing:** Pest v3 with `pestphp/pest-plugin-laravel`. Feature tests preferred.
-
-## Domain Model
-
-| Table | Key columns |
-|---|---|
-| `users` | role enum (admin/sales/customer), standard auth |
-| `products` | name, description, thumbnail (nullable), price, created_by |
-| `stocks` | product_id, quantity (±), unit_cost, type (in/out/adjustment), reference_id, reference_type, note, created_by |
-| `orders` | status via timestamps: checked_out_at, cancelled_at, expired_at, paid_at; total_price, created_by |
-| `orders_items` | order_id, product_id, quantity, price |
-| `offers` | name, description, date |
-| `offers_items` | offer_id, product_id, quantity, offered_price |
-| `offers_sales` | Junction: offer_id ↔ sale_id |
-| `payments` | order_id, amount, proof_image |
-| `sales` | user_id, phone (sales representatives) |
-| `sales_targets` | sale_id, target_amount, start_date, end_date |
-| `customers` | address, city, postal_code |
-
-Foreign keys use `RESTRICT` on delete/update — no soft deletes. All tables have
-`created_at`/`updated_at` and a `created_by` audit field.
-
-**Stock tracking:** `stocks` is an append-only ledger. Positive quantity = stock in,
-negative = stock out. Current stock per product = `SUM(quantity)`. Auto stock-out on
-order checkout via `OrderObserver` (registered in `AppServiceProvider`).
-
-**Order status** is derived from timestamps (no `status` column):
-- `pending` — no timestamps set
-- `paid` — `paid_at` set, `checked_out_at` null
-- `completed` — `checked_out_at` set
-- `cancelled` — `cancelled_at` set
-- `expired` — `expired_at` set
-
-## PHP / Laravel Conventions
-
-- Controllers live in `app/Http/Controllers/Admin/`.
-- Always use Form Request classes in `app/Http/Requests/` — never inline `$request->validate()`.
-- Models use the `casts()` method, not the `$casts` property.
-- Use `Model::query()` over `DB::`. Always eager-load to prevent N+1 queries.
-- Use named routes and the `route()` helper for URL generation.
-- Use PHP 8 constructor property promotion.
-- Always declare explicit return types on methods.
-- Always use curly braces for control structures, even single-line bodies.
-- Use `config('key')` instead of `env()` outside of config files.
-- Use `php artisan make:` with `--no-interaction` flag.
-- File uploads: store in `public` disk under `productImages/` → URL via `/storage/productImages/filename`.
-- For form update with file upload: use `post` + `_method: 'PUT'` (not `put` directly).
+Handle upload failures with context. Store product images on the `public` disk under
+`productImages/`; persist the relative path and expose it through `/storage/...`.
 
 ## Frontend Conventions
 
-- Pages receive data as Inertia props — no client-side data fetching.
-- Use `useForm` from `@inertiajs/react` for all forms (handles loading state + errors).
-- **All list/index pages use `<DataTable>` component** (Plan 00) — do not write raw table boilerplate.
-- Read Redux state with `useSelector`; dispatch with `useDispatch`.
-- `currentRoute` is set in each page's `useEffect` on mount — shape: `{ route: 'product', subRoute: null }`.
-- Flash messages come via Inertia shared props and are shown with `react-hot-toast`.
-- Responsive breakpoint: `sm:` (640px). Mobile-first layout — sidebar slides in on mobile.
-- Price format: `Rp${value.toLocaleString('id-ID')}`.
-- ModalDelete routes: `{resource}.destroy` (single), `{resource}.destroySelected` (bulk, comma-separated IDs).
-- Dark mode: always include `dark:` variants for bg, text, border. Base: `slate-800` bg, `slate-400` text.
-- **DataTable column order (mandatory):** `#` auto-rendered by DataTable. First user column is always `Action` (no explicit `headerClassName`/`cellClassName` — DataTable auto-styles edges). Last two columns are always `Created At` (sortKey: "created_at") and `Created By` (no sortKey, renders `item.creator?.name ?? "-"`). Every controller `index()` must include `'created_at', 'created_by'` in `->select([...])` and eager-load `->with(['creator:id,name'])`.
+- Pages receive server data through Inertia props. Do not add client fetching unnecessarily.
+- Use `useForm` from `@inertiajs/react` for forms, errors, and processing state.
+- Use shared inputs from `resources/js/Components/input/`.
+- Shared input handlers generally use `(name, value)`; inspect the component before use.
+- Use `<DataTable>` for CRUD index pages. Raw tables are acceptable for dashboard summaries.
+- DataTable filtering is server-side through `router.get()` and Laravel paginator metadata.
+- DataTable `sortKey` values match whitelisted database columns, usually lowercase.
+- Use Redux through `useSelector` and `useDispatch`; never mutate shared state.
+- Set `currentRoute` in page effects and include `dispatch` in dependencies.
+- Use named Ziggy routes through `route()`.
+- Include responsive and `dark:` variants for backgrounds, text, and borders.
+- Prefer semantic interactive elements (`button`, `Link`) over clickable icons or `div` elements.
+- Preserve keyboard access, focus styles, labels, and accessible names.
+- Format prices as `Rp${value.toLocaleString('id-ID')}`.
+- For file uploads on update, submit with `post()` and `_method: 'PUT'`.
+- Keep components focused. Extract shared code only after actual reuse appears.
 
-## Laravel Boost (MCP)
+### DataTable Pattern
 
-When available, prefer Boost tools over manual lookups:
-- `search-docs` — version-specific docs for Laravel 12, Pest v3, Tailwind v3
-- `tinker` — debug and inspect app state
-- `database-query` — read-only DB queries
-- `browser-logs` — frontend JS errors
-- `list-artisan-commands` — before running `php artisan make:`
+```jsx
+<DataTable
+    data={products}
+    title="Products"
+    addHref={route("product.create")}
+    addLabel="Add Product"
+    columns={columns}
+    selectable
+    deleteType="product"
+/>
+```
+
+Column order for standard CRUD indexes:
+
+1. `#` generated by DataTable
+2. `Action`
+3. Domain columns
+4. `Created At` with `sortKey: "created_at"`
+5. `Created By` rendering `item.creator?.name ?? "-"`
+
+### Form Pattern
+
+```jsx
+const { data, setData, post, errors, processing } = useForm({
+    name: "",
+    price: "",
+});
+
+const handleSubmit = (event) => {
+    event.preventDefault();
+    post(route("product.store"));
+};
+```
+
+## Domain Rules
+
+### Stock
+
+`stocks` is an append-only ledger:
+
+- Positive `quantity`: stock in
+- Negative `quantity`: stock out
+- Current stock: `SUM(quantity)`
+- Never update or delete historical stock rows
+- Order checkout stock changes belong in the registered order observer/domain flow
+
+### Orders
+
+Order status is derived from timestamps; no `status` column:
+
+- `pending`: no terminal/payment timestamps
+- `paid`: `paid_at` set, `checked_out_at` null
+- `completed`: `checked_out_at` set
+- `cancelled`: `cancelled_at` set
+- `expired`: `expired_at` set
+
+Preserve status-transition invariants. Lock or transact concurrent stock/payment updates where
+races could oversell stock or duplicate confirmation.
+
+### Database
+
+- Foreign keys generally use `RESTRICT` for update/delete.
+- Domain tables use timestamps and auditable `created_by` fields.
+- Sessions, queues, and cache may use database drivers.
+- Avoid schema assumptions; inspect migrations before changing queries or validation.
+
+## Testing Workflow
+
+Behavior changes use TDD when practical:
+
+1. Add the smallest failing Pest regression or feature test.
+2. Run the focused test and confirm the expected failure.
+3. Implement the minimum change.
+4. Run the focused test and adjacent tests.
+5. Run `vendor/bin/pint --dirty` after PHP changes.
+6. Run `npm run build` after frontend changes.
+
+Use `RefreshDatabase` for database feature tests. Prefer HTTP, authorization, validation,
+redirect, Inertia prop, and database assertions over implementation-detail assertions.
+Never weaken or delete a failing test merely to make the suite pass.
+
+## Review Checklist
+
+- Requested behavior and plan requirements satisfied
+- Authorization and Form Request validation present
+- No unsafe user-controlled sorting, paths, or mass assignment
+- Transactions protect atomic multi-write flows
+- No N+1 queries; selected columns include relationship keys
+- Domain invariants preserved, especially stock and order state
+- Named routes and existing shared components reused
+- CRUD indexes use DataTable consistently
+- Dark mode, responsive layout, and accessibility covered
+- User-facing errors Indonesian; logs/comments English
+- Focused tests, adjacent tests, formatting, and frontend build pass
+- No unrelated files, generated worktrees, or user changes modified
+
+## Laravel Boost
+
+When available, prefer Laravel Boost tools:
+
+- `application-info`: inspect installed versions and models
+- `search-docs`: version-specific Laravel ecosystem documentation
+- `list-artisan-commands`: verify generator commands
+- `database-schema` and `database-query`: inspect schema/data read-only
+- `tinker`: narrow runtime inspection
+- `browser-logs` and `last-error`: diagnose frontend/backend failures
+- `get-absolute-url`: generate project URLs
+
+Documentation describes intended standards. Existing exceptions are not precedent; avoid widening
+them. If code and documentation disagree, verify manifests, migrations, routes, and runtime behavior,
+then update the narrowest incorrect source.
