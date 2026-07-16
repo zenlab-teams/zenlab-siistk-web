@@ -7,6 +7,7 @@ use App\Services\ActionableChatbotService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class ChatBotController extends Controller
 {
@@ -19,14 +20,11 @@ class ChatBotController extends Controller
 
     /**
      * Handle the incoming chat message request.
-     *
-     * @param SendMessageRequest $request
-     * @return JsonResponse
      */
     public function __invoke(SendMessageRequest $request): JsonResponse
     {
         // Secondary security check
-        abort_if(!auth()->user()->isAdmin(), 403);
+        abort_unless($request->user()?->isAdmin(), 403);
 
         $validated = $request->validated();
         $message = $validated['message'];
@@ -41,27 +39,52 @@ class ChatBotController extends Controller
 
     /**
      * Upload a temporary image file for the chatbot.
-     *
-     * @param Request $request
-     * @return JsonResponse
      */
     public function uploadTemp(Request $request): JsonResponse
     {
         // Security check
-        abort_if(!auth()->user()->isAdmin(), 403);
+        abort_unless($request->user()?->isAdmin(), 403);
 
-        $request->validate([
-            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:5120'], // Max 5MB
-        ]);
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:5120'],
+            ],
+            [
+                'image.required' => 'Gambar wajib diunggah.',
+                'image.image' => 'File harus berupa gambar.',
+                'image.mimes' => 'Format gambar harus jpeg, png, jpg, gif, atau webp.',
+                'image.max' => 'Ukuran gambar maksimal 5 MB.',
+            ],
+        );
 
-        $file = $request->file('image');
-        
-        // Store in temp folder on public disk
-        $path = Storage::disk('public')->putFile('temp-chatbot', $file);
-        
-        return response()->json([
-            'temp_path' => $path,
-            'temp_url' => Storage::disk('public')->url($path)
-        ], 201);
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Gagal mengunggah foto. Periksa ukuran dan format file.',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        try {
+            $file = $request->file('image');
+            $path = Storage::disk('public')->putFile('temp-chatbot', $file);
+
+            if (! $path) {
+                return response()->json([
+                    'message' => 'Gagal menyimpan foto sementara. Coba lagi.',
+                ], 500);
+            }
+
+            return response()->json([
+                'temp_path' => $path,
+                'temp_url' => Storage::disk('public')->url($path),
+            ], 201);
+        } catch (\Throwable $e) {
+            report($e);
+
+            return response()->json([
+                'message' => 'Gagal menyimpan foto sementara. Coba lagi.',
+            ], 500);
+        }
     }
 }

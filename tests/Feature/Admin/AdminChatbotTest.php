@@ -1,11 +1,11 @@
 <?php
 
-use App\Models\User;
 use App\Models\Product;
+use App\Models\User;
+use App\Services\ActionableChatbotService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-use App\Services\ActionableChatbotService;
 
 uses(RefreshDatabase::class);
 
@@ -43,7 +43,7 @@ test('admin dapat mengakses endpoint pesan chatbot', function () {
     $admin = chatbotUserAdmin();
     $response = $this->actingAs($admin)->postJson(route('admin.chatbot.messages'), [
         'message' => 'Halo',
-        'history' => []
+        'history' => [],
     ]);
 
     $response->assertOk();
@@ -53,7 +53,7 @@ test('admin dapat mengakses endpoint pesan chatbot', function () {
 test('non-admin tidak dapat mengakses endpoint pesan chatbot', function () {
     $sales = chatbotUserSales();
     $response = $this->actingAs($sales)->postJson(route('admin.chatbot.messages'), [
-        'message' => 'Halo'
+        'message' => 'Halo',
     ]);
 
     $response->assertStatus(403);
@@ -61,19 +61,68 @@ test('non-admin tidak dapat mengakses endpoint pesan chatbot', function () {
 
 test('admin dapat mengunggah gambar sementara', function () {
     Storage::fake('public');
-    
+
     $admin = chatbotUserAdmin();
     $file = UploadedFile::fake()->image('temp_product.jpg');
 
     $response = $this->actingAs($admin)->postJson(route('admin.chatbot.upload-temp'), [
-        'image' => $file
+        'image' => $file,
     ]);
 
     $response->assertStatus(201);
     $response->assertJsonStructure(['temp_path', 'temp_url']);
-    
+
     $path = $response->json('temp_path');
     Storage::disk('public')->assertExists($path);
+});
+
+test('admin mendapat validasi JSON saat upload gambar tidak valid', function () {
+    $admin = chatbotUserAdmin();
+    $file = UploadedFile::fake()->create('temp_product.txt', 100, 'text/plain');
+
+    $response = $this->actingAs($admin)->postJson(route('admin.chatbot.upload-temp'), [
+        'image' => $file,
+    ]);
+
+    $response->assertStatus(422);
+    $response->assertJsonPath('message', 'Gagal mengunggah foto. Periksa ukuran dan format file.');
+    $response->assertJsonValidationErrors(['image']);
+});
+
+test('admin mendapat validasi JSON saat upload gambar terlalu besar', function () {
+    $admin = chatbotUserAdmin();
+    $file = UploadedFile::fake()->image('temp_product.jpg')->size(6000);
+
+    $response = $this->actingAs($admin)->postJson(route('admin.chatbot.upload-temp'), [
+        'image' => $file,
+    ]);
+
+    $response->assertStatus(422);
+    $response->assertJsonPath('message', 'Gagal mengunggah foto. Periksa ukuran dan format file.');
+    $response->assertJsonValidationErrors(['image']);
+});
+
+test('admin mendapat JSON saat penyimpanan gambar sementara gagal', function () {
+    $admin = chatbotUserAdmin();
+    $file = UploadedFile::fake()->image('temp_product.jpg');
+
+    $disk = Mockery::mock();
+    $disk->shouldReceive('putFile')
+        ->once()
+        ->with('temp-chatbot', $file)
+        ->andThrow(new RuntimeException('Disk sementara gagal.'));
+
+    Storage::shouldReceive('disk')
+        ->once()
+        ->with('public')
+        ->andReturn($disk);
+
+    $response = $this->actingAs($admin)->postJson(route('admin.chatbot.upload-temp'), [
+        'image' => $file,
+    ]);
+
+    $response->assertStatus(500);
+    $response->assertJsonPath('message', 'Gagal menyimpan foto sementara. Coba lagi.');
 });
 
 test('non-admin tidak dapat mengunggah gambar sementara', function () {
@@ -83,7 +132,7 @@ test('non-admin tidak dapat mengunggah gambar sementara', function () {
     $file = UploadedFile::fake()->image('temp_product.jpg');
 
     $response = $this->actingAs($sales)->postJson(route('admin.chatbot.upload-temp'), [
-        'image' => $file
+        'image' => $file,
     ]);
 
     $response->assertStatus(403);
@@ -123,7 +172,7 @@ test('service chatbot memproses aksi add_product secara transaksi aman', functio
     $tempPath = 'temp-chatbot/fake_product.jpg';
     Storage::disk('public')->put($tempPath, 'fake-image-content');
 
-    $service = new ActionableChatbotService();
+    $service = new ActionableChatbotService;
 
     // Invoke protected executeWriteAction method via reflection
     $reflection = new ReflectionClass(ActionableChatbotService::class);
@@ -135,7 +184,7 @@ test('service chatbot memproses aksi add_product secara transaksi aman', functio
         'price' => 35000,
         'stock' => 15,
         'description' => 'Kopi arabika berkualitas tinggi',
-        'minimum' => 3
+        'minimum' => 3,
     ], $tempPath);
 
     expect($result['success'])->toBeTrue();
@@ -143,7 +192,7 @@ test('service chatbot memproses aksi add_product secara transaksi aman', functio
         'name' => 'Kopi Luwak Premium',
         'price' => 35000,
         'description' => 'Kopi arabika berkualitas tinggi',
-        'minimum' => 3
+        'minimum' => 3,
     ]);
 
     $product = Product::query()->where('name', 'Kopi Luwak Premium')->first();

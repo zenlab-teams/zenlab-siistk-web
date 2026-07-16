@@ -68,6 +68,18 @@ const ChatBot = () => {
     const bottomRef = useRef(null);
     const fileInputRef = useRef(null);
 
+    const readResponseMessage = async (response) => {
+        const contentType = response.headers.get("content-type") || "";
+
+        if (contentType.includes("application/json")) {
+            const data = await response.json().catch(() => ({}));
+            return data.message || data.error || data.reply || "Permintaan gagal.";
+        }
+
+        const text = await response.text().catch(() => "");
+        return text || "Permintaan gagal.";
+    };
+
     useEffect(() => {
         try {
             localStorage.setItem(storageKey, JSON.stringify(messages));
@@ -114,13 +126,14 @@ const ChatBot = () => {
             const res = await fetch(route("admin.chatbot.upload-temp"), {
                 method: "POST",
                 headers: {
+                    Accept: "application/json",
                     "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]')?.content,
                 },
                 body: formData,
             });
 
             if (!res.ok) {
-                throw new Error("Gagal mengunggah gambar.");
+                throw new Error(await readResponseMessage(res));
             }
 
             const data = await res.json();
@@ -130,7 +143,7 @@ const ChatBot = () => {
             });
         } catch (err) {
             console.error("ChatBot Upload Error:", err);
-            alert("Gagal mengunggah foto. Pastikan ukuran di bawah 5MB dan format berupa gambar.");
+            alert(err instanceof Error ? err.message : "Gagal mengunggah foto. Pastikan ukuran di bawah 5MB dan format berupa gambar.");
         } finally {
             setUploading(false);
             if (fileInputRef.current) fileInputRef.current.value = "";
@@ -163,6 +176,7 @@ const ChatBot = () => {
             const res = await fetch(route("admin.chatbot.messages"), {
                 method: "POST",
                 headers: {
+                    Accept: "application/json",
                     "Content-Type": "application/json",
                     "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]')?.content,
                 },
